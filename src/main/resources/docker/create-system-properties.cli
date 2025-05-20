@@ -1,0 +1,3 @@
+embed-server --std-out=echo
+/system-property=PORTAL_ISSS_DB_PASS:add(value="stL#630i")
+stop-embedded-server

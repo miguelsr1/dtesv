@@ -1,0 +1,34 @@
+FROM quay.io/wildfly/wildfly:24.0.0.Final
+
+RUN $JBOSS_HOME/bin/add-user.sh -u admin -p admin123 --silent
+USER root
+RUN mkdir -p /home/jboss/opt
+RUN mkdir -p /home/jboss/opt/mh
+RUN mkdir -p /home/jboss/opt/mh/images
+RUN mkdir -p /home/jboss/opt/mh/report
+COPY mysql-connector-j-8.0.33.jar /home/jboss/opt
+
+COPY create-module-ojdbc6.cli /home/jboss/opt
+COPY register-driver.cli /home/jboss/opt
+COPY create-datasource.cli /home/jboss/opt
+
+#COPY create-system-properties.cli /home/jboss/opt
+COPY dtesv.war /home/jboss/opt
+COPY deploy-war.cli /home/jboss/opt
+
+COPY logo-dte.jpg /home/jboss/opt/mh/images
+COPY REPNOTAREMELEC.jrxml /home/jboss/opt/mh/report
+COPY REPNOTAREMELEC.jasper /home/jboss/opt/mh/report
+
+
+RUN chown jboss:jboss /home/jboss/opt/*.*
+
+RUN /opt/jboss/wildfly/bin/jboss-cli.sh --file=/home/jboss/opt/create-module-ojdbc6.cli
+RUN /opt/jboss/wildfly/bin/jboss-cli.sh --file=/home/jboss/opt/register-driver.cli
+RUN /opt/jboss/wildfly/bin/jboss-cli.sh --file=/home/jboss/opt/create-datasource.cli
+
+
+#RUN /opt/jboss/wildfly/bin/jboss-cli.sh --file=/home/jboss/opt/create-system-properties.cli
+RUN /opt/jboss/wildfly/bin/jboss-cli.sh --file=/home/jboss/opt/deploy-war.cli
+
+CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]

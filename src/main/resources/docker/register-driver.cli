@@ -1,0 +1,7 @@
+embed-server --std-out=echo
+/subsystem=datasources/jdbc-driver=mysql:add( \
+    driver-name=mysql, \
+    driver-module-name=com.mysql, \
+    driver-class-name=com.mysql.cj.jdbc.Driver \
+)
+stop-embedded-server

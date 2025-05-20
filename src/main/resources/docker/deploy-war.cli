@@ -1,0 +1,3 @@
+embed-server --std-out=echo
+deploy /home/jboss/opt/dtesv.war
+stop-embedded-server

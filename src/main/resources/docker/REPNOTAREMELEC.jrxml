@@ -1,0 +1,2499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.2.final using JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="REPNOTAREMELEC" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="00b40d32-519c-4fa1-a276-21e754b9bf7f">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Fact"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="144"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="850"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<subDataset name="Emisor" uuid="4175d6d0-70e9-476f-85ca-da34d2b7564d">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="160"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="834"/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Facturacion Electronica"/>
+		<parameter name="PNUMERO_INTERNO" class="java.lang.String">
+			<defaultValueExpression><![CDATA["ID TBL"]]></defaultValueExpression>
+		</parameter>
+		<parameter name="PNRO_FACTURA" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[select
+co.ruc_nombre_razonsocial,
+co.ruc_nit_contribuyente,
+co.ruc_nrc,
+co.ruc_desactividad,
+co.ruc_domicilio,
+co.ruc_telefono_personal,
+co.ruc_email_contribuyente,
+co.ruc_tipoestablecimiento,
+fa.fac_nro_factura,
+co.ruc_nombre_comercial,
+(SELECT CONCAT (codigo,' - ',valor) FROM fact.catalogo_tipo_establecimiento t
+inner join fact.contribuyentes c on c.ruc_tipoestablecimiento = t.Codigo and c.ruc_tipo_contribuyente = 'EMISOR'
+inner join fact.factura f on c.ruc_nit_contribuyente = f.fac_nit_emisor and c.ruc_tipo_contribuyente = 'EMISOR'
+where fac_nro_factura= fa.fac_id) tipo_establecimiento
+from factura fa inner join contribuyentes co
+on fa.fac_nit_emisor = co.ruc_nit_contribuyente where fa.fac_id = $P{PNRO_FACTURA}  and co.ruc_tipo_contribuyente = 'EMISOR']]>
+		</queryString>
+		<field name="ruc_nombre_razonsocial" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ruc_nombre_razonsocial"/>
+			<property name="com.jaspersoft.studio.field.label" value="ruc_nombre_razonsocial"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contribuyentes"/>
+		</field>
+		<field name="ruc_nit_contribuyente" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ruc_nit_contribuyente"/>
+			<property name="com.jaspersoft.studio.field.label" value="ruc_nit_contribuyente"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contribuyentes"/>
+		</field>
+		<field name="ruc_nrc" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ruc_nrc"/>
+			<property name="com.jaspersoft.studio.field.label" value="ruc_nrc"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contribuyentes"/>
+		</field>
+		<field name="ruc_desactividad" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ruc_desactividad"/>
+			<property name="com.jaspersoft.studio.field.label" value="ruc_desactividad"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contribuyentes"/>
+		</field>
+		<field name="ruc_domicilio" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ruc_domicilio"/>
+			<property name="com.jaspersoft.studio.field.label" value="ruc_domicilio"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contribuyentes"/>
+		</field>
+		<field name="ruc_telefono_personal" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ruc_telefono_personal"/>
+			<property name="com.jaspersoft.studio.field.label" value="ruc_telefono_personal"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contribuyentes"/>
+		</field>
+		<field name="ruc_email_contribuyente" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ruc_email_contribuyente"/>
+			<property name="com.jaspersoft.studio.field.label" value="ruc_email_contribuyente"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contribuyentes"/>
+		</field>
+		<field name="ruc_tipoestablecimiento" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ruc_tipoestablecimiento"/>
+			<property name="com.jaspersoft.studio.field.label" value="ruc_tipoestablecimiento"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contribuyentes"/>
+		</field>
+		<field name="fac_nro_factura" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="fac_nro_factura"/>
+			<property name="com.jaspersoft.studio.field.label" value="fac_nro_factura"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+		</field>
+		<field name="ruc_nombre_comercial" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ruc_nombre_comercial"/>
+			<property name="com.jaspersoft.studio.field.label" value="ruc_nombre_comercial"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contribuyentes"/>
+		</field>
+		<field name="tipo_establecimiento" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="tipo_establecimiento"/>
+			<property name="com.jaspersoft.studio.field.label" value="tipo_establecimiento"/>
+		</field>
+	</subDataset>
+	<subDataset name="Receptor" uuid="0434832b-03d4-4dbd-a50a-6f5484d2195b">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="153"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="842"/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Facturacion Electronica"/>
+		<parameter name="PNRO_FACTURA" class="java.lang.String"/>
+		<parameter name="PTIPO_COMP" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[select
+    case when fa.fac_nombre_receptor is null then co.ruc_nombre_razonsocial else fa.fac_nombre_receptor end as ruc_nombre_razonsocial,
+    co.ruc_nit_contribuyente,
+    co.ruc_nrc,
+    co.ruc_desactividad,
+    co.ruc_domicilio,
+    co.ruc_email_contribuyente,
+    co.ruc_nombre_razonsocial,
+    co.ruc_telefono_personal
+    from factura fa
+    inner join contribuyentes co on fa.fac_nit_receptor = co.ruc_nit_contribuyente
+    where fa.fac_id =  $P{PNRO_FACTURA}  and co.ruc_tipo_contribuyente = 'RECEPTOR']]>
+		</queryString>
+		<field name="ruc_nombre_razonsocial" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ruc_nombre_razonsocial"/>
+			<property name="com.jaspersoft.studio.field.label" value="ruc_nombre_razonsocial"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contribuyentes"/>
+		</field>
+		<field name="ruc_nit_contribuyente" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ruc_nit_contribuyente"/>
+			<property name="com.jaspersoft.studio.field.label" value="ruc_nit_contribuyente"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contribuyentes"/>
+		</field>
+		<field name="ruc_nrc" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ruc_nrc"/>
+			<property name="com.jaspersoft.studio.field.label" value="ruc_nrc"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contribuyentes"/>
+		</field>
+		<field name="ruc_desactividad" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ruc_desactividad"/>
+			<property name="com.jaspersoft.studio.field.label" value="ruc_desactividad"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contribuyentes"/>
+		</field>
+		<field name="ruc_domicilio" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ruc_domicilio"/>
+			<property name="com.jaspersoft.studio.field.label" value="ruc_domicilio"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contribuyentes"/>
+		</field>
+		<field name="ruc_email_contribuyente" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ruc_email_contribuyente"/>
+			<property name="com.jaspersoft.studio.field.label" value="ruc_email_contribuyente"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contribuyentes"/>
+		</field>
+		<field name="COLUMN_7" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ruc_nombre_razonsocial"/>
+			<property name="com.jaspersoft.studio.field.label" value="ruc_nombre_razonsocial"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contribuyentes"/>
+		</field>
+		<field name="ruc_telefono_personal" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ruc_telefono_personal"/>
+			<property name="com.jaspersoft.studio.field.label" value="ruc_telefono_personal"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="contribuyentes"/>
+		</field>
+	</subDataset>
+	<subDataset name="Resumen" uuid="36ab76cb-5a44-48cd-b133-3df915a0525e">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Facturacion Electronica"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="151"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="843"/>
+		<parameter name="PNRO_FACTURA" class="java.lang.String"/>
+		<parameter name="PTIPO_COMPROBANTE" class="java.lang.String"/>
+		<parameter name="PTIPO_COMP" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[select
+    fac_total_pagar as Suma_Total_de_Operaciones,
+    0    as Monto_Rebajas_Y_Ventas_No_Sujetas,
+    0    as Monto_Rebajas_Y_Ventas_Exentas,
+    0    as Monto_Rebajas_Y_Ventas_Gravadas,
+    (select distinct det_tributo FROM factura_detalle WHERE det_fac_nro_factura = fac_nro_factura)    as Nombre_tributo,
+    fac_subtotal    as Sub_Total,
+    fac_ivaperci1    as IVA_Percibido,
+    tri_descripcion as tri_descripcion,
+    tri_valor as tri_valor,
+    fac_iva_retenido    as IVA_Retenido,
+    fac_retencion_renta    as Retencion_Renta,
+    fac_montototaloperacion    as Monto_total_Operacion,
+    0                        as Total_Otros_Montos_No_Afectos,  #
+    fac_total_pagar                        as Total_A_Pagar
+
+from
+    factura f
+     inner join tributos t on t.tri_fac_id = f.fac_id
+where f.fac_id = $P{PNRO_FACTURA}]]>
+		</queryString>
+		<field name="Suma_Total_de_Operaciones" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="fac_total_pagar"/>
+			<property name="com.jaspersoft.studio.field.label" value="Suma_Total_de_Operaciones"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+		</field>
+		<field name="Monto_Rebajas_Y_Ventas_No_Sujetas" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="Monto_Rebajas_Y_Ventas_No_Sujetas"/>
+			<property name="com.jaspersoft.studio.field.label" value="Monto_Rebajas_Y_Ventas_No_Sujetas"/>
+		</field>
+		<field name="Monto_Rebajas_Y_Ventas_Exentas" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="Monto_Rebajas_Y_Ventas_Exentas"/>
+			<property name="com.jaspersoft.studio.field.label" value="Monto_Rebajas_Y_Ventas_Exentas"/>
+		</field>
+		<field name="Monto_Rebajas_Y_Ventas_Gravadas" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="Monto_Rebajas_Y_Ventas_Gravadas"/>
+			<property name="com.jaspersoft.studio.field.label" value="Monto_Rebajas_Y_Ventas_Gravadas"/>
+		</field>
+		<field name="Nombre_tributo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="Nombre_tributo"/>
+			<property name="com.jaspersoft.studio.field.label" value="Nombre_tributo"/>
+		</field>
+		<field name="Sub_Total" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="fac_subtotal"/>
+			<property name="com.jaspersoft.studio.field.label" value="Sub_Total"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+		</field>
+		<field name="IVA_Percibido" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="fac_ivaperci1"/>
+			<property name="com.jaspersoft.studio.field.label" value="IVA_Percibido"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+		</field>
+		<field name="tri_descripcion" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="tri_descripcion"/>
+			<property name="com.jaspersoft.studio.field.label" value="tri_descripcion"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="tributos"/>
+		</field>
+		<field name="tri_valor" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="tri_valor"/>
+			<property name="com.jaspersoft.studio.field.label" value="tri_valor"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="tributos"/>
+		</field>
+		<field name="IVA_Retenido" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="fac_iva_retenido"/>
+			<property name="com.jaspersoft.studio.field.label" value="IVA_Retenido"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+		</field>
+		<field name="Retencion_Renta" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="fac_retencion_renta"/>
+			<property name="com.jaspersoft.studio.field.label" value="Retencion_Renta"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+		</field>
+		<field name="Monto_total_Operacion" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="fac_montototaloperacion"/>
+			<property name="com.jaspersoft.studio.field.label" value="Monto_total_Operacion"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+		</field>
+		<field name="Total_Otros_Montos_No_Afectos" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="Total_Otros_Montos_No_Afectos"/>
+			<property name="com.jaspersoft.studio.field.label" value="Total_Otros_Montos_No_Afectos"/>
+		</field>
+		<field name="Total_A_Pagar" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="fac_total_pagar"/>
+			<property name="com.jaspersoft.studio.field.label" value="Total_A_Pagar"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+		</field>
+	</subDataset>
+	<subDataset name="Footer" uuid="c481d29d-faa0-4eca-9759-c9013081a78e">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Facturacion Electronica"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="150"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="845"/>
+		<parameter name="PNRO_FACTURA" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT ef_nombEntrega nombEntrega, ef_docuEntrega docuEntrega FROM fact.extensiones_facturas
+where ef_ruc_id =(SELECT ruc_id FROM contribuyentes  inner join factura e on ruc_nit_contribuyente = e.fac_nit_emisor where e.fac_id =  $P{PNRO_FACTURA} and ruc_tipo_contribuyente = 'EMISOR')]]>
+		</queryString>
+		<field name="nombEntrega" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ef_nombentrega"/>
+			<property name="com.jaspersoft.studio.field.label" value="nombEntrega"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="extensiones_facturas"/>
+		</field>
+		<field name="docuEntrega" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ef_docuentrega"/>
+			<property name="com.jaspersoft.studio.field.label" value="docuEntrega"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="extensiones_facturas"/>
+		</field>
+	</subDataset>
+	<subDataset name="Encabezado" uuid="1d34d51a-f747-47cb-aa90-e36a4a62da6d">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Facturacion Electronica"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="161"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="833"/>
+		<parameter name="PNRO_FACTURA" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT distinct selloRecibido, fac_codigo_generacion, fac_numero_de_control FROM fact.factura inner join bitacora_declaracion_hacienda on id_fac = fac_id WHERE fac_id = $P{PNRO_FACTURA} and estado = 'PROCESADO']]>
+		</queryString>
+		<field name="selloRecibido" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="selloRecibido"/>
+			<property name="com.jaspersoft.studio.field.label" value="selloRecibido"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="bitacora_declaracion_hacienda"/>
+		</field>
+		<field name="fac_codigo_generacion" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="fac_codigo_generacion"/>
+			<property name="com.jaspersoft.studio.field.label" value="fac_codigo_generacion"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+		</field>
+		<field name="fac_numero_de_control" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="fac_numero_de_control"/>
+			<property name="com.jaspersoft.studio.field.label" value="fac_numero_de_control"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+		</field>
+	</subDataset>
+	<subDataset name="Modelo" uuid="ba564c58-56d5-4e18-8349-89a5c24f8d43">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="193"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="799"/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Facturacion Electronica"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT concat(idmodelo_facturacion,' - ',  valor ) modelo
+FROM fact.catalogo_modelo_facturacion 
+inner join fact.parametros_generales 
+on pgn_valor = idmodelo_facturacion where pgn_campo='tipoModelo']]>
+		</queryString>
+		<field name="modelo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="modelo"/>
+			<property name="com.jaspersoft.studio.field.label" value="modelo"/>
+		</field>
+	</subDataset>
+	<subDataset name="Transmision" uuid="5848007e-8d47-4e7a-8f00-9a8afaff638d">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Facturacion Electronica"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="283"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="712"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT concat(idtipo_transmision,' - ', valor) transmision
+FROM fact.catalogo_tipo_transmision 
+inner join fact.parametros_generales 
+on pgn_valor = idtipo_transmision where pgn_campo='tipoOperacion']]>
+		</queryString>
+		<field name="transmision" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="transmision"/>
+			<property name="com.jaspersoft.studio.field.label" value="transmision"/>
+		</field>
+	</subDataset>
+	<subDataset name="ValorEnLetras" uuid="b625caba-f2af-4429-9f81-f552d61c294b">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Facturacion Electronica"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="179"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="816"/>
+		<parameter name="PNRO_FACTURA" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT fac_total_letras FROM fact.factura WHERE fac_id = $P{PNRO_FACTURA}]]>
+		</queryString>
+		<field name="fac_total_letras" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="fac_total_letras"/>
+			<property name="com.jaspersoft.studio.field.label" value="fac_total_letras"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+		</field>
+	</subDataset>
+	<subDataset name="CondicionFormaPago" uuid="4d0b51f9-7a82-41e0-b2a1-b92ee352f2a7">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Facturacion Electronica"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="107"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="888"/>
+		<parameter name="PNRO_FACTURA" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT concat(a.idcondicion_operacion,' - ',a.valor) as condicion_de_pago, concat(b.codigo_mh,' - ',b.valor) as forma_pago FROM fact.factura
+inner join fact.catalogo_condicion_operacion a on idcondicion_operacion=fac_condicion_operacion
+inner join fact.catalogo_forma_pago  b on codigo_mh=(SELECT codigo FROM fact.pagos where id_fac=fac_id)
+where fac_id = $P{PNRO_FACTURA}]]>
+		</queryString>
+		<field name="condicion_de_pago" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="condicion_de_pago"/>
+			<property name="com.jaspersoft.studio.field.label" value="condicion_de_pago"/>
+		</field>
+		<field name="forma_pago" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="forma_pago"/>
+			<property name="com.jaspersoft.studio.field.label" value="forma_pago"/>
+		</field>
+	</subDataset>
+	<subDataset name="QRCode" uuid="01511ee2-6eb8-48b4-b4f9-bcdfafb950aa">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Facturacion Electronica"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="176"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="818"/>
+		<parameter name="PNRO_FACTURA" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[select fact.fun_retorna_link( $P{PNRO_FACTURA}) as qrurl from dual]]>
+		</queryString>
+		<field name="qrurl" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="qrurl"/>
+			<property name="com.jaspersoft.studio.field.label" value="qrurl"/>
+		</field>
+	</subDataset>
+	<subDataset name="FechaRespuesta" uuid="ab93c5f1-ff10-43eb-97e0-76ccf0b0ad72">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Facturacion Electronica"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="201"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="794"/>
+		<parameter name="PNRO_FACTURA" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[select fac_fecha_emision fecha_respuesta from factura where fac_id =  $P{PNRO_FACTURA}]]>
+		</queryString>
+		<field name="fecha_respuesta" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="fecha_respuesta"/>
+			<property name="com.jaspersoft.studio.field.label" value="fecha_respuesta"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="bitacora_declaracion_hacienda"/>
+		</field>
+	</subDataset>
+	<subDataset name="FooterReceptor" uuid="9cb0befc-45f4-4e5a-9e81-ae1a7233e10d">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="249"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="744"/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Facturacion Electronica"/>
+		<parameter name="PNRO_FACTURA" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT ef_nombEntrega nombEntrega, ef_docuEntrega docuEntrega FROM fact.extensiones_facturas
+where ef_ruc_id =(SELECT ruc_id FROM contribuyentes inner join factura e on ruc_nit_contribuyente = e.fac_nit_receptor where e.fac_id = $P{PNRO_FACTURA} and ruc_tipo_contribuyente = 'RECEPTOR')]]>
+		</queryString>
+		<field name="nombEntrega" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ef_nombentrega"/>
+			<property name="com.jaspersoft.studio.field.label" value="nombEntrega"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="extensiones_facturas"/>
+		</field>
+		<field name="docuEntrega" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="ef_docuentrega"/>
+			<property name="com.jaspersoft.studio.field.label" value="docuEntrega"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="extensiones_facturas"/>
+		</field>
+	</subDataset>
+	<subDataset name="ResumenSE" uuid="c15ca860-1a39-4999-bd65-8fe96d8c765f">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Facturacion Electronica"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="192"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="803"/>
+		<parameter name="PNRO_FACTURA" class="java.lang.String"/>
+		<parameter name="PTIPO_COMPROBANTE" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[select
+fac_totalcompra as Suma_Total_de_Operaciones,
+fac_retencion_iva as retencion_iva,
+fac_retencion_renta as impuesto_sobre_renta,
+fac_subtotal + fac_retencion_iva as Sub_Total,
+fac_totalcompra + fac_retencion_iva - fac_retencion_renta - fac_retencion_iva as Monto_total_Operacion
+from factura f
+inner join tributos t on t.tri_fac_id = f.fac_id
+where f.fac_id = $P{PNRO_FACTURA}]]>
+		</queryString>
+		<field name="Suma_Total_de_Operaciones" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="fac_totalcompra"/>
+			<property name="com.jaspersoft.studio.field.label" value="Suma_Total_de_Operaciones"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+		</field>
+		<field name="retencion_iva" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="fac_retencion_iva"/>
+			<property name="com.jaspersoft.studio.field.label" value="retencion_iva"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+		</field>
+		<field name="impuesto_sobre_renta" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="fac_retencion_renta"/>
+			<property name="com.jaspersoft.studio.field.label" value="impuesto_sobre_renta"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+		</field>
+		<field name="Sub_Total" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="fac_subtotal"/>
+			<property name="com.jaspersoft.studio.field.label" value="Sub_Total"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+		</field>
+		<field name="Monto_total_Operacion" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="Monto_total_Operacion"/>
+			<property name="com.jaspersoft.studio.field.label" value="Monto_total_Operacion"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+		</field>
+	</subDataset>
+	<subDataset name="FSEDetalle" uuid="e23549e9-84b9-4ad1-bbec-a49db511d53d">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Facturacion Electronica"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="188"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="807"/>
+		<parameter name="PNRO_FACTURA" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[select
+    det_fac_numlinea,
+    det_fac_cantidad as cantidad,
+    det_fac_descripcion as descripcion,
+    det_fac_preciounitario as precioUnitario,
+    tcp_descomprobante as tipos_comprobantes,
+(    det_montoDescu/det_fac_cantidad) as descuento,
+    (det_fact_ventasgravadas+det_montoDescu) as vtaGrabada,
+    DATE_FORMAT(f.fac_fecha_ini_periodo, '%d/%m/%y') as fechaInicio,
+    DATE_FORMAT(f.fac_fecha_fin_periodo, '%d/%m/%y') as fechaFin,
+    tcp_idtipcom as tipo_comp,
+    fac_fecha_emision as fecha_emision,
+    det_observacion as observacion
+from
+    factura_detalle fd
+    inner join factura f on f.fac_id = fd.det_fac_id
+    inner join tipos_comprobantes on tcp_idtipcom = f.fac_tipo_comprobante
+where f.fac_id =   $P{PNRO_FACTURA}]]>
+		</queryString>
+		<field name="det_fac_numlinea" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="det_fac_numlinea"/>
+			<property name="com.jaspersoft.studio.field.label" value="det_fac_numlinea"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura_detalle"/>
+		</field>
+		<field name="cantidad" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="det_fac_cantidad"/>
+			<property name="com.jaspersoft.studio.field.label" value="cantidad"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura_detalle"/>
+		</field>
+		<field name="descripcion" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="det_fac_descripcion"/>
+			<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura_detalle"/>
+		</field>
+		<field name="precioUnitario" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="det_fac_preciounitario"/>
+			<property name="com.jaspersoft.studio.field.label" value="precioUnitario"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura_detalle"/>
+		</field>
+		<field name="tipos_comprobantes" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="tcp_descomprobante"/>
+			<property name="com.jaspersoft.studio.field.label" value="tipos_comprobantes"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="tipos_comprobantes"/>
+		</field>
+		<field name="descuento" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="descuento"/>
+			<property name="com.jaspersoft.studio.field.label" value="descuento"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura_detalle"/>
+		</field>
+		<field name="vtaGrabada" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="vtaGrabada"/>
+			<property name="com.jaspersoft.studio.field.label" value="vtaGrabada"/>
+		</field>
+		<field name="fechaInicio" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="fechaInicio"/>
+			<property name="com.jaspersoft.studio.field.label" value="fechaInicio"/>
+		</field>
+		<field name="fechaFin" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="fechaFin"/>
+			<property name="com.jaspersoft.studio.field.label" value="fechaFin"/>
+		</field>
+		<field name="tipo_comp" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="tcp_idtipcom"/>
+			<property name="com.jaspersoft.studio.field.label" value="tipo_comp"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="tipos_comprobantes"/>
+		</field>
+		<field name="fecha_emision" class="java.sql.Timestamp">
+			<property name="com.jaspersoft.studio.field.name" value="fac_fecha_emision"/>
+			<property name="com.jaspersoft.studio.field.label" value="fecha_emision"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+		</field>
+		<field name="observacion" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="det_observacion"/>
+			<property name="com.jaspersoft.studio.field.label" value="observacion"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="factura_detalle"/>
+		</field>
+	</subDataset>
+	<parameter name="PNRO_FACTURA" class="java.lang.String"/>
+	<parameter name="PLOGO" class="java.lang.String"/>
+	<parameter name="POBSERVACIONES" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+    det_fac_numlinea,
+    det_fac_cantidad    as cantidad,
+    det_fac_descripcion    as descripcion,
+    det_fac_preciounitario    as precioUnitario,
+    tcp_descomprobante as tipos_comprobantes,
+    det_montoDescu                        as descuento,
+    det_fac_ventasnosujet                        as vtaNoSujeta,
+    det_fac_ventasexentas                        as vtaExenta,
+    det_fact_ventasgravadas as vtaGrabada,
+    DATE_FORMAT(f.fac_fecha_ini_periodo, '%d/%m/%y') as fechaInicio,
+    DATE_FORMAT(f.fac_fecha_fin_periodo, '%d/%m/%y') as fechaFin,
+    tcp_idtipcom as tipo_comp,
+    fac_fecha_emision as fecha_emision,
+    det_observacion as observacion
+from
+    factura_detalle fd
+    inner join factura f on f.fac_id = fd.det_fac_id
+    inner join tipos_comprobantes on tcp_idtipcom = f.fac_tipo_comprobante
+where f.fac_id =  $P{PNRO_FACTURA}]]>
+	</queryString>
+	<field name="det_fac_numlinea" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="det_fac_numlinea"/>
+		<property name="com.jaspersoft.studio.field.label" value="det_fac_numlinea"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="factura_detalle"/>
+	</field>
+	<field name="cantidad" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="det_fac_cantidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="cantidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="factura_detalle"/>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="det_fac_descripcion"/>
+		<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="factura_detalle"/>
+	</field>
+	<field name="precioUnitario" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="det_fac_preciounitario"/>
+		<property name="com.jaspersoft.studio.field.label" value="precioUnitario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="factura_detalle"/>
+	</field>
+	<field name="tipos_comprobantes" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tcp_descomprobante"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipos_comprobantes"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipos_comprobantes"/>
+	</field>
+	<field name="descuento" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="det_montoDescu"/>
+		<property name="com.jaspersoft.studio.field.label" value="descuento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="factura_detalle"/>
+	</field>
+	<field name="vtaNoSujeta" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="det_fac_ventasnosujet"/>
+		<property name="com.jaspersoft.studio.field.label" value="vtaNoSujeta"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="factura_detalle"/>
+	</field>
+	<field name="vtaExenta" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="det_fac_ventasexentas"/>
+		<property name="com.jaspersoft.studio.field.label" value="vtaExenta"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="factura_detalle"/>
+	</field>
+	<field name="vtaGrabada" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="det_fact_ventasgravadas"/>
+		<property name="com.jaspersoft.studio.field.label" value="vtaGrabada"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="factura_detalle"/>
+	</field>
+	<field name="fechaInicio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fechaInicio"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechaInicio"/>
+	</field>
+	<field name="fechaFin" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fechaFin"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechaFin"/>
+	</field>
+	<field name="tipo_comp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tcp_idtipcom"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipo_comp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipos_comprobantes"/>
+	</field>
+	<field name="fecha_emision" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="fac_fecha_emision"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_emision"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="factura"/>
+	</field>
+	<field name="observacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="det_observacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="observacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="factura_detalle"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="109" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="572" height="16" uuid="4a6ebad3-3e82-44c8-8f23-ec81be976aff">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOCUMENTO TRIBUTARIO ELECTRÓNICO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="16" width="572" height="16" uuid="cf64001c-8104-4a70-aa5f-da9cb92d40de">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipos_comprobantes}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="285" y="52" width="92" height="12" uuid="be74af11-c685-4851-9bb0-538473fbc8e8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Courier New" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modelo Facturación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="65" width="92" height="12" uuid="5d864770-648b-4c16-9447-f27c4d6d3e61"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Courier New" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo Transmisión:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="78" width="92" height="12" uuid="3c0a15a1-cfa4-4729-a91c-32daa7898e4c"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Courier New" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Generación:]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="0" y="0" width="50" height="49" uuid="c33fe223-d66a-41e5-9b28-d9107da03261"/>
+				<imageExpression><![CDATA[$P{PLOGO} + "/images/logo-dte.jpg"]]></imageExpression>
+			</image>
+			<componentElement>
+				<reportElement x="0" y="51" width="280" height="38" uuid="9b06ecf0-15f5-4205-8b71-ababf29721b1"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Encabezado" uuid="c6c63b96-988a-4cb5-9258-ae3a0a1912a8">
+						<datasetParameter name="PNRO_FACTURA">
+							<datasetParameterExpression><![CDATA[$P{PNRO_FACTURA}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="38" width="280">
+						<textField textAdjust="StretchHeight">
+							<reportElement x="80" y="0" width="200" height="12" uuid="5e46a079-efe1-4363-8e96-55854db7792b">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<textElement textAlignment="Justified" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{fac_codigo_generacion}]]></textFieldExpression>
+						</textField>
+						<textField textAdjust="StretchHeight">
+							<reportElement x="80" y="13" width="200" height="12" uuid="eefcd8f4-799b-42c7-82d6-cc8eaeede8b5">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Courier New" size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{fac_numero_de_control}]]></textFieldExpression>
+						</textField>
+						<textField textAdjust="StretchHeight">
+							<reportElement x="80" y="26" width="200" height="12" uuid="41e9817c-2c34-48af-bcf1-da1d86849557"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Courier New" size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{selloRecibido}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="0" width="80" height="12" uuid="084d6825-913f-4614-ad87-cb4840609167">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Código Generación:]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="0" y="13" width="80" height="12" uuid="40a8526a-9ddf-4488-9c9e-3cac631a72ca">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Número Control:]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="0" y="26" width="80" height="12" uuid="eb1d20ee-df72-4741-9a9b-4845ac52d48f">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Sello Recepción:]]></text>
+						</staticText>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="377" y="52" width="126" height="12" uuid="64831439-b737-4d02-9993-f31c2166beb9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Modelo" uuid="45e73fb0-c971-478a-bf1c-e226e6b644d2">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="12" width="126">
+						<textField>
+							<reportElement x="0" y="0" width="126" height="12" uuid="40c77c8d-b5c9-40bb-9980-037a3e5a1478">
+								<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+							</reportElement>
+							<textElement textAlignment="Justified" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7"/>
+								<paragraph leftIndent="5"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="377" y="65" width="126" height="12" uuid="a96895da-ee1e-4df9-af58-1e566d277aa1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Transmision" uuid="00911cd5-1f1d-4a8f-8e8a-f805944a41b8">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="12" width="126">
+						<textField>
+							<reportElement x="0" y="0" width="126" height="12" uuid="837e5734-b7f1-421a-9504-8e920f8a36cc">
+								<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+							</reportElement>
+							<textElement textAlignment="Justified" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7"/>
+								<paragraph leftIndent="5"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{transmision}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<textField pattern="dd/MM/yyyy hh:mm:ss a">
+				<reportElement x="377" y="78" width="126" height="12" uuid="dd34f9f1-d4c9-4e85-b989-701ca67c4adc">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Courier New" size="7"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_emision}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="490" y="3" width="80" height="80" uuid="fee8854d-a5fd-4d0c-ad7f-2adb216591c8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="QRCode" uuid="819cddff-078f-4328-b01e-f7dfa2c19113">
+						<datasetParameter name="PNRO_FACTURA">
+							<datasetParameterExpression><![CDATA[$P{PNRO_FACTURA}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="80" width="80">
+						<componentElement>
+							<reportElement x="1" y="1" width="78" height="78" uuid="beeff198-75e8-438d-a0e4-eb3b7bc80784">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<jr:QRCode>
+								<jr:codeExpression><![CDATA[$F{qrurl}]]></jr:codeExpression>
+							</jr:QRCode>
+						</componentElement>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="172" splitType="Stretch">
+			<rectangle radius="3">
+				<reportElement mode="Opaque" x="8" y="-2" width="269" height="141" uuid="9396a555-f90c-489f-8ed2-2e8f7e1a8da9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="8" y="-15" width="268" height="14" uuid="93c87076-b473-418a-8fc5-bbaeed96b198">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Courier New" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMISOR]]></text>
+			</staticText>
+			<rectangle radius="3">
+				<reportElement mode="Opaque" x="305" y="-1" width="261" height="140" uuid="40cc7292-5d35-4083-a59e-21a5c05f5650">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</graphicElement>
+			</rectangle>
+			<frame>
+				<reportElement positionType="Float" x="0" y="152" width="572" height="20" isRemoveLineWhenBlank="true" uuid="9739855b-11ff-4649-a394-e3536e7c2c63">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<printWhenExpression><![CDATA[$F{tipo_comp}.matches("14")]]></printWhenExpression>
+				</reportElement>
+				<staticText>
+					<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="20" height="20" uuid="abdc2a3a-7698-4d4d-9e26-bbf13c5f35a3">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[N°]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="FixRelativeToBottom" x="20" y="0" width="45" height="20" uuid="86047e2c-2352-401b-bcbb-530b8ed69c21">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Cantidad]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="FixRelativeToBottom" x="65" y="0" width="237" height="20" uuid="9d95d933-7740-4e55-81a6-102bed7ff571">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Descripción]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="FixRelativeToBottom" x="302" y="0" width="89" height="20" uuid="fd74be65-57c7-4476-be2c-7ab0e8267958">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Precio Unitario]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="FixRelativeToBottom" x="391" y="0" width="89" height="20" uuid="f5218ec1-6c9e-47b8-abb1-b45892f27f59">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Descuento por Item]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="FixRelativeToBottom" x="480" y="0" width="92" height="20" uuid="70e18c46-86d1-405d-87ae-b6d662dfaf79">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Ventas Gravadas]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement x="305" y="-15" width="262" height="14" uuid="f64f8521-7b16-4d7a-b5b8-28dea792374f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Courier New" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECEPTOR]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="307" y="1" width="257" height="111" uuid="62183077-268a-492a-aa75-db58b404e2cf">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Receptor" uuid="b47ea22f-7beb-4111-9f86-8c4823b2147c">
+						<datasetParameter name="PTIPO_COMP">
+							<datasetParameterExpression><![CDATA[$F{tipo_comp}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PNRO_FACTURA">
+							<datasetParameterExpression><![CDATA[$P{PNRO_FACTURA}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="111" width="257">
+						<frame>
+							<reportElement positionType="Float" x="0" y="22" width="257" height="12" uuid="93ad8894-3658-4230-8b4e-0b7c45046242"/>
+							<textField isBlankWhenNull="true">
+								<reportElement x="88" y="0" width="168" height="12" uuid="22999c65-2eb0-41ed-98ac-878b190f685e">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font fontName="Courier New" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ruc_nit_contribuyente}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement x="0" y="0" width="85" height="12" uuid="f2819c6c-3844-41f8-a9fc-925b2b5117a8">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Courier New" size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[NIT:]]></text>
+							</staticText>
+						</frame>
+						<frame>
+							<reportElement positionType="Float" x="0" y="35" width="257" height="12" isRemoveLineWhenBlank="true" uuid="e30cc07c-7c85-47a8-8982-4ad1a6c673c3">
+								<printWhenExpression><![CDATA[!$P{PTIPO_COMP}.matches("14")]]></printWhenExpression>
+							</reportElement>
+							<textField isBlankWhenNull="true">
+								<reportElement x="88" y="0" width="168" height="12" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="d8c45830-4c35-4fcf-83aa-165076563ed9"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font fontName="Courier New" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ruc_nrc}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement x="0" y="0" width="85" height="12" uuid="a725ebe0-7191-4df0-a528-52ebff6cfa24"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Courier New" size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[NRC:]]></text>
+							</staticText>
+						</frame>
+						<frame>
+							<reportElement positionType="Float" x="0" y="48" width="257" height="18" uuid="08d2a176-ab6b-4128-a4ad-1c758a468da8">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<staticText>
+								<reportElement x="0" y="0" width="85" height="18" uuid="3942ebfe-b769-4dd5-bfa0-ba242a2c9023">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Top">
+									<font fontName="Courier New" size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Actividad Económica:]]></text>
+							</staticText>
+							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+								<reportElement x="88" y="0" width="168" height="18" isPrintWhenDetailOverflows="true" uuid="11915870-d893-48fc-8c9e-385f66f1216c"/>
+								<textElement textAlignment="Left" verticalAlignment="Top">
+									<font fontName="Courier New" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ruc_desactividad}]]></textFieldExpression>
+							</textField>
+						</frame>
+						<frame>
+							<reportElement positionType="Float" x="0" y="67" width="257" height="18" uuid="343ad7f2-1f2c-4e1f-a4c9-3fec902d116d">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+								<reportElement x="88" y="0" width="168" height="18" isPrintWhenDetailOverflows="true" uuid="dd68d313-a0ab-4f24-8957-0d2cde46c16d"/>
+								<textElement textAlignment="Left" verticalAlignment="Top">
+									<font fontName="Courier New" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ruc_domicilio}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement x="0" y="0" width="85" height="18" uuid="bae06623-3dac-4470-997e-b0f52a1e31db">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Top">
+									<font fontName="Courier New" size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Dirección:]]></text>
+							</staticText>
+						</frame>
+						<frame>
+							<reportElement positionType="Float" x="0" y="86" width="257" height="12" uuid="18c5d8b1-ff1f-41cd-8cc4-c57067fc80d2"/>
+							<staticText>
+								<reportElement x="0" y="0" width="85" height="12" uuid="ba61cd02-6fff-44ae-a3b5-b989802ef2ad"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Courier New" size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Teléfono:]]></text>
+							</staticText>
+							<textField isBlankWhenNull="true">
+								<reportElement x="88" y="0" width="168" height="12" uuid="b2034c2e-e6a9-4781-90ff-ba2f2acfb733">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font fontName="Courier New" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ruc_telefono_personal}]]></textFieldExpression>
+							</textField>
+						</frame>
+						<frame>
+							<reportElement positionType="Float" x="0" y="99" width="257" height="12" uuid="9373050f-003d-4047-893f-d81075374e19"/>
+							<staticText>
+								<reportElement x="0" y="0" width="85" height="12" uuid="3957d6b5-f29f-48a4-8a77-ab4d0467c18d">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Courier New" size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Correo:]]></text>
+							</staticText>
+							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+								<reportElement x="88" y="0" width="168" height="12" uuid="a5d95ada-fa5a-44ea-828b-4e83449aeae3">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font fontName="Courier New" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ruc_email_contribuyente}]]></textFieldExpression>
+							</textField>
+						</frame>
+						<frame>
+							<reportElement x="0" y="3" width="257" height="18" uuid="b70d5d83-e3f8-4d16-b44e-3c4910b7ff08">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+								<reportElement x="88" y="0" width="168" height="18" isPrintWhenDetailOverflows="true" uuid="c71bdba4-5331-4c1a-bcb2-587040ebf2de">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Left" verticalAlignment="Top">
+									<font fontName="Courier New" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ruc_nombre_razonsocial}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement x="0" y="0" width="85" height="18" uuid="7ced369c-ee26-471a-b532-b506663bc3f9">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Top">
+									<font fontName="Courier New" size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Nombre o razón social:]]></text>
+							</staticText>
+						</frame>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement mode="Transparent" x="9" y="1" width="267" height="137" uuid="83ef02c6-1449-4edb-9b15-a5e682b41244">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Emisor" uuid="1b501028-8d30-4d9d-9edd-7393e9eed91b">
+						<datasetParameter name="PNRO_FACTURA">
+							<datasetParameterExpression><![CDATA[$P{PNRO_FACTURA}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="137" width="267">
+						<frame>
+							<reportElement positionType="Float" x="0" y="22" width="267" height="12" uuid="90fb7dc5-642a-48ff-bdb0-a87f13bde2f0">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<textField isBlankWhenNull="true">
+								<reportElement x="90" y="0" width="177" height="12" uuid="29461d53-bbe0-49c0-91d9-932c325267ca">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font fontName="Courier New" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ruc_nit_contribuyente}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement x="0" y="0" width="85" height="12" uuid="94850581-01e6-4e36-9ee8-03242685c0e6">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Courier New" size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[NIT:]]></text>
+							</staticText>
+						</frame>
+						<frame>
+							<reportElement positionType="Float" x="0" y="35" width="267" height="12" uuid="58faf6b8-8cdb-4407-b01e-f32d51d3810d">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<textField isBlankWhenNull="true">
+								<reportElement x="90" y="0" width="177" height="12" uuid="05fa6451-4605-44d0-9223-d4e83c54a468">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font fontName="Courier New" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ruc_nrc}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement x="0" y="0" width="85" height="12" uuid="1826fec4-5c75-4279-8bb6-ff0c5964b163">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Courier New" size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[NRC:]]></text>
+							</staticText>
+						</frame>
+						<frame>
+							<reportElement positionType="Float" x="0" y="48" width="267" height="18" uuid="3bf654d9-8c6b-4656-9f64-3efb5b65ae2f">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+								<reportElement stretchType="ElementGroupHeight" x="90" y="0" width="177" height="18" isPrintWhenDetailOverflows="true" uuid="8b9245d4-ba16-43e1-858b-ae6070abb987"/>
+								<textElement textAlignment="Left" verticalAlignment="Top">
+									<font fontName="Courier New" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ruc_desactividad}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement x="0" y="0" width="85" height="18" uuid="9e8c1ea4-b679-485d-9375-0625c11aabfa">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Top">
+									<font fontName="Courier New" size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Actividad Económica:]]></text>
+							</staticText>
+						</frame>
+						<frame>
+							<reportElement positionType="Float" x="0" y="67" width="267" height="18" uuid="151fcaf2-6e41-46a1-9ffe-066f3da7f8aa"/>
+							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+								<reportElement x="90" y="0" width="177" height="18" isPrintWhenDetailOverflows="true" uuid="e702cac1-e81e-4ba9-ac3c-564508d455d1">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Left" verticalAlignment="Top">
+									<font fontName="Courier New" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ruc_domicilio}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement x="0" y="0" width="85" height="18" uuid="1d5b07f1-448a-4cfd-adb1-f18541308864">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Top">
+									<font fontName="Courier New" size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Dirección:]]></text>
+							</staticText>
+						</frame>
+						<frame>
+							<reportElement positionType="Float" x="0" y="86" width="267" height="12" uuid="7503781f-8e8f-4a3b-aa43-e47f9610997f">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<textField isBlankWhenNull="true">
+								<reportElement x="90" y="0" width="177" height="12" uuid="30e562ef-a6e2-4d40-ab9c-663e1282ebaf">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font fontName="Courier New" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ruc_telefono_personal}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement x="0" y="0" width="85" height="12" uuid="c84cd652-b676-449c-aecb-13a169459e70">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Courier New" size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Teléfono:]]></text>
+							</staticText>
+						</frame>
+						<frame>
+							<reportElement positionType="Float" x="0" y="99" width="267" height="12" uuid="f071318a-a28c-49f3-85d0-a0a817daa5de">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+								<reportElement x="90" y="0" width="177" height="12" uuid="e395afef-bfe1-4064-8c6f-14c4ca5ad405">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font fontName="Courier New" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ruc_email_contribuyente}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement x="0" y="0" width="85" height="12" uuid="085997a1-aaec-4677-aeca-bb08293c4377">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Courier New" size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Correo:]]></text>
+							</staticText>
+						</frame>
+						<frame>
+							<reportElement positionType="Float" x="0" y="125" width="267" height="12" uuid="84f2bce7-4792-4304-82bb-207800147fbf">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<textField isBlankWhenNull="true">
+								<reportElement x="90" y="0" width="177" height="12" uuid="5b33d5ca-ac40-4a1b-9345-e32f9126ecdb">
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font fontName="Courier New" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{tipo_establecimiento}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement x="0" y="0" width="85" height="12" uuid="f424d2cb-b985-45c4-b69b-6f90d18be1fb">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Courier New" size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Tipo Establecimiento:]]></text>
+							</staticText>
+						</frame>
+						<frame>
+							<reportElement x="0" y="3" width="267" height="18" uuid="35ae2120-5aa6-415f-b213-9c46d5676de2">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+								<reportElement x="90" y="0" width="177" height="18" uuid="15c36f19-f3db-4375-ba63-2a70f4434997"/>
+								<textElement textAlignment="Left" verticalAlignment="Top">
+									<font fontName="Courier New" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ruc_nombre_razonsocial}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement x="0" y="0" width="85" height="18" uuid="85f90e91-1069-4337-b9a4-d6afb3286650">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Top">
+									<font fontName="Courier New" size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Nombre o razón social:]]></text>
+							</staticText>
+						</frame>
+						<frame>
+							<reportElement x="0" y="112" width="267" height="12" uuid="663957ca-c2e7-403b-8e75-234b7f7da87e">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							</reportElement>
+							<staticText>
+								<reportElement positionType="Float" x="0" y="0" width="85" height="12" uuid="925530ec-d9eb-4f87-a71e-28b134c8a739">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Courier New" size="6" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Nombre Comercial:]]></text>
+							</staticText>
+							<textField isBlankWhenNull="true">
+								<reportElement x="90" y="0" width="177" height="12" uuid="f1238495-e1e6-4b13-b3d4-c19677d6bd09"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Courier New" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ruc_nombre_comercial}]]></textFieldExpression>
+							</textField>
+						</frame>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<frame>
+				<reportElement positionType="Float" x="0" y="152" width="572" height="20" uuid="8ec1fca8-9899-4f1b-a7de-f46fe7dbacb9">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<printWhenExpression><![CDATA[!$F{tipo_comp}.matches("14")]]></printWhenExpression>
+				</reportElement>
+				<staticText>
+					<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="20" height="20" uuid="a5afa437-848f-46be-9c70-3ed104026554">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[N°]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="FixRelativeToBottom" x="20" y="0" width="45" height="20" uuid="47ff1027-a3ce-4beb-b9c0-a85406b2dfe7">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Cantidad]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="FixRelativeToBottom" x="65" y="0" width="237" height="20" uuid="89cc8143-5101-48d7-bb06-dd06d42195da">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Descripción]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="FixRelativeToBottom" x="302" y="0" width="50" height="20" uuid="6d1ef635-bfba-40d0-885f-255ac02cd992">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Precio Unitario]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="FixRelativeToBottom" x="352" y="0" width="50" height="20" uuid="f53ae6e9-295c-4335-9b5c-c86e60ce584f">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Descuento por item]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="FixRelativeToBottom" x="402" y="0" width="50" height="20" uuid="d6f6689e-1364-47c8-bdd3-d4a9bf1cb527">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Ventas no sujetas]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="FixRelativeToBottom" x="452" y="0" width="50" height="20" uuid="0a50e9c9-7890-47f1-a5b3-58832ecf47eb">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Ventas Exentas]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="FixRelativeToBottom" x="502" y="0" width="70" height="20" uuid="c10142a9-69a0-4612-8b53-092d57245fd2">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Ventas Gravadas]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Immediate">
+			<printWhenExpression><![CDATA[!$F{tipo_comp}.matches("14")]]></printWhenExpression>
+			<frame>
+				<reportElement x="0" y="0" width="572" height="14" uuid="966bbdf0-2925-408b-b355-19d9d3c7d993"/>
+				<textField textAdjust="StretchHeight">
+					<reportElement positionType="Float" stretchType="ElementGroupHeight" x="0" y="0" width="20" height="14" isPrintWhenDetailOverflows="true" uuid="125a3a00-2b42-41be-bda9-3cdc6aa6d534">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b11f31be-b77b-4676-b057-dca438163545"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{det_fac_numlinea}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" pattern="#,##0.###;(#,##0.###-)">
+					<reportElement positionType="Float" stretchType="ElementGroupHeight" x="20" y="0" width="45" height="14" isPrintWhenDetailOverflows="true" uuid="d3fde814-86a0-43a0-9e22-7c06131cc763">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="51548a82-ce4d-4e0b-a125-10f73758020c"/>
+						<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5" lineColor="#000000"/>
+						<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7"/>
+						<paragraph rightIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight">
+					<reportElement positionType="Float" stretchType="ElementGroupHeight" x="65" y="0" width="237" height="14" isPrintWhenDetailOverflows="true" uuid="ba144cdd-b39e-4fe4-90a3-0085352c8080">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bb224f6e-cdae-4d36-b052-1b4ee9843174"/>
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5" lineColor="#000000"/>
+						<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Courier New" size="7"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{descripcion} + ($F{observacion} != null ?  ", " +$F{observacion} : "")]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" pattern="$ #,##0.00">
+					<reportElement positionType="Float" stretchType="ElementGroupHeight" x="302" y="0" width="50" height="14" isPrintWhenDetailOverflows="true" uuid="83446605-0529-4145-b491-eecf36d3c7fd">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="96faff5c-1e8f-444f-a9a2-e889274ce337"/>
+						<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5" lineColor="#000000"/>
+						<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7"/>
+						<paragraph rightIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{precioUnitario}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" pattern="$ #,##0.00">
+					<reportElement positionType="Float" stretchType="ElementGroupHeight" x="352" y="0" width="50" height="14" isPrintWhenDetailOverflows="true" uuid="1b7a54e9-dace-406d-a1e5-5175cfd243cf">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8c69ea5a-c92d-4370-a337-a0c1bb726a34"/>
+						<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5" lineColor="#000000"/>
+						<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7"/>
+						<paragraph rightIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{descuento}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" pattern="$ #,##0.00">
+					<reportElement positionType="Float" stretchType="ElementGroupHeight" x="402" y="0" width="50" height="14" isPrintWhenDetailOverflows="true" uuid="3d2357ac-99cb-49d3-9f8c-2b62e9ba041a">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="225f9003-e491-4ede-8821-f895cf007db3"/>
+						<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5" lineColor="#000000"/>
+						<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7"/>
+						<paragraph rightIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{vtaNoSujeta}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" pattern="$ #,##0.00">
+					<reportElement positionType="Float" stretchType="ElementGroupHeight" x="452" y="0" width="50" height="14" isPrintWhenDetailOverflows="true" uuid="f1c85614-0f80-4bf2-9f51-0f5406694b37">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9bdc6de5-e3fa-4446-9795-36338232fe41"/>
+						<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5" lineColor="#000000"/>
+						<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7"/>
+						<paragraph rightIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{vtaExenta}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" pattern="$ #,##0.00">
+					<reportElement positionType="Float" stretchType="ElementGroupHeight" x="502" y="0" width="70" height="14" isPrintWhenDetailOverflows="true" uuid="55e9478e-5496-4674-a80c-350665e5ede4">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6879b9fd-caf8-4119-b5b5-d8a884645d4c"/>
+						<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5" lineColor="#000000"/>
+						<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Courier New" size="7"/>
+						<paragraph rightIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{vtaGrabada}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+		<band height="14">
+			<printWhenExpression><![CDATA[$F{tipo_comp}.matches("14")]]></printWhenExpression>
+			<componentElement>
+				<reportElement x="0" y="0" width="572" height="14" uuid="a5d5a31f-caed-43e4-8a0f-e53deb9daf7d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="FSEDetalle" uuid="7cc0a00e-c926-4470-a326-7282f6b414c6">
+						<datasetParameter name="PNRO_FACTURA">
+							<datasetParameterExpression><![CDATA[$P{PNRO_FACTURA}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="14" width="572">
+						<frame>
+							<reportElement x="0" y="0" width="572" height="14" uuid="bde89670-6c49-4437-bd39-8f0157543509"/>
+							<textField>
+								<reportElement stretchType="ElementGroupHeight" x="0" y="0" width="20" height="14" uuid="cbb6b38a-6464-41be-a618-cbcc35e7e87f">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Courier New" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{det_fac_numlinea}]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement stretchType="ElementGroupHeight" x="20" y="0" width="45" height="14" uuid="eee9d632-8931-4d09-853f-d6cddccf58e2">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Courier New" size="7"/>
+									<paragraph rightIndent="2"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+							</textField>
+							<textField textAdjust="StretchHeight">
+								<reportElement stretchType="ElementGroupHeight" x="65" y="0" width="237" height="14" isPrintWhenDetailOverflows="true" uuid="93716341-715e-43b4-815d-28e361c008bd">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font fontName="Courier New" size="7"/>
+									<paragraph leftIndent="5"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{descripcion} + ($F{observacion} != null ?  ", " +$F{observacion} : "")]]></textFieldExpression>
+							</textField>
+							<textField pattern="$ #,##0.00">
+								<reportElement stretchType="ElementGroupHeight" x="302" y="0" width="89" height="14" uuid="874b0f52-3225-4e8b-9307-87ae1d23d400">
+									<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Courier New" size="7"/>
+									<paragraph rightIndent="2"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{precioUnitario}]]></textFieldExpression>
+							</textField>
+							<textField pattern="$ #,##0.00">
+								<reportElement stretchType="ElementGroupHeight" x="391" y="0" width="89" height="14" uuid="45940947-274e-438c-a167-87ebffa66368">
+									<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Courier New" size="7"/>
+									<paragraph rightIndent="2"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{descuento}]]></textFieldExpression>
+							</textField>
+							<textField pattern="$ #,##0.00">
+								<reportElement stretchType="ElementGroupHeight" x="480" y="0" width="92" height="14" uuid="a707fbde-c910-4576-97d9-f0f1fe3725ca">
+									<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Courier New" size="7"/>
+									<paragraph rightIndent="2"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{vtaGrabada}]]></textFieldExpression>
+							</textField>
+						</frame>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="43" splitType="Stretch">
+			<rectangle radius="3">
+				<reportElement x="0" y="0" width="572" height="43" uuid="c90f26de-8c14-4d0b-bf1e-6558fb6ccfa5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="1" width="98" height="14" uuid="43ef82d7-1bd4-42b8-92b4-30e2e7ec83a2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.0" lineColor="#D4D2D2"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Courier New" size="7" isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Valor en letras:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="15" width="98" height="14" uuid="dae86508-1766-4144-a583-65ac00a72045">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.0" lineColor="#D4D2D2"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Courier New" size="7" isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Observaciones:]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="99" y="0" width="473" height="15" uuid="6883bc2f-10a1-4bdb-b412-e8f1edf46179"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="ValorEnLetras" uuid="755773f1-d9ab-437b-a43c-53d5dc1651fb">
+						<datasetParameter name="PNRO_FACTURA">
+							<datasetParameterExpression><![CDATA[$P{PNRO_FACTURA}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="15" width="473">
+						<textField>
+							<reportElement x="0" y="0" width="472" height="14" uuid="9ed7660d-d729-4d39-9e31-913a4e087a08"/>
+							<textElement textAlignment="Justified" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{fac_total_letras}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="0" y="29" width="571" height="14" uuid="35dcdff7-703d-4be6-9b37-5e68bb0af776"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="CondicionFormaPago" uuid="521bf11e-96b4-4165-bac7-86c0f52c9834">
+						<datasetParameter name="PNRO_FACTURA">
+							<datasetParameterExpression><![CDATA[$P{PNRO_FACTURA}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="14" width="571">
+						<textField>
+							<reportElement x="90" y="0" width="190" height="14" uuid="5d33e583-46e2-42e8-bb9b-001be43e2e8f"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Courier New" size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{condicion_de_pago}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="370" y="0" width="201" height="14" uuid="57b6a9f1-d304-4de0-a5fa-7429626230e6"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Courier New" size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{forma_pago}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="0" width="90" height="14" uuid="dd6159df-2400-4ad0-b95a-8d8088c49ddb">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+							</reportElement>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph leftIndent="5"/>
+							</textElement>
+							<text><![CDATA[Condición de Pago:]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="300" y="0" width="70" height="14" uuid="d4a05462-3213-443e-ad52-f7baa18aaf6c"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Forma de Pago:]]></text>
+						</staticText>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<textField isBlankWhenNull="true">
+				<reportElement x="99" y="15" width="472" height="14" uuid="231b70bf-d344-44a8-9669-835c4e405ea5">
+					<printWhenExpression><![CDATA[!$F{tipo_comp}.matches("14")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Courier New" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{POBSERVACIONES}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="10" splitType="Stretch">
+			<textField>
+				<reportElement x="410" y="0" width="100" height="10" uuid="97b67422-51c6-4da4-9fed-991154b7da03">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Courier New" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="510" y="0" width="62" height="10" uuid="454ae923-cafe-41d8-a5e9-2d2fb1c0b492">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="Courier New" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="170" splitType="Stretch">
+			<componentElement>
+				<reportElement x="250" y="0" width="322" height="170" uuid="50328a23-f092-440c-aec0-89f62cc6323d">
+					<printWhenExpression><![CDATA[!$F{tipo_comp}.matches("14")]]></printWhenExpression>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="Resumen" uuid="e276ffb5-2ec1-40f2-9d79-424b2459511b">
+						<datasetParameter name="PNRO_FACTURA">
+							<datasetParameterExpression><![CDATA[$P{PNRO_FACTURA}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PTIPO_COMPROBANTE">
+							<datasetParameterExpression><![CDATA[$F{tipo_comp}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="170" width="322">
+						<staticText>
+							<reportElement x="52" y="14" width="200" height="20" uuid="cac92b5c-505a-4e94-b65a-5d97b2060915">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<text><![CDATA[Sumatoria Total de Operaciones]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="52" y="34" width="200" height="14" uuid="b909f13c-abd4-4a25-8f50-aacec32218d6">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<text><![CDATA[Monto global Desc.,Rebajas y otros a ventas no sujetas]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="52" y="48" width="200" height="16" uuid="207dc395-7f90-4d75-bece-99f44cb1cb1d">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<text><![CDATA[Monto global Desc., Rebajas y otros a ventas exentas]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="52" y="64" width="200" height="16" uuid="c04905cd-144b-4460-b727-ddddf9f9b22e">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<text><![CDATA[Monto global Desc., Rebajas y otros a ventas gravadas]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="52" y="100" width="200" height="14" uuid="78fd8919-d97c-42d8-8c81-26094af5d67e">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<text><![CDATA[Sub-Total]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="52" y="114" width="200" height="14" uuid="08327098-d27e-40dc-92da-056d2af8a101">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<text><![CDATA[IVA Percibido]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="52" y="128" width="200" height="14" uuid="8f22d8cc-17bd-49de-a048-662277db7cea">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<text><![CDATA[IVA Retenido]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="52" y="142" width="200" height="20" uuid="b1936d2a-978a-4e46-96f2-9f0781a1d7e0">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<text><![CDATA[Monto Total de la Operación]]></text>
+						</staticText>
+						<textField pattern="$ #,##0.00">
+							<reportElement x="252" y="14" width="70" height="20" uuid="f687c644-ce27-4c18-a264-ce641d86377b">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{Sub_Total}]]></textFieldExpression>
+						</textField>
+						<textField pattern="$ #,##0.00">
+							<reportElement x="252" y="34" width="70" height="14" uuid="e97519d3-7f4b-4d44-9e39-4220c2c2b808">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{Monto_Rebajas_Y_Ventas_No_Sujetas}]]></textFieldExpression>
+						</textField>
+						<textField pattern="$ #,##0.00">
+							<reportElement x="252" y="48" width="70" height="16" uuid="ddf37fe3-20cb-476d-908f-8f302e766f72">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{Monto_Rebajas_Y_Ventas_Exentas}]]></textFieldExpression>
+						</textField>
+						<textField pattern="$ #,##0.00">
+							<reportElement x="252" y="64" width="70" height="16" uuid="ede990ae-c361-4acc-994b-0bc87aa170a2">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{Monto_Rebajas_Y_Ventas_Gravadas}]]></textFieldExpression>
+						</textField>
+						<textField pattern="$ #,##0.00">
+							<reportElement x="252" y="100" width="70" height="14" uuid="a7ec9e5e-b51a-406c-82cc-b9f6b5ffa4ab">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{Monto_total_Operacion}]]></textFieldExpression>
+						</textField>
+						<textField pattern="$ #,##0.00">
+							<reportElement x="252" y="114" width="70" height="14" uuid="95e169bb-7ebf-48d3-a7e1-e8b9fb3756e7">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{IVA_Percibido}]]></textFieldExpression>
+						</textField>
+						<textField pattern="$ #,##0.00">
+							<reportElement x="252" y="128" width="70" height="14" uuid="2cd7a328-ebdf-4b8c-8ff3-a1ecde149b3c">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{IVA_Retenido}]]></textFieldExpression>
+						</textField>
+						<textField pattern="$ #,##0.00">
+							<reportElement x="252" y="142" width="70" height="20" uuid="ee4dc405-a002-4f7e-bc0a-6744f08e81ef">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{Monto_total_Operacion}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="52" y="80" width="200" height="20" isRemoveLineWhenBlank="true" uuid="4a0ebb71-d84c-4d80-94b2-9a1ff990b776">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+								<printWhenExpression><![CDATA[!$P{PTIPO_COMPROBANTE}.matches("01")]]></printWhenExpression>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{tri_descripcion}]]></textFieldExpression>
+						</textField>
+						<textField pattern="$ #,##0.00">
+							<reportElement x="252" y="80" width="70" height="20" isRemoveLineWhenBlank="true" uuid="d0d0f269-e9f6-4f35-a7ba-a8b739118b6f">
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+								<printWhenExpression><![CDATA[!$P{PTIPO_COMPROBANTE}.matches("01")]]></printWhenExpression>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{tri_valor}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="52" y="0" width="200" height="14" uuid="fe6f3b77-5026-4039-971b-9a4c4253655c">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="8" isBold="true"/>
+							</textElement>
+							<text><![CDATA[]]></text>
+						</staticText>
+						<textField pattern="$ #,##0.00" isBlankWhenNull="true">
+							<reportElement x="252" y="0" width="70" height="14" uuid="b5cc2bfd-92d9-41e1-bc35-37acbd04efff">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="8" isBold="true"/>
+							</textElement>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="210" y="0" width="362" height="120" uuid="f60d59cb-5287-4af9-9bec-a70c58476cc5">
+					<printWhenExpression><![CDATA[$F{tipo_comp}.matches("14")]]></printWhenExpression>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="ResumenSE" uuid="9cda55e8-08d8-4195-a029-c6e1022d101d">
+						<datasetParameter name="PNRO_FACTURA">
+							<datasetParameterExpression><![CDATA[$P{PNRO_FACTURA}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="PTIPO_COMPROBANTE">
+							<datasetParameterExpression><![CDATA[$F{tipo_comp}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="120" width="362">
+						<staticText>
+							<reportElement x="92" y="14" width="178" height="20" uuid="71a6017d-b38a-4f6a-a9e8-34ed78c4bc71">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<text><![CDATA[Sumatoria Total de Operaciones]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="92" y="48" width="178" height="14" uuid="50a831f6-8775-4404-9a43-b676e03e86aa">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<text><![CDATA[Sub-Total]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="92" y="90" width="178" height="20" uuid="51d6452b-4ecc-47f1-a8bf-66d006060a4c">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<text><![CDATA[Monto Total de la Operación]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="92" y="0" width="178" height="14" uuid="be2b3e37-3adb-4646-be65-82eb942ee3d0">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="8" isBold="true"/>
+							</textElement>
+							<text><![CDATA[]]></text>
+						</staticText>
+						<textField pattern="$ #,##0.00" isBlankWhenNull="true">
+							<reportElement x="270" y="0" width="92" height="14" uuid="47919129-ff85-4ce0-b8d8-df59b4b51b93">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="8" isBold="true"/>
+							</textElement>
+						</textField>
+						<textField pattern="$ #,##0.00">
+							<reportElement x="270" y="14" width="92" height="20" uuid="ca15c77a-b288-42ca-9a06-7a393ab96b87">
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{Suma_Total_de_Operaciones}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="92" y="34" width="178" height="14" uuid="62b66f2e-2082-4994-9996-e53c61bf5898">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<text><![CDATA[IVA 13%]]></text>
+						</staticText>
+						<textField pattern="$ #,##0.00">
+							<reportElement x="270" y="34" width="92" height="14" uuid="b3bb1d04-0466-4cfd-a074-b60f0149a851">
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{retencion_iva}]]></textFieldExpression>
+						</textField>
+						<textField pattern="$ #,##0.00">
+							<reportElement x="270" y="48" width="92" height="14" uuid="4a40bb3d-fa93-4097-8b04-8693db840e15">
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{Sub_Total}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="92" y="76" width="178" height="14" uuid="29300ac0-7d2b-48a0-8d2d-212d31da308a">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<text><![CDATA[Impuesto sobre la renta]]></text>
+						</staticText>
+						<textField pattern="$ #,##0.00">
+							<reportElement x="270" y="76" width="92" height="14" uuid="33940df6-75e8-49c5-831a-1b98a6cb4f57">
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{impuesto_sobre_renta}]]></textFieldExpression>
+						</textField>
+						<textField pattern="$ #,##0.00">
+							<reportElement x="270" y="90" width="92" height="20" uuid="51a657ec-e412-4419-b1e9-b3a7d7a8eabd">
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{Monto_total_Operacion}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="92" y="62" width="178" height="14" uuid="dff938ba-cee5-44a4-94ec-b5053c32a1ca">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<pen lineWidth="0.5" lineColor="#D4D2D2"/>
+								<topPen lineWidth="0.5" lineColor="#000000"/>
+								<leftPen lineWidth="0.5" lineColor="#000000"/>
+								<bottomPen lineWidth="0.5" lineColor="#000000"/>
+								<rightPen lineWidth="0.5" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<text><![CDATA[Retención IVA 13%]]></text>
+						</staticText>
+						<textField pattern="$ #,##0.00">
+							<reportElement x="270" y="62" width="92" height="14" uuid="3ae865eb-79c0-4041-a547-2874e1c53e10">
+								<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Courier New" size="7" isBold="true"/>
+								<paragraph rightIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{retencion_iva}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>
