@@ -1,0 +1,19 @@
+# Usar la imagen oficial de MySQL (puedes especificar una versión, ej: mysql:8.0)
+FROM mysql:8.0
+
+ENV TZ=America/El_Salvador
+
+# Establecer variables de entorno para MySQL
+# IMPORTANTE: Cambia 'tu_password_secreto' por una contraseña segura para root.
+#ENV MYSQL_ROOT_PASSWORD=admin123.
+# Opcional: puedes definir aquí el nombre de la base de datos que se creará automáticamente
+# si tu script SQL no lo hace. Sin embargo, es mejor que el script SQL lo maneje.
+# ENV MYSQL_DATABASE=mi_agencia_viajes
+
+# Copiar el script SQL al directorio de inicialización de MySQL.
+# Los scripts en /docker-entrypoint-initdb.d se ejecutan automáticamente
+# cuando el contenedor se inicia por primera vez y el directorio de datos está vacío.
+COPY init_db-v4.sql /docker-entrypoint-initdb.d/
+
+# Exponer el puerto estándar de MySQL (opcional, pero buena práctica)
+EXPOSE 3306
