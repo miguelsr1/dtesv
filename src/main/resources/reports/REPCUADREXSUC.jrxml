@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="REPCUADREXSUC" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b8663cdb-3531-413f-9249-bbd69ba70114">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Facturacion Electronica"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="204"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="791"/>
+	<parameter name="PFECHAI" class="java.lang.String"/>
+	<parameter name="PFECHAF" class="java.lang.String"/>
+	<parameter name="PCOD_SUCURSAL" class="java.lang.String"/>
+	<parameter name="PSUC_DESCRIPCION" class="java.lang.String"/>
+	<parameter name="PUSUARIO" class="java.lang.String"/>
+	<parameter name="PHORAI" class="java.lang.String"/>
+	<parameter name="PHORAF" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+    DATE_FORMAT(fac_fecha_emision, '%d/%m/%Y') as FECHA,
+    det_fac_descripcion AS PRODUCTO,
+    SUM(det_fac_cantidad) AS CANTIDAD,
+    det_fac_preciounitario AS PRECIO_UNITARIO,
+    SUM(det_fact_ventasgravadas) AS TOTAL,
+    us_usuario AS USUARIO,
+    co_descripcion AS SUCURSAL
+FROM
+    factura_detalle fd
+JOIN factura f ON f.fac_id = fd.det_fac_id
+JOIN tipos_comprobantes ON tcp_idtipcom = f.fac_tipo_comprobante
+JOIN usuarios ON us_id = fac_us_id_usuario
+JOIN catalogo_origenes ON fac_co_ubicacion = co_id 
+WHERE 
+     f.fac_fecha_emision  BETWEEN STR_TO_DATE(CONCAT($P{PFECHAI}, ' ', $P{PHORAI} ), '%d/%m/%Y %H:%i:%s') AND STR_TO_DATE(CONCAT($P{PFECHAF}, ' ', $P{PHORAF}), '%d/%m/%Y %H:%i:%s')
+      and us_usuario = ifnull($P{PUSUARIO},us_usuario)
+      and co_abreviatura = ifnull($P{PUSUARIO},co_abreviatura)
+      AND fac_estado_factura = '2'
+       AND NOT EXISTS (SELECT 1 FROM facturacion_electronica.detalle_anulaciones WHERE da_fac_id=fac_id)
+GROUP BY DATE_FORMAT(fac_fecha_emision, '%d/%m/%Y'),det_fac_descripcion,det_fac_preciounitario,us_usuario,co_descripcion]]>
+	</queryString>
+	<field name="FECHA" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="FECHA"/>
+		<property name="com.jaspersoft.studio.field.label" value="FECHA"/>
+	</field>
+	<field name="PRODUCTO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="det_fac_descripcion"/>
+		<property name="com.jaspersoft.studio.field.label" value="PRODUCTO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="factura_detalle"/>
+	</field>
+	<field name="CANTIDAD" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="CANTIDAD"/>
+		<property name="com.jaspersoft.studio.field.label" value="CANTIDAD"/>
+	</field>
+	<field name="PRECIO_UNITARIO" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="det_fac_preciounitario"/>
+		<property name="com.jaspersoft.studio.field.label" value="PRECIO_UNITARIO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="factura_detalle"/>
+	</field>
+	<field name="TOTAL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TOTAL"/>
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL"/>
+	</field>
+	<field name="USUARIO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="us_usuario"/>
+		<property name="com.jaspersoft.studio.field.label" value="USUARIO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="SUCURSAL" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="co_descripcion"/>
+		<property name="com.jaspersoft.studio.field.label" value="SUCURSAL"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="catalogo_origenes"/>
+	</field>
+	<variable name="CANTIDAD1" class="java.math.BigDecimal" resetType="Group" resetGroup="GroupUsuario" calculation="Sum">
+		<variableExpression><![CDATA[$F{CANTIDAD}]]></variableExpression>
+	</variable>
+	<variable name="TOTAL1" class="java.math.BigDecimal" resetType="Group" resetGroup="GroupUsuario" calculation="Sum">
+		<variableExpression><![CDATA[$F{TOTAL}]]></variableExpression>
+	</variable>
+	<group name="GroupFecha">
+		<groupExpression><![CDATA[$F{FECHA}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="0" y="0" width="160" height="20" uuid="24fdeafe-ddbe-4946-941b-2f8dda8bf88c"/>
+					<textElement textAlignment="Justified" verticalAlignment="Bottom">
+						<font fontName="Courier New" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["FECHA: " + $F{FECHA}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="22"/>
+		</groupFooter>
+	</group>
+	<group name="GroupSucursal">
+		<groupExpression><![CDATA[$F{SUCURSAL}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="0" y="0" width="160" height="20" uuid="5855e9f8-7869-4f59-90cb-18fdaa96b017"/>
+					<textElement textAlignment="Justified" verticalAlignment="Bottom">
+						<font fontName="Courier New" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["SUCURSAL: " + $F{SUCURSAL}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="18"/>
+		</groupFooter>
+	</group>
+	<group name="GroupUsuario">
+		<groupExpression><![CDATA[$F{USUARIO}]]></groupExpression>
+		<groupHeader>
+			<band height="42">
+				<staticText>
+					<reportElement x="0" y="28" width="290" height="14" isPrintWhenDetailOverflows="true" uuid="c5f9afd1-9bef-431a-ab47-7815eb0ff57a">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="95d7a7e5-318b-49a9-940b-99dba57d989e"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="10" isBold="true"/>
+						<paragraph leftIndent="4"/>
+					</textElement>
+					<text><![CDATA[PRODUCTO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="290" y="28" width="80" height="14" uuid="825ab4c6-1d84-4533-bed7-a11023069884">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="982c30f3-06bc-41ed-9ced-6989a6066075"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CANTIDAD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="370" y="28" width="80" height="14" uuid="5cc4fe2b-b4f6-48df-bf90-ecc2ae76a659">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2f7c2535-225c-4ec5-88cf-50830af82e0b"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[PRECIO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="450" y="28" width="80" height="14" uuid="17181a73-c08f-42a9-ae31-4e1a976500a8">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bdfc5802-ecec-4160-b5d7-169f41ba2c84"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Courier New" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="0" width="160" height="20" uuid="29c8bbd3-8316-43c9-b71c-ed7ec04e8486"/>
+					<textElement textAlignment="Justified" verticalAlignment="Bottom">
+						<font fontName="Courier New" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["USUARIO: " + $F{USUARIO}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<staticText>
+					<reportElement x="290" y="0" width="160" height="20" uuid="507e7739-7bc3-4fd4-acfc-ae69a0db2625"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font fontName="Courier New" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TOTAL USUARIO:]]></text>
+				</staticText>
+				<textField pattern="$#,##0.00">
+					<reportElement x="450" y="0" width="80" height="20" uuid="119a58cb-aec9-4bc4-ac4d-1410a20ebe2b">
+						<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font fontName="Courier New" isBold="true"/>
+						<paragraph rightIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TOTAL1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="572" height="30" uuid="99a371a7-af70-4345-a97c-0d8f8ece9f86"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUADRE DE EFECTIVO INGRESADO POR SUCURSAL Y POR FECHA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="30" width="572" height="20" uuid="49074651-984d-4e58-bcb2-4f64e26ca84e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PERIODO DE " + $P{PFECHAI} + " " +$P{PHORAI} + " A " + $P{PFECHAF} + " " + $P{PHORAF}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="63" width="572" height="1" uuid="acde413f-9c15-4244-ba68-5a9cfa055632"/>
+			</line>
+		</band>
+	</title>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement stretchType="ElementGroupHeight" x="290" y="0" width="80" height="14" isPrintWhenDetailOverflows="true" uuid="8e6d5770-c157-45dc-ac86-b22077bb0943">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="982c30f3-06bc-41ed-9ced-6989a6066075"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Courier New" size="10"/>
+					<paragraph rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CANTIDAD}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$#,##0.00">
+				<reportElement stretchType="ElementGroupHeight" x="370" y="0" width="80" height="14" isPrintWhenDetailOverflows="true" uuid="c6d5415e-9df0-4bc6-beae-2d65c3c64fed">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2f7c2535-225c-4ec5-88cf-50830af82e0b"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Courier New" size="10"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRECIO_UNITARIO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$#,##0.00">
+				<reportElement stretchType="ElementGroupHeight" x="450" y="0" width="80" height="14" isPrintWhenDetailOverflows="true" uuid="0f1d8adb-99e3-4b56-a5cd-ecedee13b7be">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bdfc5802-ecec-4160-b5d7-169f41ba2c84"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Courier New" size="10"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement x="0" y="0" width="290" height="14" uuid="727fd2f3-08b1-45e6-a6db-b59272a9df79">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+					<font fontName="Courier New"/>
+					<paragraph leftIndent="2" rightIndent="4"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PRODUCTO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

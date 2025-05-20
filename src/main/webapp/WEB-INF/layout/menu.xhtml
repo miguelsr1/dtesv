@@ -1,0 +1,42 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:po="http://primefaces.org/poseidon">
+
+    <div class="menu-wrapper">
+        <div class="layout-menu-container">
+            <h:form id="menuform">
+                <po:menu widgetVar="PoseidonMenuWidget" model="#{login.model}">
+                </po:menu>
+            </h:form>
+            <p:dialog id="dlgInternet" widgetVar="DialogInternet" header="MENSAJE DE APLICACION"
+                      resizable="false" modal="true" style="margin-bottom:0" position="center" closable="false">
+                <h:form id="frmInternet">
+                    <p:panel>
+                        <h:panelGrid columns="1" style=" width:  450px">
+                            <h:outputText value="NO SE PUEDE ESTABLECER COMUNICACION CON SISTEMA"/>
+                            <h:outputText value="REALICE LAS SIGUIENTES PRUEBAS:"/>
+                            <h:outputText value="  1. VERIFIQUE SU CONEXION A INTERNET"/>
+                            <h:outputText value="  2. CIERRE NAVEGADOR"/>
+                            <h:outputText value="  3. ABRA NAVEGADOR E INGRESE NUEVAMENTE A SISTEMA"/>
+                            <h:outputText
+                                    value="SI EL INCONVENIENTE PERSISTE DESPUES DE EFECTUAR LAS PRUEBAS ANTERIORES CONTACTE A EXAMINADORAS VMT."/>
+                        </h:panelGrid>
+                        <f:facet name="footer">
+                            <p:commandButton type="button" id="btnInfo" icon="ui-icon-close" value=" OK "
+                                             onclick="PF('DialogInternet').hide();PF('statusDialog').hide();"/>
+                        </f:facet>
+                    </p:panel>
+                </h:form>
+            </p:dialog>
+            <p:idleMonitor timeout="1800000">
+                <p:ajax event="idle" listener="#{login.cerrarSesion()}"
+                        onsuccess="if(!alert('Ha pasado mucho tiempo de inactividad, vuelva a iniciar sesión. En caso  hubiese digitado datos  no se grabarán los mismos'))"/>
+            </p:idleMonitor>
+        </div>
+    </div>
+
+</ui:composition>

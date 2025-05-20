@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: juan
+  Date: 17/3/2025
+  Time: 15:57
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <h:outputScript library="primefaces" name="jquery/jquery.js"/>
+    <h:outputScript library="primefaces" name="jquery/jquery-plugins.js"/>
+</h:head>
+
+<h:body>
+    <p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+              closable="false" resizable="false" showHeader="false">
+        <h:panelGrid columns="1" styleClass="text-center">
+            <div class="text-center">
+                <p:graphicImage library="images" name="loader_ajax.gif" cache="false"
+                                style="text-align: center;"
+                                height="32" width="32"/>
+            </div>
+            <div class="text-center">
+                <h:outputText value="Espere un momento.."/>
+            </div>
+        </h:panelGrid>
+    </p:dialog>
+
+    <h:form id="frmReporte">
+        <p:messages id="messages" skipDetailIfEqualsSummary="true">
+            <p:autoUpdate/>
+        </p:messages>
+        <p:panel id="pnlParametros" style="display: #{history.displayParams ? 'block':'none'}">
+            <h5>.:: PARAMETROS ::.</h5>
+            <p:panelGrid columns="4" layout="flex"
+                         columnClasses="col-12 md:col-6 xl:col-1, col-12 md:col-6 xl:col-2,
+                                                     col-12 md:col-6 xl:col-1, col-12 md:col-6 xl:col-2"
+                         contentStyleClass="align-items-baseline ui-fluid">
+                <p:outputLabel value="FECHA INICIO" styleClass="labels"/>
+                <p:calendar value="#{report.startDate}"
+                            id="pfechaIni"
+                            pattern="dd/MM/yyyy"
+                            mask="true"
+                            locale="es"
+                            navigator="true" autocomplete="false"
+                            maxdate="#{login.hoy}">
+                </p:calendar>
+                <p:outputLabel value="FECHA FIN" styleClass="labels"/>
+                <p:calendar value="#{report.endDate}"
+                            id="pfechaFin"
+                            pattern="dd/MM/yyyy"
+                            mask="true"
+                            locale="es"
+                            navigator="true" autocomplete="false"
+                            maxdate="#{login.hoy}">
+                </p:calendar>
+            </p:panelGrid>
+            <p:panelGrid columns="4" layout="flex"
+                         columnClasses="col-12 md:col-6 xl:col-1, col-12 md:col-6 xl:col-2,
+                                                     col-12 md:col-6 xl:col-1, col-12 md:col-6 xl:col-2"
+                         contentStyleClass="align-items-baseline ui-fluid">
+                <p:outputLabel value="HORA INICIAL" styleClass="labels"/>
+                <p:datePicker value="#{report.horaInicio}" timeOnly="true" pattern="HH:mm:ss" showSeconds="true"
+                              hourFormat="24"/>
+                <p:outputLabel value="HORA FINAL" styleClass="labels"/>
+                <p:datePicker value="#{report.horaFinal}" timeOnly="true" pattern="HH:mm:ss" showSeconds="true"
+                              hourFormat="24"/>
+            </p:panelGrid>
+            <p:panelGrid columns="2" layout="flex"
+                         columnClasses="col-12 md:col-6 xl:col-1, col-12 md:col-6 xl:col-5"
+                         contentStyleClass="align-items-baseline ui-fluid">
+                <p:outputLabel value="SUCURSAL" for="selSucursal" styleClass="labels"/>
+                <p:selectOneMenu id="selSucursal" value="#{report.codSucursal}">
+                    <f:selectItem itemLabel="SELECCIONAR" itemValue=""/>
+                    <f:selectItems value="#{report.origenes}" var="org"
+                                   itemValue="#{org.coAbreviatura}"
+                                   itemLabel="#{org.coAbreviatura} - #{org.coDescripcion}"/>
+                    <p:ajax process="@this" event="itemSelect"/>
+                </p:selectOneMenu>
+            </p:panelGrid>
+            <p:panelGrid columns="2" layout="flex"
+                         columnClasses="col-12 md:col-6 xl:col-1, col-12 md:col-6 xl:col-5"
+                         contentStyleClass="align-items-baseline ui-fluid">
+                <p:outputLabel value="USUARIO" for="txtUsuario" styleClass="labels"/>
+                <p:inputText id="txtUsuario" value="#{report.usuario}" autocomplete="off"
+                             onkeyup="this.value = this.value.toUpperCase();"/>
+            </p:panelGrid>
+            <p:panelGrid columns="1" layout="flex"
+                         columnClasses="col-12 md:col-6 xl:col-2 lg:col-offset-1"
+                         contentStyleClass="align-items-baseline ui-fluid">
+                <p:commandButton value="GENERAR REPORTE"
+                                 actionListener="#{report.doReport()}"
+                                 icon="pi pi-file-pdf"
+                                 onstart="PF('statusDialog').show()"
+                                 oncomplete="PF('statusDialog').hide()" />
+            </p:panelGrid>
+        </p:panel>
+    </h:form>
+
+    <p:dialog id="dlgImprimir" widgetVar="DialogImprimir"
+              appendTo="@(body)" dynamic="true" resizable="false" modal="true"
+              style="margin-bottom:0; min-height: 70%" closeOnEscape="true"
+              width="90%" height="70%" header="REPORTE CUADRE DE EFECTIVO POR FECHA Y SUCURSAL" position="center"
+              closable="true">
+        <h:form id="frmPrint">
+            <p:hotkey bind="esc" handler="PF('DialogImprimir').hide();"/>
+            <p:panel id="panelPrint">
+                <p:panelGrid columns="1" layout="flex"
+                             columnClasses="col-12 md:col-6 xl:col-3"
+                             contentStyleClass="align-items-baseline ui-fluid">
+                    <p:commandButton id="btnInfo" icon="pi pi-times"
+                                     styleClass="rounded-button"
+                                     style="font-weight: bold" value="CERRAR" type="button"
+                                     onclick="PF('DialogImprimir').hide();"/>
+                </p:panelGrid>
+                <div class="align-center">
+                    <p:outputPanel>
+                        <p:media player="pdf" value="/viewReport/" width="100%" height="650" cache="false"/>
+                    </p:outputPanel>
+                </div>
+            </p:panel>
+        </h:form>
+    </p:dialog>
+
+</h:body>
+
+</html>

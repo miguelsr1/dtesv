@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <style type="text/css">
+        body .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
+            position: static;
+            margin: 0;
+            color: white;
+            font-family: "primeicons", serif !important;
+            font-style: normal;
+            font-weight: normal;
+            display: inline-block;
+            background: none;
+        }
+    </style>
+</h:head>
+<h:body>
+    <f:view locale="es">
+        <p:ajaxStatus onstart="PF('statusDialog').show()"
+                      oncomplete="PF('statusDialog').hide()"/>
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+                  closable="false" resizable="false" showHeader="false">
+            <h:panelGrid columns="1" styleClass="text-center">
+                <div class="text-center">
+                    <p:graphicImage library="images" name="loader_ajax.gif" cache="false"
+                                    style="text-align: center;"
+                                    height="32" width="32"/>
+                </div>
+                <div class="text-center">
+                    <h:outputText value="Espere un momento.."/>
+                </div>
+            </h:panelGrid>
+        </p:dialog>
+        <h:form id="frmProductos">
+            <p:messages id="messages" showDetail="true" skipDetailIfEqualsSummary="true" closable="true"/>
+            <div class="box-root padding-top--24 flex-flex flex-direction--column">
+                <div class="formBg">
+                    <div class="card shadow p-3 mb-5 bg-white rounded">
+                        <p:toolbar>
+                            <p:toolbarGroup>
+                                <p:commandButton value="NUEVO" icon="pi pi-plus"
+                                                 actionListener="#{prodBean.openNewProducto()}"
+                                                 update=":dialogs:manage-producto-content
+                                                 :frmProductos:delete-productos-button
+                                                 :dialogs:manageProductoButton"
+                                                 oncomplete="PF('manageProductoDialog').show()"
+                                                 styleClass="ui-button-success"
+                                                 style="margin-right: .5rem">
+                                    <p:resetInput target=":dialogs:manage-producto-content"/>
+                                </p:commandButton>
+                                <p:commandButton id="delete-productos-button"
+                                                 value="#{prodBean.deleteProductosButtonMessage}"
+                                                 actionListener="#{prodBean.deleteSelectedProductos()}"
+                                                 icon="pi pi-trash" disabled="#{!prodBean.hasSelectedProductos()}"
+                                                 styleClass="ui-button-danger" update="@this">
+                                    <p:confirm header="CONFIRMACION" message="¿ESTÁ SEGURO DE ELIMINAR REGISTRO(S)?"
+                                               icon="pi pi-exclamation-triangle"/>
+                                </p:commandButton>
+                            </p:toolbarGroup>
+                        </p:toolbar>
+                        <p:panel header="MANTENIMIENTO PRODUCTOS">
+                            <p:panelGrid columns="1" layout="flex" columnClasses="col-12 md:col-12 xl:col-12">
+                                <p:dataTable value="#{prodBean.productosList}" var="p" id="tblProductos"
+                                             paginator="true" paginatorPosition="bottom"
+                                             currentPageReportTemplate="{startRecord} de {totalRecords}"
+                                             rowKey="#{p.idcatProd}" rows="10"
+                                             widgetVar="tbProductos" selection="#{prodBean.selectedProductos}"
+                                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             reflow="true" size="small" tableStyle="table-layout: auto;">
+
+                                    <p:ajax event="rowSelect" update=":frmProductos:delete-productos-button"/>
+                                    <p:ajax event="rowUnselect" update=":frmProductos:delete-productos-button"/>
+                                    <p:ajax event="rowSelectCheckbox" update=":frmProductos:delete-productos-button"/>
+                                    <p:ajax event="rowUnselectCheckbox" update=":frmProductos:delete-productos-button"/>
+                                    <p:ajax event="toggleSelect" update=":frmProductos:delete-productos-button"/>
+
+                                    <p:column selectionMode="multiple" exportable="false"/>
+                                    <p:column headerText="ID" filterBy="#{p.idcatProd}"
+                                              filterMatchMode="contains" width="10%">
+                                        <h:outputText value="#{p.idcatProd}"/>
+                                    </p:column>
+                                    <p:column headerText="DESCRIPCION" filterBy="#{p.descripcion}"
+                                              filterMatchMode="contains">
+                                        <h:outputText value="#{p.descripcion}"/>
+                                    </p:column>
+                                    <p:column headerText="VALOR UNITARIO" style="text-align: right">
+                                        <h:outputText value="#{p.valorUnitario}">
+                                            <f:converter converterId="bigDecimalConverter"/>
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column headerText="COD. PRODUCTO" filterBy="#{p.codigoProd}"
+                                              filterMatchMode="contains">
+                                        <h:outputText value="#{p.codigoProd}"/>
+                                    </p:column>
+                                    <p:column headerText="UNI. DE MEDIDA" style="text-align: center">
+                                        <h:outputText value="#{p.unidadMedida.umDescripcion}"/>
+                                    </p:column>
+                                    <p:column headerText="EXENTO" style="text-align: center">
+                                        <h:outputText value="#{p.cpExento eq 'N' ? 'NO': 'SI'}"/>
+                                    </p:column>
+                                    <p:column headerText="ACTIVO" style="text-align: center">
+                                        <h:outputText value="#{p.cpActivo eq 'N' ? 'NO': 'SI'}"/>
+                                    </p:column>
+                                    <p:column width="100">
+                                        <p:commandButton icon="pi pi-pencil"
+                                                         update=":dialogs:manage-producto-content
+                                                         :frmProductos:delete-productos-button
+                                                         :dialogs:manageProductoButton"
+                                                         style="margin-right: 10px;" process="@this"
+                                                         oncomplete="PF('manageProductoDialog').show()"
+                                                         styleClass="rounded-button ui-button-outlined ui-button-warning">
+                                            <f:setPropertyActionListener value="#{p}"
+                                                                         target="#{prodBean.selectedProducto}"/>
+                                            <p:resetInput target=":dialogs:manage-producto-content"/>
+                                        </p:commandButton>
+                                        <p:commandButton icon="pi pi-trash" title="ELIMINAR"
+                                                         style="margin-right: 10px;"
+                                                         styleClass="rounded-button ui-button-outlined ui-button-danger"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </p:panelGrid>
+                        </p:panel>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+        <h:form id="dialogs">
+            <p:dialog header="DETALLE PRODUCTO" showEffect="fade"
+                      height="50%" width="50%"
+                      modal="true" widgetVar="manageProductoDialog"
+                      responsive="true" position="center">
+                <p:outputPanel id="manage-producto-content" styleClass="ui-fluid">
+                    <p:outputPanel rendered="#{not empty prodBean.selectedProducto}">
+                        <p:messages redisplay="true" id="msgDetail"
+                                    skipDetailIfEqualsSummary="true" closable="true"/>
+                        <p:panelGrid columns="2" layout="flex"
+                                     columnClasses="col-12 md:col-3 xl:col-3, col-12 md:col-9 xl:col-9"
+                                     contentStyleClass="align-items-baseline ui-fluid">
+                            <p:outputLabel value="CODIGO" for="codigo"/>
+                            <p:inputText id="codigo" value="#{prodBean.selectedProducto.codigoProd}"
+                                         required="true" requiredMessage="Código requerido"
+                                         onkeyup="this.value = this.value.toUpperCase()"
+                                         readonly="#{prodBean.selectedProducto.idcatProd > 0 ? 'true':'false'}"/>
+                        </p:panelGrid>
+                        <p:panelGrid columns="2" layout="flex"
+                                     columnClasses="col-12 md:col-3 xl:col-3, col-12 md:col-9 xl:col-9"
+                                     contentStyleClass="align-items-baseline ui-fluid">
+                            <p:outputLabel value="DESCRIPCION" for="descripcion"/>
+                            <p:inputTextarea id="descripcion" value="#{prodBean.selectedProducto.descripcion}"
+                                             required="true" requiredMessage="Descripción requerido" maxlength="50"
+                                             counter="displaySubDesc" counterTemplate="{0}/50"
+                                             onkeyup="this.value = this.value.toUpperCase()"
+                                             readonly="#{prodBean.selectedProducto.idcatProd > 0 ? 'true':'false'}">
+                                <h:outputText styleClass="block" id="displaySubDesc"/>
+                            </p:inputTextarea>
+                        </p:panelGrid>
+                        <p:panelGrid columns="2" layout="flex"
+                                     columnClasses="col-12 md:col-3 xl:col-3, col-12 md:col-9 xl:col-9"
+                                     contentStyleClass="align-items-baseline ui-fluid">
+                            <p:outputLabel value="VALOR UNITARIO" for="valorUnitario"/>
+                            <p:inputNumber id="valorUnitario" value="#{prodBean.selectedProducto.valorUnitario}"
+                                           required="true" requiredMessage="Valor Unitario requerido"
+                                           decimalPlaces="2" minValue="0.00" decimalSeparator="."
+                                           thousandSeparator=","
+                                           validatorMessage="Formato nó valido">
+                                <p:ajax event="change" process="@this" update="valorUnitario"/>
+                            </p:inputNumber>
+                        </p:panelGrid>
+                        <p:panelGrid columns="2" layout="flex"
+                                     columnClasses="col-12 md:col-3 xl:col-3, col-12 md:col-9 xl:col-9"
+                                     contentStyleClass="align-items-baseline ui-fluid">
+                            <p:outputLabel value="UNIDAD DE MEDIDA" for="txtUnidadMed"/>
+                            <p:selectOneMenu id="txtUnidadMed" value="#{prodBean.selectedProducto.unidadMedida.umCodigo}">
+                                <f:selectItem itemLabel="SELECCIONAR" itemValue=""/>
+                                <f:selectItems value="#{prodBean.undMedidasList}" var="und"
+                                               itemValue="#{und.umCodigo}" itemLabel="#{und.umDescripcion}"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                        <p:panelGrid columns="2" layout="flex"
+                                     columnClasses="col-12 md:col-3 xl:col-3, col-12 md:col-9 xl:col-9"
+                                     contentStyleClass="align-items-baseline ui-fluid">
+                            <p:outputLabel value="TIPO" for="txtTipo"/>
+                            <p:selectOneMenu id="txtTipo" value="#{prodBean.selectedProducto.cpCitId}"
+                                             required="true" requiredMessage="Tipo es requerido"
+                                             appendTo="@this" autoWidth="false">
+                                <f:selectItem itemLabel="SELECCIONAR" itemValue=""/>
+                                <f:selectItems value="#{prodBean.tipoItemsList}" var="tipo"
+                                               itemValue="#{tipo.citId}"
+                                               itemLabel="#{tipo.citId} - #{tipo.valor}"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                        <p:panelGrid columns="4" layout="flex"
+                                     columnClasses="col-12 md:col-3 xl:col-3, col-12 md:col-3 xl:col-3,
+                                     col-12 md:col-3 xl:col-3, col-12 md:col-3 xl:col-3"
+                                     contentStyleClass="ui-fluid">
+                            <p:outputLabel value="EXENTO" for="txtExento"/>
+                            <p:selectBooleanCheckbox id="txtExento"
+                                                     value="#{prodBean.selectedProducto.exento}">
+                                <p:ajax update="@this" listener="#{prodBean.exentoEventListener}"/>
+                            </p:selectBooleanCheckbox>
+                            <p:outputLabel value="ACTIVO" for="txtActivo"/>
+                            <p:selectBooleanCheckbox id="txtActivo"
+                                                     value="#{prodBean.selectedProducto.activo}">
+                                <p:ajax update="@this" listener="#{prodBean.activoEventListener}"/>
+                            </p:selectBooleanCheckbox>
+                        </p:panelGrid>
+                    </p:outputPanel>
+                </p:outputPanel>
+                <f:facet name="footer">
+                    <p:commandButton value="#{prodBean.selectedProducto.idcatProd > 0 ? 'ACTUALIZAR': 'REGISTRAR'}"
+                                     icon="pi pi-check" actionListener="#{prodBean.saveProducto}" id="manageProductoButton"
+                                     oncomplete="setTimeout(function() { $('[id$=messages]').hide(2000); }, 2000);
+                                                setTimeout(function() { $('[id$=msgDetail]').hide(2000); }, 2000);"
+                                     update="manage-producto-content msgDetail"
+                                     process="manage-producto-content @this"/>
+                    <p:commandButton value="CANCELAR" icon="pi pi-times" onclick="PF('manageProductoDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+
+            <p:confirmDialog widgetVar="deleteProductoDialog" showEffect="fade" width="300"
+                             message="¿Está seguro de eliminar producto?" header="Confirmar" severity="warn">
+                <p:commandButton value="SI" icon="pi pi-check" actionListener="#{prodBean.deleteProducto}"
+                                 process="@this" update=":frmProductos:delete-productos-button"
+                                 oncomplete="PF('deleteProductoDialog').hide();
+                                 setTimeout(function() { $('[id$=messages]').hide(2000); }, 2000);"/>
+                <p:commandButton value="NO" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
+                                 onclick="PF('deleteProductoDialog').hide()"/>
+            </p:confirmDialog>
+
+            <p:confirmDialog global="true" showEffect="fade" width="300">
+                <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check"/>
+                <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no ui-button-secondary"
+                                 icon="pi pi-times"/>
+            </p:confirmDialog>
+        </h:form>
+    </f:view>
+</h:body>
+</html>

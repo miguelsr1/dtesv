@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: juan
+  Date: 26/7/2023
+  Time: 10:20
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <style type="text/css">
+        body .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
+            position: static;
+            margin: 0;
+            color: white;
+            font-family: "primeicons", serif !important;
+            font-style: normal;
+            font-weight: normal;
+            display: inline-block;
+            background: none;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <f:view locale="es">
+        <p:ajaxStatus onstart="PF('statusDialog').show()"
+                      onsuccess="PF('statusDialog').hide()"/>
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+                  closable="false" resizable="false" showHeader="false">
+            <h:panelGrid columns="1" styleClass="text-center">
+                <div class="text-center">
+                    <p:graphicImage library="images" name="loader_ajax.gif" cache="false"
+                                    style="text-align: center;"
+                                    height="32" width="32"/>
+                </div>
+                <div class="text-center">
+                    <h:outputText value="Espere un momento.."/>
+                </div>
+            </h:panelGrid>
+        </p:dialog>
+        <h:form id="frmEmisores">
+            <p:messages id="messages" showDetail="true" skipDetailIfEqualsSummary="true" closable="true"/>
+            <div class="box-root padding-top--24 flex-flex flex-direction--column">
+                <div class="formBg">
+                    <div class="card shadow p-3 mb-5 bg-white rounded">
+                        <p:toolbar>
+                            <p:toolbarGroup>
+                                <p:commandButton value="NUEVO" icon="pi pi-plus"
+                                                 actionListener="#{mtto.openNewEmisor()}"
+                                                 update=":dialogs:manage-emisor-content
+                                                 :frmEmisores:delete-emisores-button
+                                                 :dialogs:manageEmisorButton"
+                                                 oncomplete="PF('manageEmisorDialog').show()"
+                                                 styleClass="ui-button-success"
+                                                 style="margin-right: .5rem">
+                                    <p:resetInput target=":dialogs:manage-emisor-content"/>
+                                </p:commandButton>
+                                <p:commandButton id="delete-emisores-button"
+                                                 value="#{mtto.deleteEmisoresButtonMessage}"
+                                                 actionListener="#{mtto.deleteSelectedEmisores()}"
+                                                 icon="pi pi-trash" disabled="#{!mtto.hasSelectedEmisores()}"
+                                                 styleClass="ui-button-danger" update="@this">
+                                    <p:confirm header="CONFIRMACION" message="¿ESTÁ SEGURO DE ELIMINAR REGISTRO(S)?"
+                                               icon="pi pi-exclamation-triangle"/>
+                                </p:commandButton>
+                            </p:toolbarGroup>
+                        </p:toolbar>
+                        <p:panel header="MANTENIMIENTO EMISOR">
+                            <p:panelGrid columns="1" layout="flex"
+                                         columnClasses="col-12 md:col-12 xl:col-12">
+                                <p:dataTable value="#{mtto.emisores}" var="emi" id="tblEmisores"
+                                             paginator="true" paginatorPosition="bottom" showGridlines="true"
+                                             currentPageReportTemplate="{startRecord} de {totalRecords}"
+                                             styleClass="table-bordered" rowKey="#{emi.rucId}"
+                                             rows="10" widgetVar="tbEmisores" selection="#{mtto.selectedEmisores}"
+                                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             tableStyle="table-layout: auto;">
+                                    <f:facet name="header">
+                                        <div class="products-table-header">
+                                            <span style="font-weight: bold;">EMISORES</span>
+                                            <span class="ui-picklist-filter-container ui-input-icon-left">
+                                                <i class="pi pi-search"/>
+                                                <p:inputText id="globalFilter"
+                                                             onkeyup="PF('tbEmisores').filter()" placeholder="Search"/>
+                                            </span>
+                                        </div>
+                                    </f:facet>
+
+                                    <p:ajax event="rowSelect" update=":frmEmisores:delete-emisores-button"/>
+                                    <p:ajax event="rowUnselect" update=":frmEmisores:delete-emisores-button"/>
+                                    <p:ajax event="rowSelectCheckbox" update=":frmEmisores:delete-emisores-button"/>
+                                    <p:ajax event="rowUnselectCheckbox" update=":frmEmisores:delete-emisores-button"/>
+                                    <p:ajax event="toggleSelect" update=":frmEmisores:delete-emisores-button"/>
+
+                                    <p:column selectionMode="multiple" exportable="false"/>
+                                    <p:column headerText="NIT">
+                                        <h:outputText value="#{emi.rucNitContribuyente}"/>
+                                    </p:column>
+                                    <p:column headerText="NOMBRE/RAZON SOCIAL">
+                                        <h:outputText value="#{emi.rucNombreRazonsocial}"/>
+                                    </p:column>
+                                    <p:column headerText="CORREO">
+                                        <h:outputText value="#{emi.rucEmailContribuyente}"/>
+                                    </p:column>
+                                    <p:column headerText="TELEFONO">
+                                        <h:outputText value="#{emi.rucTelefonoTrabajo}"/>
+                                    </p:column>
+                                    <p:column headerText="OPCIONES">
+                                        <p:commandButton icon="pi pi-pencil"
+                                                         update=":dialogs:manage-emisor-content
+                                                         :frmEmisores:delete-emisores-button
+                                                         :dialogs:manageEmisorButton"
+                                                         style="margin-right: 10px;" process="@this"
+                                                         oncomplete="PF('manageEmisorDialog').show()"
+                                                         actionListener="#{mtto.findMunicipioCode(emi)}"
+                                                         styleClass="rounded-button ui-button-outlined ui-button-warning">
+                                            <f:setPropertyActionListener value="#{emi}"
+                                                                         target="#{mtto.selectedEmisor}"/>
+                                            <p:resetInput target=":dialogs:manage-emisor-content"/>
+                                        </p:commandButton>
+                                        <p:commandButton icon="pi pi-trash" title="ELIMINAR"
+                                                         style="margin-right: 10px;"
+                                                         styleClass="rounded-button ui-button-outlined ui-button-danger"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </p:panelGrid>
+                        </p:panel>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+        <h:form id="dialogs">
+            <p:dialog header="DETALLE EMISOR" showEffect="fade"
+                      height="#{mtto.selectedEmisor.rucId > 0 ? '600':'700'}"
+                      width="70%" id="manageEmisorDialog"
+                      modal="true" widgetVar="manageEmisorDialog"
+                      responsive="true" position="center">
+                <p:outputPanel id="manage-emisor-content" styleClass="ui-fluid">
+                    <p:outputPanel rendered="#{not empty mtto.selectedEmisor}">
+                        <p:messages redisplay="true" id="msgDetail"
+                                    skipDetailIfEqualsSummary="true" closable="true"/>
+                        <p:graphicImage library="images" name="PROFILE.svg"
+                                        rendered="true" width="200" height="150"
+                                        styleClass="product-image"/>
+                        <p:panelGrid columns="4" layout="flex"
+                                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                                                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                                     contentStyleClass="align-items-baseline ui-fluid">
+                            <p:outputLabel for="txtTipoDoc">TIPO DOCUMENTO</p:outputLabel>
+                            <p:selectOneMenu id="txtTipoDoc" value="#{mtto.selectedEmisor.rucTipoDocId}" required="true">
+                                <f:selectItems value="#{mtto.tiposDocumentosList}" var="td"
+                                               itemLabel="#{td.docNombreDocumento}" itemValue="#{td.docId}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel for="name">NIT</p:outputLabel>
+                            <p:inputText id="name" value="#{mtto.selectedEmisor.rucNitContribuyente}"
+                                         required="true" maxlength="45"
+                                         requiredMessage="NIT requerido"
+                                         validatorMessage="Formato de NIT NO válido"
+                                         readonly="#{mtto.selectedEmisor.rucId > 0 ? 'true':'false'}">
+                                <f:validateRegex pattern="(^\d{1,45}$)"/>
+                            </p:inputText>
+                            <p:outputLabel for="txtNrc">NRC</p:outputLabel>
+                            <p:inputText id="txtNrc" required="true" maxlength="45"
+                                         requiredMessage="NRC requerido"
+                                         validatorMessage="Formato NRC NO válido"
+                                         readonly="#{mtto.selectedEmisor.rucId > 0 ? 'true':'false'}"
+                                         value="#{mtto.selectedEmisor.rucNrc}">
+                                <f:validateRegex pattern="(^\d{1,10}$)"/>
+                            </p:inputText>
+                        </p:panelGrid>
+                        <p:panelGrid columns="4" layout="flex"
+                                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                                                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                                     contentStyleClass="align-items-baseline ui-fluid">
+                            <h:outputLabel value="NOMBRE COMERCIAL" for="txtNombreComercial"/>
+                            <p:inputTextarea id="txtNombreComercial" maxlength="120"
+                                             counter="displaySubCom" counterTemplate="{0}/120"
+                                             value="#{mtto.selectedEmisor.rucNombreComercial}">
+                                <h:outputText styleClass="block" id="displaySubCom"/>
+                            </p:inputTextarea>
+                            <h:outputLabel value="NOMBRE O RAZÓN SOCIAL" for="txtRazonSocial"/>
+                            <p:inputTextarea id="txtRazonSocial" maxlength="120"
+                                             counter="displaySubRaz" counterTemplate="{0}/120"
+                                             value="#{mtto.selectedEmisor.rucNombreRazonsocial}">
+                                <h:outputText styleClass="block" id="displaySubRaz"/>
+                            </p:inputTextarea>
+                        </p:panelGrid>
+                        <p:panelGrid columns="2" layout="flex"
+                                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-10 xl:col-10"
+                                     contentStyleClass="align-items-baseline ui-fluid">
+                            <h:outputLabel value="ACTIVIDAD" for="selActividad"/>
+                            <p:selectOneMenu id="selActividad" value="#{mtto.selectedEmisor.rucCodactividad}"
+                                             filter="true" filterMatchMode="contains">
+                                <f:selectItem itemLabel="[SELECCIONAR]" itemValue=""/>
+                                <f:selectItems value="#{mtto.actividadEconomicaList}" var="act"
+                                               itemLabel="#{act.ccaeCodigo} - #{act.ccaeValor}"
+                                               itemValue="#{act.ccaeCodigo}"/>
+                                <p:ajax update="@this" listener="#{mtto.getActividadDescEmisor(act)}"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                        <p:panelGrid columns="4" layout="flex"
+                                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                                                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                                     contentStyleClass="align-items-baseline ui-fluid">
+                            <p:outputLabel for="correo">CORREO</p:outputLabel>
+                            <p:inputText id="correo" value="#{mtto.selectedEmisor.rucEmailContribuyente}"
+                                         onkeyup="this.value = this.value.toLowerCase()"
+                                         validatorMessage="Formato de correo no válido"
+                                         required="true" requiredMessage="Correo Requerido">
+                                <f:validateRegex
+                                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                            </p:inputText>
+                            <p:outputLabel for="telefono">TELEFONO</p:outputLabel>
+                            <p:inputText id="telefono" requiredMessage="Teléfono requerido"
+                                         required="true" validatorMessage="Formato TELEFONO NO válido"
+                                         value="#{mtto.selectedEmisor.rucTelefonoTrabajo}">
+                                <f:validateRegex
+                                        pattern="^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$"/>
+                            </p:inputText>
+                        </p:panelGrid>
+
+                        <p:panelGrid columns="4" layout="flex"
+                                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                                                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                                     contentStyleClass="align-items-baseline ui-fluid">
+                            <h:outputLabel value="DEPARTAMENTO"/>
+                            <p:selectOneMenu required="true" id="selDepto"
+                                             value="#{mtto.selectedEmisor.rucCodigoDepartamento}">
+                                <f:selectItem itemLabel="SELECCIONAR" itemValue="0"/>
+                                <f:selectItems value="#{mtto.departamentos}" var="dep"
+                                               itemValue="#{dep.ubgCodigo}"
+                                               itemLabel="#{dep.ubgDescripcion.toUpperCase()}"/>
+                                <p:ajax event="itemSelect" update="selMuni"
+                                        listener="#{mtto.findMunicipiosByDeptoCod(mtto.selectedEmisor.rucCodigoDepartamento)}"/>
+                            </p:selectOneMenu>
+                            <h:outputLabel value="MUNICIPIO"/>
+                            <p:selectOneMenu id="selMuni" required="true"
+                                             value="#{mtto.selectedEmisor.rucCodigoMunicipio}">
+                                <f:selectItems value="#{mtto.municipios}" var="mun"
+                                               itemValue="#{mun.ubgCodigo}" itemLabel="#{mun.ubgDescripcion}"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+
+                        <p:panelGrid columns="2" layout="flex"
+                                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-10 xl:col-10"
+                                     contentStyleClass="align-items-baseline ui-fluid">
+                            <h:outputLabel value="DOMICILIO" for="txtDomicilio"/>
+                            <p:inputTextarea id="txtDomicilio" maxlength="200"
+                                             counterTemplate="{0}/200" rows="3"
+                                             counter="displaySub" required="true"
+                                             requiredMessage="DOMICILIO requerido"
+                                             value="#{mtto.selectedEmisor.rucDomicilio}">
+                                <h:outputText styleClass="block" id="displaySub"/>
+                            </p:inputTextarea>
+                        </p:panelGrid>
+                    </p:outputPanel>
+                </p:outputPanel>
+                <f:facet name="footer">
+                    <p:commandButton value="#{mtto.selectedEmisor.rucId > 0 ? 'ACTUALIZAR':'REGISTRAR'}"
+                                     icon="pi pi-check" actionListener="#{mtto.saveEmisor}" id="manageEmisorButton"
+                                     oncomplete="setTimeout(function() { $('[id$=messages]').hide(2000); }, 2000);
+                                                setTimeout(function() { $('[id$=msgDetail]').hide(2000); }, 2000);"
+                                     update="manage-emisor-content msgDetail :frmEmisores:delete-emisores-button "
+                                     process="manage-emisor-content @this"/>
+                    <p:commandButton value="CANCELAR" icon="pi pi-times" onclick="PF('manageEmisorDialog').hide()"
+                                     class="ui-button-secondary" type="button"/>
+                </f:facet>
+            </p:dialog>
+
+            <p:confirmDialog widgetVar="deleteEmisorDialog" showEffect="fade" width="300"
+                             message="¿Está seguro de eliminar emisor?" header="Confirmar" severity="warn">
+                <p:commandButton value="SI" icon="pi pi-check" actionListener="#{mtto.deleteEmisor}"
+                                 process="@this" update=":frmEmisores:delete-emisores-button"
+                                 oncomplete="PF('deleteEmisorDialog').hide();
+                                 setTimeout(function() { $('[id$=messages]').hide(2000); }, 2000);"/>
+                <p:commandButton value="NO" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
+                                 onclick="PF('deleteEmisorDialog').hide()"/>
+            </p:confirmDialog>
+
+            <p:confirmDialog global="true" showEffect="fade" width="300">
+                <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check"/>
+                <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no ui-button-secondary"
+                                 icon="pi pi-times"/>
+            </p:confirmDialog>
+        </h:form>
+    </f:view>
+</h:body>
+
+</html>

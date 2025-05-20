@@ -1,0 +1,42 @@
+<!--
+  Created by IntelliJ IDEA.
+  User: juan
+  Date: 16/8/2023
+  Time: 16:35
+-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <f:view>
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+                  closable="false" resizable="false" showHeader="false">
+            <h:panelGrid columns="1" styleClass="text-center">
+                <div class="text-center">
+                    <p:graphicImage library="images" name="loader_ajax.gif" cache="false"
+                                    style="text-align: center;"
+                                    height="32" width="32"/>
+                </div>
+                <div class="text-center">
+                    <h:outputText value="Espere un momento.."/>
+                </div>
+            </h:panelGrid>
+        </p:dialog>
+        <p:dialog id="dlgMensajes" widgetVar="DialogMensajes" header="MENSAJE DE APLICACION"
+                  resizable="false" modal="true" style="margin-bottom:0" position="center" closable="false">
+            <h:form id="frminfo">
+                <p:panel style=" width: 550px;">
+                    <p:messages id="mensajes_info"/>
+                    <f:facet name="footer">
+                        <p:commandButton type="button" id="btnInfo" icon="pi pi-times" value="Cerrar"
+                                         styleClass="rounded-button"
+                                         onclick="PF('DialogMensajes').hide();"/>
+                    </f:facet>
+                </p:panel>
+            </h:form>
+        </p:dialog>
+
+
+    </f:view>
+</ui:composition>

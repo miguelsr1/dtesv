@@ -1,0 +1,42 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+
+    <f:view>
+        <p:panelGrid id="pnlGridManuales" columns="3">
+            <p:panelGrid id="pnlGridPlantilla" columns="1">
+                <h:outputText value="DESCARGAR PLANTILLA EXCEL" style="color:#336699; font-size: 12px;font-weight: bold;"/>
+                <h:outputText value="Descargue una plantilla en formato xlsx para procesar sus facturas"/>
+                <h:outputLink id="optLinkPl" value="#{request.contextPath}/manuales/PlantillaFacturacionElectronica.xlsx" target="wx12">
+                    <h:outputText value="PLANTILLA" style="font-size: 12px;font-weight: bold;"/>
+                </h:outputLink>
+            </p:panelGrid>
+            <p:panelGrid id="pnlGridManualesUsuarios" columns="1" style=" width: 350px;">
+                <h:outputText value="MANUAL  DE  USUARIO  DE  SISTEMA" style="color:#336699; font-size: 12px;font-weight: bold;"/>
+                <h:outputText value="Conoce las funciones, opciones, alertas y  mensajes de la aplicación."/>
+                <h:outputLink id="optLinkAdmin" value="#{request.contextPath}/manuales/ADSISTRADTE.pdf"  target="wx10">
+                    <h:outputText value=" MANUAL DE ADMINISTRADOR" style="font-size: 12px;font-weight: bold;"/>
+                </h:outputLink>
+                <h:outputLink id="optLinkUser" value="#{request.contextPath}/manuales/SISTRADTE.pdf" target="wx11">
+                    <h:outputText value=" MANUAL DE USUARIO" style="font-size: 12px;font-weight: bold;"/>
+                </h:outputLink>
+            </p:panelGrid>
+            <p:panelGrid id="pnlGridSoftware" columns="1" style=" width: 350px;">
+                <h:outputText value="DESCARGAR  LECTOR  DE  DOCUMENTOS  PDF"
+                              style="color:#336699; font-size: 12px;font-weight: bold; text-align: justify-all;"/>
+                <h:outputText value="Si  no posee programa para visualizar documentos PDF puede descargar
+                              cualquiera de las dos opciones sugeridas a continuación, al dar click sobre el link será direccionado a una
+                              página externa al Sistema para la descarga del programa" style="text-align: justify-all;"/>
+                <h:outputLink id="optLinkSoft1" value="https://get.adobe.com/es/reader/otherversions/"  target="wx12" >
+                    <h:outputText value="OPCION 1: ADOBE ACROBAT READER PDF" style="font-size: 12px;font-weight: bold;"/>
+                </h:outputLink>
+                <h:outputLink id="optLinkSoft2" value="https://www.foxitsoftware.com/es-la/products/pdf-reader/" target="wx14">
+                    <h:outputText value="OPCION 2: FOXIT READER PDF" style="font-size: 12px;font-weight: bold;"/>
+                </h:outputLink>
+            </p:panelGrid>
+        </p:panelGrid>
+    </f:view>
+</ui:composition>

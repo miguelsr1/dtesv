@@ -1,0 +1,409 @@
+body .ui-state-disabled {
+    opacity: 0.6;
+    background-color: #CED4DA;
+}
+
+.subCard {
+    padding: 15px 10px 15px 10px;
+    background-color: #E5E5E5;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.spaceDivs {
+    padding: 0px 30px 0px 0px;
+}
+
+body .ui-datascroller .ui-datascroller-content {
+    border: 0px;
+    background: transparent;
+    color: #515C66;
+    padding: 1rem;
+}
+
+.divButtons {
+    text-align: center;
+    margin-top: 10px;
+    background-color: white !important;
+}
+
+.divTitleSeccion {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.fielSetTransparent {
+    border: 0px !important;
+    background: transparent !important;
+}
+
+
+.field > label {
+    display: inline-block;
+    margin-bottom: 1rem !important;
+}
+
+.ui-border {
+    border: 1px solid #E4E5E5;
+    background: #FDFEFF;
+    color: #515C66;
+    padding: 1rem;
+}
+
+body .ui-fluid .ui-selectonemenu-label {
+    width: calc(100% - 2.357rem);
+    /*padding: 1rem 0.5rem;*/
+    border-radius: 10px;
+}
+
+body .ui-inputfield.ui-state-error {
+    border-color: #f44336;
+}
+
+body .ui-selectonemenu {
+    vertical-align: middle;
+    position: relative;
+    transform: none;
+    padding: 0;
+    /*border-radius: 10px !important;*/
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 3px;
+    background: #FDFEFF;
+}
+
+body .ui-fluid .ui-selectonemenu .ui-selectonemenu-trigger {
+    width: 2.357rem;
+    padding: 0;
+    background-color: #2763FF;
+}
+
+body .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
+    position: static;
+    margin: 0;
+    color: white;
+    font-family: "primeicons", serif !important;
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+    background: none;
+}
+
+body .ui-radiobutton .ui-radiobutton-box.ui-state-active {
+    border-color: #2763FF;
+    background: #2763FF;
+    color: #f8fafc;
+}
+
+body .ui-commandlink, body .ui-link {
+    color: #2763FF;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active {
+    border-color: #2763FF;
+    background: #2763FF;
+    color: #f8fafc;
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-hover {
+    border-color: #2763FF;
+}
+
+.layout-footer {
+    box-shadow: 0 2px 8px 0 rgb(0 0 0 / 8%);
+    background-color: #FDFEFF;
+    padding: 10px 0px !important;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+body .ui-divider.ui-divider-horizontal:before {
+    border-top: 2px #2763FF !important;
+}
+
+.ui-divider.ui-divider-solid.ui-divider-horizontal:before {
+    border-top-style: solid !important;
+}
+
+.divSticky.scrolled {
+    background-color: #fff !important;
+    transition: background-color 200ms linear;
+}
+
+
+.ui-sticky {
+    top: 70px !important;
+}
+
+@media (max-width: 960px) {
+    .ui-sticky {
+        top: 104px !important;
+    }
+}
+
+.menu-active {
+    background-color: #2763FF !important;
+}
+
+body .ui-selectonemenu-panel .ui-selectonemenu-items .ui-selectonemenu-item.ui-state-highlight {
+    background: #2763FF;
+    color: #f8fafc;
+    overflow: auto;
+}
+
+body .ui-progressbar .ui-progressbar-value {
+    border: 0 none;
+    margin: 0;
+    background: #2196f3;
+    border-radius: 3px;
+}
+
+h3, h4, h5 {
+    color: #2763FF !important;
+}
+
+body .ui-rating .ui-rating-star-on a {
+    color: #ffc201;
+}
+
+.ui-outputlabel .ui-outputlabel-rfi {
+    margin-left: 0.4em;
+    color: red !important;
+}
+
+.layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > ul li a i {
+    font-size: 1.5rem !important;
+}
+
+.menu-wrapper .layout-menu-container .layout-menu li > a .layout-menuitem-text {
+    font-size: 1.2rem !important;
+}
+
+.menu-wrapper .layout-menu-container .layout-menu li > ul {
+    padding-left: 0px !important;
+}
+
+.menu-wrapper .layout-menu-container .layout-menu li > a {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+/*OPCION DE MENU ACTIVO*/
+.layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > ul li.active-menuitem > a {
+    background-color: #2763FF !important;
+    color: white !important;
+    height: 4rem;
+    width: 100%;
+    box-shadow: 0 2px 12px 0 rgb(0 0 0 / 30%) !important;
+}
+
+.layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > ul li.active-menuitem a i {
+    color: white !important;
+    padding-right: 10px;
+}
+
+/*OPCION DE MENU INACTIVA*/
+.layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > ul li > a {
+    color: #8598AD !important;
+    height: 4rem;
+    width: 100%;
+    padding-left: 30px;
+}
+
+.layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > ul li a i {
+    color: #8598AD !important;
+}
+
+.menu-wrapper .layout-menu-container .layout-menu li > ul > li {
+    height: 2rem !important;
+}
+
+body .ui-button {
+    background: #2763FF;
+    color: #f8fafc;
+    border: 1px solid #2763FF;
+}
+
+/*body .ui-datatable .ui-datatable-header {*/
+/*    background: transparent !important;*/
+/*    border: 0px !important;*/
+/*    border-width: 0px !important;*/
+/*}*/
+
+/*body .ui-datatable thead th {*/
+/*    background: transparent !important;*/
+/*    color: #515C66;*/
+/*    border: 0px !important;*/
+/*}*/
+
+.products-table-header {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.formBg {
+    margin: 0px auto;
+    width: 100%;
+    max-width: 100%;
+    background: white;
+    border-radius: 4px;
+    box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
+}
+
+.ui-panelgrid.showcase-text-align-center .ui-grid-responsive .ui-panelgrid-cell {
+    text-align: center;
+}
+
+.customPanelGrid .ui-panelgrid-content {
+    align-items: center;
+}
+
+.my-heading-row {
+    background-color: var(--surface-c);
+    font-weight: bold;
+}
+
+.sidebar {
+    position: absolute;
+    width: 220px;
+    height: 50%;
+    top: 0;
+    overflow: hidden;
+    background: #19222a;
+    -webkit-transform: translateZ(0);
+    visibility: visible;
+    -webkit-backface-visibility: hidden;
+}
+
+.col_montos {
+    text-align: right;
+}
+
+.product-image {
+    width: 250px;
+    margin: 0 auto 2rem auto;
+    display: block;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
+}
+
+.user-badge {
+    border-radius: 2px;
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+}
+
+.user-badge.status-a {
+    background: #c8e6c9;
+    color: #256029;
+}
+
+.user-badge.status-i {
+    background: #ffcdd2;
+    color: #c63737;
+}
+
+body .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
+    position: static;
+    margin: 0;
+    color: white !important;
+    font-family: "primeicons", serif !important;
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+    background: none;
+}
+
+.labels {
+    font-weight: bold;
+}
+
+
+body .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
+    position: static;
+    margin: 0;
+    color: white;
+    font-family: "primeicons", serif !important;
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+    background: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

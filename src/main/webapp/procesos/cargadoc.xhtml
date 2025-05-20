@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<f:view locale="es">
+    <p:ajaxStatus onstart="PF('statusDialog').show()"
+                  onsuccess="PF('statusDialog').hide()"/>
+    <p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+              closable="false" resizable="false" showHeader="false">
+        <h:panelGrid columns="1" styleClass="text-center">
+            <div class="text-center">
+                <p:graphicImage library="images" name="loader_ajax.gif" cache="false"
+                                style="text-align: center;"
+                                height="32" width="32"/>
+            </div>
+            <div class="text-center">
+                <h:outputText value="Espere un momento.."/>
+            </div>
+        </h:panelGrid>
+    </p:dialog>
+    <h:form id="mainFrm" enctype="multipart/form-data">
+        <p:growl id="messages" showDetail="true"/>
+        <div class="box-root padding-top--24 flex-flex flex-direction--column">
+            <div class="formBg">
+                <div class="card shadow p-3 mb-5 bg-white rounded">
+                    <p:panel id="pnlCarga" header="FACTURAS CARGADAS DESDE ARCHIVO" style="height: 90%">
+                        <p:fileUpload id="file" required="true"
+                                      rendered="#{upload.facturasLs.size() == 0}"
+                                      onstart="PF('statusDialog').show()"
+                                      mode="advanced" dragDropSupport="true"
+                                      multiple="false" skinSimple="true"
+                                      sizeLimit="10485760" allowTypes="/(\.|\/)(csv|CSV|xlsx|XLSX)$/"
+                                      invalidSizeMessage="Maximum file size allowed is 10 MB"
+                                      invalidFileMessage="only csv is allowed"
+                                      update="messages" fileLimit="1"
+                                      uploadLabel="Cargar"
+                                      cancelLabel="Cancelar"
+                                      label="Seleccionar"
+                                      onupload="return confirm('¿ Está seguro de cargar fichero ?')"
+                                      listener="#{upload.handleFileUpload}"/>
+                        <div jsf:id="dvFacturas" style="display: block">
+                            <p:panelGrid id="pngFacturas" columns="1" layout="flex"
+                                         rendered="#{upload.facturasLs.size() != 0}"
+                                         columnClasses="col-12 md:col-12 xl:col-12">
+                                <p:dataTable id="tblFacturas" tableStyle="table-layout: auto;"
+                                             rendered="true" scrollable="false" rows="10"
+                                             rowsPerPageTemplate="3,5,10"
+                                             value="#{upload.facturasLs}" var="fact"
+                                             emptyMessage="No se han encontrado registros para procesar"
+                                             paginator="true" paginatorPosition="bottom"
+                                             currentPageReportTemplate="{startRecord} de {totalRecords}"
+                                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+                                    <f:facet name="header">
+                                        <div class="flex justify-content-between align-items-center">
+                                            FACTURAS LISTAS PARA PROCESAR
+                                            <div>
+                                                <p:commandButton id="toggler" type="button" value="Columnas"
+                                                                 update="dvFacturas"
+                                                                 icon="pi pi-align-justify"/>
+                                                <p:columnToggler trigger="toggler" datasource="tblFacturas">
+                                                    <p:ajax event="toggle" update="tblFacturas"/>
+                                                </p:columnToggler>
+                                            </div>
+                                        </div>
+                                    </f:facet>
+                                    <f:facet name="footer">
+                                        <h:outputLabel
+                                                value="TOTAL DE REGISTROS CARGADOS: #{upload.facturasLs.size()}"/>
+                                    </f:facet>
+                                    <p:column headerText="# FACTURA">
+                                        <h:outputText value="#{fact.facNroFactura}"/>
+                                    </p:column>
+                                    <p:column headerText="FECHA EMISION">
+                                        <h:outputText value="#{fact.facFechaEmision}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column headerText="RAZÓN SOCIAL">
+                                        <h:outputText value="#{fact.facRazonsocial}"/>
+                                    </p:column>
+                                    <p:column headerText="TOTAL PAGAR">
+                                        <h:outputText value="#{fact.facTotalPagar}" styleClass="col_montos">
+                                            <f:converter converterId="bigDecimalConverter"/>
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column headerText="TOTAL IVA">
+                                        <h:outputText value="#{fact.facTotalIva}" styleClass="col_montos">
+                                            <f:converter converterId="bigDecimalConverter"/>
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column headerText="SUBTOTAL">
+                                        <h:outputText value="#{fact.facSubtotal}" styleClass="col_montos">
+                                            <f:converter converterId="bigDecimalConverter"/>
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column headerText="TOTAL OPERACION">
+                                        <h:outputText value="#{fact.facMontototaloperacion}"
+                                                      style="font-weight: bold;" styleClass="col_montos">
+                                            <f:converter converterId="bigDecimalConverter"/>
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column headerText="PROCESAR">
+                                        <p:commandButton icon="pi pi-cog" title="Procesar"
+                                                         action="#{upload.procesarListener(fact)}"
+                                                         onclick="PF('DialogPeriodo').show();"
+                                                         class="rounded-button">
+                                            <p:ajax event="dialogReturn" update="tblFacturas"/>
+                                        </p:commandButton>
+                                    </p:column>
+                                </p:dataTable>
+                            </p:panelGrid>
+                        </div>
+                    </p:panel>
+
+                    <p:divider/>
+<!--SE CREO CONSULTA HISTORIAL DE FACTURAS EMITIDAS NO ES NECESARIO MOSTRAR ACA EL HISTORIAL -->
+                    <p:panel id="pnlProcesadas" header="FACTURAS PROCESADAS"
+                             style="height: 90%" rendered="false">
+                        <p:dataTable id="tblFacturasProc" tableStyle="table-layout: auto;"
+                                     rendered="#{upload.facturasProcLs.size()>0}"
+                                     scrollable="false" rows="3"
+                                     rowsPerPageTemplate="3,5,10"
+                                     value="#{upload.facturasProcLs}" var="fproc"
+                                     emptyMessage="AUN NO SE HAN PROCESADO FACTURAS"
+                                     paginator="true" paginatorPosition="bottom"
+                                     currentPageReportTemplate="{startRecord} de {totalRecords}"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+                            <f:facet name="header">
+                                FACTURAS PROCESADAS
+                            </f:facet>
+                            <p:column headerText="# FACTURA">
+                                <h:outputText value="#{fproc.facNroFactura}"/>
+                            </p:column>
+                            <p:column headerText="FECHA EMISION">
+                                <h:outputText value="#{fproc.facFechaEmision}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="RAZÓN SOCIAL">
+                                <h:outputText value="#{fproc.facRazonsocial}"/>
+                            </p:column>
+                            <p:column headerText="TOTAL PAGAR">
+                                <h:outputText value="#{fproc.facTotalPagar}" styleClass="col_montos">
+                                    <f:converter converterId="bigDecimalConverter"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="TOTAL IVA">
+                                <h:outputText value="#{fproc.facTotalIva}" styleClass="col_montos">
+                                    <f:converter converterId="bigDecimalConverter"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="SUBTOTAL">
+                                <h:outputText value="#{fproc.facSubtotal}" styleClass="col_montos">
+                                    <f:converter converterId="bigDecimalConverter"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="TOTAL OPERACION">
+                                <h:outputText value="#{fproc.facMontototaloperacion}"
+                                              style="font-weight: bold;" styleClass="col_montos">
+                                    <f:converter converterId="bigDecimalConverter"/>
+                                </h:outputText>
+                            </p:column>
+                            <f:facet name="footer">
+                                <h:outputLabel value="TOTAL DE FACTURAS PROCESADAS: #{upload.facturasProcLs.size()}"/>
+                            </f:facet>
+                        </p:dataTable>
+                    </p:panel>
+                </div>
+            </div>
+        </div>
+    </h:form>
+
+    <p:dialog id="DialogPeriodo" widgetVar="DialogPeriodo"
+              appendTo="@(body)" dynamic="true" resizable="false" modal="true"
+              position="center" closable="true"
+              closeOnEscape="true" width="850" minHeight="250" header="PERIODO DE FACTURACION">
+        <h:form id="frmPeriodo">
+            <p:panel header="INGRESE EL PERIODO DE FACTURACION PARA LA FACTURA SELECCIONADA">
+                <p:messages redisplay="true" closable="true" id="msgPeriodo"/>
+                <p:panelGrid columns="4" layout="flex"
+                             columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                             col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                             contentStyleClass="align-items-baseline ui-fluid">
+                    <h:outputLabel value="FECHA INICIO" for="fecInicio" styleClass="font-bold"/>
+                    <p:calendar value="#{upload.fechaInicio}"
+                                id="fecInicio"
+                                pattern="dd/MM/yyyy"
+                                mask="true" required="true"
+                                requiredMessage="Fecha de Inicio: Es requerido" locale="es"
+                                navigator="true"
+                                maxdate="#{login.hoy}">
+                    </p:calendar>
+                    <h:outputLabel value="FECHA FIN" for="fecFin" styleClass="font-bold"/>
+                    <p:calendar value="#{upload.fechaFin}"
+                                id="fecFin"
+                                pattern="dd/MM/yyyy"
+                                mask="true" required="true"
+                                requiredMessage="Fecha Fin: Es requerido" locale="es"
+                                navigator="true"
+                                maxdate="#{login.hoy}">
+                    </p:calendar>
+                </p:panelGrid>
+                <f:facet name="footer">
+                    <p:panelGrid columns="2" layout="flex"
+                                 columnClasses="col-12 md:col-4 xl:col-4, col-12 md:col-4 xl:col-4"
+                                 contentStyleClass="align-items-baseline ui-fluid">
+                        <p:commandButton icon="pi pi-times"
+                                         styleClass="rounded-button ui-button-secondary"
+                                         value="CANCELAR"
+                                         onclick="PF('DialogPeriodo').hide();"/>
+                        <p:commandButton icon="pi pi-check"
+                                         value="ACEPTAR"
+                                         action="#{upload.insertPeriodo}"
+                                         styleClass="rounded-button ui-button-info font-bold"/>
+                    </p:panelGrid>
+                </f:facet>
+            </p:panel>
+        </h:form>
+    </p:dialog>
+
+</f:view>
+
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="shortcut icon" href="./resources/images/escudo.png"/>
+        <title><ui:insert name="title">#{label['TituloSistema']}</ui:insert></title>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes"/>
+        </f:facet>
+        <h:outputScript name="js/layout.js" library="poseidon-layout"/>
+        <h:outputScript name="js/prism.js" library="poseidon-layout"/>
+        <h:outputStylesheet name="css/primeflex.min.css" library="poseidon-layout"/>
+        <h:outputStylesheet name="css/primeicons.css" library="poseidon-layout"/>
+        <h:outputStylesheet name="css/layout-light.css" library="poseidon-layout"/>
+        <style>
+            body {
+                background: linear-gradient(99deg, #F6F9FE 0%, #E8F1F8 100%) !important;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <div class="layout-wrapper layout-static layout-static-active layout-menu-light layout-topbar-light">
+            <ui:insert name="top"/>
+            <ui:insert name="left"/>
+            <div class="layout-main">
+                <div class="layout-content">
+                    <ui:insert name="content"/>
+                </div>
+                <ui:insert name="footer"/>
+            </div>
+            <div class="layout-mask modal-in">
+            </div>
+        </div>
+        <p:ajaxStatus styleClass="layout-ajax-loader">
+            <f:facet name="start">
+                <i class="pi pi-spin pi-spinner layout-ajax-loader-icon"/>
+            </f:facet>
+            <f:facet name="complete">
+                <h:outputText value="completed!"/>
+            </f:facet>
+        </p:ajaxStatus>
+    </h:body>
+
+</html>

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
+<h:head>
+    <link rel="shortcut icon"
+          href="${pageContext.request.contextPath}/images/favicon.ico" />
+    <title>#{label.TituloSistema}</title>
+</h:head>
+<h:body style="background-color: #7088A2;font-size:90% !important;">
+    <div align="center">
+        <p:panel style="width: 650px; margin-top: 125px;"
+                 header="OCURRIO UN INCONVENIENTE CON SU SESION">
+            <p:panelGrid columns="1" style=" width: 500px">
+                <h:outputText value="REALICE LAS SIGUIENTES PRUEBAS:" />
+                <h:outputText value="  1. VERIFIQUE SU CONEXION A INTERNET" />
+                <h:outputText value="  2. CIERRE NAVEGADOR" />
+                <h:outputText
+                        value="  3. ABRA NAVEGADOR E INGRESE NUEVAMENTE A SISTEMA" />
+                <h:outputText
+                        value="SI EL INCONVENIENTE PERSISTE DESPUES DE EFECTUAR LAS PRUEBAS ANTERIORES CONTACTE A SOPORTE TECNICO." />
+                <h:link outcome="login" value="REGRESAR" style=" font-weight: bold;" />
+            </p:panelGrid>
+            <p:separator style="margin-top:2.21em;"/>
+            <p:panelGrid columns="1" >
+                <ul>
+                    <li>Date/time: #{login.hoy}</li>
+                    <li>User agent: #{header['user-agent']}</li>
+                    <li>User IP: #{empty header['x-forwarded-for'] ?
+                            request.remoteAddr : fn:split(header['x-forwarded-for'], ',')[0]}</li>
+                    <li>Request URI: <a
+                            href="#{requestScope['javax.servlet.error.request_uri']}">
+                        #{requestScope['javax.servlet.error.request_uri']}</a></li>
+                    <li>Ajax request:
+                        #{facesContext.partialViewContext.ajaxRequest ? 'Yes' : 'No'}</li>
+                    <li>Status code:
+                        #{requestScope['javax.servlet.error.status_code']}</li>
+                    <li>Exception type: <code>#{requestScope['javax.servlet.error.exception_type']}</code></li>
+                    <li>Exception message: <code>#{requestScope['javax.servlet.error.message']}</code></li>
+                </ul>
+            </p:panelGrid>
+        </p:panel>
+    </div>
+</h:body>
+</html>
+

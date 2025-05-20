@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+        </f:facet>
+        <title>DTE - SV</title>
+    </h:head>
+
+
+    <h:body styleClass="login-body #{guestPreferences.inputStyleClass}">
+        <h:form prependId="false" id="loginForm">
+            <p:growl id="mensajes_info" showDetail="true" showSummary="true" >
+                <p:autoUpdate />
+            </p:growl>
+            <div class="login-wrapper">
+                <div class="login-panel">
+                    <h:link styleClass="logo">
+                        <p:graphicImage name="logo.png" library="images" />
+                    </h:link>
+                    <div class="login-form">
+                        <h2>e-Facturación </h2>
+                        <!--p>You dont have an account? <a href="#"> Signup</a></p-->
+                        <p:inputText id="usuario" value="#{login.usuario}" placeholder="Usuario"
+                                     onkeyup="this.value = this.value.toUpperCase();"
+                                     requiredMessage="Usuario: Es requerido"/>
+                        <p:password id="txtClave" value="#{login.clave}" placeholder="Clave"
+                                    requiredMessage="Clave: Es requerido"
+                                    redisplay="true"/>
+                        <p:commandButton value="INICIAR SESION"
+                                         action="#{login.crearSesion()}"
+                                         style="font-size: 12px; font-weight: bold;"
+                                         styleClass="rounded-button ui-button-info"
+                                         update="mensajes_info"
+                                         icon="pi pi-sign-in"/>
+                    </div>
+
+                    <p>v.20250518</p>
+                </div>
+            </div>
+            <h:outputStylesheet name="css/layout-light.css" library="poseidon-layout" />
+            <h:outputStylesheet name="css/primeicons.css" library="poseidon-layout" />
+        </h:form>
+
+
+        <p:dialog id="dlgInternet" widgetVar="DialogInternet" header="MENSAJE DE APLICACION"
+                  resizable="false" modal="true" style="margin-bottom:0" position="center" closable="false">
+            <h:form id="frmInternet">
+                <p:panel>
+                    <h:panelGrid columns="1" style=" width:  450px" id="pnlGridIndicaciones">
+                        <h:outputText value="NO SE PUEDE ESTABLECER COMUNICACION CON SISTEMA"/>
+                        <h:outputText value="REALICE LAS SIGUIENTES PRUEBAS:"/>
+                        <h:outputText value="  1. VERIFIQUE SU CONEXION A INTERNET"/>
+                        <h:outputText value="  2. CIERRE NAVEGADOR"/>
+                        <h:outputText value="  3. ABRA NAVEGADOR E INGRESE NUEVAMENTE A SISTEMA"/>
+                        <h:outputText
+                            value="SI EL INCONVENIENTE PERSISTE DESPUES DE EFECTUAR LAS PRUEBAS ANTERIORES CONTACTE A EXAMINADORAS VMT."/>
+                    </h:panelGrid>
+                    <f:facet name="footer">
+                        <p:commandButton type="button" id="btnAlertCerrar" icon="ui-icon-close" value=" OK "
+                                         onclick="PF('DialogInternet').hide();PF('statusDialog').hide();"/>
+                    </f:facet>
+                </p:panel>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog id="dlgClave" widgetVar="DialogClave" width="650px" height="350px"
+                  header="RESTABLECER CLAVE" modal="true"
+                  closable="true" resizable="false" responsive="true" dynamic="true">
+            <h:form id="frmClave">
+                <p:panel>
+                    <p:panelGrid columns="1" layout="grid"
+                                 columnClasses="col-12 md:col-12 xl:col-12"
+                                 contentStyleClass="align-items-baseline ui-fluid">
+                        <p:messages id="msgClave" closable="true" />
+                        <p:panelGrid columns="2" layout="grid"
+                                     columnClasses="col-12 md:col-1 xl:col-1, col-12 md:col-5 xl:col-5"
+                                     contentStyleClass="align-items-baseline ui-fluid">
+                            <h:outputLabel value="USUARIO" for="txtUsuarioC"/>
+                            <p:inputText value="#{login.email}" autocomplete="off"
+                                         onkeyup="this.value = this.value.toUpperCase();"
+                                         id="txtUsuarioC" required="true" maxlength="20"
+                                         requiredMessage="Usuario requerido"/>
+                            <h:outputLabel value="TIPO SOLICITUD" for="selectTipo"/>
+                            <p:selectOneMenu id="selectTipo" value="#{login.tipoSolicitud}"
+                                             required="true" requiredMessage="Tipo solicitud requerido">
+                                <f:selectItem itemValue="" itemLabel="[ SELECCIONAR ]"/>
+                                <f:selectItem itemValue="CBCL" itemLabel="CAMBIO DE CLAVE"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                        <f:facet name="footer">
+                            <p:commandButton icon="pi pi-check" value=" ENVIAR SOLICITUD "
+                                             actionListener="#{login.doRecuperaClave}"
+                                             styleClass="rounded-button"
+                                             oncomplete="setTimeout(function() { $('[id$=msgClave]').hide(2000); }, 2000);"
+                                             style="font-size: 12px; font-weight: bold;"
+                                             update="frmClave msgClave"/>
+                        </f:facet>
+                    </p:panelGrid>
+                </p:panel>
+            </h:form>
+        </p:dialog>
+    </h:body>
+
+</html>

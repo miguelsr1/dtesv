@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: juan
+  Date: 26/6/2023
+  Time: 09:07
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Session expired</title>
+    <meta http-equiv="refresh" content="3;url=${pageContext.request.contextPath}/login.xhtml" />
+</h:head>
+
+<h:body>
+    <h1>Session expired</h1>
+    <h3>You will be redirected to login page</h3>
+    <p><a href="${pageContext.request.contextPath}/login.xhtml">Click here if redirect didn't work or when you're impatient</a>.</p>
+
+</h:body>
+
+</html>

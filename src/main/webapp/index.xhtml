@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/layout/template.xhtml">
+
+    <ui:define name="top">
+        <ui:include src="WEB-INF/layout/header.xhtml"/>
+    </ui:define>
+    <ui:define name="left">
+        <ui:include src="WEB-INF/layout/menu.xhtml"/>
+    </ui:define>
+    <ui:define name="content">
+        <ui:include src="#{login.opcionSeleccionada}"/>
+    </ui:define>
+    <ui:define name="footer">
+        <ui:include src="WEB-INF/layout/footer.xhtml"/>
+    </ui:define>
+    <ui:define name="dialogs">
+        <ui:include src="dialogs.xhtml"/>
+    </ui:define>
+</ui:composition>

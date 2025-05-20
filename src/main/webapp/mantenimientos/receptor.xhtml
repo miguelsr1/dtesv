@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: juan
+  Date: 26/7/2023
+  Time: 10:20
+-->
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+    </h:head>
+    <h:body>
+        <h:form id="frmReceptor">
+            <p:messages id="messages" showDetail="true" skipDetailIfEqualsSummary="true" closable="true"/>
+            <div class="box-root padding-top--24 flex-flex flex-direction--column">
+                <div class="formBg">
+                    <div class="card shadow p-3 mb-5 bg-white rounded">
+                        <p:panel id="pnlTblRec" rendered="#{mttoClts.displayListRec}">
+                            <h5>.:: MANTENIMIENTO RECEPTORES ::.</h5>
+                            <p:panelGrid columns="1" layout="flex"
+                                         columnClasses="col-12 md:col-12 xl:col-12">
+                                <p:dataTable id="tblReceptores" widgetVar="wgReceptores"
+                                             value="#{mttoClts.lazyDataModelRec}"
+                                             var="rec" lazy="true" rowKey="#{rec.rucId}"
+                                             selectionMode="single" selection="#{mttoClts.selectedReceptor}"
+                                             reflow="true" size="small" tableStyle="table-layout: auto;"
+                                             paginator="true" paginatorPosition="bottom"
+                                             currentPageReportTemplate="{startRecord} de {totalRecords}"
+                                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             rows="5" rowsPerPageTemplate="5,10,15">
+                                    <f:facet name="header">
+                                        <div class="products-table-header">
+                                            <span style="font-weight: bold;">Listado de receptores</span>
+                                            <span class="ui-picklist-filter-container ui-input-icon-left">
+                                                <i class="pi pi-search"/>
+                                                <p:inputText id="globalFilter" onkeyup="PF('wgReceptores').filter()"
+                                                             placeholder="buscar"/>
+                                            </span>
+
+                                            <p:commandButton value="AGREGAR" icon="pi pi-plus"
+                                                             actionListener="#{mttoClts.nuevoReceptor}"
+                                                             update="frmReceptor"
+                                                             styleClass="ui-button-success"
+                                                             style="margin-right: .5rem; float: right;">
+                                            </p:commandButton>
+                                        </div>
+                                    </f:facet>
+                                    <p:column headerText="Tipo Doc.">
+                                        <h:outputText value="#{rec.tipoDocumento.docNombreDocumento}"/>
+                                    </p:column>
+                                    <p:column headerText="Num.Doc.">
+                                        <h:outputText value="#{rec.rucNitContribuyente}"/>
+                                    </p:column>
+                                    <p:column headerText="Nombre">
+                                        <h:outputText value="#{rec.rucNombreRazonsocial}"/>
+                                    </p:column>
+                                    <p:column headerText="Teléfono" >
+                                        <h:outputText value="#{rec.rucTelefonoTrabajo}"/>
+                                    </p:column>
+                                    <p:column headerText="Correo electrónico">
+                                        <h:outputText value="#{rec.rucEmailContribuyente}"/>
+                                    </p:column>
+                                    <p:column width="50">
+                                        <p:commandButton icon="pi pi-pencil" title="EDITAR"
+                                                         action="#{mttoClts.editReceptor}"
+                                                         immediate="true"
+                                                         update="frmReceptor"
+                                                         styleClass="rounded-button ui-button-info button-spacing">
+                                            <f:setPropertyActionListener value="#{rec}"
+                                                                         target="#{mttoClts.selectedReceptor}"/>
+                                        </p:commandButton>
+                                    </p:column>
+                                </p:dataTable>
+                            </p:panelGrid>
+                        </p:panel>
+
+                        <!-- PANEL CREAR/EDITAR -->
+                        <p:panel id="pnlAddEdit" rendered="#{(mttoClts.displayEditRec or mttoClts.displayNewRec)}">
+                            <h5>.:: EDITAR CLIENTE ::.</h5>
+                            <p:panelGrid columns="2" layout="flex"
+                                         columnClasses="col-12 md:col-6 xl:col-6, col-12 md:col-6 xl:col-6"
+                                         contentStyleClass="align-items-baseline ui-fluid">
+                                <p:outputLabel for="txtTipoDoc" value="TIPO DOCUMENTO" styleClass="labels">
+                                    <p:selectOneMenu id="txtTipoDoc" value="#{mttoClts.selectedReceptor.rucTipoDocId}">
+                                        <f:selectItems value="#{mttoClts.tiposDocumentosList}" var="td"
+                                                       itemLabel="#{td.docNombreDocumento}" itemValue="#{td.docId}"/>
+                                    </p:selectOneMenu>
+                                </p:outputLabel>
+                                <p:outputLabel for="doc" value="NÚMERO DOCUMENTO" styleClass="labels">
+                                    <p:inputText id="doc" value="#{mttoClts.selectedReceptor.rucNitContribuyente}"/>
+                                </p:outputLabel>
+                                <h:outputLabel value="NOMBRE COMERCIAL" for="txtNombreComercial" styleClass="labels">
+                                    <p:inputTextarea id="txtNombreComercial" rows="2"
+                                                     value="#{mttoClts.selectedReceptor.rucNombreComercial}"/>
+                                </h:outputLabel>
+                                <h:outputLabel value="NOMBRE O RAZÓN SOCIAL" for="txtRazonSocial" styleClass="labels">
+                                    <p:inputTextarea id="txtRazonSocial" rows="2"
+                                                     value="#{mttoClts.selectedReceptor.rucNombreRazonsocial}"/>
+                                </h:outputLabel>
+                                <p:outputLabel for="txtNrc" value="NRC" styleClass="labels">
+                                    <p:inputText id="txtNrc"
+                                                 value="#{mttoClts.selectedReceptor.rucNrc}">
+                                        <p:ajax event="change" listener="#{mttoClts.validateNrc}" update="txtNrc"/>
+                                    </p:inputText>
+                                </p:outputLabel>
+                                <h:outputLabel value="ACTIVIDAD" for="selActividad" styleClass="labels">
+                                    <p:selectOneMenu id="selActividad" autoWidth="false"
+                                                     filter="true" filterMatchMode="contains"
+                                                     value="#{mttoClts.selectedReceptor.rucCodactividad}">
+                                        <f:selectItems value="#{mttoClts.actEconomicaDTOList}" var="act"
+                                                       itemLabel="#{act.ccaeCodigo} - #{act.ccaeValor}"
+                                                       itemValue="#{act.ccaeCodigo}"/>
+                                    </p:selectOneMenu>
+                                </h:outputLabel>
+                                <p:outputLabel for="correo" value="CORREO ELECTRÓNICO" styleClass="labels">
+                                    <p:inputText id="correo" value="#{mttoClts.selectedReceptor.rucEmailContribuyente}"/>
+                                </p:outputLabel>
+                                <p:outputLabel for="telefono" value="TELEFONO" styleClass="labels">
+                                    <p:inputText id="telefono" value="#{mttoClts.selectedReceptor.rucTelefonoTrabajo}"/>
+                                </p:outputLabel>
+                                <h:outputLabel value="DEPARTAMENTO" styleClass="labels">
+                                    <p:selectOneMenu id="selDepto"
+                                                     autoWidth="false"
+                                                     value="#{mttoClts.selectedReceptor.rucCodigoDepartamento}">
+                                        <f:selectItems value="#{mttoClts.departmentList}" var="dep"
+                                                       itemValue="#{dep.ubgCodigo}"
+                                                       itemLabel="#{dep.ubgDescripcion.toUpperCase()}"/>
+                                        <p:ajax event="itemSelect" listener="#{mttoClts.deptListener()}" update="selMuni"/>
+                                    </p:selectOneMenu>
+                                </h:outputLabel>
+                                <h:outputLabel value="MUNICIPIO" styleClass="labels">
+                                    <p:selectOneMenu id="selMuni" autoWidth="false"
+                                                     value="#{mttoClts.selectedReceptor.rucCodigoMunicipio}">
+                                        <f:selectItems value="#{mttoClts.municipiosList}" var="mun"
+                                                       itemValue="#{mun.ubgCodigo}" itemLabel="#{mun.ubgDescripcion}"/>
+                                    </p:selectOneMenu>
+                                </h:outputLabel>
+                            </p:panelGrid>
+                            <p:panelGrid columns="1" layout="flex" columnClasses="col-12 md:col-6 xl:col-12" contentStyleClass="ui-fluid">
+                                <h:outputLabel value="DOMICILIO" for="txtDomicilio" styleClass="labels">
+                                    <p:inputTextarea id="txtDomicilio"
+                                                     rows="2"
+                                                     value="#{mttoClts.selectedReceptor.rucDomicilio}"/>
+                                </h:outputLabel>
+                            </p:panelGrid>
+                            <f:facet name="footer">
+                                <p:panelGrid columns="1" layout="flex" styleClass="ui-fluid"
+                                             columnClasses="col-12 md:col-4 xl:col-2"
+                                             contentStyleClass="align-items-baseline ui-fluid">
+                                    <p:commandButton value="#{mttoClts.displayNewRec ? 'GUARDAR':'ACTUALIZAR'}"
+                                                     icon="pi pi-save"
+                                                     update="frmReceptor"
+                                                     actionListener="#{mttoClts.saveReceptor()}"
+                                                     styleClass="w-full ui-button-success">
+                                        <p:confirm header="CONFIRMAR" icon="pi pi-exclamation-triangle"
+                                                   message="¿Está seguro de guardar los cambios?"/>
+                                    </p:commandButton>
+                                    <p:commandButton value="CANCELAR"
+                                                     actionListener="#{mttoClts.cancelar()}"
+                                                     icon="pi pi-times-circle" update="frmReceptor"
+                                                     styleClass="w-full ui-button-info ui-button-outlined">
+                                    </p:commandButton>
+                                </p:panelGrid>
+                            </f:facet>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+                                             responsive="true">
+                                <p:commandButton value="SI" styleClass="ui-confirmdialog-yes" type="button" />
+                                <p:commandButton value="NO" styleClass="ui-confirmdialog-no ui-button-flat"
+                                                 type="button"/>
+                            </p:confirmDialog>
+                        </p:panel>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </h:body>
+</html>

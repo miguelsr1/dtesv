@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: juan
+  Date: 21/7/2023
+  Time: 11:18
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>#{label['TituloSistema']}</title>
+</h:head>
+
+<f:view>
+    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"
+                  onerror="PF('DialogInternet').show()"/>
+    <p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+              closable="false" resizable="false" showHeader="false">
+        <h:panelGrid columns="1" styleClass="text-center">
+            <div class="text-center">
+                <p:graphicImage library="images" name="loader_ajax.gif" cache="false"
+                                style="text-align: center;"
+                                height="32" width="32"/>
+            </div>
+            <div class="text-center">
+                <h:outputText value="Espere un momento.."/>
+            </div>
+        </h:panelGrid>
+    </p:dialog>
+    <h:form id="frmMttos">
+        <p:panel id="pnlMtto">
+            <h5>.:: MANTENIMIENTOS ::.</h5>
+            <p:panelGrid columns="3" styleClass="ui-panelgrid-blank"
+                         columnClasses="col-12 md:col-3 xl:col-3, col-12 md:col-3 xl:col-3,
+                         col-12 md:col-3 xl:col-3, col-12 md:col-3 xl:col-3"
+                         contentStyleClass="align-items-baseline ui-fluid">
+                
+                <p:card style="width: 25rem; height: 15rem; text-align: center;">
+                    <f:facet name="header">
+                        <h:commandLink action="#{login.redirectTo('/mantenimientos/receptor.xhtml')}">
+                            <p:graphicImage library="images"
+                                            name="client.png"
+                                            rendered="true"
+                                            style="width: 100px; margin-top: 1rem"
+                                            styleClass="item"
+                                            onmouseover="$(this).addClass('ui-state-hover')"
+                                            onmouseout="$(this).removeClass('ui-state-hover')"
+                                            onmousedown="$(this).addClass('ui-state-active')"
+                                            onmouseup="$(this).removeClass('ui-state-active')"/>
+                        </h:commandLink>
+                    </f:facet>
+                    <h:outputLabel value="CLIENTES" styleClass="font-bold"/>
+                </p:card>
+                <p:card style="width: 25rem; height: 15rem; text-align: center;">
+                    <f:facet name="header">
+                        <h:commandLink
+                                action="#{login.redirectTo('/mantenimientos/productos.xhtml')}">
+                            <p:graphicImage library="images"
+                                            name="product.png"
+                                            rendered="true"
+                                            style="width: 100px; margin-top: 1rem"
+                                            styleClass="item"
+                                            onmouseover="$(this).addClass('ui-state-hover')"
+                                            onmouseout="$(this).removeClass('ui-state-hover')"
+                                            onmousedown="$(this).addClass('ui-state-active')"
+                                            onmouseup="$(this).removeClass('ui-state-active')"/>
+                        </h:commandLink>
+                    </f:facet>
+                    <h:outputLabel value="PRODUCTOS" styleClass="font-bold"/>
+                </p:card>
+                <p:card style="width: 25rem; height: 15rem; text-align: center;">
+                    <f:facet name="header">
+                        <h:commandLink
+                                action="#{login.redirectTo('/mantenimientos/usuarios.xhtml')}">
+                            <p:graphicImage library="images"
+                                            name="user.png"
+                                            rendered="true"
+                                            style="width: 100px; margin-top: 1rem"
+                                            styleClass="item"
+                                            onmouseover="$(this).addClass('ui-state-hover')"
+                                            onmouseout="$(this).removeClass('ui-state-hover')"
+                                            onmousedown="$(this).addClass('ui-state-active')"
+                                            onmouseup="$(this).removeClass('ui-state-active')"/>
+                        </h:commandLink>
+                    </f:facet>
+                    <h:outputLabel value="USUARIOS" styleClass="font-bold"/>
+                </p:card>
+            </p:panelGrid>
+        </p:panel>
+    </h:form>
+</f:view>
+
+</html>

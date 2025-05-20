@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+    </h:head>
+
+    <h:body>
+        <f:view locale="es">
+            <p:ajaxStatus onstart="PF('statusDialog').show()"
+                          onsuccess="PF('statusDialog').hide()"/>
+            <p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+                      closable="false" resizable="false" showHeader="false">
+                <h:panelGrid columns="1" styleClass="text-center">
+                    <div class="text-center">
+                        <p:graphicImage library="images" name="loader_ajax.gif" cache="false"
+                                        style="text-align: center;"
+                                        height="32" width="32"/>
+                    </div>
+                    <div class="text-center">
+                        <h:outputText value="Espere un momento.."/>
+                    </div>
+                </h:panelGrid>
+            </p:dialog>
+            <h:form id="frmUsuarios">
+                <p:messages id="messages" showDetail="true" skipDetailIfEqualsSummary="true" closable="true"/>
+                <div class="box-root padding-top--24 flex-flex flex-direction--column">
+                    <div class="formBg">
+                        <div class="card shadow p-3 mb-5 bg-white rounded">
+                            <p:toolbar>
+                                <p:toolbarGroup>
+                                    <p:commandButton value="NUEVO" icon="pi pi-plus"
+                                                     actionListener="#{mtto.openNewUsuario()}"
+                                                     update=":dialogs:manage-usuario-content"
+                                                     oncomplete="PF('manageUsuarioDialog').show()"
+                                                     styleClass="ui-button-success"
+                                                     style="margin-right: .5rem">
+                                        <p:resetInput target=":dialogs:manage-usuario-content"/>
+                                    </p:commandButton>
+                                </p:toolbarGroup>
+                            </p:toolbar>
+                            <p:panel header="MANTENIMIENTO USUARIOS">
+                                <p:panelGrid columns="1" layout="flex"
+                                             columnClasses="col-12 md:col-12 xl:col-12">
+                                    <p:dataTable value="#{mtto.usuariosList}" var="user" id="tblUsuarios"
+                                                 paginator="true" paginatorPosition="bottom"
+                                                 currentPageReportTemplate="{startRecord} de {totalRecords}"
+                                                 styleClass="table-bordered" rowKey="#{user.usId}"
+                                                 rows="10" widgetVar="tblUsuarios" selection="#{mtto.selectedUsuarios}"
+                                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                 reflow="true" size="small" tableStyle="table-layout: auto;">
+                                        <f:facet name="header">
+                                            <div class="products-table-header">
+                                                <span style="font-weight: bold; margin-right: 1rem;">USUARIOS</span>
+                                                <span class="ui-picklist-filter-container ui-input-icon-left">
+                                                    <i class="pi pi-search"/>
+                                                    <p:inputText id="globalFilter"
+                                                                 onkeyup="PF('tblUsuarios').filter()" placeholder="Buscar"/>
+                                                </span>
+                                            </div>
+                                        </f:facet>
+
+                                        <p:column headerText="USUARIO">
+                                            <h:outputText value="#{user.usUsuario}"/>
+                                        </p:column>
+                                        <p:column headerText="CORREO">
+                                            <h:outputText value="#{user.usCorreo}"/>
+                                        </p:column>
+                                        <p:column headerText="ESTADO">
+                                            <h:outputText value="#{user.usuEstado eq 'A' ? 'ACTIVO':'INACTIVO' }"
+                                                          styleClass="user-badge status-#{user.usuEstado.toLowerCase()}"/>
+                                        </p:column>
+                                        <p:column headerText="UBICACION">
+                                            <h:outputText value="#{user.usUbicacion.coDescripcion}"/>
+                                        </p:column>
+                                        <p:column headerText="PUESTO">
+                                            <h:outputText value="#{user.usPuesto.cpuPuesto}"/>
+                                        </p:column>
+                                        <p:column headerText="UNIDAD LABORAL">
+                                            <h:outputText value="#{user.usUlbId.ulbDescripcion}"/>
+                                        </p:column>
+                                        <p:column width="30" style="text-align: center">
+                                            <p:commandButton icon="pi pi-pencil" update=":dialogs:manage-usuario-content"
+                                                             oncomplete="PF('manageUsuarioDialog').show()"
+                                                             process="@this"
+                                                             styleClass="rounded-button ui-button-outlined ui-button-warning">
+                                                <f:setPropertyActionListener value="#{user}"
+                                                                             target="#{mtto.selectedUsuario}"/>
+                                                <p:resetInput target=":dialogs:manage-usuario-content"/>
+                                            </p:commandButton>
+                                        </p:column>
+                                    </p:dataTable>
+                                </p:panelGrid>
+                            </p:panel>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+            <h:form id="dialogs">
+                <p:dialog header="DETALLE USUARIO" showEffect="fade"
+                          height="520"
+                          width="550"
+                          modal="true" widgetVar="manageUsuarioDialog"
+                          responsive="true" position="center">
+                    <p:outputPanel id="manage-usuario-content" styleClass="ui-fluid">
+                        <p:outputPanel rendered="#{not empty mtto.selectedUsuario}">
+                            <div class="field">
+                                <p:outputLabel for="name">USUARIO</p:outputLabel>
+                                <p:inputText id="name" value="#{mtto.selectedUsuario.usUsuario}"
+                                             required="true" onkeyup="this.value = this.value.toUpperCase()"
+                                             requiredMessage="Usuario requerido"
+                                             readonly="#{mtto.selectedUsuario.usId > 0 ? 'true':'false'}"/>
+                                <p:message for="name"/>
+                            </div>
+                            <div class="field" style="display: #{mtto.selectedUsuario.usId > 0 ? 'none':'block'}">
+                                <p:outputLabel for="pwd1">CLAVE</p:outputLabel>
+                                <p:password id="pwd1" value="#{mtto.selectedUsuario.usClave}"
+                                            validatorMessage="Claves deben coincidir" weakLabel="Débil"
+                                            goodLabel="Buena" strongLabel="Fuerte" feedback="true"
+                                            promptLabel="Ingresa tu contraseña" inline="true"
+                                            required="true" match="pwd2" toggleMask="true" redisplay="true"
+                                            requiredMessage="Clave requerida" style="width: 100%"/>
+                                <p:message for="pwd1"/>
+                            </div>
+                            <div class="field" style="display: #{mtto.selectedUsuario.usId > 0 ? 'none':'block'}">
+                                <p:outputLabel for="pwd2">CONFIRMAR CLAVE</p:outputLabel>
+                                <p:password id="pwd2" value="#{mtto.selectedUsuario.usClave}"
+                                            toggleMask="true" redisplay="true" style="width: 100%"
+                                            required="true"
+                                            requiredMessage="Confirmación de Clave requerido"/>
+                                <p:message for="pwd2"/>
+                            </div>
+                            <div class="field">
+                                <p:outputLabel for="correo">CORREO</p:outputLabel>
+                                <p:inputText id="correo" value="#{mtto.selectedUsuario.usCorreo}"
+                                             onkeyup="this.value = this.value.toLowerCase()"
+                                             validatorMessage="Formato de correo no válido"
+                                             required="true" requiredMessage="Correo Requerido">
+                                    <f:validateRegex
+                                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                                </p:inputText>
+                                <p:message for="correo"/>
+                            </div>
+                            <div class="field">
+                                <p:outputLabel for="estado">ESTADO</p:outputLabel>
+                                <p:selectOneRadio id="estado" value="#{mtto.selectedUsuario.usuEstado}"
+                                                  layout="responsive" columns="2">
+                                    <f:selectItem itemLabel="ACTIVO" itemValue="A"/>
+                                    <f:selectItem itemLabel="INACTIVO" itemValue="I"/>
+                                </p:selectOneRadio>
+                                <p:message for="estado"/>
+                            </div>
+                            <div class="field">
+                                <p:outputLabel for="ubicacion">UBICACION</p:outputLabel>
+                                <p:selectOneMenu id="ubicacion" value="#{mtto.selectedUsuario.usUbicacion.coId}" 
+                                                 required="true" requiredMessage="Ubicación requerida">
+                                    <f:selectItem itemLabel="[SELECCIONAR]" itemValue=""/>
+                                    <f:selectItems value="#{mtto.origenesList}" var="og"
+                                                   itemLabel="#{og.coDescripcion}" itemValue="#{og.coId}"/>
+                                    <p:ajax event="itemSelect" process="@this"/>
+                                </p:selectOneMenu>
+                                <p:message for="ubicacion"/>
+                            </div>
+                            <div class="field">
+                                <p:outputLabel for="puesto">PUESTO</p:outputLabel>
+                                <p:selectOneMenu id="puesto" value="#{mtto.selectedUsuario.usPuesto.cpuId}" 
+                                                 required="true" requiredMessage="Puesto requerido">
+                                    <f:selectItem itemLabel="[SELECCIONAR]" itemValue=""/>
+                                    <f:selectItems value="#{mtto.puestosList}" var="pt"
+                                                   itemLabel="#{pt.cpuPuesto}" itemValue="#{pt.cpuId}"/>
+                                    <p:ajax event="itemSelect" process="@this"/>
+                                </p:selectOneMenu>
+                                <p:message for="puesto"/>
+                            </div>
+                            <div class="field">
+                                <p:outputLabel for="unidad">UNIDAD LABORAL</p:outputLabel>
+                                <p:selectOneMenu id="unidad" value="#{mtto.selectedUsuario.usUlbId.ulbId}" 
+                                                 required="true" requiredMessage="Unidad Laboral requerida">
+                                    <f:selectItem itemLabel="[SELECCIONAR]" itemValue=""/>
+                                    <f:selectItems value="#{mtto.unidadesLaboList}" var="ud"
+                                                   itemLabel="#{ud.ulbDescripcion}" itemValue="#{ud.ulbId}"/>
+                                    <p:ajax event="itemSelect" process="@this"/>
+                                </p:selectOneMenu>
+                                <p:message for="unidad"/>
+                            </div>
+                        </p:outputPanel>
+                    </p:outputPanel>
+                    <f:facet name="footer">
+                        <p:commandButton value="#{mtto.selectedUsuario.usId > 0 ? 'ACTUALIZAR':'REGISTRAR'}"
+                                         icon="pi pi-check" actionListener="#{mtto.saveUsuario}"
+                                         update="manage-usuario-content" process="manage-usuario-content @this"/>
+                        <p:commandButton value="CANCELAR" icon="pi pi-times" onclick="PF('manageUsuarioDialog').hide()"
+                                         class="ui-button-secondary" type="button"/>
+                    </f:facet>
+                </p:dialog>
+
+                <p:confirmDialog global="true" showEffect="fade" width="300">
+                    <p:commandButton value="SI" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check"/>
+                    <p:commandButton value="NO" type="button" styleClass="ui-confirmdialog-no ui-button-secondary"
+                                     icon="pi pi-times"/>
+                </p:confirmDialog>
+            </h:form>
+        </f:view>
+    </h:body>
+
+</html>
