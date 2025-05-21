@@ -201,7 +201,7 @@ public class ProcesarFactura implements Serializable {
     }
 
     public void tipoDocListener() {
-        log.info("Usuario ingreso: " + loginBean.getLogin().getIdUsuario() + " - " + loginBean.getUsuario());
+        log.info("Usuario ingreso: " + loginBean.getLogin().getUsuario());
         detalleList = new ArrayList<>();
         totalesDTOList = new ArrayList<>();
         log.info("TIPO DOCUMENTO SELECCIONADO: " + factura.getTipodoc());
@@ -790,7 +790,7 @@ public class ProcesarFactura implements Serializable {
         docRet.setComplemento(receptor.getRucDomicilio());
         docRet.setCodactcom(receptor.getRucCodactividad());
         docRet.setCodFactura(nroDocumento);
-        docRet.setIdUsuarioIngreso(loginBean.getLogin().getIdUsuario());
+        docRet.setIdUsuarioIngreso(loginBean.getLogin().getUsuario());
         return docRet;
     }
 

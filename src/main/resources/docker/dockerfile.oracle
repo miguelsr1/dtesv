@@ -8,6 +8,17 @@ RUN mkdir -p /home/jboss/opt/mh/images
 RUN mkdir -p /home/jboss/opt/mh/report
 COPY mysql-connector-j-8.0.33.jar /home/jboss/opt
 
+COPY cour.ttf /usr/share/fonts/courier_new.ttf
+
+# Usar un mirror activo del repositorio de CentOS
+RUN sed -i 's|mirrorlist=|#mirrorlist=|g' /etc/yum.repos.d/CentOS-Base.repo \
+ && sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Base.repo
+
+# Instalar fontconfig y registrar fuente
+RUN yum install -y fontconfig \
+ && fc-cache -f -v \
+ && yum clean all
+
 COPY create-module-ojdbc6.cli /home/jboss/opt
 COPY register-driver.cli /home/jboss/opt
 COPY create-datasource.cli /home/jboss/opt

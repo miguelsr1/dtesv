@@ -13,32 +13,37 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-@Table(name = "usuarios", schema = "fact")
-public class Usuarios implements Serializable {
+@Table(name = "usuario", schema = "fact")
+public class Usuario implements Serializable {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "us_id")
-    private Integer usId;
+    @Column(name = "correo_electronico")
+    private String correoElectronico;
     @Basic
-    @Column(name = "us_usuario")
-    private String usUsuario;
+    @Column(name = "nombres")
+    private String nombres;
     @Basic
-    @Column(name = "us_clave")
-    private String usClave;
+    @Column(name = "password")
+    private String password;
     @Basic
-    @Column(name = "usu_estado")
-    private String usuEstado;
+    @Column(name = "apellidos")
+    private String apellidos;
     @Basic
-    @Column(name = "us_ruc_id")
-    private int usRucId;
+    @Column(name = "activo")
+    private Boolean activo;
     @Basic
-    @Column(name = "us_correo")
-    private String usCorreo;
+    @Column(name = "correo_verificado")
+    private Boolean correoVerificado;
     @Basic
-    @Column(name = "us_created_at")
-    private Timestamp usCreatedAt;
+    @Column(name = "bloqueado")
+    private Boolean bloqueado;
     @Basic
+    @Column(name = "cambiar_password")
+    private Boolean cambiarPassword;
+    @Column(name = "fecha_creacion")
+    private Timestamp fechaCreacion;
+    /*@Basic
     @Column(name = "us_updated_at")
     private Timestamp usUpdatedAt;
     @Basic
@@ -73,5 +78,5 @@ public class Usuarios implements Serializable {
         usUlbId = new UnidadesLaborales();
         usPuesto = new CatalogoPuestosUsuarios();
         usUbicacion = new CatalogoOrigenes();
-    }
+    }*/
 }

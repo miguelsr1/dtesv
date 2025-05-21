@@ -1,36 +1,21 @@
 package sv.com.jsoft.stdte.servlet;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.log4j.Logger;
-import sv.com.jsoft.stdte.persistence.Usuarios;
-import sv.com.jsoft.stdte.repository.LoginService;
-import sv.com.jsoft.stdte.utils.EncryptUtil;
-
-import javax.ejb.EJB;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Timestamp;
-import java.util.Date;
 
 @WebServlet("/validateToken/")
 public class ValidateToken extends HttpServlet {
 
-    private static final Logger logger = Logger.getLogger(ValidateToken.class);
+    /*private static final Logger logger = Logger.getLogger(ValidateToken.class);
 
     private String loginUrl;
 
-    @EJB
+    @Inject
     LoginService service;
 
     @Getter
     @Setter
-    Usuarios usuario;
+    Usuario usuario;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -69,7 +54,7 @@ public class ValidateToken extends HttpServlet {
                     loginUrl = request.getContextPath() + "/login.xhtml";
                     response.sendRedirect(loginUrl);
                 } else {
-                    usuario = new Usuarios();
+                    usuario = new Usuario();
                 }
             }
             //cambie el metodo findUserByEmail por el findUserByCod, ya que ahora puede repetirse el mismo correo en otros usuarios
@@ -83,12 +68,12 @@ public class ValidateToken extends HttpServlet {
                     loginUrl = request.getContextPath() + "/updatePassword.xhtml";
                     response.sendRedirect(loginUrl);
                 } else {
-                    usuario = new Usuarios();
+                    usuario = new Usuario();
                 }
             }
         }catch (Exception e){
             logger.error("Error Exception WebServlet ValidateToken: " + e.getMessage());
         }
-    }
+    }*/
 
 }

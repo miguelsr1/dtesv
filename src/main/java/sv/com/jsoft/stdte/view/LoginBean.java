@@ -9,7 +9,7 @@ import org.primefaces.PrimeFaces;
 import org.primefaces.event.MenuActionEvent;
 import org.primefaces.model.menu.*;
 import sv.com.jsoft.stdte.dto.LoginDto;
-import sv.com.jsoft.stdte.persistence.Usuarios;
+import sv.com.jsoft.stdte.persistence.Usuario;
 import sv.com.jsoft.stdte.repository.LoginService;
 import sv.com.jsoft.stdte.utils.EncryptUtil;
 import sv.com.jsoft.stdte.utils.ViewUtils;
@@ -88,16 +88,16 @@ public class LoginBean implements Serializable {
             if (validarNavegador()) {
                 if (this.clave != null && this.usuario != null) {
                     if (validateUser()) {
-                        Usuarios user = service.findUserByCod(this.usuario);
-                        if (user.getUsMustChangePassword() != null && user.getUsMustChangePassword().equals(1)) {
+                        Usuario user = service.findUserByCod(this.usuario);
+                        if (user.getCambiarPassword()) {
                             showMessage("DEBE CAMBIAR SU CLAVE");
                             return "updatePassword?faces-redirect=true";
-                        } else if (user.getUsuEstado() != null && user.getUsuEstado().equals("I")) {
+                        } else if (!user.getActivo()) {
                             ViewUtils.addError("SU USUARIO NO ESTA ACTIVO PARA INGRESAR AL SISTEMA", "");
                             PrimeFaces.current().executeScript("PF('DialogMensajes').show()");
                             return null;
                         } else {
-                            this.login = new LoginDto(usuario, clave, user.getUsId());
+                            this.login = new LoginDto(usuario, clave);
                             this.setOpcionSeleccionada("/welcome.xhtml");
                             this.login.setLogueado(true);
                             session.setAttribute("login", login);
@@ -127,10 +127,10 @@ public class LoginBean implements Serializable {
     }
 
     private boolean validateUser() {
-        Usuarios user = service.findUserByCod(this.usuario);
+        Usuario user = service.findUserByCod(this.usuario);
         if (user != null) {
             //String passHash = EncryptUtil.encrypt(clave);
-            return user.getUsClave().matches(clave);
+            return user.getPassword().matches(clave);
         } else {
             return false;
         }
@@ -183,6 +183,15 @@ public class LoginBean implements Serializable {
         item.setTitle("MANTENIMIENTOS");
         item.setIcon("pi pi-pencil");
         subMenuAdm.getElements().add(item);
+        
+        item = DefaultMenuItem.builder().value("MIS DATOS").build();
+        item.setParam("menuList", "/mantenimientos/emisor.xhtml" + ":" + "HOMEMTTOS");
+        item.setCommand("#{login.loadPage}");
+        item.setOnerror("PF('DialogInternet').show();");
+        item.setTitle("MANTENIMIENTOS");
+        item.setIcon("pi pi-id-card");
+        subMenuAdm.getElements().add(item);
+        
 
         DefaultSubMenu subMenuMisc = DefaultSubMenu.builder().label("MISC").build();
         item = DefaultMenuItem.builder().value("CERRAR SESION").build();
@@ -248,10 +257,10 @@ public class LoginBean implements Serializable {
         if (email != null && tipoSolicitud != null) {
             try {
                 log.info("usuario: " + email);
-                Usuarios us = service.findUserByCod(email);
+                Usuario us = service.findUserByCod(email);
                 if (us == null) {
                     if (emailValidate(email.toLowerCase())) {
-                        us = service.findUserByEmail(email.toLowerCase());
+                        //us = service.findUserByEmail(email.toLowerCase());
                     } else {
                         ViewUtils.addError("USUARIO/CORREO NO REGISTRADO O FORMATO DE CORREO NO VALIDO", null);
                         return;
@@ -259,7 +268,7 @@ public class LoginBean implements Serializable {
                 }
                 if (us != null) {
                     //agregue parametro email quien es el usuario
-                    Object[] params = {us.getUsCorreo(), this.tipoSolicitud, email};
+                    Object[] params = {us.getCorreoElectronico(), this.tipoSolicitud, email};
                     String[] result = service.recuperarClave(params);
                     PrimeFaces.current().executeScript("PF('DialogClave').hide();");
                     if (result[0].equals("0")) {
@@ -302,9 +311,9 @@ public class LoginBean implements Serializable {
     public String updateUserPassword() throws IOException {
         log.info("actualizar credenciales a usuario: " + usuario);
         if (clave.matches(confirmClave)) {
-            Usuarios usu = service.findUserByCod(this.usuario);
+            Usuario usu = service.findUserByCod(this.usuario);
             if (usu != null) {
-                usu.setUsClave(EncryptUtil.encrypt(clave));
+                usu.setPassword(EncryptUtil.encrypt(clave));
                 service.updateUserCredentials(usu);
                 FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
             } else {
