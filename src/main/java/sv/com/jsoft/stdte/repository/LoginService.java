@@ -4,16 +4,13 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.log4j.Logger;
-import sv.com.jsoft.stdte.db.DataSourceApp;
 import sv.com.jsoft.stdte.dto.RequestMailDTO;
-import sv.com.jsoft.stdte.persistence.Usuarios;
+import sv.com.jsoft.stdte.persistence.Usuario;
 import sv.com.jsoft.stdte.utils.EncryptUtil;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.io.IOException;
@@ -35,8 +32,6 @@ public class LoginService {
     protected final static Logger logger = Logger.getLogger(LoginService.class);
     private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle("bundle");
 
-    @Inject
-    DataSourceApp dsApp;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -46,12 +41,11 @@ public class LoginService {
         java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.WARNING);
     }
 
-    public Usuarios findUserByCod(String usrCodigo) {
+    public Usuario findUserByCod(String usrCodigo) {
         try {
-            Usuarios usuario = null;
+            Usuario usuario = null;
 
-            usuario = (Usuarios) entityManager
-                    .createQuery("from Usuarios u where u.usUsuario = :codUsuario")
+            usuario = (Usuario) entityManager.createQuery("select u from Usuario u where u.correoElectronico = :codUsuario")
                     .setParameter("codUsuario", usrCodigo).getSingleResult();
 
             return usuario;
@@ -61,10 +55,10 @@ public class LoginService {
         }
     }
 
-    public Usuarios findUserByEmail(String email) {
+    /*public Usuario findUserByEmail(String email) {
         try {
-            Usuarios usuario = null;
-            usuario = (Usuarios) entityManager
+            Usuario usuario = null;
+            usuario = (Usuario) entityManager
                     .createQuery("from Usuarios u where u.usCorreo = :email")
                     .setParameter("email", email).getSingleResult();
             logger.info("usuario encontrado por correo ");
@@ -73,7 +67,7 @@ public class LoginService {
             logger.info("error findUserByEmail" + e.getMessage());
             return null;
         }
-    }
+    }*/
 
     //modificado por aarias_id el 18/12/2024
     public String[] recuperarClave(Object[] params) {
@@ -144,10 +138,10 @@ public class LoginService {
         }
     }
 
-    public void updateUserCredentials(Usuarios user) {
-        try {
+    public void updateUserCredentials(Usuario user) {
+        /*try {
             logger.info("actualizando credenciales de usuario: " + user.getUsUsuario());
-            Usuarios u = entityManager.find(Usuarios.class, user.getUsId());
+            Usuario u = entityManager.find(Usuario.class, user.getUsId());
             u.setUsIsTokenVerified(user.getUsIsTokenVerified());
             u.setUsIsVerified(user.getUsIsVerified());
             u.setUsDateTokenVerified(user.getUsDateTokenVerified());
@@ -157,6 +151,6 @@ public class LoginService {
         } catch (Exception e) {
             e.printStackTrace();
             logger.error("error en userVerified " + e.getMessage());
-        }
+        }*/
     }
 }

@@ -6,9 +6,7 @@ import org.primefaces.PrimeFaces;
 import sv.com.jsoft.stdte.persistence.*;
 import sv.com.jsoft.stdte.repository.CatalogosService;
 import sv.com.jsoft.stdte.repository.MttoService;
-
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -33,15 +31,16 @@ public class MantenimientoBean implements Serializable {
 
     @Getter
     @Setter
-    private List<Usuarios> usuariosList, selectedUsuarios;
-    
-    private Usuarios selectedUsuario;
+    private List<Usuario> usuariosList, selectedUsuarios;
 
-    @EJB
-    MttoService service;
+    private Usuario selectedUsuario;
 
     @Inject
+    MttoService service;
+    @Inject
     LoginBean login;
+    @Inject
+    CatalogosService catalogoService;
 
     @Getter
     @Setter
@@ -63,31 +62,32 @@ public class MantenimientoBean implements Serializable {
     @Setter
     private List<UnidadesMedida> undMedidasList;
 
-
     @Getter
     @Setter
     private List<CatalogoTipoItem> tipoItemsList;
 
-    @EJB
-    CatalogosService catalogoService;
-
-    @Getter @Setter
+    @Getter
+    @Setter
     private List<TiposDocumentos> tiposDocumentosList;
-    @Getter @Setter
+    @Getter
+    @Setter
     private TiposDocumentos selectedTipoDocumento;
-    
-    @Getter @Setter
+
+    @Getter
+    @Setter
     private List<CatalogoOrigenes> origenesList;
-    @Getter @Setter
+    @Getter
+    @Setter
     private List<CatalogoPuestosUsuarios> puestosList;
-    @Getter @Setter
+    @Getter
+    @Setter
     private List<UnidadesLaborales> unidadesLaboList;
 
     @PostConstruct
     public void init() {
         usuariosList = service.retrieveUsers();
         emisores = service.findEmisores();
-        selectedUsuario = new Usuarios(); 
+        selectedUsuario = new Usuario();
         departamentos = service.departamentos();
         actividadEconomicaList = service.actividadEconomicaList();
         receptores = service.findReceptores();
@@ -95,18 +95,18 @@ public class MantenimientoBean implements Serializable {
         selectedEmisor = new Contribuyentes();
         selectedReceptor = new Contribuyentes();
         selectedTipoDocumento = new TiposDocumentos();
-        
+
         origenesList = service.retrieveOrigenesUsers();
         puestosList = service.retrievePuestosUsers();
         unidadesLaboList = service.retrieveUniLaboralesUsers();
     }
 
-    public Usuarios getSelectedUsuario() { 
+    public Usuario getSelectedUsuario() {
         return selectedUsuario;
     }
 
-    public void setSelectedUsuario(Usuarios selectedUsuario) {
-        if(selectedUsuario.getUsUlbId() == null){
+    public void setSelectedUsuario(Usuario selectedUsuario) {
+        /*if(selectedUsuario.getUsUlbId() == null){
             selectedUsuario.setUsUlbId(new UnidadesLaborales());
         }
         if(selectedUsuario.getUsPuesto() == null){
@@ -114,7 +114,7 @@ public class MantenimientoBean implements Serializable {
         }
         if(selectedUsuario.getUsUbicacion() == null){
             selectedUsuario.setUsUbicacion(new CatalogoOrigenes());
-        }
+        }*/
         this.selectedUsuario = selectedUsuario;
     }
 
@@ -155,28 +155,30 @@ public class MantenimientoBean implements Serializable {
     }
 
     public void saveUsuario() {
-        log.info(selectedUsuario.getUsId() == null ? "saveUsuario " + selectedUsuario : "updateUsuario: " + selectedUsuario);
+        log.info(selectedUsuario.getCorreoElectronico() == null ? "saveUsuario " + selectedUsuario : "updateUsuario: " + selectedUsuario);
         int result = 0;
-                
-        if (selectedUsuario.getUsId() == null) {
-            selectedUsuario.setUsRucId(1); //TODO Buscar id de emisor para relacionarlo al usuario
+
+        if (selectedUsuario.getCorreoElectronico() == null) {
+            //selectedUsuario.setUsRucId(1); //TODO Buscar id de emisor para relacionarlo al usuario
             /*Usuarios existe = loginService.findUserByEmail(selectedUsuario.getUsCorreo());
             if (existe != null) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("YA EXISTE UN USUARIO REGISTRADO CON ESE CORREO, VERIFIQUE..."));
                 return;
             }*/
-            result = service.saveUser(selectedUsuario);
+            //result = service.saveUser(selectedUsuario);
             if (result > 0) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("USUARIO AGREGADO CORRECTAMENTE"));
                 usuariosList = service.retrieveUsers();
-            } else
+            } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("FALLÓ REGISTRO DE USUARIO"));
+            }
         } else {
-            result = service.saveUser(selectedUsuario);
-            if (result > 0)
+            //result = service.saveUser(selectedUsuario);
+            if (result > 0) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("USUARIO ACTUALIZADO CORRECTAMENTE"));
-            else
+            } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("FALLÓ ACTUALIZACIÓN DE USUARIO"));
+            }
         }
         PrimeFaces.current().executeScript("PF('manageUsuarioDialog').hide()");
         usuariosList = service.retrieveUsers();
@@ -186,10 +188,11 @@ public class MantenimientoBean implements Serializable {
     public void deleteUsuario() {
         try {
             if (selectedUsuario != null) {
-                if (!login.getUsuario().matches(selectedUsuario.getUsUsuario())) {
+                if (!login.getUsuario().matches(selectedUsuario.getCorreoElectronico())) {
                     String resultado = service.deleteUsuario(selectedUsuario);
-                    if (resultado.matches("OK"))
+                    if (resultado.matches("OK")) {
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("USUARIO ELIMINADO CORRECTAMENTE"));
+                    }
                 } else {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("NO PUEDE ELIMINAR USUARIO LOGUEADO, CONTACTE AL PROVEEDOR"));
                 }
@@ -204,7 +207,7 @@ public class MantenimientoBean implements Serializable {
     }
 
     public void openNewUsuario() {
-        this.selectedUsuario = new Usuarios();
+        this.selectedUsuario = new Usuario();
     }
 
     public void openNewEmisor() {
@@ -243,15 +246,17 @@ public class MantenimientoBean implements Serializable {
                 if (resultado > 0) {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("EMISOR REGISTRADO CORRECTAMENTE"));
                     emisores = service.findEmisores();
-                } else
+                } else {
                     FacesContext.getCurrentInstance().addMessage(null,
                             new FacesMessage("FALLÓ REGISTRO DE EMISOR, VERIFIQUE E INTENTE NUEVAMENTE"));
+                }
             } else {
                 resultado = service.saveContribuyente(selectedEmisor, "EMISOR");
-                if (resultado > 0)
+                if (resultado > 0) {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("EMISOR ACTUALIZADO CORRECTAMENTE"));
-                else
+                } else {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("FALLÓ ACTUALIZACIÓN DE EMISOR"));
+                }
             }
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("NO SE ENCONTRO EMISOR A CREAR"));
@@ -268,15 +273,17 @@ public class MantenimientoBean implements Serializable {
                 if (resultado > 0) {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("RECEPTOR REGISTRADO CORRECTAMENTE"));
                     receptores = service.findReceptores();
-                } else
+                } else {
                     FacesContext.getCurrentInstance().addMessage(null,
                             new FacesMessage("FALLÓ REGISTRO DE RECEPTOR, VERIFIQUE E INTENTE NUEVAMENTE"));
+                }
             } else {
                 resultado = service.saveContribuyente(selectedReceptor, "RECEPTOR");
-                if (resultado > 0)
+                if (resultado > 0) {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("RECEPTOR ACTUALIZADO CORRECTAMENTE"));
-                else
+                } else {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("FALLÓ ACTUALIZACIÓN DE RECEPTOR"));
+                }
             }
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("NO SE ENCONTRO RECEPTOR A CREAR"));
@@ -285,15 +292,15 @@ public class MantenimientoBean implements Serializable {
         PrimeFaces.current().ajax().update("frmReceptores:messages", "frmReceptores:tblReceptores");
     }
 
-    public void getActividadDescReceptor(){
+    public void getActividadDescReceptor() {
         String code = selectedReceptor.getRucCodactividad();
         CatalogoCodigoActividadEconomica item = service.findActividadEconomicaByCode(code);
-        if(item != null){
+        if (item != null) {
             selectedReceptor.setRucDesactividad(item.getCcaeValor());
         }
     }
 
-    public void getActividadDescEmisor(CatalogoCodigoActividadEconomica item){
+    public void getActividadDescEmisor(CatalogoCodigoActividadEconomica item) {
         selectedEmisor.setRucDesactividad(item.getCcaeValor());
     }
 }

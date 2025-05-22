@@ -1,28 +1,18 @@
 package sv.com.jsoft.stdte.repository;
 
-import org.apache.log4j.Logger;
 import sv.com.jsoft.stdte.persistence.*;
-
-import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import static sv.com.jsoft.stdte.utils.EncryptUtil.encrypt;
+import lombok.extern.slf4j.Slf4j;
 
 @Stateless
+@Slf4j
 public class MttoService {
-
-    protected final static Logger logger = Logger.getLogger(MttoService.class);
 
     @PersistenceContext
     private EntityManager entityManager;
-
-    @PostConstruct
-    public void init() {
-
-    }
 
     public List<Contribuyentes> findEmisores() {
         List<Contribuyentes> resultado = new ArrayList<>();
@@ -31,27 +21,24 @@ public class MttoService {
                     .createQuery("from Contribuyentes c where c.rucTipoContribuyente = 'EMISOR'")
                     .getResultList();
         } catch (Exception e) {
-
-            logger.info("error findEmisores" + e.getMessage());
+            log.error("error findEmisores", e);
         }
         return resultado;
     }
 
     //USUARIOS CRUD OPERATIONS
-    public List<Usuarios> retrieveUsers() {
-        List<Usuarios> usuariosList = new ArrayList<>();
+    public List<Usuario> retrieveUsers() {
+        List<Usuario> usuariosList = new ArrayList<>();
         try {
             usuariosList = entityManager
                     .createQuery("from Usuarios ").getResultList();
         } catch (Exception e) {
-
-            e.printStackTrace();
-            logger.error("error retrieveUsers " + e.getMessage());
+            log.error("error retrieveUsers ", e);
         }
         return usuariosList;
     }
 
-    public int saveUser(Usuarios user) {
+    /*public int saveUser(Usuario user) {
         int id;
         try {
             if (user.getUsId() == null) {
@@ -67,7 +54,7 @@ public class MttoService {
                 entityManager.flush();
                 id = user.getUsId();
             } else {
-                Usuarios u = entityManager.find(Usuarios.class, user.getUsId());
+                Usuario u = entityManager.find(Usuario.class, user.getUsId());
                 u.setUsuEstado(user.getUsuEstado());
                 u.setUsCorreo(user.getUsCorreo());
                 u.setUsUbicacion(user.getUsUbicacion());
@@ -84,12 +71,11 @@ public class MttoService {
 
         }
         return id;
-    }
-
-    public String deleteUsuario(Usuarios user) {
+    }*/
+    public String deleteUsuario(Usuario user) {
         String resultado = "OK";
         try {
-            Usuarios u = entityManager.find(Usuarios.class, user.getUsId());
+            Usuario u = entityManager.find(Usuario.class, user.getCorreoElectronico());
             entityManager.remove(u);
         } catch (Exception e) {
             resultado = "FAIL";
@@ -101,7 +87,7 @@ public class MttoService {
         try {
             return entityManager.createQuery("from UbicacionesGeograficas u where u.ugbIddepto = 0").getResultList();
         } catch (Exception e) {
-            logger.error("error departamentos " + e.getMessage());
+            log.error("error departamentos ", e);
             return null;
         }
     }
@@ -113,7 +99,7 @@ public class MttoService {
                     .setParameter("codDepto", codDepto)
                     .getResultList();
         } catch (Exception e) {
-            logger.error("error municipios " + e.getMessage());
+            log.error("error municipios ", e);
             return null;
         }
     }
@@ -124,7 +110,7 @@ public class MttoService {
                     .createQuery("from CatalogoCodigoActividadEconomica ")
                     .getResultList();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("ERROR EN actividadEconomicaList ", e);
             return null;
         }
     }
@@ -156,9 +142,7 @@ public class MttoService {
             }
         } catch (Exception e) {
             id = 0;
-            e.printStackTrace();
-            logger.error("error en createUser " + e.getMessage());
-
+            log.error("ERROR EN createUser", e);
         }
         return id;
     }
@@ -172,8 +156,8 @@ public class MttoService {
             UbicacionesGeograficas ubg = (UbicacionesGeograficas) query.getSingleResult();
             codigoMunicipio = ubg.getUbgCodigo();
 
-        } catch (Exception e) {
-            logger.error("error municipioCode " + e.getMessage());
+        } catch (NumberFormatException e) {
+            log.error("ERROR EN municipioCode", e);
             codigoMunicipio = null;
         }
         return codigoMunicipio;
@@ -187,7 +171,7 @@ public class MttoService {
                     .getResultList();
 
         } catch (Exception e) {
-            logger.info("error findReceptores" + e.getMessage());
+            log.error("ERROR EN findReceptores", e);
         }
         return resultado;
     }
@@ -199,7 +183,7 @@ public class MttoService {
                     .getResultList()
                     .stream().findFirst().orElse(null);
         } catch (Exception e) {
-            logger.error("No se encontro producto con codigo: " + codigo);
+            log.error("ERROR EN findProductoByCodigo", e);
             return null;
         }
     }
@@ -209,7 +193,7 @@ public class MttoService {
         try {
             UnidadesMedida um = entityManager.find(UnidadesMedida.class, producto.getUnidadMedida().getUmCodigo());
             producto.setUnidadMedida(um);
-            
+
             if (producto.getIdcatProd() == null) {
                 if (producto.getExento()) {
                     producto.setCpExento("S");
@@ -238,18 +222,18 @@ public class MttoService {
                 id = cp.getIdcatProd();
             }
         } catch (Exception e) {
-            logger.error("error en saveProducto", e);
+            log.error("ERROR EN saveProducto", e);
         }
         return id;
     }
 
     public List<CatalogoProductos> findAllProductos() {
         try {
-            return entityManager.createQuery("from CatalogoProductos ", CatalogoProductos.class)
+            return entityManager
+                    .createQuery("from CatalogoProductos ", CatalogoProductos.class)
                     .getResultList();
         } catch (Exception e) {
-            e.printStackTrace();
-
+            log.error("ERROR EN findAllProductos", e);
             return null;
         }
     }
@@ -263,7 +247,7 @@ public class MttoService {
                     .getSingleResult();
             descripcion = u.getUmDescripcion();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("ERROR EN unidadDeMedidaDesc", e);
             return null;
         }
         return descripcion;
@@ -276,7 +260,7 @@ public class MttoService {
                     .getResultList()
                     .stream().findFirst().orElse(null);
         } catch (Exception e) {
-            logger.error("No se encontro actividad con codigo: " + codigo);
+            log.error("ERROR EN findActividadEconomicaByCode", e);
             return null;
         }
     }
@@ -287,9 +271,7 @@ public class MttoService {
             puestosUsersList = entityManager
                     .createQuery("from CatalogoPuestosUsuarios ").getResultList();
         } catch (Exception e) {
-
-            e.printStackTrace();
-            logger.error("error retrievePuestosUsers " + e.getMessage());
+            log.error("ERROR EN retrievePuestosUsers", e);
         }
         return puestosUsersList;
     }
@@ -300,9 +282,7 @@ public class MttoService {
             origenesUsersList = entityManager
                     .createQuery("from CatalogoOrigenes ").getResultList();
         } catch (Exception e) {
-
-            e.printStackTrace();
-            logger.error("error retrieveOrigenesUsers " + e.getMessage());
+            log.error("ERROR EN retrieveOrigenesUsers", e);
         }
         return origenesUsersList;
     }
@@ -313,9 +293,7 @@ public class MttoService {
             uniLaboralesUsersList = entityManager
                     .createQuery("from UnidadesLaborales ").getResultList();
         } catch (Exception e) {
-
-            e.printStackTrace();
-            logger.error("error retrieveUniLaboralesUsers " + e.getMessage());
+            log.error("ERROR EN retrieveUniLaboralesUsers", e);
         }
         return uniLaboralesUsersList;
     }

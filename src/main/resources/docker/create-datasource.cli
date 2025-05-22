@@ -1,3 +1,3 @@
 embed-server --std-out=echo
-/subsystem=datasources/data-source=FactDS:add(jndi-name="java:/FactDS",connection-url="jdbc:mysql://192.168.0.12:3306/fact",driver-name=mysql,user-name=root,password=admin123.,valid-connection-checker-class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker",exception-sorter-class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter")
+/subsystem=datasources/data-source=FactDS:add(jndi-name="java:/FactDS",connection-url="jdbc:mysql://172.31.90.83:3306/fact",driver-name=mysql,user-name=root,password=admin123.,valid-connection-checker-class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker",exception-sorter-class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter")
 stop-embedded-server
