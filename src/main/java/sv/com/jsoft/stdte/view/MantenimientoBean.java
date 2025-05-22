@@ -27,7 +27,7 @@ public class MantenimientoBean implements Serializable {
 
     @Getter
     @Setter
-    private Contribuyentes selectedEmisor, selectedReceptor;
+    private Contribuyentes selectedReceptor;
 
     @Getter
     @Setter
@@ -92,7 +92,7 @@ public class MantenimientoBean implements Serializable {
         actividadEconomicaList = service.actividadEconomicaList();
         receptores = service.findReceptores();
         tiposDocumentosList = catalogoService.getAllTiposDocumentos();
-        selectedEmisor = new Contribuyentes();
+        
         selectedReceptor = new Contribuyentes();
         selectedTipoDocumento = new TiposDocumentos();
 
@@ -210,10 +210,7 @@ public class MantenimientoBean implements Serializable {
         this.selectedUsuario = new Usuario();
     }
 
-    public void openNewEmisor() {
-        this.selectedEmisor = new Contribuyentes();
-    }
-
+    
     public void openNewReceptor() {
         this.selectedReceptor = new Contribuyentes();
     }
@@ -232,38 +229,9 @@ public class MantenimientoBean implements Serializable {
         }
     }
 
-    public void findMunicipioCode(Contribuyentes c) {
-        selectedEmisor = c;
-        municipios = service.municipios(Integer.valueOf(c.getRucCodigoDepartamento()));
-        selectedEmisor.setRucCodigoMunicipio(service.municipioCode(c));
-    }
+    
 
-    public void saveEmisor() {
-        if (selectedEmisor != null) {
-            int resultado = 0;
-            if (selectedEmisor.getRucId() == null) {
-                resultado = service.saveContribuyente(selectedEmisor, "EMISOR");
-                if (resultado > 0) {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("EMISOR REGISTRADO CORRECTAMENTE"));
-                    emisores = service.findEmisores();
-                } else {
-                    FacesContext.getCurrentInstance().addMessage(null,
-                            new FacesMessage("FALLÓ REGISTRO DE EMISOR, VERIFIQUE E INTENTE NUEVAMENTE"));
-                }
-            } else {
-                resultado = service.saveContribuyente(selectedEmisor, "EMISOR");
-                if (resultado > 0) {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("EMISOR ACTUALIZADO CORRECTAMENTE"));
-                } else {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("FALLÓ ACTUALIZACIÓN DE EMISOR"));
-                }
-            }
-        } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("NO SE ENCONTRO EMISOR A CREAR"));
-        }
-        PrimeFaces.current().executeScript("PF('manageEmisorDialog').hide()");
-        PrimeFaces.current().ajax().update("frmEmisores:messages", "frmEmisores:tblEmisores");
-    }
+    
 
     public void saveReceptor() {
         if (selectedReceptor != null) {
@@ -300,7 +268,5 @@ public class MantenimientoBean implements Serializable {
         }
     }
 
-    public void getActividadDescEmisor(CatalogoCodigoActividadEconomica item) {
-        selectedEmisor.setRucDesactividad(item.getCcaeValor());
-    }
+    
 }
