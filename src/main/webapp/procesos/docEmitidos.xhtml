@@ -155,42 +155,39 @@
                                      {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      size="small" tableStyle="table-layout: auto;" scrollable="true">
 
-                            <p:column headerText="ACCIONES">
+                            <p:column headerText="ACCIONES" style="text-align: center">
                                 <p:commandButton icon="pi pi-file-pdf" title="Ver Factura"
-                                                 style="margin-right: 10px;"
                                                  styleClass="rounded-button ui-button-outlined ui-button-info ui-button-flat"
                                                  action="#{history.verFactura(item)}"/>
-                                <p:commandButton icon="pi pi-file" title="Json"
-                                                 style="margin-right: 10px;" update="frmJson"
+                                <p:commandButton icon="pi pi-file" title="Json" update="frmJson"
                                                  styleClass="rounded-button ui-button-outlined ui-button-secondary ui-button-flat"
                                                  action="#{history.verJson(item)}"/>
                                 <p:commandButton icon="pi pi-send" title="Reenviar"
                                                  action="#{history.enviarListener(item)}"
                                                  onclick="PF('DialogEmailTo').show();"
-                                                 styleClass="rounded-button ui-button-outlined ui-button-success ui-button-flat"
-                                                 style="margin-right: 10px;"/>
+                                                 styleClass="rounded-button ui-button-outlined ui-button-success ui-button-flat"/>
                             </p:column>
-                            <p:column headerText="# FACTURA" sortBy="#{item.idFac}" >
+                            <p:column headerText="# FACTURA" width="105" sortBy="#{item.idFac}" >
                                 <h:outputText value="#{item.idFac}"/>
                             </p:column>
-                            <p:column headerText="# CONTROL" sortBy="#{item.nroControlDte}" >
+                            <p:column headerText="# CONTROL" width="105" sortBy="#{item.nroControlDte}" >
                                 <h:outputText value="#{item.nroControlDte}"/>
                             </p:column>
-                            <p:column headerText="ESTADO">
+                            <p:column headerText="ESTADO" width="105">
                                 <h:outputText value="#{item.estado}"/>
                             </p:column>
                             <p:column headerText="CODIGO GENERACION" sortBy="#{item.codigoGeneracion}" >
                                 <h:outputText value="#{item.codigoGeneracion}"/>
                             </p:column>
-                            <p:column headerText="FECHA INGRESO" width="180">
-                                <h:outputText value="#{item.fechaIngreso}">
+                            <p:column headerText="FECHA INGRESO" width="180" style="text-align: center">
+                                <p:outputLabel value="#{item.fechaIngreso}">
                                     <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss a"/>
-                                </h:outputText>
+                                </p:outputLabel>
                             </p:column>
-                            <p:column headerText="FECHA RESPUESTA" width="180">
-                                <h:outputText value="#{item.fechaRespuesta}">
+                            <p:column headerText="FECHA RESPUESTA" width="180" style="text-align: center">
+                                <p:outputLabel value="#{item.fechaRespuesta}">
                                     <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss a"/>
-                                </h:outputText>
+                                </p:outputLabel>
                             </p:column>
                             <p:columnGroup type="footer">
                                 <p:row>

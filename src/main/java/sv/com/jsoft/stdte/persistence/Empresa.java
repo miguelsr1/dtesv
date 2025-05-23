@@ -27,7 +27,7 @@ public class Empresa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_empresa")
-    private Long idEmpresa;
+    private Integer idEmpresa;
 
     @Column(name = "codigo_actividad")
     @Size(max = 6)

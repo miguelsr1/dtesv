@@ -6,47 +6,35 @@
               xmlns:jsf="http://xmlns.jcp.org/jsf">
     <p:panel id="periodo">
         <h5>.:: INGRESE PERIODO A PROCESAR ::.</h5>
-        <p:panelGrid columns="4" layout="flex"
-                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
-                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
-                     contentStyleClass="align-items-baseline ui-fluid">
-            <h:outputLabel value="FECHA INICIO" for="fecInicio"/>
-            <p:calendar value="#{procFact.fechaInicio}"
-                        id="fecInicio"
-                        pattern="dd/MM/yyyy"
-                        mask="true" required="true"
-                        requiredMessage="Fecha de Inicio: Es requerido" locale="es"
-                        navigator="true" autocomplete="false"
-                        maxdate="#{login.hoy}">
-                <p:ajax event="dateSelect" process="@this"/>
-            </p:calendar>
-            <h:outputLabel value="FECHA FIN" for="fecFin"/>
-            <p:calendar value="#{procFact.fechaFin}"
-                        id="fecFin" autocomplete="false"
-                        pattern="dd/MM/yyyy"
-                        mask="true" required="true"
-                        requiredMessage="Fecha Fin: Es requerido" locale="es"
-                        navigator="true"
-                        maxdate="#{login.hoy}">
-                <p:ajax event="dateSelect" process="@this"/>
-            </p:calendar>
-        </p:panelGrid>
-        <p:panelGrid columns="4" layout="flex"
-                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
-                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
-                     contentStyleClass="align-items-baseline ui-fluid">
-            <h:outputLabel value="TIPO FACTURA" for="selTipoFactura" />
-            <p:selectOneMenu id="selTipoFactura" required="true"
-                             requiredMessage="Tipo de Factura es requerido"
-                             value="#{procFact.factura.tipodoc}">
-                <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
-                <f:selectItems value="#{procFact.tiposComprobantesLs}"
-                               itemLabel="#{comp.tcpComprobante} - #{comp.tcpDescomprobante}"
-                               itemValue="#{comp.tcpIdtipcom}" var="comp"/>
-                <p:ajax event="itemSelect" listener="#{procFact.tipoDocListener}"
-                        update="pnlExport pnlNotaCreditoDebito tabview"/>
-            </p:selectOneMenu>
-        </p:panelGrid>
+        <p:separator />
+        <div class="ui-fluid formgrid grid">
+            <div class="field col-12 md:col-2">
+                <p:outputLabel for="fecInicio">FECHA INICIO</p:outputLabel>
+                <p:calendar value="#{procFact.fechaInicio}" 
+                            id="fecInicio"
+                            pattern="dd/MM/yyyy"
+                            mask="true" required="true"
+                            requiredMessage="Fecha de Inicio: Es requerido" locale="es"
+                            navigator="true" autocomplete="false"
+                            maxdate="#{login.hoy}">
+                    <p:ajax event="dateSelect" process="@this"/>
+                </p:calendar>
+            </div>
+            <div class="field col-12 md:col-6">
+                <p:outputLabel for="selTipoFactura">TIPO FACTURA</p:outputLabel>
+                <p:selectOneMenu id="selTipoFactura" required="true"
+                                 requiredMessage="Tipo de Factura es requerido"
+                                 value="#{procFact.factura.tipodoc}">
+                    <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
+                    <f:selectItems value="#{procFact.tiposComprobantesLs}"
+                                   itemLabel="#{comp.tcpComprobante} - #{comp.tcpDescomprobante}"
+                                   itemValue="#{comp.tcpIdtipcom}" var="comp"/>
+                    <p:ajax event="itemSelect" listener="#{procFact.tipoDocListener}"
+                            update="pnlExport pnlNotaCreditoDebito tabview"/>
+                </p:selectOneMenu>
+            </div>
+        </div>
+        
         <p:panelGrid columns="4" layout="flex" id="pnlExport"
                      style="display: #{procFact.factura.tipodoc eq '11' ? 'block':'none'}"
                      columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,

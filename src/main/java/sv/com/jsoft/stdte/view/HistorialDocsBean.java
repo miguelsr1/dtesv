@@ -444,9 +444,9 @@ public class HistorialDocsBean implements Serializable {
             if (startDate.after(endDate)) {
                 ViewUtils.showMessageError("Fecha inicial debe ser menor o igual a fecha final");
             } else {
-                emitidosList = bitacoraService.findAllDocEmitidos(getFormattedDates(startDate),
-                        getFormattedDates(endDate), tipoDoc, dte,
-                        nitReceptor, estado, loginBean.getUsuario());
+                emitidosList = bitacoraService.findAllDocEmitidos(loginBean.getLogin().getIdEmpresa(),
+                        getFormattedDates(startDate), getFormattedDates(endDate),
+                        tipoDoc, dte, nitReceptor, estado, loginBean.getUsuario());
                 if (!emitidosList.isEmpty()) {
                     displayParams = false;
                 }

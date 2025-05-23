@@ -231,6 +231,7 @@ public class FacturaView implements Serializable {
 
     public void onClickButton() {
         continuar = Boolean.FALSE;
+        fechaFin = fechaInicio;
         if (fechaInicio != null && fechaFin != null) {
             if (fechaFin.after(fechaInicio) || fechaInicio.equals(fechaFin)) {
                 GenericResponse response;

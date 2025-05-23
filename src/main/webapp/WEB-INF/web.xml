@@ -31,6 +31,16 @@
         <servlet-name>facesServlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>DynamicImageServlet</servlet-name>
+        <servlet-class>sv.com.jsoft.stdte.servlet.DynamicImageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DynamicImageServlet</servlet-name>
+        <url-pattern>/DynamicImageServlet</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>JasperReportServlet</servlet-name>
         <servlet-class>sv.com.jsoft.stdte.servlet.JasperReportServlet</servlet-class>

@@ -6,8 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <h:head>
         <h:outputStylesheet name="css/layout-#{guestPreferences.darkMode}.css" library="poseidon-layout" />
@@ -38,7 +37,7 @@
                     <div class="formBg">
                         <div class="card shadow p-3 mb-5 bg-white rounded">
                             <!-- PERIODO FACTURACION-->
-                            <p:tabView activeIndex="#{procFact.selectedTab}" widgetVar="wdgTabView" id="tabview"
+                            <p:tabView activeIndex="1" widgetVar="wdgTabView" id="tabview"
                                        cache="false" binding="#{procFact.tabView}">
                                 <p:ajax event="tabChange" listener="#{procFact.onTabChange}" update="mainFrm:tabview"/>
                                 <p:tab id="step0" title="PERIODO" closable="false" titleStyle="text-align: center">

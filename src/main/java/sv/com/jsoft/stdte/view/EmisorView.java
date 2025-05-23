@@ -60,7 +60,7 @@ public class EmisorView implements Serializable {
 
     public void save() {
         if (selectedEmisor != null) {
-            Long resultado = 0l;
+            Integer resultado = 0;
             if (selectedEmisor.getIdEmpresa() == null) {
                 emisorService.save(selectedEmisor);
                 resultado = selectedEmisor.getIdEmpresa();
