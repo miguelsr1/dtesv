@@ -37,7 +37,7 @@
                     <div class="formBg">
                         <div class="card shadow p-3 mb-5 bg-white rounded">
                             <!-- PERIODO FACTURACION-->
-                            <p:tabView activeIndex="1" widgetVar="wdgTabView" id="tabview"
+                            <p:tabView activeIndex="#{procFact.selectedTab}" widgetVar="wdgTabView" id="tabview"
                                        cache="false" binding="#{procFact.tabView}">
                                 <p:ajax event="tabChange" listener="#{procFact.onTabChange}" update="mainFrm:tabview"/>
                                 <p:tab id="step0" title="PERIODO" closable="false" titleStyle="text-align: center">

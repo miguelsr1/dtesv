@@ -7,71 +7,81 @@
     <p:panel id="receptor">
         <h5>.:: INGRESE DATOS DEL RECEPTOR ::.</h5>
         <p:messages id="msgReceptor" closable="true"/>
-        <div class="ui-fluid formgrid grid">
-            <div class="field col-12 md:col-4">
-                <p:outputLabel for="txtNitQ" value="NÚMERO DOCUMENTO" />
-                <p:inputText id="txtNitQ"/>
+        <p:outputPanel id="dvPerNat" rendered="#{procFact.factura.tipodoc eq '01'}">
+            <div class="ui-fluid formgrid grid">
+                <div class="field col-12 md:col-4">
+                    <p:outputLabel for="txtDocPn" value="NÚMERO DOCUMENTO" />
+                    <p:inputText id="txtDocPn"/>
+                </div>
             </div>
-            <div class="field col-12 md:col-4">
-                <h:outputLabel value="CORREO" for="txtCorreoR"/>
-                <p:inputText id="txtCorreoR" readonly="true"
-                             value="#{procFact.receptor.rucEmailContribuyente}">
-                </p:inputText>
-            </div>
-            <div class="field col-12 md:col-4">
-                <h:outputLabel value="TELEFONO" for="txtTelefonoR"/>
-                <p:inputText id="txtTelefonoR" readonly="true"
-                             value="#{procFact.receptor.rucTelefonoTrabajo}">
-                </p:inputText>
-            </div>
-            <div class="field col-12 md:col-6">
-                <p:outputLabel for="txtNombreComercialRec" value="NOMBRE COMERCIAL" />
-                <p:inputTextarea id="txtNombreComercialRec" readonly="true"
-                                 value="#{procFact.receptor.rucNombreComercial}">
-                </p:inputTextarea>
-            </div>
-            <div class="field col-12 md:col-6">
-                <p:outputLabel for="txtRazonSocialR" value="NOMBRE O RAZÓN SOCIAL" />
-                <p:inputTextarea id="txtRazonSocialR" readonly="true"
-                                 value="#{procFact.receptor.rucNombreRazonsocial}">
-                </p:inputTextarea>
-            </div>
+        </p:outputPanel>
+        <p:outputPanel id="dvPerJur" rendered="#{procFact.factura.tipodoc ne '01'}">
+            <div class="ui-fluid formgrid grid" >
+                <div class="field col-12 md:col-4">
+                    <p:outputLabel for="txtDocPj" value="NÚMERO DOCUMENTO" />
+                    <p:inputText id="txtDocPj"/>
+                </div>
+                <div class="field col-12 md:col-4">
+                    <h:outputLabel value="CORREO" for="txtCorreoR"/>
+                    <p:inputText id="txtCorreoR" readonly="true"
+                                 value="#{procFact.receptor.rucEmailContribuyente}">
+                    </p:inputText>
+                </div>
+                <div class="field col-12 md:col-4">
+                    <h:outputLabel value="TELEFONO" for="txtTelefonoR"/>
+                    <p:inputText id="txtTelefonoR" readonly="true"
+                                 value="#{procFact.receptor.rucTelefonoTrabajo}">
+                    </p:inputText>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <p:outputLabel for="txtNombreComercialRec" value="NOMBRE COMERCIAL" />
+                    <p:inputTextarea id="txtNombreComercialRec" readonly="true"
+                                     value="#{procFact.receptor.rucNombreComercial}">
+                    </p:inputTextarea>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <p:outputLabel for="txtRazonSocialR" value="NOMBRE O RAZÓN SOCIAL" />
+                    <p:inputTextarea id="txtRazonSocialR" readonly="true"
+                                     value="#{procFact.receptor.rucNombreRazonsocial}">
+                    </p:inputTextarea>
+                </div>
 
-            <div class="field col-12 md:col-3">
-                <p:outputLabel for="txtNit" value="NIT" />
-                <p:inputText id="txtNit"/>
+                <div class="field col-12 md:col-3">
+                    <p:outputLabel for="txtNit" value="NIT" />
+                    <p:inputText id="txtNit"/>
+                </div>
+                <div class="field col-12 md:col-3">
+                    <h:outputLabel value="NRC" for="txtNrcR"/>
+                    <p:inputText id="txtNrcR" readonly="true"
+                                 value="#{procFact.receptor.rucNrc}">
+                    </p:inputText>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <h:outputLabel value="ACTIVIDAD" for="txtActividadR"/>
+                    <p:inputText id="txtActividadR" readonly="true"
+                                 value="#{procFact.receptor.rucCodactividad} - #{procFact.receptor.rucDesactividad}">
+                    </p:inputText>
+                </div>
+                <div class="field col-12 md:col-3">
+                    <h:outputLabel value="DEPARTAMENTO" for="txtDeptoR"/>
+                    <p:inputText id="txtDeptoR" readonly="true"
+                                 value="#{procFact.receptorDeptoDesc}">
+                    </p:inputText>
+                </div>
+                <div class="field col-12 md:col-3">
+                    <h:outputLabel value="MUNICIPIO" for="txtMunicipioR"/>
+                    <p:inputText id="txtMunicipioR" readonly="true"
+                                 value="#{procFact.receptorMuniDesc}">
+                    </p:inputText>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <h:outputLabel value="DOMICILIO" for="txtDomicilioR"/>
+                    <p:inputTextarea id="txtDomicilioR" readonly="true"
+                                     value="#{procFact.receptor.rucDomicilio}">
+                    </p:inputTextarea>
+                </div>
             </div>
-            <div class="field col-12 md:col-3">
-                <h:outputLabel value="NRC" for="txtNrcR"/>
-                <p:inputText id="txtNrcR" readonly="true"
-                             value="#{procFact.receptor.rucNrc}">
-                </p:inputText>
-            </div>
-            <div class="field col-12 md:col-6">
-                <h:outputLabel value="ACTIVIDAD" for="txtActividadR"/>
-                <p:inputText id="txtActividadR" readonly="true"
-                             value="#{procFact.receptor.rucCodactividad} - #{procFact.receptor.rucDesactividad}">
-                </p:inputText>
-            </div>
-            <div class="field col-12 md:col-3">
-                <h:outputLabel value="DEPARTAMENTO" for="txtDeptoR"/>
-                <p:inputText id="txtDeptoR" readonly="true"
-                             value="#{procFact.receptorDeptoDesc}">
-                </p:inputText>
-            </div>
-            <div class="field col-12 md:col-3">
-                <h:outputLabel value="MUNICIPIO" for="txtMunicipioR"/>
-                <p:inputText id="txtMunicipioR" readonly="true"
-                             value="#{procFact.receptorMuniDesc}">
-                </p:inputText>
-            </div>
-            <div class="field col-12 md:col-6">
-                <h:outputLabel value="DOMICILIO" for="txtDomicilioR"/>
-                <p:inputTextarea id="txtDomicilioR" readonly="true"
-                                 value="#{procFact.receptor.rucDomicilio}">
-                </p:inputTextarea>
-            </div>
-        </div>
+        </p:outputPanel>
         <p:panelGrid columns="2" layout="flex"
                      columnClasses="col-12 md:col-2 xl:col-2, col-12 col-12 md:col-10 xl:col-10"
                      contentStyleClass="align-items-baseline ui-fluid">
