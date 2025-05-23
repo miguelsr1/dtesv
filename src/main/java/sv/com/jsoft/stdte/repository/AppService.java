@@ -61,7 +61,7 @@ public class AppService {
     private Session mailSession;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private EntityManager em;
 
     @Inject
     JasperReportUtil jr;
@@ -85,7 +85,7 @@ public class AppService {
         GeneracionJson response = new GeneracionJson();
         String jsonStr;
 
-        StoredProcedureQuery storedProcedureQuery = entityManager.createStoredProcedureQuery("pro_generacion_json");
+        StoredProcedureQuery storedProcedureQuery = em.createStoredProcedureQuery("pro_generacion_json");
         storedProcedureQuery.registerStoredProcedureParameter(1, String.class, ParameterMode.IN);
         storedProcedureQuery.registerStoredProcedureParameter(2, String.class, ParameterMode.IN);
         storedProcedureQuery.registerStoredProcedureParameter(3, String.class, ParameterMode.OUT);
@@ -106,7 +106,7 @@ public class AppService {
     public GenericResponse ejecutarProcesoCargaFacturas(String app, LoginDto login) {
         GenericResponse response = new GenericResponse();
         try {
-            StoredProcedureQuery storedProcedureQuery = entityManager.createStoredProcedureQuery("pro_carga_facturas");
+            StoredProcedureQuery storedProcedureQuery = em.createStoredProcedureQuery("pro_carga_facturas");
             storedProcedureQuery.registerStoredProcedureParameter(1, String.class, ParameterMode.IN);
             storedProcedureQuery.registerStoredProcedureParameter(2, String.class, ParameterMode.IN);
             storedProcedureQuery.registerStoredProcedureParameter(3, Integer.class, ParameterMode.OUT);
@@ -133,16 +133,15 @@ public class AppService {
     }
 
     public int PersistBuzonCsv(Buzoncsv buzoncsv) {
-        int result = 0;
         Buzoncsv buzon = buzoncsv;
-        entityManager.persist(buzon);
-        entityManager.flush();
-        result = buzon.getIdBuzon();
-        return result;
+        em.persist(buzon);
+        em.flush();
+        
+        return buzon.getIdBuzon();
     }
 
     public List<Factura> findAllFacturas() {
-        List<Factura> resultado = entityManager
+        List<Factura> resultado = em
                 .createQuery("from Factura f WHERE NOT EXISTS ( FROM BitacoraDeclaracionHacienda b where b.idFac = f.facId )")
                 .getResultList();
         return resultado;
@@ -151,7 +150,7 @@ public class AppService {
     public TiposComprobantes findComprobanteById(String id) {
         TiposComprobantes response;
         try {
-            Query query = entityManager
+            Query query = em
                     .createQuery("from TiposComprobantes t where t.tcpIdtipcom =:id", TiposComprobantes.class);
             query.setParameter("id", id);
             response = (TiposComprobantes) query.getSingleResult();
@@ -166,7 +165,7 @@ public class AppService {
     public List<TiposComprobantes> findPlantBrillo(String fechaIni, String fechaFin, String sucursal) {
         List<TiposComprobantes> response;
         try {
-            response = entityManager
+            response = em
                     .createQuery("from TiposComprobantes t where t.tcpIdtipcom =:id", TiposComprobantes.class)
                     //.setParameter("id", id)
                     .getResultList();
@@ -228,7 +227,7 @@ public class AppService {
     public GenericResponse PersistMHResponse(String nroControl, String estado, String sello_rec, String codigo_gen, JsonObject pjson, String link, String finProcesamiento) {
         GenericResponse response = new GenericResponse();
 
-        StoredProcedureQuery storedProcedureQuery = entityManager.createStoredProcedureQuery("pro_respuesta_json");
+        StoredProcedureQuery storedProcedureQuery = em.createStoredProcedureQuery("pro_respuesta_json");
         storedProcedureQuery.registerStoredProcedureParameter(1, String.class, ParameterMode.IN);
         storedProcedureQuery.registerStoredProcedureParameter(2, String.class, ParameterMode.IN);
         storedProcedureQuery.registerStoredProcedureParameter(3, String.class, ParameterMode.IN);
@@ -259,7 +258,7 @@ public class AppService {
     public String getBodyMailToSendReport(String idFactura) {
         String body = "";
         try {
-            body = (String) entityManager.createNativeQuery("select fun_retorna_correomh(:idFactura) as texto_correo from dual")
+            body = (String) em.createNativeQuery("select fun_retorna_correomh(:idFactura) as texto_correo from dual")
                     .setParameter("idFactura", Integer.valueOf(idFactura))
                     .getSingleResult();
 
@@ -286,7 +285,7 @@ public class AppService {
         String departamento;
         Departamentos depto;
         try {
-            Query query = entityManager
+            Query query = em
                     .createQuery("from Departamentos d where d.codMh = :codigo", Departamentos.class);
             query.setParameter("codigo", codigo);
             depto = (Departamentos) query.getSingleResult();
@@ -304,12 +303,12 @@ public class AppService {
         try {
             log.info("parametros CodDepto: " + codDepto + ", CodMun: " + codMun);
             int deptoId;
-            Query query = entityManager.createQuery("from Departamentos d where d.codMh = :codDepto", Departamentos.class);
+            Query query = em.createQuery("from Departamentos d where d.codMh = :codDepto", Departamentos.class);
             query.setParameter("codDepto", codDepto);
             Departamentos depto = (Departamentos) query.getSingleResult();
             deptoId = depto.getIddepto();
 
-            query = entityManager
+            query = em
                     .createQuery("from UbicacionesGeograficas ug where ug.ugbIddepto = :codDepto and ug.ubgCodigo = :codMun", UbicacionesGeograficas.class);
             query.setParameter("codDepto", deptoId).setParameter("codMun", codMun);
 
@@ -326,17 +325,19 @@ public class AppService {
     public List<TiposComprobantes> findAllTiposComprobantes() {
         List<TiposComprobantes> resultado = new ArrayList<>();
         try {
-            resultado = entityManager.createQuery("from TiposComprobantes ").getResultList();
+            resultado = em.createQuery("from TiposComprobantes ").getResultList();
         } catch (Exception e) {
             log.error("error findAllTiposComprobantes " + e.getMessage());
         }
         return resultado;
     }
 
-    public List<CatalogoProductos> findCatalogoProductos() {
+    public List<CatalogoProductos> findCatalogoProductosByIdEmp(Integer idEmp) {
         List<CatalogoProductos> resultado = new ArrayList<>();
         try {
-            resultado = entityManager.createQuery("from CatalogoProductos ").getResultList();
+            resultado = em.createQuery("SELECT c FROM CatalogoProductos c WHERE c.idEmpresa = :idEmp")
+                    .setParameter("idEmp", idEmp)
+                    .getResultList();
         } catch (Exception e) {
             log.error("error findCatalogoProductos: " + e.getMessage());
         }
@@ -346,7 +347,7 @@ public class AppService {
     public CatalogoProductos findProductoById(String codProducto) {
         CatalogoProductos resultado;
         try {
-            Query query = entityManager.createQuery("from CatalogoProductos cp where cp.codigoProd = :codProducto", CatalogoProductos.class);
+            Query query = em.createQuery("from CatalogoProductos cp where cp.codigoProd = :codProducto", CatalogoProductos.class);
             query.setParameter("codProducto", codProducto);
 
             resultado = (CatalogoProductos) query.getSingleResult();
@@ -361,7 +362,7 @@ public class AppService {
     public List<CatalogoTributos> findTributosByCod(String codigoTrib) {
         List<CatalogoTributos> resultado;
         try {
-            Query query = entityManager.createQuery("from CatalogoTributos ct where ct.codigo = :codTributo", CatalogoTributos.class);
+            Query query = em.createQuery("from CatalogoTributos ct where ct.codigo = :codTributo", CatalogoTributos.class);
             query.setParameter("codTributo", codigoTrib);
             resultado = query.getResultList();
 
@@ -375,17 +376,17 @@ public class AppService {
     public List<Contribuyentes> findAllEmisores() {
         List<Contribuyentes> resultado = new ArrayList<>();
         try {
-            resultado = entityManager.createQuery("from Contribuyentes c where c.rucTipoContribuyente = 'EMISOR'").getResultList();
+            resultado = em.createQuery("from Contribuyentes c where c.rucTipoContribuyente = 'EMISOR'").getResultList();
         } catch (Exception e) {
             log.error("error findAllEmisores " + e.getMessage());
         }
         return resultado;
     }
 
-    public List<Contribuyentes> findAllReceptores() {
+    public List<Contribuyentes> findAllReceptoresByIdEmp(Integer idEmp) {
         List<Contribuyentes> resultado = new ArrayList<>();
         try {
-            resultado = entityManager.createQuery("from Contribuyentes c where c.rucTipoContribuyente = 'RECEPTOR'").getResultList();
+            resultado = em.createQuery("from Contribuyentes c where c.rucTipoContribuyente = 'RECEPTOR'").getResultList();
         } catch (Exception e) {
             log.error("error findAllEmisores " + e.getMessage());
         }
@@ -395,7 +396,7 @@ public class AppService {
     public List<CatalogoCondicionOperacion> findAllCondicionesOp() {
         List<CatalogoCondicionOperacion> resultado = new ArrayList<>();
         try {
-            resultado = entityManager.createQuery("from CatalogoCondicionOperacion").getResultList();
+            resultado = em.createQuery("from CatalogoCondicionOperacion").getResultList();
         } catch (Exception e) {
             log.error("error findAllCondicionesOp " + e.getMessage());
         }
@@ -405,7 +406,7 @@ public class AppService {
     public List<CatalogoPlazos> findAllCatalogoPlazos() {
         List<CatalogoPlazos> resultado = new ArrayList<>();
         try {
-            resultado = entityManager.createQuery("from CatalogoPlazos ").getResultList();
+            resultado = em.createQuery("from CatalogoPlazos ").getResultList();
         } catch (Exception e) {
             log.error("error findAllCatalogoPlazos " + e.getMessage());
         }
@@ -415,7 +416,7 @@ public class AppService {
     public List<CatalogoFormaPago> findAllCatalogoFormaPago() {
         List<CatalogoFormaPago> resultado = new ArrayList<>();
         try {
-            resultado = entityManager.createQuery("from CatalogoFormaPago ").getResultList();
+            resultado = em.createQuery("from CatalogoFormaPago ").getResultList();
         } catch (Exception e) {
             log.error("error findAllCatalogoFormaPago " + e.getMessage());
         }
@@ -425,7 +426,7 @@ public class AppService {
     public List<UnidadesMedida> findAllUnidadesMedida() {
         List<UnidadesMedida> resultado = new ArrayList<>();
         try {
-            resultado = entityManager.createQuery("from UnidadesMedida ").getResultList();
+            resultado = em.createQuery("from UnidadesMedida ").getResultList();
         } catch (Exception e) {
             log.error("error findAllUnidadesMedida " + e.getMessage());
         }
@@ -436,7 +437,7 @@ public class AppService {
         int tipoDoc = 36;
         TiposDocumentos result;
         try {
-            Query query = entityManager.createQuery("from TiposDocumentos td where td.id = :codigo", TiposDocumentos.class);
+            Query query = em.createQuery("from TiposDocumentos td where td.id = :codigo", TiposDocumentos.class);
             query.setParameter("codigo", id);
             result = (TiposDocumentos) query.getSingleResult();
             tipoDoc = result.getDocIdtipoDocumento();
@@ -449,7 +450,7 @@ public class AppService {
     public Factura findFacturaByNum(String nroComprobante) {
         Factura resultado = new Factura();
         try {
-            Query query = entityManager.createQuery("from Factura f where f.facNroFactura = :nroFactura", Factura.class);
+            Query query = em.createQuery("from Factura f where f.facNroFactura = :nroFactura", Factura.class);
             query.setParameter("nroFactura", nroComprobante);
             resultado = (Factura) query.getSingleResult();
         } catch (Exception e) {
@@ -460,10 +461,10 @@ public class AppService {
 
     public Factura updatePeriodoFactura(Date fechaIni, Date fechaFin, Factura factura) {
         try {
-            entityManager.find(Factura.class, factura.getFacId());
+            em.find(Factura.class, factura.getFacId());
             factura.setFacFechaIniPeriodo(fechaIni);
             factura.setFacFechaFinPeriodo(fechaFin);
-            entityManager.merge(factura);
+            em.merge(factura);
         } catch (Exception e) {
             log.error("error en updatePeriodoFactura: " + e.getMessage());
         }
@@ -473,7 +474,7 @@ public class AppService {
     public String findFacturaById(Integer id) {
         String periodo;
         try {
-            Factura factura = entityManager.find(Factura.class, id);
+            Factura factura = em.find(Factura.class, id);
             if (factura.getFacObservaciones() == null) {
                 periodo = "Fecha del Periodo del " + ViewUtils.formatoFecha(factura.getFacFechaIniPeriodo()) + " al "
                         + ViewUtils.formatoFecha(factura.getFacFechaFinPeriodo());
@@ -490,7 +491,7 @@ public class AppService {
     public ParametrosMh findParametrosByNitEmisor(String nitEmisor) {
         ParametrosMh result;
         try {
-            Query query = entityManager.createQuery("from ParametrosMh p where p.pmJsonFirmadorNit = :nitEmisor and p.pmId = 1", ParametrosMh.class);
+            Query query = em.createQuery("from ParametrosMh p where p.pmJsonFirmadorNit = :nitEmisor and p.pmId = 1", ParametrosMh.class);
             query.setParameter("nitEmisor", nitEmisor);
             result = (ParametrosMh) query.getSingleResult();
         } catch (Exception e) {
@@ -504,7 +505,7 @@ public class AppService {
     public List<CatalogoTipoInvalidacion> findAllTiposInvalidacion() {
         List<CatalogoTipoInvalidacion> resultado = new ArrayList<>();
         try {
-            resultado = entityManager.createQuery("from CatalogoTipoInvalidacion ").getResultList();
+            resultado = em.createQuery("from CatalogoTipoInvalidacion ").getResultList();
         } catch (Exception e) {
             log.error("error findAllTiposInvalidacion " + e.getMessage());
         }
@@ -515,7 +516,7 @@ public class AppService {
         GenericResponse respuesta = new GenericResponse();
         try {
             log.info("ejecutando proceso pro_inserta_anulacion, usuario " + login.getUsuario());
-            StoredProcedureQuery storedProcedureQuery = entityManager.createStoredProcedureQuery("pro_inserta_anulacion");
+            StoredProcedureQuery storedProcedureQuery = em.createStoredProcedureQuery("pro_inserta_anulacion");
 
             storedProcedureQuery.registerStoredProcedureParameter(1, String.class, ParameterMode.IN);
             storedProcedureQuery.registerStoredProcedureParameter(2, Integer.class, ParameterMode.IN);
@@ -546,7 +547,7 @@ public class AppService {
     public JsonObject getJsonToInvalidate(String tipoFact, String nroFact) {
         String json = "";
         try {
-            Query query = entityManager.createNativeQuery("SELECT fun_retorna_json(:param1, :param2)");
+            Query query = em.createNativeQuery("SELECT fun_retorna_json(:param1, :param2)");
             query.setParameter("param1", tipoFact);
             query.setParameter("param2", nroFact);
 
@@ -564,7 +565,7 @@ public class AppService {
     public Factura searchFacturaById(Integer idFactura) {
         Factura resultado = new Factura();
         try {
-            Query query = entityManager
+            Query query = em
                     .createQuery("from Factura f where f.facId = :idFactura", Factura.class);
             query.setParameter("idFactura", idFactura);
             resultado = (Factura) query.getSingleResult();
@@ -577,7 +578,7 @@ public class AppService {
     public GenericResponse callProValidaIngreso(String nroDocumento) {
         GenericResponse response = new GenericResponse();
         try {
-            StoredProcedureQuery storedProcedureQuery = entityManager.createStoredProcedureQuery("pro_valida_ingreso");
+            StoredProcedureQuery storedProcedureQuery = em.createStoredProcedureQuery("pro_valida_ingreso");
             storedProcedureQuery.registerStoredProcedureParameter(1, String.class, ParameterMode.IN);
             storedProcedureQuery.registerStoredProcedureParameter(2, Integer.class, ParameterMode.OUT);
             storedProcedureQuery.registerStoredProcedureParameter(3, String.class, ParameterMode.OUT);
@@ -646,7 +647,7 @@ public class AppService {
     public GenericResponse callProValidaDocRelacionado(Buzoncsv factura) {
         GenericResponse response = new GenericResponse();
         try {
-            StoredProcedureQuery storedProcedureQuery = entityManager.createStoredProcedureQuery("pro_valida_documento_rel");
+            StoredProcedureQuery storedProcedureQuery = em.createStoredProcedureQuery("pro_valida_documento_rel");
             storedProcedureQuery.registerStoredProcedureParameter(1, String.class, ParameterMode.IN);
             storedProcedureQuery.registerStoredProcedureParameter(2, String.class, ParameterMode.IN);
             storedProcedureQuery.registerStoredProcedureParameter(3, Integer.class, ParameterMode.OUT);
@@ -672,7 +673,7 @@ public class AppService {
     public GenericResponse callProTicketCortesia(Integer correlativo, LoginDto login, String app) {
         GenericResponse response = new GenericResponse();
         try {
-            StoredProcedureQuery storedProcedureQuery = entityManager.createStoredProcedureQuery("pro_ticket_cortesia");
+            StoredProcedureQuery storedProcedureQuery = em.createStoredProcedureQuery("pro_ticket_cortesia");
             storedProcedureQuery.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
             storedProcedureQuery.registerStoredProcedureParameter(2, String.class, ParameterMode.IN);
             storedProcedureQuery.registerStoredProcedureParameter(3, String.class, ParameterMode.IN);
@@ -699,7 +700,7 @@ public class AppService {
 
     public Contribuyentes findEmisorByNit(String nit) {
         Contribuyentes resultado = null;
-        resultado = (Contribuyentes) entityManager
+        resultado = (Contribuyentes) em
                 .createQuery("from Contribuyentes c where c.rucTipoContribuyente = 'RECEPTOR' and c.rucNitContribuyente = :nit")
                 .setParameter("nit", nit)
                 .getSingleResult();
@@ -707,7 +708,7 @@ public class AppService {
     }
 
     public List<ExcelFileDTO> findFacturasExcel(java.sql.Date fechaIni, java.sql.Date fechaFin) {
-        Query query = entityManager.createNativeQuery("SELECT estado,tcp_comprobante as documento,DATE(fac_fecha_emision) as fecha,TIME(fac_fecha_emision) as hora,fac_numero_de_control as control,\n"
+        Query query = em.createNativeQuery("SELECT estado,tcp_comprobante as documento,DATE(fac_fecha_emision) as fecha,TIME(fac_fecha_emision) as hora,fac_numero_de_control as control,\n"
                 + "fac_codigo_generacion as codigoGeneracion, selloRecibido as selloRecepcion, fac_nit_receptor as identificacionReceptor, fac_razonsocial as nombre, Valor as condicionVenta, '1.00' as tipoCambio, \n"
                 + "(SELECT pgn_valor FROM fact.parametros_generales where pgn_campo='tipoMoneda') as moneda, fac_total_iva as montoImpuesto,fac_montototaloperacion as montoTotal, det_fac_cantidad, "
                 + "det_fac_preciounitario,(select cp_codigo_brilo from catalogo_productos where codigo_prod = det_codigo) as det_codigo, fac_fecha_emision, det_fac_descripcion, (select us_usuario from usuarios where us_id = fac_us_id_usuario) as usuario\n"
@@ -1025,7 +1026,7 @@ public class AppService {
     public Factura recuperarFacturaById(Integer id) {
         Factura factura;
         try {
-            factura = entityManager.find(Factura.class, id);
+            factura = em.find(Factura.class, id);
         } catch (Exception e) {
             log.error("ERROR en construirJson-2", e);
             return null;
@@ -1034,7 +1035,7 @@ public class AppService {
     }
 
     public List getInfoDte(Long idFact) {
-        Query q = entityManager.createNativeQuery(QueryUtils.INFO_DTE);
+        Query q = em.createNativeQuery(QueryUtils.INFO_DTE);
         q.setParameter("idFac", idFact);
         return q.getResultList();
     }

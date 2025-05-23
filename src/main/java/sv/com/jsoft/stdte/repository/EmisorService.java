@@ -14,7 +14,7 @@ import sv.com.jsoft.stdte.persistence.Empresa;
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @Slf4j
-public class EmisorService extends AbstractRepository<Empresa, Long> {
+public class EmisorService extends AbstractRepository<Empresa, Integer> {
 
     public EmisorService() {
         super(Empresa.class);

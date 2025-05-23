@@ -53,7 +53,7 @@ public class BitacoraService {
         return result;
     }
 
-    public List<BitacoraDeclaracionHacienda> findAllDocEmitidos(String startDate, String endDate, String tipoDocumento, String nroDte, String receptor, String estado, String user) {
+    public List<BitacoraDeclaracionHacienda> findAllDocEmitidos(Integer idEmpresa, String startDate, String endDate, String tipoDocumento, String nroDte, String receptor, String estado, String user) {
         List<BitacoraDeclaracionHacienda> result = new ArrayList<>();
         try {
             StringBuilder jpqlBuilder = new StringBuilder();

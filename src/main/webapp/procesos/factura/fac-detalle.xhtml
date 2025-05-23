@@ -1,0 +1,246 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:f="http://java.sun.com/jsf/core"
+              xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <p:panel id="detalle">
+        <h5>.:: INGRESE DETALLE ::.</h5>
+        <p:messages id="msgDetalle" closable="true"/>
+        <p:panelGrid columns="4" layout="flex" id="grdProd"
+                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <h:outputLabel value="PRODUCTO" for="selProducto" />
+            <p:selectOneMenu id="selProducto" appendTo="@this"
+                             filter="true" filterMatchMode="contains"
+                             value="#{procFact.codProducto}" autoWidth="false">
+                <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
+                <f:selectItems value="#{procFact.productosList}"
+                               itemLabel="#{prod.codigoProd} - #{prod.descripcion}"
+                               itemValue="#{prod.codigoProd}" var="prod"/>
+                <p:ajax event="itemSelect" listener="#{procFact.selProductoListener}"
+                        update="detalle tblTributos"/>
+            </p:selectOneMenu>
+            <h:outputLabel value="DESCRIPCION" for="txtDescripcion"/>
+            <h:outputText id="txtDescripcion" value="#{procFact.producto.descripcion}">
+            </h:outputText>
+        </p:panelGrid>
+        <p:panelGrid columns="6" layout="flex" id="grdCant"
+                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                     col-12 md:col-2 xl:col-2, col-12 md:col-2 xl:col-2,
+                     col-12 md:col-1 xl:col-1, col-12 md:col-1 xl:col-1"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <h:outputLabel value="CANTIDAD" for="txtCantidad"/>
+            <p:inputNumber id="txtCantidad" decimalPlaces="0"
+                           decimalSeparator="." thousandSeparator=","
+                           minValue="0" value="#{procFact.cantidad}">
+                <p:ajax event="change" update="tblTributos"
+                        listener="#{procFact.cantidadListener()}"/>
+            </p:inputNumber>
+            <h:outputLabel value="PRECIO UNITARIO" for="txtPrecioUnitario"/>
+            <p:inplace>
+                <p:inputText id="txtPrecioUnitario"
+                             value="#{procFact.precioUnitario}" style="font-weight: bold">
+                    <f:converter converterId="bigDecimalConverter"/>
+                    <p:ajax event="change" listener="#{procFact.changeValorUnitario()}"
+                            process="@this" update="txtPrecioUnitario" partialSubmit="true"/>
+                </p:inputText>
+            </p:inplace>
+            <h:outputLabel value="EXENTO" for="boolExento"
+                           rendered="#{procFact.factura.tipodoc ne '14'}"/>
+            <p:selectBooleanCheckbox disabled="false"
+                                     rendered="#{procFact.factura.tipodoc ne '14'}"
+                                     value="#{procFact.producto.exento}" id="boolExento" >
+                <p:ajax event="change" update="tblTributos"/>
+            </p:selectBooleanCheckbox>
+        </p:panelGrid>
+        <p:panelGrid columns="4" layout="flex" id="grdDesc"
+                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <h:outputLabel
+                value="#{procFact.factura.tipodoc eq '14' ? 'IMPUESTO SOBRE LA RENTA':'DESCUENTO'}"
+                for="txtDescuento"/>
+            <p:inputNumber id="txtDescuento" decimalPlaces="2"
+                           rendered="#{procFact.factura.tipodoc ne '14'}"
+                           decimalSeparator="." thousandSeparator=","
+                           minValue="0.00" value="#{procFact.descuento}"
+                           maxValue="#{procFact.precioUnitario > 0.00 ? procFact.precioUnitario:'0.00'}">
+            </p:inputNumber>
+            <p:toggleSwitch id="txtImpRet" value="#{procFact.aplicarImpRen}"
+                            rendered="#{procFact.factura.tipodoc eq '14'}"/>
+            <h:outputLabel value="UNIDAD DE MEDIDA" for="selUnidadMedida"/>
+            <p:selectOneMenu id="selUnidadMedida"
+                             value="#{procFact.producto.unidadMedida.umCodigo}">
+                <f:selectItems value="#{procFact.unidadesMedidaList}" var="um"
+                               itemDisabled="true"
+                               itemLabel="#{um.umDescripcion}" itemValue="#{um.umCodigo}"/>
+            </p:selectOneMenu>
+        </p:panelGrid>
+        <p:panelGrid columns="4" layout="flex" id="grdRetIVA"
+                     rendered="#{procFact.factura.tipodoc eq '14'}"
+                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <h:outputLabel value="RETENCION IVA 13%" for="txtRetIVA"/>
+            <p:toggleSwitch id="txtRetIVA" value="#{procFact.aplicarRetIva}"/>
+            <h:outputLabel/>
+            <h:outputLabel/>
+        </p:panelGrid>
+        <p:panelGrid columns="6" layout="flex" id="grdOth"
+                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-2 xl:col-2,
+                     col-12 md:col-2 xl:col-2, col-12 md:col-2 xl:col-2,
+                     col-12 md:col-2 xl:col-2, col-12 md:col-2 xl:col-2"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <h:outputLabel value="Otros(Créditos/Cargos)" for="txtCreditos"/>
+            <p:inputNumber id="txtCreditos" decimalPlaces="2"
+                           minValue="0.00" value="#{procFact.otrosCargos}">
+            </p:inputNumber>
+            <h:outputLabel value="REFERENCIA" for="txtReferencia"/>
+            <p:inputText id="txtReferencia" onkeyup="this.value = this.value.toUpperCase();"
+                         value="#{procFact.referencia}">
+            </p:inputText>
+            <h:outputLabel value="TIPO" for="txtTipo"/>
+            <p:selectOneMenu id="txtTipo" value="#{procFact.producto.cpCitId}"
+                             appendTo="@this" autoWidth="false">
+                <f:selectItems value="#{procFact.tipoItemsList}" var="itemls"
+                               itemDisabled="true"
+                               itemLabel="#{itemls.citId} - #{itemls.valor}"
+                               itemValue="#{itemls.citId}"/>
+            </p:selectOneMenu>
+        </p:panelGrid>
+        <p:panelGrid columns="2" layout="flex" id="grdObsDet"
+                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-10 xl:col-10"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <h:outputLabel value="OBSERVACION"/>
+            <p:inputText onkeyup="this.value = this.value.toUpperCase();"
+                         value="#{procFact.obsDetalle}" maxlength="100"/>
+        </p:panelGrid>
+        <p:panelGrid columns="1" layout="flex"
+                     columnClasses="col-12 md:col-2 xl:col-2"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <p:commandButton value="AGREGAR DETALLE"
+                             action="#{procFact.addDetail}"
+                             update="grdDetail grdProd grdCant grdOth tblTributos grdDesc grdRetIVA grdObsDet"
+                             icon="pi pi-plus"/>
+        </p:panelGrid>
+        <p:panel id="tblTributos" style="display: #{procFact.producto.exento or procFact.factura.tipodoc eq '14' ? 'none':'block'}">
+            <p:panelGrid columns="1" layout="flex" rendered="#{!procFact.producto.exento}"
+                         columnClasses="col-12 md:col-12 xl:col-12"
+                         contentStyleClass="align-items-baseline ui-fluid">
+                <p:dataTable value="#{procFact.tributosList}"
+                             var="trib" emptyMessage="" id="tblTrib"
+                             reflow="true" size="small" tableStyle="table-layout: auto;"
+                             scrollable="false" rows="3">
+                    <p:column headerText="IMPUESTO">
+                        <h:outputText value="#{trib.descripcion}"/>
+                    </p:column>
+                    <p:column headerText="MONTO IMPUESTO">
+                        <h:outputText value="#{trib.montoImpuesto}">
+                            <f:converter converterId="biDecimalTributoConverter"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="PORCENTAJE IMPUESTO">
+                        <h:outputText value="13%"/>
+                    </p:column>
+                </p:dataTable>
+            </p:panelGrid>
+        </p:panel>
+
+        <p:panelGrid columns="1" layout="flex" id="grdDetail"
+                     style="display: #{procFact.detalleList.size() > 0 ? 'block':'none'}"
+                     columnClasses="col-12 md:col-12 xl:col-12"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <p:divider/>
+            <p:outputLabel
+                value="DETALLE DEL COMPROBANTE"
+                style="font-weight: bold;color:#2f8ee5;"/>
+            <p:dataTable value="#{procFact.detalleList}" style="font-size: 13px;"
+                         scrollHeight="15em" rowKey="#{det.codigoProd}"
+                         var="det" emptyMessage="" id="tblDetail"
+                         size="small" tableStyle="table-layout: auto;" scrollable="true">
+
+                <p:column width="30">
+                    <p:commandButton icon="pi pi-trash" title="Procesar"
+                                     action="#{procFact.deleteDetail(det)}"
+                                     update="tblDetail fooTotal"
+                                     class="rounded-button">
+                    </p:commandButton>
+                </p:column>
+                <p:column headerText="PRODUCTO">
+                    <h:outputText value="#{det.descripcion}"/>
+                </p:column>
+                <p:column headerText="PRECIO" style="text-align: right" width="90">
+                    <h:outputText value="#{det.precio}">
+                        <f:converter converterId="bigDecimalConverter"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="CANTIDAD" style="text-align: right" width="90">
+                    <h:outputText value="#{det.cantidad}"/>
+                </p:column>
+                <p:column headerText="DESCUENTOS" style="text-align: right" width="90">
+                    <h:outputText value="#{det.descuentos}">
+                        <f:converter converterId="bigDecimalConverter" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="IMPUESTOS" style="text-align: right" width="90">
+                    <h:outputText value="#{det.impuestos}">
+                        <f:converter converterId="biDecimalTributoConverter" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="IMPUESTO ISR" style="text-align: right" width="90">
+                    <h:outputText value="#{det.retRenta}">
+                        <f:converter converterId="biDecimalTributoConverter" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="IVA PERCIBIDO" style="text-align: right" width="90">
+                    <h:outputText value="#{det.ivaPercibido}">
+                        <f:converter converterId="bigDecimalConverter"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="IVA RETENIDO" style="text-align: right" width="90">
+                    <h:outputText value="#{det.ivaRetenido}">
+                        <f:converter converterId="bigDecimalConverter"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="OTROS" style="text-align: right" width="90">
+                    <h:outputText value="#{det.otrosCargos}">
+                        <f:converter converterId="bigDecimalConverter"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="TOTAL" style="text-align: right" width="90">
+                    <h:outputText value="#{det.total}">
+                        <f:converter converterId="bigDecimalConverter"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:rowExpansion>
+                    <div class="product">
+                        <div class="product-info">
+                            <h:outputText value="#{det.obsDetalle}"/>
+                        </div>
+                    </div>
+                </p:rowExpansion>
+
+                <p:columnGroup type="footer">
+                    <p:row>
+                        <p:column colspan="7" style="text-align: right"
+                                  footerText="Total:"/>
+                        <p:column>
+                            <f:facet name="footer">
+                                <h:outputText value="#{procFact.totalDetalle}" id="fooTotal"
+                                              style="font-weight: bold; float: right">
+                                    <f:converter converterId="bigDecimalConverter"/>
+                                </h:outputText>
+                            </f:facet>
+                        </p:column>
+                    </p:row>
+                </p:columnGroup>
+            </p:dataTable>
+        </p:panelGrid>
+    </p:panel>
+</ui:component>

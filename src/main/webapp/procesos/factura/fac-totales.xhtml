@@ -1,0 +1,33 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:f="http://java.sun.com/jsf/core"
+              xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <p:panel id="totales">
+        <h5>.:: TOTALES ::.</h5>
+        <p:outputLabel value="NO HA INGRESADO DETALLE DE COMPROBANTE"
+                       rendered="#{procFact.detalleList.size() eq 0}"/>
+        <p:messages id="msgTotales" closable="true"/>
+        <ui:repeat value="#{procFact.totalesDTOList}" var="total">
+            <p:panelGrid columns="2" layout="flex"
+                         columnClasses="col-12 md:col-3 xl:col-3 font-bold, col-12 md:col-2 xl:col-2 text-right"
+                         contentStyleClass="align-items-baseline ui-fluid">
+                <h:outputLabel value="#{total.description}"/>
+                <h:outputText value="#{total.value}" style="font-weight: bold">
+                    <f:converter converterId="bigDecimalConverter"/>
+                </h:outputText>
+            </p:panelGrid>
+        </ui:repeat>
+        <p:panelGrid columns="2" layout="flex"
+                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-2 xl:col-2"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <p:commandButton value="EMITIR DOCUMENTO"
+                             rendered="#{procFact.detalleList.size() > 0}"
+                             action="#{procFact.emitirDocumento()}"
+                             icon="pi pi-bars"
+                             onstart="PF('statusDialog').show()"
+                             oncomplete="PF('statusDialog').hide()"/>
+        </p:panelGrid>
+    </p:panel>
+</ui:component>

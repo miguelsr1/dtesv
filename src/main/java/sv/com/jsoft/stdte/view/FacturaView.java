@@ -26,11 +26,25 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
+import sv.com.jsoft.stdte.repository.EmisorService;
 
 @Named("procFact")
 @ViewScoped
 @Slf4j
-public class ProcesarFactura implements Serializable {
+public class FacturaView implements Serializable {
+
+    @Inject
+    CatalogosService catalogoService;
+    @Inject
+    LoginBean login;
+    @Inject
+    AppService service;
+    @Inject
+    FacturaService facturaService;
+    @Inject
+    EmisorService emisorService;
+
+    private Empresa emisor;
 
     @Getter
     @Setter
@@ -39,8 +53,8 @@ public class ProcesarFactura implements Serializable {
 
     @Getter
     @Setter
-    private String idFactura, token, emisorDeptoDesc, tipoDoc, codProducto, plazo, medioPago, nroDocumento, mensaje, obsDetalle,
-            emisorMuniDesc, receptorDeptoDesc, receptorMuniDesc, motivoDescuento, referencia, moneda = "USD", observaciones, fesvMhVersion = "", observaciones07;
+    private String idFactura, token, tipoDoc, codProducto, plazo, medioPago, nroDocumento, mensaje, obsDetalle,
+            receptorDeptoDesc, receptorMuniDesc, motivoDescuento, referencia, moneda = "USD", observaciones, fesvMhVersion = "", observaciones07;
 
     @Getter
     @Setter
@@ -52,7 +66,7 @@ public class ProcesarFactura implements Serializable {
 
     @Getter
     @Setter
-    private Contribuyentes emisor, receptor;
+    private Contribuyentes receptor;
 
     @Getter
     @Setter
@@ -73,11 +87,6 @@ public class ProcesarFactura implements Serializable {
     @Getter
     @Setter
     private CatalogoProductos producto;
-
-    @Inject
-    AppService service;
-    @Inject
-    FacturaService facturaService;
 
     @Getter
     @Setter
@@ -105,7 +114,7 @@ public class ProcesarFactura implements Serializable {
 
     @Getter
     @Setter
-    private List<Contribuyentes> emisores, receptores;
+    private List<Contribuyentes> receptores;
 
     @Getter
     @Setter
@@ -127,9 +136,6 @@ public class ProcesarFactura implements Serializable {
     @Setter
     private List<TotalesDTO> totalesDTOList;
 
-    @Inject
-    LoginBean loginBean;
-
     @Getter
     @Setter
     private ParametrosMh pmh;
@@ -149,9 +155,6 @@ public class ProcesarFactura implements Serializable {
     @Getter
     @Setter
     private List<CatalogoRegimen> regimenList;
-
-    @Inject
-    CatalogosService catalogoService;
 
     @Getter
     @Setter
@@ -173,21 +176,18 @@ public class ProcesarFactura implements Serializable {
     public void init() {
         facturaList = new ArrayList<>();
         factura = new Buzoncsv();
-        emisor = new Contribuyentes();
         receptor = new Contribuyentes();
         productosAgregados = new ArrayList<>();
-        productosList = new ArrayList<>();
         producto = new CatalogoProductos();
         tiposComprobantesLs = service.findAllTiposComprobantes();
-        productosList = service.findCatalogoProductos();
+        productosList = service.findCatalogoProductosByIdEmp(login.getLogin().getIdEmpresa());
         productosList = productosList
                 .stream()
                 .filter(p -> p.getCpActivo().matches("S"))
                 .collect(Collectors.toList());
         tributosList = new ArrayList<>();
         detalleList = new ArrayList<>();
-        emisores = service.findAllEmisores();
-        receptores = service.findAllReceptores();
+        receptores = service.findAllReceptoresByIdEmp(login.getLogin().getIdEmpresa());
         condicionOperacionList = service.findAllCondicionesOp();
         plazosList = service.findAllCatalogoPlazos();
         formaPagoList = service.findAllCatalogoFormaPago();
@@ -198,10 +198,13 @@ public class ProcesarFactura implements Serializable {
         tipoGenDocls = catalogoService.getCatalogoTipoGenDoc();
         catRetencionIvaMhList = catalogoService.getCatalogoRetIvaMh();
         precioUnitario = BigDecimal.valueOf(0.00);
+
+        //recuperar el emisor.
+        emisor = emisorService.findByPk(login.getLogin().getIdEmpresa());
     }
 
     public void tipoDocListener() {
-        log.info("Usuario ingreso: " + loginBean.getLogin().getUsuario());
+        log.info("Usuario ingreso: " + login.getLogin().getUsuario());
         detalleList = new ArrayList<>();
         totalesDTOList = new ArrayList<>();
         log.info("TIPO DOCUMENTO SELECCIONADO: " + factura.getTipodoc());
@@ -230,7 +233,7 @@ public class ProcesarFactura implements Serializable {
         continuar = Boolean.FALSE;
         if (fechaInicio != null && fechaFin != null) {
             if (fechaFin.after(fechaInicio) || fechaInicio.equals(fechaFin)) {
-                GenericResponse response = new GenericResponse();
+                GenericResponse response;
 
                 if (factura.getTipodoc().matches("05|06")) {
                     //Validar si existe documento relacionado para tipo nota de crédito o débito
@@ -245,12 +248,8 @@ public class ProcesarFactura implements Serializable {
                 } else {
                     continuar = Boolean.TRUE;
                     tabView.setActiveIndex(1);
-                    //se recupera emisor relacionado al usuario
 
-                    nitEmisor = "06141204841181";
-
-                    codEmisorListener();
-
+                    //codEmisorListener();
                     PrimeFaces.current().ajax().update("mainFrm");
                 }
             } else {
@@ -306,7 +305,7 @@ public class ProcesarFactura implements Serializable {
         }
     }
 
-    public synchronized void codEmisorListener() {
+    /*public synchronized void codEmisorListener() {
         observaciones = "Fecha del periodo del " + ViewUtils.formatoFecha(fechaInicio) + " al " + ViewUtils.formatoFecha(fechaFin);
         log.info("Periodo del " + ViewUtils.formatoFecha(fechaInicio) + " al " + ViewUtils.formatoFecha(fechaFin));
         if (nitEmisor != null && !nitEmisor.isEmpty()) {
@@ -327,8 +326,7 @@ public class ProcesarFactura implements Serializable {
         } else {
             ViewUtils.addError("DEBE INGRESAR NIT EMISOR PARA CONTINUAR", null);
         }
-    }
-
+    }*/
     public void codReceptorListener() {
         if (nitReceptor != null && !nitReceptor.isEmpty()) {
             receptor = receptores.stream()
@@ -752,7 +750,7 @@ public class ProcesarFactura implements Serializable {
         log.info("parametros: " + buzoncsvList);
 
         GenericResponse respuesta = facturaService.procesoEmitirDocumento(buzoncsvList, "PROINGDATOS",
-                loginBean.getLogin(), fechaInicio, fechaFin, schemaName,
+                login.getLogin(), fechaInicio, fechaFin, schemaName,
                 selectedTipoComprobante.getTcpVersion(), factura.getTipodoc(),
                 factura.getTipodoc().matches("07") ? observaciones07 : null);
 
@@ -773,7 +771,7 @@ public class ProcesarFactura implements Serializable {
 
     private Buzoncsv setBuzonValues() {
         Buzoncsv docRet = new Buzoncsv();
-        docRet.setCodEmisor(emisor.getRucNitContribuyente());
+        docRet.setCodEmisor(emisor.getNit());
         docRet.setTipodoc(factura.getTipodoc());
         docRet.setTipodocrec(service.findTipoDocById(receptor.getRucTipoDocId()));
         docRet.setNit(receptor.getRucNitContribuyente());
@@ -790,7 +788,7 @@ public class ProcesarFactura implements Serializable {
         docRet.setComplemento(receptor.getRucDomicilio());
         docRet.setCodactcom(receptor.getRucCodactividad());
         docRet.setCodFactura(nroDocumento);
-        docRet.setIdUsuarioIngreso(loginBean.getLogin().getUsuario());
+        docRet.setIdUsuarioIngreso(login.getLogin().getUsuario());
         return docRet;
     }
 
@@ -800,9 +798,6 @@ public class ProcesarFactura implements Serializable {
         continuar = Boolean.FALSE;
         factura = new Buzoncsv();
         nroDocumento = null;
-        emisor = new Contribuyentes();
-        emisorDeptoDesc = null;
-        emisorMuniDesc = null;
         receptor = new Contribuyentes();
         receptorDeptoDesc = null;
         receptorMuniDesc = null;

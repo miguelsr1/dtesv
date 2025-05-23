@@ -12,7 +12,6 @@ import javax.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.PrimeFaces;
-import sv.com.jsoft.stdte.persistence.CatalogoCodigoActividadEconomica;
 import sv.com.jsoft.stdte.persistence.Empresa;
 import sv.com.jsoft.stdte.persistence.UbicacionesGeograficas;
 import sv.com.jsoft.stdte.repository.EmisorService;

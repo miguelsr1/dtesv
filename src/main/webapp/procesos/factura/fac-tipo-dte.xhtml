@@ -1,0 +1,160 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:f="http://java.sun.com/jsf/core"
+              xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <p:panel id="periodo">
+        <h5>.:: INGRESE PERIODO A PROCESAR ::.</h5>
+        <p:panelGrid columns="4" layout="flex"
+                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <h:outputLabel value="FECHA INICIO" for="fecInicio"/>
+            <p:calendar value="#{procFact.fechaInicio}"
+                        id="fecInicio"
+                        pattern="dd/MM/yyyy"
+                        mask="true" required="true"
+                        requiredMessage="Fecha de Inicio: Es requerido" locale="es"
+                        navigator="true" autocomplete="false"
+                        maxdate="#{login.hoy}">
+                <p:ajax event="dateSelect" process="@this"/>
+            </p:calendar>
+            <h:outputLabel value="FECHA FIN" for="fecFin"/>
+            <p:calendar value="#{procFact.fechaFin}"
+                        id="fecFin" autocomplete="false"
+                        pattern="dd/MM/yyyy"
+                        mask="true" required="true"
+                        requiredMessage="Fecha Fin: Es requerido" locale="es"
+                        navigator="true"
+                        maxdate="#{login.hoy}">
+                <p:ajax event="dateSelect" process="@this"/>
+            </p:calendar>
+        </p:panelGrid>
+        <p:panelGrid columns="4" layout="flex"
+                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <h:outputLabel value="TIPO FACTURA" for="selTipoFactura" />
+            <p:selectOneMenu id="selTipoFactura" required="true"
+                             requiredMessage="Tipo de Factura es requerido"
+                             value="#{procFact.factura.tipodoc}">
+                <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
+                <f:selectItems value="#{procFact.tiposComprobantesLs}"
+                               itemLabel="#{comp.tcpComprobante} - #{comp.tcpDescomprobante}"
+                               itemValue="#{comp.tcpIdtipcom}" var="comp"/>
+                <p:ajax event="itemSelect" listener="#{procFact.tipoDocListener}"
+                        update="pnlExport pnlNotaCreditoDebito tabview"/>
+            </p:selectOneMenu>
+        </p:panelGrid>
+        <p:panelGrid columns="4" layout="flex" id="pnlExport"
+                     style="display: #{procFact.factura.tipodoc eq '11' ? 'block':'none'}"
+                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <h:outputLabel value="TIPO ITEM"/>
+            <p:selectOneMenu id="selTipoItem" autoWidth="false"
+                             required="#{procFact.factura.tipodoc eq '11'}"
+                             requiredMessage="Tipo Item es requerido"
+                             value="#{procFact.factura.tipoItemExpor}">
+                <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
+                <f:selectItems value="#{procFact.tipoItemsList}"
+                               var="til" itemLabel="#{til.valor}"
+                               itemValue="#{til.citId}"/>
+            </p:selectOneMenu>
+            <h:outputLabel value="RECINTO FISCAL"/>
+            <p:selectOneMenu id="selRecintoFiscal" autoWidth="false"
+                             value="#{procFact.factura.recintoFiscal}">
+                <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
+                <f:selectItems value="#{procFact.recintoFiscals}" var="rec"
+                               itemLabel="#{rec.crfValor}" itemValue="#{rec.crfCodigo}"/>
+            </p:selectOneMenu>
+            <h:outputLabel value="REGIMEN EXPORTACION"/>
+            <p:selectOneMenu id="selRegimen" autoWidth="false"
+                             value="#{procFact.factura.regimen}"
+                             filterMatchMode="contains" filter="true">
+                <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
+                <f:selectItems value="#{procFact.regimenList}" var="reg"
+                               itemLabel="#{reg.crgValor}" itemValue="#{reg.crgCodigo}"/>
+            </p:selectOneMenu>
+        </p:panelGrid>
+        <p:panelGrid columns="1" layout="flex" id="pnlNotaCreditoDebito"
+                     style="display: #{procFact.factura.tipodoc eq '05'
+                                       or procFact.factura.tipodoc eq '06' ? 'block':'none'}"
+                     columnClasses="col-12 md:col-12 xl:col-12"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <p:panelGrid columns="4" layout="flex"
+                         columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                         col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                         contentStyleClass="align-items-baseline ui-fluid">
+                <h:outputLabel value="TIPO DOCUMENTO REFERENCIA"/>
+                <p:selectOneMenu id="selTipoDocRel"
+                                 required="#{procFact.factura.tipodoc eq '05'}"
+                                 requiredMessage="Tipo de Factura es requerido"
+                                 value="#{procFact.factura.tipoDocRelacionado}">
+                    <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
+                    <f:selectItems value="#{procFact.tipoCompRel}"
+                                   itemLabel="#{rel.tcpComprobante} - #{rel.tcpDescomprobante}"
+                                   itemValue="#{rel.tcpIdtipcom}" var="rel"/>
+                </p:selectOneMenu>
+                <h:outputLabel value="TIPO GENERACIÓN"/>
+                <p:selectOneMenu id="tipoGenDoc"
+                                 required="#{procFact.factura.tipodoc eq '05'}"
+                                 requiredMessage="Tipo Generación es requerido"
+                                 value="#{procFact.factura.tipoGeneracionDocRel}">
+                    <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
+                    <f:selectItems value="#{procFact.tipoGenDocls}"
+                                   itemLabel="#{tdr.ctgdId} - #{tdr.ctgdValor}"
+                                   itemValue="#{tdr.ctgdId}" var="tdr"/>
+                </p:selectOneMenu>
+            </p:panelGrid>
+            <p:panelGrid columns="4" layout="flex" style="margin-top: -2%"
+                         columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                         col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                         contentStyleClass="align-items-baseline ui-fluid">
+                <h:outputLabel value="FECHA REFERENCIA"/>
+                <p:calendar value="#{procFact.factura.fechaDocRelacionado}"
+                            id="fecFinDocRel"
+                            pattern="dd/MM/yyyy"
+                            mask="true" required="#{procFact.factura.tipodoc eq '05'}"
+                            requiredMessage="Fecha Documento relacionado: Es requerido"
+                            locale="es"
+                            navigator="true"
+                            maxdate="#{login.hoy}">
+                </p:calendar>
+                <h:outputLabel value="CORRELATIVO DOCUMENTO REF."/>
+                <p:panelGrid columns="1" layout="flex" columnClasses="col-12">
+                    <p:inputText id="txtCorrelativoDocRel"
+                                 value="#{procFact.factura.docRelacionado}"
+                                 required="#{procFact.factura.tipodoc eq '05'}"
+                                 requiredMessage="Correlativo documento relacionado es requerido"/>
+                </p:panelGrid>
+            </p:panelGrid>
+        </p:panelGrid>
+        <p:panelGrid columns="1" layout="flex"
+                     columnClasses="col-12 md:col-4 xl:col-4"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <f:facet name="footer">
+                <p:panelGrid columns="1" layout="flex"
+                             columnClasses="col-12 md:col-2 xl:col-2"
+                             contentStyleClass="align-items-baseline ui-fluid">
+                    <p:commandButton value="CONTINUAR"
+                                     action="#{procFact.onClickButton()}"
+                                     update="mainFrm"
+                                     icon="pi pi-arrow-right"
+                                     oncomplete="setTimeout(function() { $('[id$=messages]').hide(2000); }, 2000);" >
+                        <p:confirm header="CONFIRMAR" icon="pi pi-exclamation-triangle"
+                                   message="¿Está seguro de continuar con el periodo seleccionado?"/>
+                    </p:commandButton>
+                </p:panelGrid>
+            </f:facet>
+        </p:panelGrid>
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true"
+                         width="350">
+            <p:commandButton value="NO" styleClass="ui-confirmdialog-no ui-button-flat"
+                             type="button"/>
+            <p:commandButton value="ACEPTAR" styleClass="ui-confirmdialog-yes"
+                             type="button"/>
+        </p:confirmDialog>
+    </p:panel>
+</ui:component>

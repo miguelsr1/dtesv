@@ -1,0 +1,86 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:f="http://java.sun.com/jsf/core"
+              xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <p:panel id="receptor">
+        <h5>.:: INGRESE DATOS DEL RECEPTOR ::.</h5>
+        <p:messages id="msgReceptor" closable="true"/>
+        <p:panelGrid columns="2" layout="flex"
+                     columnClasses="col-12 md:col-2 xl:col-2, col-12 col-12 md:col-10 xl:col-10"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <h:outputLabel value="NIT" for="selReceptor"/>
+            <p:selectOneMenu id="selReceptor" appendTo="@this" filter="true"
+                             filterMatchMode="contains"
+                             value="#{procFact.nitReceptor}">
+                <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
+                <f:selectItems value="#{procFact.receptores}"
+                               itemLabel="#{re.rucNitContribuyente} - #{re.rucNombreRazonsocial}"
+                               itemValue="#{re.rucNitContribuyente}" var="re"/>
+                <p:ajax event="itemSelect" listener="#{procFact.codReceptorListener()}"
+                        update="receptor"/>
+            </p:selectOneMenu>
+        </p:panelGrid>
+        <p:panelGrid columns="4" layout="flex"
+                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <h:outputLabel value="NOMBRE COMERCIAL" for="txtNombreComercialRec"/>
+            <p:inputTextarea id="txtNombreComercialRec" readonly="true"
+                             value="#{procFact.receptor.rucNombreComercial}">
+            </p:inputTextarea>
+            <h:outputLabel value="NOMBRE O RAZÓN SOCIAL" for="txtRazonSocialR"/>
+            <p:inputTextarea id="txtRazonSocialR" readonly="true"
+                             value="#{procFact.receptor.rucNombreRazonsocial}">
+            </p:inputTextarea>
+        </p:panelGrid>
+        <p:panelGrid columns="2" layout="flex"
+                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <h:outputLabel value="DOMICILIO" for="txtDomicilioR"/>
+            <p:inputTextarea id="txtDomicilioR" readonly="true"
+                             value="#{procFact.receptor.rucDomicilio}">
+            </p:inputTextarea>
+        </p:panelGrid>
+        <p:panelGrid columns="4" layout="flex"
+                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <h:outputLabel value="CORREO" for="txtCorreoR"/>
+            <p:inputText id="txtCorreoR" readonly="true"
+                         value="#{procFact.receptor.rucEmailContribuyente}">
+            </p:inputText>
+            <h:outputLabel value="TELEFONO" for="txtTelefonoR"/>
+            <p:inputText id="txtTelefonoR" readonly="true"
+                         value="#{procFact.receptor.rucTelefonoTrabajo}">
+            </p:inputText>
+        </p:panelGrid>
+        <p:panelGrid columns="4" layout="flex"
+                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <h:outputLabel value="NRC" for="txtNrcR"/>
+            <p:inputText id="txtNrcR" readonly="true"
+                         value="#{procFact.receptor.rucNrc}">
+            </p:inputText>
+            <h:outputLabel value="ACTIVIDAD" for="txtActividadR"/>
+            <p:inputText id="txtActividadR" readonly="true"
+                         value="#{procFact.receptor.rucCodactividad} - #{procFact.receptor.rucDesactividad}">
+            </p:inputText>
+        </p:panelGrid>
+        <p:panelGrid columns="4" layout="flex"
+                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
+                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <h:outputLabel value="DEPARTAMENTO" for="txtDeptoR"/>
+            <p:inputText id="txtDeptoR" readonly="true"
+                         value="#{procFact.receptorDeptoDesc}">
+            </p:inputText>
+            <h:outputLabel value="MUNICIPIO" for="txtMunicipioR"/>
+            <p:inputText id="txtMunicipioR" readonly="true"
+                         value="#{procFact.receptorMuniDesc}">
+            </p:inputText>
+        </p:panelGrid>
+    </p:panel>
+</ui:component>

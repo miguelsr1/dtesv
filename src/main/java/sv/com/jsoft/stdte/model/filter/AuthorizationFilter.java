@@ -1,8 +1,6 @@
 package sv.com.jsoft.stdte.model.filter;
 
-import org.apache.log4j.Logger;
 import sv.com.jsoft.stdte.dto.LoginDto;
-
 import javax.faces.application.ViewExpiredException;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -14,33 +12,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import lombok.extern.slf4j.Slf4j;
 
 @WebFilter(filterName = "AuthFilter", urlPatterns = "/app/*")
+@Slf4j
 public class AuthorizationFilter implements Filter {
 
     private FilterConfig config = null;
     private ServletContext servletContext = null;
     private static final String RUTA_INICIO = "/login.xhtml";
     private String[] noForwardsViewIds = null;
-    private static final String MENU_SISTEMA = "/menu.xhtml";
-    private static final ArrayList<String> rutasContext = new ArrayList<String>();
-    static final Logger logger = Logger.getLogger(AuthorizationFilter.class);
-    private static final String[] HEADERS_TO_TRY = {
-            "X-Forwarded-For",
-            "Proxy-Client-IP",
-            "WL-Proxy-Client-IP",
-            "HTTP_X_FORWARDED_FOR",
-            "HTTP_X_FORWARDED",
-            "HTTP_X_CLUSTER_CLIENT_IP",
-            "HTTP_CLIENT_IP",
-            "HTTP_FORWARDED_FOR",
-            "HTTP_FORWARDED",
-            "HTTP_VIA",
-            "REMOTE_ADDR"
-    };
+    private static final ArrayList<String> rutasContext = new ArrayList<>();
 
     public AuthorizationFilter() {
-
     }
 
     @Override
@@ -53,10 +37,10 @@ public class AuthorizationFilter implements Filter {
     public void initRutasContext() {
         String raiz = servletContext.getRealPath("/");
         String arrayDir[] = new File(raiz).list();
-        for (int i = 0; i < arrayDir.length; i++) {
-            boolean band = new File(raiz + "/" + arrayDir[i]).isDirectory();
+        for (String arrayDir1 : arrayDir) {
+            boolean band = new File(raiz + "/" + arrayDir1).isDirectory();
             if (band) {
-                rutasContext.add("/" + arrayDir[i] + "/");
+                rutasContext.add("/" + arrayDir1 + "/");
             }
         }
     }
@@ -73,9 +57,9 @@ public class AuthorizationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
 
         try {
-            boolean isLogueado = false;
-            isLogueado = this.checkLoginState(request, response);
-            boolean checkExpire = this.checkExpiredPassState(request, response);
+            boolean isLogueado;
+            isLogueado = AuthorizationFilter.checkLoginState(request, response);
+            boolean checkExpire = AuthorizationFilter.checkExpiredPassState(request, response);
             String uri = req.getRequestURI();
             HttpServletRequest reqst = (HttpServletRequest) req;
             String pathInfo = reqst.getRequestURI().substring(reqst.getContextPath().length());
@@ -104,11 +88,9 @@ public class AuthorizationFilter implements Filter {
                     chain.doFilter(request, response);
                 } else if (uri.indexOf("/validateToken") > 0) {
                     chain.doFilter(request, response);
-                }
-                else if (uri.indexOf("/updatePassword.xhtml") > 0){
+                } else if (uri.indexOf("/updatePassword.xhtml") > 0) {
                     chain.doFilter(request, response);
-                }
-                else if (uri.indexOf("javax.faces.resource") > 0) {
+                } else if (uri.indexOf("javax.faces.resource") > 0) {
                     chain.doFilter(request, response);
                 } else if (isLogueado) {
                     chain.doFilter(request, response);
@@ -123,26 +105,25 @@ public class AuthorizationFilter implements Filter {
             } else {
                 try {
                     chain.doFilter(request, response);
-                } catch (Throwable et) {
-                    logger.error(et);
+                } catch (IOException | ServletException et) {
+                    log.error("ERROR EN doFilter", et);
                 }
             }
         } catch (ServletException e) {
             if (e.getRootCause() instanceof ViewExpiredException) {
                 res.sendRedirect(req.getContextPath() + "/index.xhtml");
             } else {
-                logger.info("SE PRESENTO EL SIGUIENTE ERROR doFilter: " + e);
+                log.info("SE PRESENTO EL SIGUIENTE ERROR doFilter: " + e);
             }
         }
-
     }
 
     public boolean isForwardable(HttpServletRequest request) {
         boolean onCallstack = true;
         boolean isNoForwardViewId = false;
-        String noForwardViewId = null;
-        String requestURI = null;
-        Iterator noForwardViewIdIter = null;
+        String noForwardViewId;
+        String requestURI;
+        Iterator noForwardViewIdIter;
 
         if (request.getAttribute("sv.com.sertracen.model.OnStack") == null) {
             request.setAttribute("sv.com.sertracen.model.OnStack", Boolean.TRUE);
@@ -161,15 +142,11 @@ public class AuthorizationFilter implements Filter {
             return false;
         }
 
-        if (onCallstack) {
-            return false;
-        }
-
-        return true;
+        return !onCallstack;
     }
 
     protected Iterator getNoForwardViewIds(HttpServletRequest request) {
-        Iterator result = null;
+        Iterator result;
         if (noForwardsViewIds == null) {
             synchronized (this) {
                 noForwardsViewIds = new String[0];
@@ -182,7 +159,7 @@ public class AuthorizationFilter implements Filter {
                 }
             }
         }
-        final String[] viewIds = noForwardsViewIds;
+        
         result = Arrays.asList(noForwardsViewIds).iterator();
         return result;
     }
@@ -190,7 +167,6 @@ public class AuthorizationFilter implements Filter {
     public FilterConfig getFilterConfig() {
         return config;
     }
-
 
     private static boolean checkLoginState(ServletRequest request, ServletResponse response) throws IOException, ServletException {
         boolean isLogueado = false;

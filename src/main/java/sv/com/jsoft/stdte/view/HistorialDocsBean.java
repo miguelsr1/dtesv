@@ -26,7 +26,6 @@ import sv.com.jsoft.stdte.utils.JasperReportUtil;
 import sv.com.jsoft.stdte.utils.ViewUtils;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -117,7 +116,7 @@ public class HistorialDocsBean implements Serializable {
     @Setter
     private LazyDataModel<BitacoraDeclaracionHacienda> lazyModel;
 
-    @EJB
+    @Inject
     BitacoraService bitacoraService;
 
     @Getter
@@ -139,7 +138,7 @@ public class HistorialDocsBean implements Serializable {
         nitReceptor = null;
         estado = null;
         tiposComprobantesLs = service.findAllTiposComprobantes();
-        receptores = service.findAllReceptores();
+        receptores = service.findAllReceptoresByIdEmp(loginBean.getLogin().getIdEmpresa());
         opcionExcel = 0;
     }
 

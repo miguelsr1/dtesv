@@ -1,0 +1,207 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:f="http://java.sun.com/jsf/core"
+              xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <p:panel style="display: #{procFact.factura.tipodoc eq '07' ? 'block':'none'};">
+        <h5>.:: DETALLE COMPROBANTE DE RETENCIÓN ::.</h5>
+        <p:messages id="messagesRet" showDetail="true" skipDetailIfEqualsSummary="true">
+            <p:autoUpdate/>
+        </p:messages>
+        <p:panelGrid columns="3" layout="flex" columnClasses="col-4, col-4, col-4"
+                     id="pnlDetCompSec1"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <p:panelGrid columns="1" layout="flex"
+                         columnClasses="col-12">
+                <h:outputLabel value="TIPO DOCUMENTO TRIBUTARIO"
+                               for="selTipoDocTrib">
+                    <p:selectOneMenu id="selTipoDocTrib"
+                                     required="#{procFact.factura.tipodoc eq '07' and procFact.facturaList.size() ==0}"
+                                     requiredMessage="Tipo de Factura es requerido"
+                                     value="#{procFact.factura.tipoDocRelacionado}">
+                        <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
+                        <f:selectItems value="#{procFact.tipoCompRel}"
+                                       itemLabel="#{rel.tcpComprobante} - #{rel.tcpDescomprobante}"
+                                       itemValue="#{rel.tcpIdtipcom}" var="rel"/>
+                    </p:selectOneMenu>
+                </h:outputLabel>
+            </p:panelGrid>
+            <p:panelGrid columns="1" layout="flex"
+                         columnClasses="col-12">
+                <h:outputLabel value="TIPO GENERACIÓN" for="tipoGenDocRet">
+                    <p:selectOneMenu id="tipoGenDocRet"
+                                     required="#{procFact.factura.tipodoc eq '07' and procFact.facturaList.size() ==0}"
+                                     requiredMessage="Tipo Generación es requerido"
+                                     value="#{procFact.factura.tipoGeneracionDocRel}">
+                        <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
+                        <f:selectItems value="#{procFact.tipoGenDocls}"
+                                       itemLabel="#{tdr.ctgdId} - #{tdr.ctgdValor}"
+                                       itemValue="#{tdr.ctgdId}" var="tdr"/>
+                    </p:selectOneMenu>
+                </h:outputLabel>
+            </p:panelGrid>
+            <p:panelGrid columns="1" layout="flex"
+                         columnClasses="col-12">
+                <h:outputLabel value="FECHA REFERENCIA" for="fecFinDocRelRet">
+                    <p:calendar value="#{procFact.factura.fechaDocRelacionado}"
+                                id="fecFinDocRelRet"
+                                pattern="dd/MM/yyyy"
+                                mask="true"
+                                required="#{procFact.factura.tipodoc eq '07' and procFact.facturaList.size() ==0}"
+                                requiredMessage="Fecha Documento relacionado: Es requerido"
+                                locale="es"
+                                navigator="true"
+                                maxdate="#{login.hoy}">
+                    </p:calendar>
+                </h:outputLabel>
+            </p:panelGrid>
+            <p:panelGrid columns="1" layout="flex"
+                         columnClasses="col-12">
+                <h:outputLabel value="MONTO SUJETO GRAVADO">
+                    <p:inputNumber value="#{procFact.factura.monto_sujeto_gravado}"
+                                   minValue="0.00" thousandSeparator=","
+                                   required="#{procFact.factura.tipodoc eq '07' and procFact.facturaList.size() ==0}"
+                                   decimalSeparator="." decimalPlaces="2">
+                        <p:ajax event="change"
+                                listener="#{procFact.comprobanteRetListener()}"
+                                update="montoRetIva" process="@this"/>
+                    </p:inputNumber>
+                </h:outputLabel>
+            </p:panelGrid>
+            <p:panelGrid columns="1" layout="flex"
+                         columnClasses="col-12">
+                <h:outputLabel value="CÓDIGO RETENCIÓN">
+                    <p:selectOneMenu
+                        required="#{procFact.factura.tipodoc eq '07' and procFact.facturaList.size() ==0}"
+                        requiredMessage="Código retención es requerido"
+                        value="#{procFact.factura.codigo_retencion}">
+                        <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
+                        <f:selectItems value="#{procFact.catRetencionIvaMhList}"
+                                       itemLabel="#{cri.criCodigo} - #{cri.criValor}"
+                                       itemValue="#{cri.criId}" var="cri"/>
+                        <p:ajax event="itemSelect"
+                                listener="#{procFact.comprobanteRetListener}"
+                                update="montoRetIva" process="@this"/>
+                    </p:selectOneMenu>
+                </h:outputLabel>
+            </p:panelGrid>
+            <p:panelGrid columns="1" layout="flex"
+                         columnClasses="col-12">
+                <h:outputLabel value="MONTO RETENCIÓN IVA">
+                    <p:inputNumber readonly="true" thousandSeparator=","
+                                   decimalPlaces="2" decimalSeparator="."
+                                   value="#{procFact.factura.monto_retencion_iva}"
+                                   id="montoRetIva">
+                        <p:ajax event="change" process="@this"/>
+                    </p:inputNumber>
+                </h:outputLabel>
+            </p:panelGrid>
+        </p:panelGrid>
+        <p:panelGrid columns="2" layout="flex" columnClasses="col-6, col-6"
+                     id="pnlDetCompSec2"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <p:panelGrid columns="1" layout="flex"
+                         columnClasses="col-12">
+                <h:outputLabel value="NÚMERO DOCUMENTO REFERENCIA">
+                    <p:inputText id="txtCorrelativoDocRelRet"
+                                 value="#{procFact.factura.docRelacionado}"
+                                 required="#{procFact.factura.tipodoc eq '07' and procFact.facturaList.size() ==0}"
+                                 requiredMessage="Correlativo documento relacionado es requerido"/>
+                </h:outputLabel>
+            </p:panelGrid>
+            <p:panelGrid columns="1" layout="flex"
+                         columnClasses="col-12">
+                <h:outputLabel value="DESCRIPCION DOCUMENTO">
+                    <p:inputTextarea
+                        value="#{procFact.factura.descripcion_doc_relacionado}"
+                        maxlength="100"
+                        required="#{procFact.factura.tipodoc eq '07' and procFact.facturaList.size() ==0}"
+                        onkeyup="this.value = this.value.toUpperCase()"
+                        requiredMessage="Descripción documento es requerido"
+                        counterTemplate="{0}/100" rows="2" counter="displaysub">
+                    </p:inputTextarea>
+                    <h:outputText class="block" id="displaysub"/>
+                </h:outputLabel>
+            </p:panelGrid>
+        </p:panelGrid>
+        <p:panelGrid columns="1" layout="flex" columnClasses="col-3"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <p:commandButton value="Agregar documento retención"
+                             action="#{procFact.agregarDocRetencion}"
+                             update="pnlDetCompSec1 pnlDetCompSec2 DocsRetTab"
+                             icon="pi pi-arrow-right"
+                             oncomplete="setTimeout(function() { $('[id$=messagesRet]').hide(2000); }, 2000);"
+                             styleClass="rounded-button ui-button-help">
+            </p:commandButton>
+        </p:panelGrid>
+        <p:panelGrid columns="1" layout="flex"
+                     columnClasses="col-12"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <p:dataTable value="#{procFact.facturaList}" scrollHeight="15em"
+                         var="docs" emptyMessage="" id="DocsRetTab"
+                         styleClass="table-bordered"
+                         reflow="true" size="small" tableStyle="table-layout: auto;" scrollable="true">
+                <p:column headerText="Remover">
+                    <p:commandButton icon="pi pi-trash" title="Borrar"
+                                     action="#{procFact.removeDocRetencion(docs)}"
+                                     update="DocsRetTab"
+                                     styleClass="rounded-button ui-button-outlined ui-button-info"/>
+                </p:column>
+                <p:column headerText="Número documento/correlativo">
+                    <h:outputText value="#{docs.docRelacionado}"/>
+                </p:column>
+                <p:column headerText="Tipo generación">
+                    <h:outputText value="#{docs.tipoGeneracionDocRel}"/>
+                </p:column>
+                <p:column headerText="Tipo documento">
+                    <h:outputText value="#{docs.tipoDocRelacionado}"/>
+                </p:column>
+                <p:column headerText="Fecha">
+                    <h:outputText value="#{docs.fechaDocRelacionado}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Descripción">
+                    <h:outputText value="#{docs.descripcion_doc_relacionado}"/>
+                </p:column>
+                <p:column headerText="Monto sujeto gravado">
+                    <h:outputText value="#{docs.monto_sujeto_gravado}">
+                        <f:converter converterId="bigDecimalConverter"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Código Retención">
+                    <h:outputText value="#{docs.codigo_retencion}"/>
+                </p:column>
+                <p:column headerText="Monto retención IVA">
+                    <h:outputText value="#{docs.monto_retencion_iva}">
+                        <f:converter converterId="bigDecimalConverter"/>
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+        </p:panelGrid>
+        <p:panelGrid columns="2" layout="flex" columnClasses="col-6, col-6"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <p:panelGrid columns="1" layout="flex"
+                         columnClasses="col-6">
+                <p:commandButton value="EMITIR DOCUMENTO"
+                                 action="#{procFact.emitirDocumento()}"
+                                 update="mainFrm"
+                                 icon="pi pi-bars"
+                                 oncomplete="setTimeout(function() { $('[id$=messagesRet]').hide(2000); }, 2000);"
+                                 styleClass="rounded-button ui-button-success">
+                    <p:confirm header="CONFIRMAR" icon="pi pi-exclamation-triangle"
+                               message="¿Está seguro de emitir documento?"/>
+                </p:commandButton>
+            </p:panelGrid>
+            <p:panelGrid columns="1" layout="flex"
+                         columnClasses="col-12">
+                <h:outputLabel styleClass="text-right" value="OBSERVACIONES">
+                    <p:inputTextarea id="txaObservaciones"
+                                     value="#{procFact.observaciones07}" rows="3"/>
+                </h:outputLabel>
+            </p:panelGrid>
+        </p:panelGrid>
+
+    </p:panel>
+</ui:component>

@@ -1,0 +1,61 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:f="http://java.sun.com/jsf/core"
+              xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <p:panel id="condiciones">
+        <h5>.:: CONDICIONES DE PAGO ::.</h5>
+        <p:messages id="msgCondiciones" closable="true"/>
+        <p:panelGrid columns="6" layout="flex"
+                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-2 xl:col-2,
+                     col-12 md:col-2 xl:col-2, col-12 md:col-2 xl:col-2,
+                     col-12 md:col-2 xl:col-2, col-12 md:col-2 xl:col-2"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <h:outputLabel value="CONDICIONES DE PAGO" for="selCondicion"/>
+            <p:selectOneMenu id="selCondicion" value="#{procFact.condicionOp}" autoWidth="false">
+                <f:selectItems value="#{procFact.condicionOperacionList}" var="con"
+                               itemLabel="#{con.valor}"
+                               itemValue="#{con.idcondicionOperacion}"/>
+                <p:ajax event="itemSelect" update="gdPlazo"/>
+            </p:selectOneMenu>
+            <h:outputLabel value="MONEDA" for="selMoneda"/>
+            <p:selectOneMenu id="selMoneda" value="#{procFact.moneda}" autoWidth="false">
+                <f:selectItem itemValue="USD" itemLabel="USD" itemDisabled="true"/>
+            </p:selectOneMenu>
+            <!--                                        <h:outputLabel value="TIPO CAMBIO"/>-->
+            <!--                                        <p:selectOneMenu id="selTipoCambio" value="#{procFact.tipoCambio}">-->
+            <!--                                            <f:selectItem itemValue="1" itemLabel="1" itemDisabled="true"/>-->
+            <!--                                        </p:selectOneMenu>-->
+        </p:panelGrid>
+        <div jsf:id="gdPlazo"
+             style="display: #{procFact.condicionOp == 2 ? 'block':'none'}">
+            <p:panelGrid columns="4" layout="flex"
+                         columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-2 xl:col-2,
+                         col-12 md:col-2 xl:col-2, col-12 md:col-2 xl:col-2"
+                         contentStyleClass="align-items-baseline ui-fluid">
+                <h:outputLabel value="PLAZO"/>
+                <p:inputNumber id="txtPlazo" decimalPlaces="0"
+                               minValue="0" value="#{procFact.periodo}">
+                    <p:ajax process="@this"/>
+                </p:inputNumber>
+                <h:outputLabel value="PERIODO"/>
+                <p:selectOneMenu id="selPeriodo" value="#{procFact.plazo}" autoWidth="false">
+                    <f:selectItems value="#{procFact.plazosList}" var="pl"
+                                   itemLabel="#{pl.cplValor}" itemValue="#{pl.cplCod}"/>
+                    <p:ajax process="@this"/>
+                </p:selectOneMenu>
+            </p:panelGrid>
+        </div>
+        <p:panelGrid columns="2" layout="flex"
+                     columnClasses="col-12 md:col-6 xl:col-2, col-12 md:col-6 xl:col-4"
+                     contentStyleClass="align-items-baseline ui-fluid">
+            <h:outputLabel value="MEDIO(S) DE PAGO"/>
+            <p:selectOneMenu id="selMedioPago" value="#{procFact.medioPago}" autoWidth="false">
+                <f:selectItems value="#{procFact.formaPagoList}" var="fp"
+                               itemLabel="#{fp.valor}" itemValue="#{fp.codigoMh}"/>
+                <p:ajax process="@this"/>
+            </p:selectOneMenu>
+        </p:panelGrid>
+    </p:panel>
+</ui:component>

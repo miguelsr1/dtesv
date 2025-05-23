@@ -70,7 +70,7 @@ public class EstructuraView implements Serializable {
                 .height("460px")
                 .build();
 
-        PrimeFaces.current().dialog().openDynamic("dialog/dlg-establecimiento", options, null);
+        PrimeFaces.current().dialog().openDynamic("mantenimientos/dialog/dlg-establecimiento", options, null);
     }
 
     public void showDlgPuntoVenta() {
