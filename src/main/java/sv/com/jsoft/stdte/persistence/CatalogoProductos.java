@@ -40,6 +40,10 @@ public class CatalogoProductos implements Serializable {
     @Basic
     @Column(name = "cp_codigo_brilo")
     private String cpCodigoBrilo;
+    @Basic
+    @Column(name = "id_empresa")
+    private Integer idEmpresa;
+    
     @Transient
     private String undMedDesc;
     @Transient

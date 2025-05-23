@@ -1,23 +1,29 @@
 package sv.com.jsoft.stdte.persistence;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
-import javax.persistence.*;
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
 
 @Entity
+@Table(name = "parametros_mh", schema = "fact")
 @Data
 @NoArgsConstructor
-@ToString
-@Table(name = "parametros_mh", schema = "fact")
+@EqualsAndHashCode
 public class ParametrosMh implements Serializable {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "pm_id")
-    private int pmId;
+    private Integer pmId;
     @Basic
     @Column(name = "pm_json_firmador_nit")
     private String pmJsonFirmadorNit;
@@ -57,21 +63,18 @@ public class ParametrosMh implements Serializable {
     @Basic
     @Column(name = "pm_anulaciondte_version")
     private Integer pmAnulaciondteVersion;
+    @Basic
+    @Column(name = "id_empresa")
+    private Integer idEmpresa;
+    @Basic
+    @Column(name = "certificado")
+    private String certificado;
+    @Basic
+    @Column(name = "activo")
+    private Boolean activo;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ParametrosMh that = (ParametrosMh) o;
-        return pmId == that.pmId && Objects.equals(pmJsonFirmadorNit, that.pmJsonFirmadorNit) && Objects.equals(pmJsonFirmadorPass, that.pmJsonFirmadorPass) && Objects.equals(pmJsonFirmadorUrl, that.pmJsonFirmadorUrl) && Objects.equals(pmJsonAuthUser, that.pmJsonAuthUser) && Objects.equals(pmJsonAuthPass, that.pmJsonAuthPass) && Objects.equals(pmJsonAuthUrl, that.pmJsonAuthUrl) && Objects.equals(pmJsonFesvMhVersion, that.pmJsonFesvMhVersion) && Objects.equals(pmJsonFesvMhAmbiente, that.pmJsonFesvMhAmbiente) && Objects.equals(pmJsonFesvMhIdenvio, that.pmJsonFesvMhIdenvio) && Objects.equals(pmJsonFesvMhUrl, that.pmJsonFesvMhUrl) && Objects.equals(pmQrLink, that.pmQrLink) && Objects.equals(pmAnulaciondteUrl, that.pmAnulaciondteUrl);
-    }
+    @Transient
+    private Boolean test;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(pmId, pmJsonFirmadorNit, pmJsonFirmadorPass, pmJsonFirmadorUrl, pmJsonAuthUser, pmJsonAuthPass, pmJsonAuthUrl, pmJsonFesvMhVersion, pmJsonFesvMhAmbiente, pmJsonFesvMhIdenvio, pmJsonFesvMhUrl, pmQrLink, pmAnulaciondteUrl);
-    }
+    
 }

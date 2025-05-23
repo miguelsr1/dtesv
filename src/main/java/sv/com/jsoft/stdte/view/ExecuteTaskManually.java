@@ -5,11 +5,8 @@ import sv.com.jsoft.stdte.ejb.CronFinMes;
 import sv.com.jsoft.stdte.ejb.CronsEjb;
 import sv.com.jsoft.stdte.utils.ViewUtils;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.swing.text.View;
 import java.io.Serializable;
 
 @Named("cronBean")
@@ -20,7 +17,7 @@ public class ExecuteTaskManually implements Serializable {
     @Inject
     CronsEjb cronsEjb;
 
-    @Inject
+
     CronFinMes cronFinMes;
 
     public void triggerScheduleTask(String option){

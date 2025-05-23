@@ -19,6 +19,7 @@ public class LoginDto implements Serializable {
     private String quizUser;
     private String quizPass;
     private String conexion;
+    private Integer idEmpresa;
 
     public LoginDto(String usuario, String clave) {
         this.setUsuario(usuario);

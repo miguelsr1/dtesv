@@ -42,8 +42,9 @@
             </p:dialog>
             <h:form id="frmHistorial">
                 <p:growl id="messages" showDetail="true"/>
-                <p:panel id="pnlParametros" style="display: #{history.displayParams ? 'block':'none'}">
+                <p:panel id="pnlParametros" style="display: #{history.displayParams ? 'block':'none'}"> 
                     <h5>.:: PARAMETROS ::.</h5>
+                    <p:separator />
                     <p:panelGrid columns="4" layout="flex"
                                  columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-3 xl:col-3,
                                  col-12 md:col-2 xl:col-2, col-12 md:col-3 xl:col-3"

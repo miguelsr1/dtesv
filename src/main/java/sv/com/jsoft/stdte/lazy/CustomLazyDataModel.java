@@ -21,30 +21,32 @@ public class CustomLazyDataModel<T> extends LazyDataModel<T> {
     private final EntityManager entityManager;
     private Class<T> entityClass;
     private final String idField;
+    private final Integer idEmpresa;
 
-    public CustomLazyDataModel(EntityManager entityManager, Class<T> entityClass, String idField){
+    public CustomLazyDataModel(EntityManager entityManager, Class<T> entityClass, String idField, Integer idEmpresa) {
         this.entityClass = entityClass;
         this.entityManager = entityManager;
         this.idField = idField;
+        this.idEmpresa = idEmpresa;
     }
 
     @Override
-    public T getRowData(String rowKey){
-        try{
+    public T getRowData(String rowKey) {
+        try {
             Integer id = Integer.valueOf(rowKey);
             return entityManager.find(entityClass, id);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new UnsupportedOperationException("Could not convert rowKey to ID");
         }
     }
 
     @Override
-    public String getRowKey(T object){
-        try{
+    public String getRowKey(T object) {
+        try {
             var field = entityClass.getDeclaredField(idField);
             field.setAccessible(true);
             return String.valueOf(field.get(object));
-        }catch (NoSuchFieldException | IllegalAccessException e){
+        } catch (NoSuchFieldException | IllegalAccessException e) {
             throw new UnsupportedOperationException("Could not extract row key", e);
         }
     }
@@ -100,7 +102,7 @@ public class CustomLazyDataModel<T> extends LazyDataModel<T> {
                             }
                         }
                         predicate = cb.and(predicate, globalPredicate);
-                    }else{
+                    } else {
                         predicate = cb.and(predicate, cb.like(cb.lower(root.get(filterKey)), "%" + filterValue.toLowerCase() + "%"));
                     }
                 }
@@ -123,7 +125,7 @@ public class CustomLazyDataModel<T> extends LazyDataModel<T> {
 
     private Predicate getAdditionalCondition(CriteriaBuilder cb, Root<T> root) {
         if (Contribuyentes.class.isAssignableFrom(entityClass)) {
-            return cb.equal(root.get("rucTipoContribuyente"), "RECEPTOR");
+            return cb.equal(root.get("idEmpresa"), idEmpresa);
         } else {
             return cb.conjunction(); //No additional condition
         }

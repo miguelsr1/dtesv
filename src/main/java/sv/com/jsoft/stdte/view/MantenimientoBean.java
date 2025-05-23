@@ -85,7 +85,7 @@ public class MantenimientoBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        usuariosList = service.retrieveUsers();
+        //usuariosList = service.retrieveUsers();
         emisores = service.findEmisores();
         selectedUsuario = new Usuario();
         departamentos = service.departamentos();
@@ -168,7 +168,7 @@ public class MantenimientoBean implements Serializable {
             //result = service.saveUser(selectedUsuario);
             if (result > 0) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("USUARIO AGREGADO CORRECTAMENTE"));
-                usuariosList = service.retrieveUsers();
+                //usuariosList = service.retrieveUsers();
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("FALLÓ REGISTRO DE USUARIO"));
             }
@@ -181,7 +181,7 @@ public class MantenimientoBean implements Serializable {
             }
         }
         PrimeFaces.current().executeScript("PF('manageUsuarioDialog').hide()");
-        usuariosList = service.retrieveUsers();
+        //usuariosList = service.retrieveUsers();
         PrimeFaces.current().ajax().update("frmUsuarios:messages", "frmUsuarios:tblUsuarios");
     }
 
@@ -201,7 +201,7 @@ public class MantenimientoBean implements Serializable {
             log.error("ERROR ELIMINADO USUARIO: " + selectedUsuario, e);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("FALLÓ ELIMINACIÓN DE USUARIO"));
         } finally {
-            usuariosList = service.retrieveUsers();
+            //usuariosList = service.retrieveUsers();
             PrimeFaces.current().ajax().update("frmUsuarios:messages", "frmUsuarios:tblUsuarios");
         }
     }

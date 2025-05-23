@@ -1,0 +1,76 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:f="http://java.sun.com/jsf/core"
+              xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <h:form prependId="false">
+        <div class="col-12 md:col-12">
+            <p:dataTable value="#{parametrosView.lstParametros}" var="pa" rowKey="#{pa.pmId}"
+                         reflow="true">
+                <p:ajax event="rowSelect" update="divParam"/>
+
+                <p:column headerText="Password privado">
+                    <p:outputLabel value="#{pa.pmJsonFirmadorPass}"/>
+                </p:column>
+                <p:column headerText="Username API">
+                    <p:outputLabel value="#{pa.pmJsonAuthUser}"/>
+                </p:column>
+                <p:column headerText="Password API">
+                    <p:outputLabel value="#{pa.pmJsonAuthPass}"/>
+                </p:column>
+                <p:column headerText="Certificado">
+                    <p:outputLabel value="#{pa.certificado}"/>
+                </p:column>
+                <p:column headerText="Ambiente">
+                    <p:selectBooleanButton onLabel="PRODUCCION" offLabel="PRUEBAS" value="#{pa.test}"/>
+                </p:column>
+                <p:column headerText="Activo">
+                    <p:selectBooleanCheckbox value="#{pa.activo}"/>
+                </p:column>
+                <p:column headerText="Editar">
+                    <p:commandButton icon="pi pi-pencil" update="divParam"
+                                     oncomplete="PF('dlgParam').show()"
+                                     styleClass="edit-button rounded-button ui-button-success" process="@this">
+                        <f:setPropertyActionListener value="#{pa}" target="#{parametrosView.parametroDto}" />
+                        <p:resetInput target="divParam" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </div>
+        
+        <p:dialog id="dlgParam" widgetVar="dlgParam" showEffect="fade" modal="true" responsive="true">
+            <div class="col-12 md:col-12">
+                <div class="ui-fluid">
+                    <p:outputPanel id="divParam">
+                        <div class="field">
+                            <p:outputLabel for="passPri">Password privador</p:outputLabel>
+                            <p:inputText type="password" id="passPri" value="#{parametrosView.parametroDto.pmJsonFirmadorPass}" />
+                        </div>
+                        <div class="field">
+                            <p:outputLabel for="userApi">Usuario API - MH</p:outputLabel>
+                            <p:inputText id="userApi" value="#{parametrosView.parametroDto.pmJsonAuthUser}"/>
+                        </div>
+                        <div class="field">
+                            <p:outputLabel for="passApi">Clave de acceso API - MH</p:outputLabel>
+                            <p:inputText id="passApi" type="password" value="#{parametrosView.parametroDto.pmJsonAuthPass}"/>
+                        </div>
+                        <div class="field">
+                            <p:outputLabel for="cboAmb">Ambiente de MH</p:outputLabel>
+                            <p:selectOneRadio id="cboAmb" layout="lineDirection" value="#{parametrosView.parametroDto.pmJsonFesvMhAmbiente}">
+                                <f:selectItem itemLabel="PRODUCCIÓN" itemValue="00"/>
+                                <f:selectItem itemLabel="PRUEBAS" itemValue="01"/>
+                            </p:selectOneRadio>
+                        </div>
+                        <div class="field">
+                            <p:outputLabel >Certificado para el firmador</p:outputLabel>
+                            <br/>
+                            <p:fileUpload  mode="simple" skinSimple="true" allowTypes="/(\.|\/)(crt)$/" label="Seleccionar"/>
+                        </div>
+                    </p:outputPanel>
+                </div>
+            </div>
+        </p:dialog>
+    </h:form>
+</ui:component>

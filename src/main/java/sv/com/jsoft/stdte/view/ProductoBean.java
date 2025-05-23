@@ -2,18 +2,14 @@ package sv.com.jsoft.stdte.view;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.log4j.Logger;
 import org.primefaces.PrimeFaces;
 import sv.com.jsoft.stdte.persistence.CatalogoProductos;
 import sv.com.jsoft.stdte.persistence.CatalogoTipoItem;
 import sv.com.jsoft.stdte.persistence.UnidadesMedida;
 import sv.com.jsoft.stdte.repository.AppService;
 import sv.com.jsoft.stdte.repository.CatalogosService;
-import sv.com.jsoft.stdte.repository.LoginService;
 import sv.com.jsoft.stdte.repository.MttoService;
-
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
@@ -24,20 +20,28 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
+import sv.com.jsoft.stdte.repository.CatalogosProductosService;
 
 @ViewScoped
 @Named("prodBean")
+@Slf4j
 public class ProductoBean implements Serializable {
-    protected final static Logger logger = Logger.getLogger(ProductoBean.class);
 
-    @EJB
+    @Inject
     MttoService service;
 
     @Inject
     LoginBean login;
 
-    @EJB
-    LoginService loginService;
+    @Inject
+    AppService appService;
+
+    @Inject
+    CatalogosProductosService catProService;
+
+    @Inject
+    CatalogosService catalogoService;
 
     @Getter
     @Setter
@@ -51,31 +55,28 @@ public class ProductoBean implements Serializable {
     @Setter
     private List<UnidadesMedida> undMedidasList;
 
-    @EJB
-    AppService appService;
-
     @Getter
     @Setter
     private List<CatalogoTipoItem> tipoItemsList;
 
-    @EJB
-    CatalogosService catalogoService;
     @PostConstruct
-    public void init(){
+    public void init() {
         tipoItemsList = catalogoService.getCatalogoTipoItem();
-        productosList = service.findAllProductos();
+        productosList = catProService.findAllProductosByEmpresa(login.getLogin().getIdEmpresa());
         productosList.forEach(c -> {
-            if (c.getCpExento() != null)
-                c.setExento(c.getCpExento().matches("S") ?
-                        Boolean.TRUE : Boolean.FALSE);
-            else
+            if (c.getCpExento() != null) {
+                c.setExento(c.getCpExento().matches("S")
+                        ? Boolean.TRUE : Boolean.FALSE);
+            } else {
                 c.setExento(Boolean.FALSE);
+            }
 
-            if (c.getCpActivo() != null)
-                c.setActivo(c.getCpActivo().matches("S") ?
-                        Boolean.TRUE : Boolean.FALSE);
-            else
+            if (c.getCpActivo() != null) {
+                c.setActivo(c.getCpActivo().matches("S")
+                        ? Boolean.TRUE : Boolean.FALSE);
+            } else {
                 c.setActivo(Boolean.FALSE);
+            }
         });
 
         undMedidasList = appService.findAllUnidadesMedida();
@@ -95,7 +96,7 @@ public class ProductoBean implements Serializable {
     }
 
     public void saveProducto() {
-        logger.info(selectedProducto.getIdcatProd() == null ? "saveProducto " + selectedProducto : "updateProducto: " + selectedProducto);
+        log.info(selectedProducto.getIdcatProd() == null ? "saveProducto " + selectedProducto : "updateProducto: " + selectedProducto);
         int result = 0;
         if (selectedProducto.getIdcatProd() == null) {
             CatalogoProductos prod = service.findProductoByCodigo(selectedProducto.getCodigoProd());
@@ -103,18 +104,23 @@ public class ProductoBean implements Serializable {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("YA EXISTE UN PRODUCTO REGISTRADO CON ESE CÓDIGO, VERIFIQUE..."));
                 return;
             }
+
+            selectedProducto.setIdEmpresa(login.getLogin().getIdEmpresa());
+
             result = service.saveProducto(selectedProducto);
             if (result > 0) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("PRODUCTO AGREGADO CORRECTAMENTE"));
-                productosList = service.findAllProductos();
-            } else
+                productosList = catProService.findAllProductosByEmpresa(login.getLogin().getIdEmpresa());
+            } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("FALLÓ REGISTRO DE PRODUCTO"));
+            }
         } else {
             result = service.saveProducto(selectedProducto);
-            if (result > 0)
+            if (result > 0) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("PRODUCTO ACTUALIZADO CORRECTAMENTE"));
-            else
+            } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("FALLÓ ACTUALIZACIÓN DE PRODUCTO"));
+            }
         }
         PrimeFaces.current().executeScript("PF('manageProductoDialog').hide()");
         PrimeFaces.current().ajax().update("frmProductos:messages", "frmProductos:tblProductos");

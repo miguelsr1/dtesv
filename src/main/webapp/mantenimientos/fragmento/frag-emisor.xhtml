@@ -1,0 +1,115 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:f="http://java.sun.com/jsf/core"
+              xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <div class="flex gap-8 flex-column-reverse md:flex-row">
+        <div class="grid formgrid ui-fluid">
+            <div class="field mb-4 col-12 md:col-8">
+                <p:outputLabel for="name">NIT</p:outputLabel>
+                <p:inputText id="name" value="#{emisorView.selectedEmisor.nit}" class="w-full"
+                             required="true" maxlength="45"
+                             requiredMessage="NIT requerido"
+                             validatorMessage="Formato de NIT NO válido"
+                             readonly="#{emisorView.selectedEmisor.idEmpresa > 0 ? 'true':'false'}">
+                    <f:validateRegex pattern="(^\d{1,45}$)"/>
+                </p:inputText>
+            </div>
+            <div class="field mb-4 col-12 md:col-4">
+                <p:outputLabel for="txtNrc">NRC</p:outputLabel>
+                <p:inputText id="txtNrc" required="true" maxlength="45" class="w-full"
+                             requiredMessage="NRC requerido"
+                             validatorMessage="Formato NRC NO válido"
+                             readonly="#{emisorView.selectedEmisor.idEmpresa > 0 ? 'true':'false'}"
+                             value="#{emisorView.selectedEmisor.nrc}">
+                    <f:validateRegex pattern="(^\d{1,10}$)"/>
+                </p:inputText>
+            </div>
+
+            <div class="field mb-4 col-12 md:col-8">
+                <p:outputLabel value="ACTIVIDAD" for="selActividad"/>
+                <p:selectOneMenu id="selActividad" value="#{emisorView.selectedEmisor.codigoActividad}" style="max-width: 700px;"
+                                 filter="true" filterMatchMode="contains" >
+                    <f:selectItem itemLabel="[SELECCIONAR]" itemValue=""/>
+                    <f:selectItems value="#{mtto.actividadEconomicaList}" var="act"
+                                   itemLabel="#{act.ccaeValor}" itemValue="#{act.ccaeCodigo}"/>
+                </p:selectOneMenu>
+            </div>
+
+            <div class="field mb-4 col-12 md:col-6">
+                <p:outputLabel value="NOMBRE COMERCIAL" for="txtNombreComercial"/>
+                <p:inputTextarea id="txtNombreComercial" maxlength="120" class="w-full"
+                                 counter="displayNc" counterTemplate="{0}/120" rows="2"
+                                 value="#{emisorView.selectedEmisor.nombreComercial}" />
+                <h:outputText id="displayNc" class="block" style="font-size: 0.9rem"/>
+            </div>
+            <div class="field mb-4 col-12 md:col-6">
+                <p:outputLabel value="NOMBRE O RAZÓN SOCIAL" for="txtRazonSocial"/>
+                <p:inputTextarea id="txtRazonSocial" maxlength="120" class="w-full"
+                                 counter="displayRs" counterTemplate="{0}/120" rows="2"
+                                 value="#{emisorView.selectedEmisor.razonSocial}" />
+                <h:outputText id="displayRs" class="block" style="font-size: 0.9rem" />
+            </div>
+
+            <div class="field mb-4 col-12 md:col-6">
+                <p:outputLabel for="correo">CORREO</p:outputLabel>
+                <p:inputText id="correo" value="#{emisorView.selectedEmisor.correo}"
+                             onkeyup="this.value = this.value.toLowerCase()" class="w-full"
+                             validatorMessage="Formato de correo no válido"
+                             required="true" requiredMessage="Correo Requerido">
+                    <f:validateRegex
+                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                </p:inputText>
+            </div>
+            <div class="field mb-4 col-12 md:col-6">
+                <p:outputLabel for="telefono">TELEFONO</p:outputLabel>
+                <p:inputText id="telefono" requiredMessage="Teléfono requerido" class="w-full"
+                             required="true" validatorMessage="Formato TELEFONO NO válido"
+                             value="#{emisorView.selectedEmisor.telefono}">
+                    <f:validateRegex
+                        pattern="^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$"/>
+                </p:inputText>
+            </div>
+            <div class="field mb-4 col-12 md:col-6">
+                <p:outputLabel value="DEPARTAMENTO"/>
+                <p:selectOneMenu required="true" id="selDepto" class="w-full"
+                                 value="#{emisorView.selectedEmisor.codigoDepartamento}">
+                    <f:selectItem itemLabel="SELECCIONAR" noSelectionOption="true"/>
+                    <f:selectItems value="#{mtto.departamentos}" var="dep"
+                                   itemValue="#{dep.ubgCodigo}"
+                                   itemLabel="#{dep.ubgDescripcion.toUpperCase()}"/>
+                    <p:ajax event="itemSelect" update="selMuni"
+                            listener="#{mtto.findMunicipiosByDeptoCod(emisorView.selectedEmisor.codigoDepartamento)}"/>
+                </p:selectOneMenu>
+            </div>
+            <div class="field mb-4 col-12 md:col-6">
+                <p:outputLabel value="MUNICIPIO"/>
+                <p:selectOneMenu id="selMuni" required="true" class="w-full"
+                                 value="#{emisorView.selectedEmisor.codigoMunicipio}">
+                    <f:selectItem itemLabel="SELECCIONAR" noSelectionOption="true"/>
+                    <f:selectItems value="#{mtto.municipios}" var="mun"
+                                   itemValue="#{mun.ubgCodigo}" itemLabel="#{mun.ubgDescripcion}"/>
+                </p:selectOneMenu>
+            </div>
+            <div class="field mb-4 col-12">
+                <p:outputLabel value="DOMICILIO" for="txtDomicilio"/>
+                <p:inputTextarea id="txtDomicilio" maxlength="200" class="w-full"
+                                 counterTemplate="{0}/200" rows="2"
+                                 counter="displayDom" required="true"
+                                 requiredMessage="DOMICILIO requerido"
+                                 value="#{emisorView.selectedEmisor.direccion}" />
+                <h:outputText id="displayDom" class="block" style="font-size: 0.9rem" />
+            </div>
+            <div class="field mb-4 col-12">
+                <p:commandButton value="Guardar" action="#{emisorView.save()}" icon="pi pi-save" style="width: 120px"/>
+            </div>
+        </div>
+        <div class="flex flex-column align-items-center flex-or">
+            <span class="font-normal text-900 mb-2">Mi logo</span>
+            <p:graphicImage name="escudo.png" library="images"/>
+            <p:commandButton icon="pi pi-pencil" class="ui-button-icon-only rounded-button -mt-4"/>
+
+        </div>
+    </div>   
+</ui:component>

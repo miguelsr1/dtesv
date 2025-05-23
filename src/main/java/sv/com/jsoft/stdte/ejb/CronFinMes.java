@@ -44,9 +44,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
 
-@Singleton
 public class CronFinMes {
 
     protected final static Logger logger = Logger.getLogger(CronsEjb.class);

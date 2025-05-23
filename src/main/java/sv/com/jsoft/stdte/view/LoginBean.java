@@ -52,7 +52,7 @@ public class LoginBean implements Serializable {
     @Setter
     private MenuModel model;
     @Inject
-    LoginService service;
+    LoginService loginService;
 
     public LoginBean() {
         this.setOpcionSeleccionada("/welcome.xhtml");
@@ -88,7 +88,7 @@ public class LoginBean implements Serializable {
             if (validarNavegador()) {
                 if (this.clave != null && this.usuario != null) {
                     if (validateUser()) {
-                        Usuario user = service.findUserByCod(this.usuario);
+                        Usuario user = loginService.findUserByCod(this.usuario);
                         if (user.getCambiarPassword()) {
                             showMessage("DEBE CAMBIAR SU CLAVE");
                             return "updatePassword?faces-redirect=true";
@@ -97,8 +97,10 @@ public class LoginBean implements Serializable {
                             PrimeFaces.current().executeScript("PF('DialogMensajes').show()");
                             return null;
                         } else {
+                            Integer idEmp = loginService.findIdEmpresaByUser(usuario);
                             this.login = new LoginDto(usuario, clave);
                             this.setOpcionSeleccionada("/welcome.xhtml");
+                            this.login.setIdEmpresa(idEmp);
                             this.login.setLogueado(true);
                             session.setAttribute("login", login);
                             this.sessionUnica = session.getId();
@@ -127,7 +129,7 @@ public class LoginBean implements Serializable {
     }
 
     private boolean validateUser() {
-        Usuario user = service.findUserByCod(this.usuario);
+        Usuario user = loginService.findUserByCod(this.usuario);
         if (user != null) {
             //String passHash = EncryptUtil.encrypt(clave);
             return user.getPassword().matches(clave);
@@ -257,7 +259,7 @@ public class LoginBean implements Serializable {
         if (email != null && tipoSolicitud != null) {
             try {
                 log.info("usuario: " + email);
-                Usuario us = service.findUserByCod(email);
+                Usuario us = loginService.findUserByCod(email);
                 if (us == null) {
                     if (emailValidate(email.toLowerCase())) {
                         //us = service.findUserByEmail(email.toLowerCase());
@@ -269,7 +271,7 @@ public class LoginBean implements Serializable {
                 if (us != null) {
                     //agregue parametro email quien es el usuario
                     Object[] params = {us.getCorreoElectronico(), this.tipoSolicitud, email};
-                    String[] result = service.recuperarClave(params);
+                    String[] result = loginService.recuperarClave(params);
                     PrimeFaces.current().executeScript("PF('DialogClave').hide();");
                     if (result[0].equals("0")) {
                         ViewUtils.addMessage("SE HA ENVIADO UN ENLACE A SU CUENTA DE CORREO, VERIFIQUE... ", null);
@@ -311,10 +313,10 @@ public class LoginBean implements Serializable {
     public String updateUserPassword() throws IOException {
         log.info("actualizar credenciales a usuario: " + usuario);
         if (clave.matches(confirmClave)) {
-            Usuario usu = service.findUserByCod(this.usuario);
+            Usuario usu = loginService.findUserByCod(this.usuario);
             if (usu != null) {
                 usu.setPassword(EncryptUtil.encrypt(clave));
-                service.updateUserCredentials(usu);
+                loginService.updateUserCredentials(usu);
                 FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
             } else {
                 showMessage("USUARIO INGRESADO NO SE ENCUENTRA REGISTRADO, VERIFIQUE...");

@@ -3,7 +3,6 @@ package sv.com.jsoft.stdte.repository;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.apache.log4j.Logger;
 import sv.com.jsoft.stdte.dto.RequestMailDTO;
 import sv.com.jsoft.stdte.persistence.Usuario;
 import sv.com.jsoft.stdte.utils.EncryptUtil;
@@ -24,14 +23,16 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
+import javax.persistence.Query;
+import lombok.extern.slf4j.Slf4j;
+import sv.com.jsoft.stdte.utils.QueryUtils;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
+@Slf4j
 public class LoginService {
 
-    protected final static Logger logger = Logger.getLogger(LoginService.class);
     private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle("bundle");
-
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -43,16 +44,21 @@ public class LoginService {
 
     public Usuario findUserByCod(String usrCodigo) {
         try {
-            Usuario usuario = null;
-
-            usuario = (Usuario) entityManager.createQuery("select u from Usuario u where u.correoElectronico = :codUsuario")
-                    .setParameter("codUsuario", usrCodigo).getSingleResult();
-
+            Usuario usuario = (Usuario) entityManager
+                    .createQuery("select u from Usuario u where u.correoElectronico = :codUsuario")
+                    .setParameter("codUsuario", usrCodigo)
+                    .getSingleResult();
             return usuario;
         } catch (Exception e) {
-            logger.info("error findUserByCod " + e.getMessage());
+            log.error("error findUserByCod ", e);
             return null;
         }
+    }
+
+    public Integer findIdEmpresaByUser(String user) {
+        Query q = entityManager.createNativeQuery(QueryUtils.ID_EMPRESA_BY_USUARIO);
+        q.setParameter("usuario", user);
+        return q.getResultList().isEmpty() ? 0 : (Integer) q.getSingleResult();
     }
 
     /*public Usuario findUserByEmail(String email) {
@@ -68,18 +74,17 @@ public class LoginService {
             return null;
         }
     }*/
-
     //modificado por aarias_id el 18/12/2024
     public String[] recuperarClave(Object[] params) {
         String[] msgRes = new String[2];
         try {
-            logger.info("recuperaClave params: " + Arrays.toString(params));
+            log.info("recuperaClave params: " + Arrays.toString(params));
             //agregue el params[2].toString()
             sendToken(params[0].toString(), params[1].toString(), params[2].toString());
             msgRes[0] = "0";
             msgRes[1] = "OK";
         } catch (Exception e) {
-            logger.error("erron en recuperaClave", e);
+            log.error("erron en recuperaClave", e);
             msgRes[0] = "1";
             msgRes[1] = "SOLICITUD NO PROCESADA CONTACTE AL ADMINISTRADOR";
         }
@@ -97,7 +102,7 @@ public class LoginService {
         tk = EncryptUtil.encrypt(user + ":" + sdf.format(new Date()));
         url = RESOURCE_BUNDLE.getString("URL") + "/dtesv/validateToken?token2=" + tk;
         if (tk != null) {
-            logger.info("token: " + tk);
+            log.info("token: " + tk);
             if (msg.isBlank()) {
                 msg = "<b>Estimado Usuario: "
                         + "<b><p> Ha solicitado cambiar su clave, para cambiarla haga clic en el siguiente enlace "
@@ -121,7 +126,7 @@ public class LoginService {
             requestMail.setHtmlContent(body);
 
             Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
-            logger.info("gson " + gson.toJson(requestMail));
+            log.info("gson " + gson.toJson(requestMail));
             HttpClient httpClient = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(new URI("https://api.turbo-smtp.com/api/v2/mail/send"))
@@ -134,7 +139,7 @@ public class LoginService {
             HttpResponse response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
         } catch (URISyntaxException | IOException | InterruptedException ex) {
-            logger.error("error sendEmail " + ex.getMessage());
+            log.error("error sendEmail ", ex);
         }
     }
 

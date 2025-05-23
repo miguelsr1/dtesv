@@ -8,10 +8,10 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@NoArgsConstructor
-@Data
-@EqualsAndHashCode
 @Table(name = "contribuyentes", schema = "fact")
+@Data
+@NoArgsConstructor
+@EqualsAndHashCode
 public class Contribuyentes implements Serializable {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -108,6 +108,9 @@ public class Contribuyentes implements Serializable {
     @Basic
     @Column(name = "ruc_ctper_id")
     private Integer rucCtperId;
+    @Basic
+    @Column(name = "id_empresa")
+    private Integer idEmpresa;
 
     @ManyToOne
     @JoinColumn(name = "ruc_tipo_doc_id", referencedColumnName = "doc_id", insertable = false, updatable = false)

@@ -1,6 +1,8 @@
 package sv.com.jsoft.stdte.view;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -11,7 +13,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.PrimeFaces;
 import sv.com.jsoft.stdte.persistence.CatalogoCodigoActividadEconomica;
-import sv.com.jsoft.stdte.persistence.Contribuyentes;
+import sv.com.jsoft.stdte.persistence.Empresa;
+import sv.com.jsoft.stdte.persistence.UbicacionesGeograficas;
+import sv.com.jsoft.stdte.repository.EmisorService;
 import sv.com.jsoft.stdte.repository.MttoService;
 
 /**
@@ -21,52 +25,60 @@ import sv.com.jsoft.stdte.repository.MttoService;
 @Named
 @ViewScoped
 public class EmisorView implements Serializable {
-    
+
     @Getter
     @Setter
-    private Contribuyentes selectedEmisor;
+    private Empresa selectedEmisor;
+
+    @Getter
+    @Setter
+    private List<UbicacionesGeograficas> municipios;
+
     @Inject
     MttoService service;
-    
+    @Inject
+    LoginBean loginBean;
+    @Inject
+    EmisorService emisorService;
+
     @PostConstruct
-    public void init(){
-        selectedEmisor = new Contribuyentes();
+    public void init() {
+        String usuario = loginBean.getLogin().getUsuario();
+        selectedEmisor = emisorService.getEmisorByUsuario(usuario);
+        if (selectedEmisor.getIdEmpresa() == null) {
+            selectedEmisor.setActivo(Boolean.TRUE);
+            selectedEmisor.setEstado(Boolean.TRUE);
+            selectedEmisor.setFechaCreacion(LocalDateTime.now());
+            selectedEmisor.setUsuario(usuario);
+        }
     }
 
-    public void findMunicipioCode(Contribuyentes c) {
+    public void findMunicipioCode(Empresa c) {
         selectedEmisor = c;
-        municipios = service.municipios(Integer.valueOf(c.getRucCodigoDepartamento()));
-        selectedEmisor.setRucCodigoMunicipio(service.municipioCode(c));
+        municipios = service.municipios(Integer.valueOf(c.getCodigoDepartamento()));
+        selectedEmisor.setCodigoMunicipio(service.municipioCode(c));
     }
-    
-    public void saveEmisor() {
+
+    public void save() {
         if (selectedEmisor != null) {
-            int resultado = 0;
-            if (selectedEmisor.getRucId() == null) {
-                resultado = service.saveContribuyente(selectedEmisor, "EMISOR");
+            Long resultado = 0l;
+            if (selectedEmisor.getIdEmpresa() == null) {
+                emisorService.save(selectedEmisor);
+                resultado = selectedEmisor.getIdEmpresa();
                 if (resultado > 0) {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("EMISOR REGISTRADO CORRECTAMENTE"));
-                    emisores = service.findEmisores();
                 } else {
                     FacesContext.getCurrentInstance().addMessage(null,
                             new FacesMessage("FALLÓ REGISTRO DE EMISOR, VERIFIQUE E INTENTE NUEVAMENTE"));
                 }
             } else {
-                resultado = service.saveContribuyente(selectedEmisor, "EMISOR");
-                if (resultado > 0) {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("EMISOR ACTUALIZADO CORRECTAMENTE"));
-                } else {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("FALLÓ ACTUALIZACIÓN DE EMISOR"));
-                }
+                emisorService.update(selectedEmisor);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("EMISOR ACTUALIZADO CORRECTAMENTE"));
             }
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("NO SE ENCONTRO EMISOR A CREAR"));
         }
         PrimeFaces.current().executeScript("PF('manageEmisorDialog').hide()");
         PrimeFaces.current().ajax().update("frmEmisores:messages", "frmEmisores:tblEmisores");
-    }
-    
-    public void getActividadDescEmisor(CatalogoCodigoActividadEconomica item) {
-        selectedEmisor.setRucDesactividad(item.getCcaeValor());
     }
 }
