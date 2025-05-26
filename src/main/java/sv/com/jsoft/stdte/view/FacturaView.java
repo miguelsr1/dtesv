@@ -45,6 +45,9 @@ public class FacturaView implements Serializable {
     EmisorService emisorService;
 
     private Empresa emisor;
+    @Getter
+    @Setter
+    Boolean sinDatos;
 
     @Getter
     @Setter
@@ -217,11 +220,13 @@ public class FacturaView implements Serializable {
             log.info("VERSION: " + selectedTipoComprobante.getTcpVersion());
         }
 
-        if (factura.getTipodoc().matches("05|06")) {
+        if (factura.getTipodoc().equals("01")) {
+            sinDatos = true;
+            receptor = facturaService.findReceptoNull();            
+        } else if (factura.getTipodoc().matches("05|06")) {
             tipoCompRel = tiposComprobantesLs.stream().filter(tc -> tc.getTcpIdtipcom().matches("03|07"))
                     .collect(Collectors.toList());
-        }
-        if (factura.getTipodoc().matches("07")) {
+        } else if (factura.getTipodoc().matches("07")) {
             tipoCompRel = tiposComprobantesLs.stream()
                     .filter(tc -> tc.getTcpIdtipcom().matches("01|03|14"))
                     .collect(Collectors.toList());

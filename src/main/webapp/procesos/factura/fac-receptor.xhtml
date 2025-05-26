@@ -6,15 +6,20 @@
               xmlns:jsf="http://xmlns.jcp.org/jsf">
     <p:panel id="receptor">
         <h5>.:: INGRESE DATOS DEL RECEPTOR ::.</h5>
+        <p:separator/>
         <p:messages id="msgReceptor" closable="true"/>
         <p:outputPanel id="dvPerNat" rendered="#{procFact.factura.tipodoc eq '01'}">
             <div class="ui-fluid formgrid grid">
+                <div class="field col-12">
+                    <p:selectBooleanCheckbox id="datPj" itemLabel="SIN DATOS?" value="#{procFact.sinDatos}" />
+                </div>
                 <div class="field col-12 md:col-4">
                     <p:outputLabel for="txtDocPn" value="NÚMERO DOCUMENTO" />
-                    <p:inputText id="txtDocPn"/>
+                    <p:inputMask id="txtDocPn" onkeyup="nitDuiMask(this)" disabled="#{procFact.sinDatos}"/>
                 </div>
             </div>
         </p:outputPanel>
+        
         <p:outputPanel id="dvPerJur" rendered="#{procFact.factura.tipodoc ne '01'}">
             <div class="ui-fluid formgrid grid" >
                 <div class="field col-12 md:col-4">

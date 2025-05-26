@@ -39,6 +39,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
+import sv.com.jsoft.stdte.persistence.Contribuyentes;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
@@ -58,6 +59,10 @@ public class FacturaService {
     public void init() {
         java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.WARNING);
     }
+    
+    public Contribuyentes findReceptoNull(){
+        return entityManager.find(Contribuyentes.class, 5);
+    }
 
     @Transactional
     public GenericResponse procesoEmitirDocumento(List<Buzoncsv> buzoncsvList, String app,
@@ -65,8 +70,8 @@ public class FacturaService {
             String schemaName, Integer fesmhVersion,
             String tipoDocumento, String observaciones) {
         GenericResponse response = new GenericResponse();
-        Factura factura = null;
-        String email = "";
+        Factura factura;
+        String email;
 
         try {
             Query query = entityManager.createNativeQuery("SELECT fun_genera_numero_interno(:PAPP, :PUSER)  FROM dual");
