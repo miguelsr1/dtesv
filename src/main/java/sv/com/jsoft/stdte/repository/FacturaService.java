@@ -106,7 +106,7 @@ public class FacturaService {
                 response.setMensaje((String) storedProcedureQuery.getOutputParameterValue(5));
                 log.info("resultado: " + response);
             } catch (Exception e) {
-                log.error("Error en pro_carga_factura: " + e);
+                log.error("Error en pro_carga_factura: ", e);
                 response.setMensaje("Error en proceso pro_carga_factura, intente nuevamente");
                 response.setVal(1);
                 return response;

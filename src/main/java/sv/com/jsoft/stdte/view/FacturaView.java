@@ -25,8 +25,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import javax.faces.application.FacesMessage;
 import lombok.extern.slf4j.Slf4j;
+import org.primefaces.event.SelectEvent;
 import sv.com.jsoft.stdte.repository.EmisorService;
+import sv.com.jsoft.stdte.repository.ReceptorService;
+import sv.com.jsoft.stdte.utils.MessageUtil;
 
 @Named("procFact")
 @ViewScoped
@@ -43,16 +47,22 @@ public class FacturaView implements Serializable {
     FacturaService facturaService;
     @Inject
     EmisorService emisorService;
+    @Inject
+    ReceptorService receptorService;
 
     private Empresa emisor;
     @Getter
     @Setter
-    Boolean sinDatos;
+    private Boolean sinDatos;
 
     @Getter
     @Setter
     private boolean skip, continuar = Boolean.FALSE, exento = Boolean.FALSE,
             docRelacionados = Boolean.FALSE, reenviar = Boolean.FALSE, aplicarRetIva = Boolean.FALSE, aplicarImpRen = Boolean.FALSE;
+
+    @Getter
+    @Setter
+    private String receptorStr;
 
     @Getter
     @Setter
@@ -222,7 +232,7 @@ public class FacturaView implements Serializable {
 
         if (factura.getTipodoc().equals("01")) {
             sinDatos = true;
-            receptor = facturaService.findReceptoNull();            
+            receptor = facturaService.findReceptoNull();
         } else if (factura.getTipodoc().matches("05|06")) {
             tipoCompRel = tiposComprobantesLs.stream().filter(tc -> tc.getTcpIdtipcom().matches("03|07"))
                     .collect(Collectors.toList());
@@ -860,5 +870,39 @@ public class FacturaView implements Serializable {
 
     public void changeValorUnitario() {
         log.info("se cambió el precio unitario a: " + precioUnitario + ", precio catalogo producto : " + producto.getValorUnitario());
+    }
+
+    public void completeReceptor() {
+        receptor = receptorService.findReceptoresByNit(receptorStr.replace("-", ""), login.getLogin().getIdEmpresa());
+
+        if (receptor.getRucId() == null) {
+            MessageUtil.builder()
+                    .severity(FacesMessage.SEVERITY_WARN)
+                    .message("NO SE ENCONTRO EL CLIENTE")
+                    .title("ALERTA")
+                    .build();
+        }
+    }
+
+    public void limpiarReceptorFe() {
+        if (sinDatos) {
+            receptor = facturaService.findReceptoNull();
+        } else {
+            receptor = new Contribuyentes();
+        }
+    }
+
+    public void onItemSelect(SelectEvent<String> event) {
+        receptorStr = event.getObject();
+
+        receptor = receptorService.findReceptoresByNit(receptorStr, login.getLogin().getIdEmpresa());
+
+        if (receptor.getRucId() == null) {
+            MessageUtil.builder()
+                    .severity(FacesMessage.SEVERITY_WARN)
+                    .message("NO SE ENCONTRO EL CLIENTE")
+                    .title("ALERTA")
+                    .build();
+        }
     }
 }

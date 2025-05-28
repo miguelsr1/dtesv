@@ -11,15 +11,25 @@
         <p:outputPanel id="dvPerNat" rendered="#{procFact.factura.tipodoc eq '01'}">
             <div class="ui-fluid formgrid grid">
                 <div class="field col-12">
-                    <p:selectBooleanCheckbox id="datPj" itemLabel="SIN DATOS?" value="#{procFact.sinDatos}" />
+                    <p:selectBooleanCheckbox id="datPj" itemLabel="SIN DATOS?" value="#{procFact.sinDatos}">
+                        <p:ajax update="txtDocPn,txtNamePn" listener="#{procFact.limpiarReceptorFe}" />
+                    </p:selectBooleanCheckbox>
                 </div>
-                <div class="field col-12 md:col-4">
+                <div class="field col-12 md:col-3">
                     <p:outputLabel for="txtDocPn" value="NÚMERO DOCUMENTO" />
-                    <p:inputMask id="txtDocPn" onkeyup="nitDuiMask(this)" disabled="#{procFact.sinDatos}"/>
+                    <p:inputMask id="txtDocPn" value="#{procFact.receptorStr}" onkeyup="nitDuiMask(this)"
+                                 class="w-full" required="true" disabled="#{procFact.sinDatos}"
+                                 requiredMessage="DEBE DE INGRESAR EL NUMERO DE DOCUMENTO DE UN CLIENTE">
+                        <p:ajax event="blur" listener="#{procFact.completeReceptor()}" update="txtNamePn"/>
+                    </p:inputMask>
+                </div>
+                <div class="field col-12 md:col-9">
+                    <p:outputLabel for="txtNamePn" value="NOMBRE" />
+                    <p:inputText id="txtNamePn" readonly="true" value="#{procFact.receptor.rucNombreRazonsocial}"/>
                 </div>
             </div>
         </p:outputPanel>
-        
+
         <p:outputPanel id="dvPerJur" rendered="#{procFact.factura.tipodoc ne '01'}">
             <div class="ui-fluid formgrid grid" >
                 <div class="field col-12 md:col-4">
@@ -87,20 +97,5 @@
                 </div>
             </div>
         </p:outputPanel>
-        <p:panelGrid columns="2" layout="flex"
-                     columnClasses="col-12 md:col-2 xl:col-2, col-12 col-12 md:col-10 xl:col-10"
-                     contentStyleClass="align-items-baseline ui-fluid">
-            <h:outputLabel value="NIT" for="selReceptor"/>
-            <p:selectOneMenu id="selReceptor" appendTo="@this" filter="true"
-                             filterMatchMode="contains"
-                             value="#{procFact.nitReceptor}">
-                <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
-                <f:selectItems value="#{procFact.receptores}"
-                               itemLabel="#{re.rucNitContribuyente} - #{re.rucNombreRazonsocial}"
-                               itemValue="#{re.rucNitContribuyente}" var="re"/>
-                <p:ajax event="itemSelect" listener="#{procFact.codReceptorListener()}"
-                        update="receptor"/>
-            </p:selectOneMenu>
-        </p:panelGrid>
     </p:panel>
 </ui:component>
