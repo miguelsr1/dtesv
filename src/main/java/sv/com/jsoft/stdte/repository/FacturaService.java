@@ -98,7 +98,7 @@ public class FacturaService {
                         .registerStoredProcedureParameter(4, Integer.class, ParameterMode.OUT)
                         .registerStoredProcedureParameter(5, String.class, ParameterMode.OUT)
                         .setParameter(1, app)
-                        .setParameter(2, login.getUsuario());
+                        .setParameter(2, login.getIdUsuario().toString());
 
                 storedProcedureQuery.execute();
                 response.setIdFactura((Integer) storedProcedureQuery.getOutputParameterValue(3));
@@ -431,7 +431,7 @@ public class FacturaService {
     }
 
     private GenericResponse sendMail(String mail, String nroFactura, JsonObject jsonObject, String nameJsonFile, String tipoDocumento, String observaciones) {
-        String path = "";
+        String path;
         GenericResponse response = new GenericResponse();
         if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")) {
             path = RESOURCE_BUNDLE.getString("PATH_REPORT_WINDOWS");

@@ -804,7 +804,7 @@ public class FacturaView implements Serializable {
         docRet.setComplemento(receptor.getRucDomicilio());
         docRet.setCodactcom(receptor.getRucCodactividad());
         docRet.setCodFactura(nroDocumento);
-        docRet.setIdUsuarioIngreso(login.getLogin().getUsuario());
+        docRet.setIdUsuarioIngreso(login.getLogin().getIdUsuario());
         return docRet;
     }
 

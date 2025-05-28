@@ -43,6 +43,8 @@ public class Usuario implements Serializable {
     private Boolean cambiarPassword;
     @Column(name = "fecha_creacion")
     private Timestamp fechaCreacion;
+    @Column(name = "id_usuario")
+    private Integer idUsuario;
     /*@Basic
     @Column(name = "us_updated_at")
     private Timestamp usUpdatedAt;

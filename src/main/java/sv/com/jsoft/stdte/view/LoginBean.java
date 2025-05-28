@@ -101,6 +101,7 @@ public class LoginBean implements Serializable {
                             this.login = new LoginDto(usuario, clave);
                             this.setOpcionSeleccionada("/welcome.xhtml");
                             this.login.setIdEmpresa(idEmp);
+                            this.login.setIdUsuario(user.getIdUsuario());
                             this.login.setLogueado(true);
                             session.setAttribute("login", login);
                             this.sessionUnica = session.getId();

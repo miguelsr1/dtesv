@@ -207,5 +207,5 @@ public class Buzoncsv implements Serializable {
     private BigDecimal impuestoRetenRetenidoPorc;
     @Basic
     @Column(name = "id_usuario_ingreso")
-    private String idUsuarioIngreso;
+    private Integer idUsuarioIngreso;
 }
