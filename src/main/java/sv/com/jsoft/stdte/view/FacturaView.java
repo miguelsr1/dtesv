@@ -71,10 +71,6 @@ public class FacturaView implements Serializable {
 
     @Getter
     @Setter
-    private List<Buzoncsv> facturaList;
-
-    @Getter
-    @Setter
     private Buzoncsv factura;
 
     @Getter
@@ -83,11 +79,23 @@ public class FacturaView implements Serializable {
 
     @Getter
     @Setter
-    private List<TiposComprobantes> tiposComprobantesLs, tipoCompRel;
+    private CatalogoProductos producto;
+
+    @Getter
+    @Setter
+    private CatalogoProductos tributo;
 
     @Getter
     @Setter
     private TiposComprobantes selectedTipoComprobante;
+
+    @Getter
+    @Setter
+    private List<Buzoncsv> facturaList;
+
+    @Getter
+    @Setter
+    private List<TiposComprobantes> tiposComprobantesLs, tipoCompRel;
 
     @Getter
     @Setter
@@ -96,10 +104,6 @@ public class FacturaView implements Serializable {
     @Getter
     @Setter
     private List<CatalogoProductos> productosAgregados;
-
-    @Getter
-    @Setter
-    private CatalogoProductos producto;
 
     @Getter
     @Setter
@@ -116,10 +120,6 @@ public class FacturaView implements Serializable {
     @Getter
     @Setter
     private List<CatalogoTributos> tributosList;
-
-    @Getter
-    @Setter
-    CatalogoProductos tributo;
 
     @Getter
     @Setter
@@ -151,14 +151,6 @@ public class FacturaView implements Serializable {
 
     @Getter
     @Setter
-    private ParametrosMh pmh;
-
-    @Getter
-    @Setter
-    private TabView tabView = null;
-
-    @Getter
-    @Setter
     private List<CatalogoTipoItem> tipoItemsList;
 
     @Getter
@@ -179,27 +171,38 @@ public class FacturaView implements Serializable {
 
     @Getter
     @Setter
+    private ParametrosMh pmh;
+
+    @Getter
+    @Setter
     private String nitEmisor, nitReceptor;
 
     @Getter
     @Setter
     private BigDecimal precioUnitario;
 
+    @Getter
+    @Setter
+    private TabView tabView = null;
+
     @PostConstruct
     public void init() {
-        facturaList = new ArrayList<>();
         factura = new Buzoncsv();
+                
         receptor = new Contribuyentes();
-        productosAgregados = new ArrayList<>();
         producto = new CatalogoProductos();
+
+        facturaList = new ArrayList<>();
+        productosAgregados = new ArrayList<>();
+        tributosList = new ArrayList<>();
+        detalleList = new ArrayList<>();
+
         tiposComprobantesLs = service.findAllTiposComprobantes();
         productosList = service.findCatalogoProductosByIdEmp(login.getLogin().getIdEmpresa());
         productosList = productosList
                 .stream()
                 .filter(p -> p.getCpActivo().matches("S"))
                 .collect(Collectors.toList());
-        tributosList = new ArrayList<>();
-        detalleList = new ArrayList<>();
         receptores = service.findAllReceptoresByIdEmp(login.getLogin().getIdEmpresa());
         condicionOperacionList = service.findAllCondicionesOp();
         plazosList = service.findAllCatalogoPlazos();
@@ -211,9 +214,20 @@ public class FacturaView implements Serializable {
         tipoGenDocls = catalogoService.getCatalogoTipoGenDoc();
         catRetencionIvaMhList = catalogoService.getCatalogoRetIvaMh();
         precioUnitario = BigDecimal.valueOf(0.00);
-
-        //recuperar el emisor.
+        
+        initTipoDocFe();
+    }
+    
+    private void initTipoDocFe(){
+        //por defecto se agrega el tipo de DTE Factura Electronica
+        factura.setTipodoc("01");
+        tipoDocListener();
+        
+        fechaInicio = new Date();
+        fechaFin = new Date();
         emisor = emisorService.findByPk(login.getLogin().getIdEmpresa());
+        
+        sinDatos = true;
     }
 
     public void tipoDocListener() {

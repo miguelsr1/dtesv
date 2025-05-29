@@ -59,8 +59,8 @@ public class FacturaService {
     public void init() {
         java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.WARNING);
     }
-    
-    public Contribuyentes findReceptoNull(){
+
+    public Contribuyentes findReceptoNull() {
         return entityManager.find(Contribuyentes.class, 5);
     }
 
@@ -225,14 +225,14 @@ public class FacturaService {
                                             link, finProcesamiento);
 
                                     if (jsonFromMh.get("codigoMsg").getAsString().equals("001")) {
-                                        response.setMensaje(response.getMensaje() );
+                                        response.setMensaje(response.getMensaje());
                                         GenericResponse resMail = sendMail(email,
                                                 String.valueOf(factura.getFacId()),
                                                 genJson.getJson(),
                                                 jsonFromMh.get("codigoGeneracion").getAsString(),
                                                 tipoDocumento,
                                                 observaciones);
-                                        
+
                                         if (resMail.getVal() == 0) {
                                             response.setMensaje(response.getMensaje() + " " + resMail.getMensaje());
                                         } else {
@@ -315,7 +315,7 @@ public class FacturaService {
         if (validationResult.isEmpty()) {
             respuesta.setVal(0);
             respuesta.setMensaje("no validation errors :-)");
-            log.info("no validation errors :-)");
+            log.info("SIN ERRORES DE VALIDACION EN JSON :-)");
         } else {
             respuesta.setVal(1);
             final StringBuilder builder = new StringBuilder();
@@ -346,12 +346,12 @@ public class FacturaService {
 
             HttpResponse<String> response = HttpClient.newHttpClient()
                     .send(request, HttpResponse.BodyHandlers.ofString());
-            log.info("respuesta firmardocumento MH" + response.body());
+            log.info("RESPONSE FIRMADOR MH" + response.body().substring(0, 20));
             signedJson = parser.fromJson(response.body(), JsonObject.class);
             if (signedJson.get("status").getAsString().matches("OK")) {
-                log.info("jsonFirmado: " + signedJson.get("body"));
+                log.info("JSON FIRMADO: " + signedJson.get("body").getAsString().substring(0, 20));
             } else {
-                log.error("error obteniendo jsonFirmado" + signedJson.get("status").getAsString() + ", "
+                log.error("ERROR OBTENIENDO JSON FIRMADO" + signedJson.get("status").getAsString() + ", "
                         + signedJson.get("body"));
             }
         } catch (URISyntaxException | IOException | InterruptedException e) {
@@ -406,8 +406,8 @@ public class FacturaService {
             jsonRequest.addProperty("codigoGeneracion", uuid);
             jsonRequest.add("documento", jsonFirmado);
 
-            log.info("Encabezado version: " + version.getTcpVersion() + ", ambiente: " + pmh.getPmJsonFesvMhAmbiente() + ", idEnvio: " + pmh.getPmJsonFesvMhIdenvio() + ", tipoDte: " + tipoDoc
-                    + ", codigoGeneracion: " + uuid + ", documento: " + jsonFirmado.toString());
+            log.info("ENCABEZADO VERSION: " + version.getTcpVersion() + ", ambiente: " + pmh.getPmJsonFesvMhAmbiente() + ", idEnvio: " + pmh.getPmJsonFesvMhIdenvio() + ", tipoDte: " + tipoDoc
+                    + ", codigoGeneracion: " + uuid);
 
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(new URI(pmh.getPmJsonFesvMhUrl()))

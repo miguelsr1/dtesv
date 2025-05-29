@@ -23,6 +23,26 @@
                 background: none;
             }
         </style>
+
+        <script>
+            function copiarTexto(elementId) {
+                console.log(elementId);
+                const element = document.getElementById(elementId);
+                if (!element)
+                    return;
+
+                const texto = element.innerText || element.value;
+                const tempInput = document.createElement("textarea");
+                tempInput.value = texto;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand("copy");
+                document.body.removeChild(tempInput);
+
+                // Opcional: mostrar mensaje desde JS si no usas growl
+                // alert("Texto copiado: " + texto);
+            }
+        </script>
     </h:head>
 
     <h:body>
@@ -42,109 +62,106 @@
             </p:dialog>
             <h:form id="frmHistorial">
                 <p:growl id="messages" showDetail="true"/>
-                <p:panel id="pnlParametros" style="display: #{history.displayParams ? 'block':'none'}"> 
+                <p:card id="pnlParametros" style="display: #{history.displayParams ? 'block':'none'}"> 
                     <h5>.:: PARAMETROS ::.</h5>
                     <p:separator />
-                    <p:panelGrid columns="4" layout="flex"
-                                 columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-3 xl:col-3,
-                                 col-12 md:col-2 xl:col-2, col-12 md:col-3 xl:col-3"
-                                 contentStyleClass="align-items-baseline ui-fluid">
-                        <p:outputLabel value="FECHA INICIO"/>
-                        <p:calendar value="#{history.startDate}"
-                                    id="pfechaIni"
-                                    pattern="dd/MM/yyyy"
-                                    mask="true"
-                                    locale="es"
-                                    navigator="true" autocomplete="false"
-                                    maxdate="#{login.hoy}">
-                        </p:calendar>
-                        <p:outputLabel value="FECHA FIN"/>
-                        <p:calendar value="#{history.endDate}"
-                                    id="pfechaFin"
-                                    pattern="dd/MM/yyyy"
-                                    mask="true"
-                                    locale="es"
-                                    navigator="true" autocomplete="false"
-                                    maxdate="#{login.hoy}">
-                        </p:calendar>
-                    </p:panelGrid>
-                    <p:panelGrid columns="4" layout="flex"
-                                 columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-3 xl:col-3,
-                                 col-12 md:col-2 xl:col-2, col-12 md:col-3 xl:col-3"
-                                 contentStyleClass="align-items-baseline ui-fluid">
-                        <p:outputLabel value="TIPO DE DOCUMENTO"/>
-                        <p:selectOneMenu id="selTipoDoc"
-                                         value="#{history.tipoDoc}">
-                            <f:selectItem itemLabel="TODOS" itemValue=""/>
-                            <f:selectItems value="#{history.tiposComprobantesLs}"
-                                           itemLabel="#{comp.tcpIdtipcom} - #{comp.tcpDescomprobante}"
-                                           itemValue="#{comp.tcpIdtipcom}" var="comp"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="NÚMERO CONTROL (DTE)"/>
-                        <p:inputText value="#{history.dte}"/>
-                    </p:panelGrid>
-                    <p:panelGrid columns="4" layout="flex"
-                                 columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-3 xl:col-3,
-                                 col-12 md:col-2 xl:col-2, col-12 md:col-3 xl:col-3"
-                                 contentStyleClass="align-items-baseline ui-fluid">
-                        <p:outputLabel value="ESTADO"/>
-                        <p:selectOneMenu id="selEstado" value="#{history.estado}">
-                            <f:selectItem itemLabel="TODOS" itemValue=""/>
-                            <f:selectItem itemLabel="PROCESADO" itemValue="PROCESADO"/>
-                            <f:selectItem itemLabel="OBSERVADO" itemValue="OBSERVADO"/>
-                            <f:selectItem itemLabel="ANULADO" itemValue="ANULADO"/>
-                        </p:selectOneMenu>
-                    </p:panelGrid>
-                    <p:panelGrid columns="2" layout="flex"
-                                 columnClasses="col-12 md:col-2 xl:col-2, col-12 col-12 md:col-8 xl:col-8"
-                                 contentStyleClass="align-items-baseline ui-fluid">
-                        <h:outputLabel value="RECEPTOR" for="selReceptor"/>
-                        <p:selectOneMenu id="selReceptor" appendTo="@this" filter="true"
-                                         filterMatchMode="contains"
-                                         value="#{history.nitReceptor}">
-                            <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
-                            <f:selectItems value="#{procFact.receptores}"
-                                           itemLabel="#{re.rucNitContribuyente} - #{re.rucNombreRazonsocial}"
-                                           itemValue="#{re.rucNitContribuyente}" var="re"/>
-                        </p:selectOneMenu>
-                    </p:panelGrid>
+
+                    <div class="grid formgrid ui-fluid">
+                        <div class="field mb-4 col-12 md:col-2">
+                            <p:outputLabel value="FECHA INICIO"/>
+                            <p:calendar value="#{history.startDate}"
+                                        id="pfechaIni"
+                                        pattern="dd/MM/yyyy"
+                                        mask="true"
+                                        locale="es"
+                                        navigator="true" autocomplete="false"
+                                        maxdate="#{login.hoy}">
+                            </p:calendar>
+                        </div>
+                        <div class="field mb-4 col-12 md:col-2">
+                            <p:outputLabel value="FECHA FIN"/>
+                            <p:calendar value="#{history.endDate}"
+                                        id="pfechaFin"
+                                        pattern="dd/MM/yyyy"
+                                        mask="true"
+                                        locale="es"
+                                        navigator="true" autocomplete="false"
+                                        maxdate="#{login.hoy}">
+                            </p:calendar>
+                        </div>
+                        <div class="field mb-4 col-12 md:col-4">
+                            <p:outputLabel value="TIPO DE DOCUMENTO"/>
+                            <p:selectOneMenu id="selTipoDoc"
+                                             value="#{history.tipoDoc}">
+                                <f:selectItem itemLabel="TODOS" itemValue=""/>
+                                <f:selectItems value="#{history.tiposComprobantesLs}"
+                                               itemLabel="#{comp.tcpIdtipcom} - #{comp.tcpDescomprobante}"
+                                               itemValue="#{comp.tcpIdtipcom}" var="comp"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="field mb-4 col-12 md:col-4">
+                            <p:outputLabel value="NÚMERO CONTROL (DTE)"/>
+                            <p:inputText value="#{history.dte}"/>
+                        </div>
+
+                        <div class="field mb-4 col-12 md:col-2">
+                            <p:outputLabel value="ESTADO"/>
+                            <p:selectOneMenu id="selEstado" value="#{history.estado}">
+                                <f:selectItem itemLabel="TODOS" itemValue=""/>
+                                <f:selectItem itemLabel="PROCESADO" itemValue="PROCESADO"/>
+                                <f:selectItem itemLabel="OBSERVADO" itemValue="OBSERVADO"/>
+                                <f:selectItem itemLabel="ANULADO" itemValue="ANULADO"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="field mb-4 col-12 md:col-10">
+                            <p:outputLabel value="RECEPTOR" for="selReceptor"/>
+                            <p:selectOneMenu id="selReceptor" appendTo="@this" filter="true"
+                                             filterMatchMode="contains"
+                                             value="#{history.nitReceptor}">
+                                <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
+                                <f:selectItems value="#{history.receptores}"
+                                               itemLabel="#{re.rucNitContribuyente} - #{re.rucNombreRazonsocial}"
+                                               itemValue="#{re.rucNitContribuyente}" var="re"/>
+                            </p:selectOneMenu>
+                        </div>
+                    </div>
+
                     <f:facet name="footer">
-                        <p:panelGrid columns="2" layout="flex"
-                                     columnClasses="col-12 xl:col-2 md:col-2, col-12 xl:col-2 md:col-2">
-                            <p:commandButton id="btnContinuar" value="BUSCAR DOCUMENTO(S)"
-                                             style="width: 100%"
-                                             onstart="PF('statusDialog').show();"
-                                             oncomplete="PF('statusDialog').hide();"
+                        <div class="flex align-items-center ">
+                            <p:commandButton id="btnContinuar" value="BUSCAR DOCUMENTO(S)" icon="pi pi-search"
+                                             onstart="PF('statusDialog').show();" class="mr-2"
+                                             oncomplete="PF('statusDialog').hide();" style="width: 16rem;"
                                              actionListener="#{history.findHistoryByFilters()}"
                                              update="pnlParametros pnlHistorial">
                             </p:commandButton>
                             <p:commandButton id="btnClean" value="LIMPIAR" update="frmHistorial"
-                                             style="width: 100%" actionListener="#{history.clean()}"
+                                             actionListener="#{history.clean()}" style="width: 16rem;"
                                              styleClass="ui-button-outlined"/>
-                        </p:panelGrid>
+                        </div>
                     </f:facet>
-                </p:panel>
+                </p:card>
 
                 <p:panel id="pnlHistorial" style="display: #{history.displayParams ? 'none':'block'}">
                     <h5>.:: HISTORIAL DOCUMENTOS EMITIDOS ::.</h5>
-                    <p:panelGrid columns="1" layout="flex"
-                                 columnClasses="col-12 md:col-12 xl:col-12">
-                        <p:panelGrid columns="5" layout="flex"
-                                     columnClasses="col-12 md:col-1 xl:col-1, col-12 md:col-3 xl:col-3, col-12 md:col-3 xl:col-3,col-12 md:col-3 xl:col-3, col-12 md:col-3 xl:col-2"
-                                     contentStyleClass="ui-fluid">
-                            <h:outputLabel value="OPCIONES "/>
-                            <p:commandButton value="Generar Excel" onclick="PF('wgDlgExcel').show()"
-                                             actionListener="#{history.excelOptionListener(1)}"
+                    <div class="flex justify-content-between">
+                        <div>
+
+                        </div>
+                        <div>
+                            <p:commandButton value="Generar Excel" onclick="PF('wgDlgExcel').show()" style="width: 12rem;"
+                                             actionListener="#{history.excelOptionListener(1)}" class="mr-2"
                                              icon="pi pi-file-excel"/>
-                            <p:commandButton value="Generar Excel MH" onclick="PF('wgDlgExcel').show()"
-                                             actionListener="#{history.excelOptionListener(2)}"
+                            <p:commandButton value="Generar Excel MH" onclick="PF('wgDlgExcel').show()" style="width: 12rem;" rendered="false"
+                                             actionListener="#{history.excelOptionListener(2)}" class="mr-2"
                                              icon="pi pi-file-excel"/>
-                            <p:commandButton value="Descarga masiva" onclick="PF('wgPdfJson').show()"
-                                             icon="pi pi-download"/>
-                            <p:commandButton value="NUEVA BUSQUEDA" update="frmHistorial"
-                                             actionListener="#{history.clean()}"
+                            <p:commandButton value="Descarga masiva" onclick="PF('wgPdfJson').show()" style="width: 12rem;"
+                                             class="mr-2" icon="pi pi-download"/>
+                            <p:commandButton value="Limpiar" update="frmHistorial" style="width: 12rem;"
+                                             actionListener="#{history.clean()}" 
                                              icon="pi pi-trash"/>
-                        </p:panelGrid>
+                        </div>
+                    </div>
+                    <p:panelGrid columns="1" layout="flex" columnClasses="col-12 md:col-12 xl:col-12">
 
                         <p:dataTable value="#{history.emitidosList}" var="item" id="tblHistory"
                                      paginator="true" paginatorPosition="bottom"
@@ -177,7 +194,13 @@
                                 <h:outputText value="#{item.estado}"/>
                             </p:column>
                             <p:column headerText="CODIGO GENERACION" sortBy="#{item.codigoGeneracion}" >
-                                <h:outputText value="#{item.codigoGeneracion}"/>
+                                <h:outputText id="txtCodGen" value="#{item.codigoGeneracion}"/>
+                                <p:commandButton icon="pi pi-copy"
+                                                 title="Copiar"
+                                                 onclick="copiarTexto('#{component.clientId}:txtCodGen');
+                                                         return false;"
+                                                 styleClass="p-button-text p-button-sm"
+                                                 process="@this" />
                             </p:column>
                             <p:column headerText="FECHA INGRESO" width="180" style="text-align: center">
                                 <p:outputLabel value="#{item.fechaIngreso}">
@@ -200,7 +223,7 @@
                 </p:panel>
             </h:form>
 
-            <p:dialog id="dlgImprimir" widgetVar="DialogImprimir"
+            <p:dialog id="dlgImprimir" widgetVar="DialogImprimir" 
                       appendTo="@(body)" dynamic="true" resizable="false" modal="true"
                       style="margin-bottom:0; min-height: 90%" closeOnEscape="true"
                       width="90%" height="90%" header="REPORTE FACTURA ELECTRÓNICA" position="center"
@@ -244,14 +267,10 @@
                         </p:panelGrid>
 
                         <f:facet name="footer">
-                            <p:panelGrid columns="2" layout="flex"
-                                         columnClasses="col-12 md:col-4 xl:col-4, col-12 md:col-4 xl:col-4"
-                                         contentStyleClass="align-items-baseline ui-fluid">
-                                <p:commandButton icon="pi pi-times" styleClass="ui-button-secondary"
-                                                 value="CANCELAR" onclick="PF('DialogEmailTo').hide();"/>
-                                <p:commandButton icon="pi pi-check" action="#{history.sendEmailTo}" 
-                                                 update="frmEmailTo msgCorreo" value="CONFIRMAR"/>
-                            </p:panelGrid>
+                            <p:commandButton icon="pi pi-check" action="#{history.sendEmailTo}" styleClass="mr-2"
+                                             style="width: 10rem" update="frmEmailTo msgCorreo" value="CONFIRMAR"/>
+                            <p:commandButton icon="pi pi-ban" styleClass="ui-button-secondary"
+                                             style="width: 10rem" value="CANCELAR" onclick="PF('DialogEmailTo').hide();"/>
                         </f:facet>
                     </p:panel>
                 </h:form>
@@ -269,13 +288,14 @@
                             <p:outputLabel value="#{history.jsonData}" escape="false" style="margin-bottom: 1rem"/>
                         </div>
                         <f:facet name="footer">
-                            <p:commandButton value="Descargar" ajax="false"
+                            <p:commandButton value="DESCARGAR" ajax="false" style="width: 10rem"
                                              onclick="PrimeFaces.monitorDownload(start, stop);"
                                              icon="pi pi-arrow-down" styleClass="mr-2">
                                 <p:fileDownload value="#{history.downloadFile}"/>
                             </p:commandButton>
                             <p:commandButton id="btnInf" icon="pi pi-times"
-                                             style="font-weight: bold" value="CERRAR" type="button"
+                                             styleClass="ui-button-secondary"
+                                             style="font-weight: bold; width: 10rem" value="CERRAR" type="button"
                                              onclick="PF('DialogJson').hide();"/>
                         </f:facet>
                     </p:panel>
@@ -284,7 +304,7 @@
 
 
             <p:dialog id="dlgExcel" widgetVar="wgDlgExcel" header="SELECCIONE EL PERIODO PARA GENERAR ARCHIVO EXCEL"
-                      height="80%" width="50%"
+                      height="80%" width="50%" 
                       resizable="false" modal="true" style="margin-bottom:0" position="center" closable="false">
                 <h:form id="frmExcel">
                     <p:panel>
@@ -314,16 +334,13 @@
                             </p:calendar>
                         </p:panelGrid>
                         <f:facet name="footer">
-                            <p:panelGrid columns="2" layout="flex"
-                                         columnClasses="col-12 xl:col-3 md:col-3, col-12 xl:col-3 md:col-3">
-                                <p:commandButton id="btnConfirm" icon="pi pi-file-excel" value="Generar" ajax="false"
-                                                 style="width: 100%" onclick="PF('statusDialog').hide();">
-                                    <p:fileDownload value="#{history.createDownloadableFile()}"/>
-                                </p:commandButton>
-                                <p:commandButton id="btnClose" icon="pi pi-times" value="Cerrar"
-                                                 style="width: 100%"
-                                                 onclick="PF('wgDlgExcel').hide();"/>
-                            </p:panelGrid>
+                            <p:commandButton id="btnConfirm" icon="pi pi-file-excel" value="GENERAR" ajax="false"
+                                             style="width: 10rem" onclick="PF('statusDialog').hide();" styleClass="mr-2">
+                                <p:fileDownload value="#{history.createDownloadableFile()}"/>
+                            </p:commandButton>
+                            <p:commandButton id="btnCerrar" icon="pi pi-ban" value="CANCELAR"
+                                             styleClass="ui-button-secondary"
+                                             style="width: 10rem" onclick="PF('wgDlgExcel').hide();"/>
                         </f:facet>
                     </p:panel>
                 </h:form>
@@ -335,21 +352,7 @@
                       height="80%" width="50%"
                       resizable="false" modal="true" style="margin-bottom:0" position="center" closable="false">
                 <h:form id="frmPdfJson">
-                    <p:panel>
-                        <f:facet name="footer">
-                            <p:panelGrid columns="2" layout="flex"
-                                         columnClasses="col-12 xl:col-3 md:col-3, col-12 xl:col-3 md:col-3">
-                                <p:commandButton id="btnConfirmar" icon="pi pi-download" value="Iniciar"
-                                                 style="width: 100%"
-                                                 onstart="PF('dlgProgress').show();"
-                                                 oncomplete="PF('dlgProgress').hide();"
-                                                 onclick="PF('wgPdfJson').hide();"
-                                                 actionListener="#{history.procesoDescargaPeriodo()}">
-                                </p:commandButton>
-                                <p:commandButton id="btnCerrar" icon="pi pi-times" value="Cancelar"
-                                                 style="width: 100%" onclick="PF('wgPdfJson').hide();"/>
-                            </p:panelGrid>
-                        </f:facet>
+                    <p:panel>                        
                         <p:panelGrid columns="4" layout="flex"
                                      columnClasses="col-12 md:col-2 xl:col-2 text-right font-bold,
                                      col-12 md:col-4 xl:col-4, col-12 md:col-2 xl:col-2 text-right font-bold,
@@ -375,6 +378,19 @@
                                 <p:ajax event="dateSelect" process="@this"/>
                             </p:calendar>
                         </p:panelGrid>
+
+                        <f:facet name="footer">
+                            <p:commandButton id="btnConfirmar" icon="pi pi-download" value="Iniciar"
+                                             style="width: 10rem" styleClass="mr-2"
+                                             onstart="PF('dlgProgress').show();"
+                                             oncomplete="PF('dlgProgress').hide();"
+                                             onclick="PF('wgPdfJson').hide();"
+                                             actionListener="#{history.procesoDescargaPeriodo()}">
+                            </p:commandButton>
+                            <p:commandButton id="btnCerrar" icon="pi pi pi-ban" value="Cancelar"
+                                             styleClass="ui-button-secondary"
+                                             style="width: 10rem" onclick="PF('wgPdfJson').hide();"/>
+                        </f:facet>
                     </p:panel>
                 </h:form>
             </p:dialog>

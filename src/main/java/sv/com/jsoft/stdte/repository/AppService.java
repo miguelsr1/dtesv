@@ -373,20 +373,12 @@ public class AppService {
         return resultado;
     }
 
-    public List<Contribuyentes> findAllEmisores() {
-        List<Contribuyentes> resultado = new ArrayList<>();
-        try {
-            resultado = em.createQuery("from Contribuyentes c where c.rucTipoContribuyente = 'EMISOR'").getResultList();
-        } catch (Exception e) {
-            log.error("error findAllEmisores " + e.getMessage());
-        }
-        return resultado;
-    }
-
     public List<Contribuyentes> findAllReceptoresByIdEmp(Integer idEmp) {
         List<Contribuyentes> resultado = new ArrayList<>();
         try {
-            resultado = em.createQuery("from Contribuyentes c where c.rucTipoContribuyente = 'RECEPTOR'").getResultList();
+            resultado = em.createQuery("SELECT c FROM Contribuyentes c WHERE c.rucTipoContribuyente = 'RECEPTOR' AND c.idEmpresa = :idEmp")
+                    .setParameter("idEmp", idEmp)
+                    .getResultList();
         } catch (Exception e) {
             log.error("error findAllEmisores " + e.getMessage());
         }

@@ -34,7 +34,7 @@
                 </p:selectOneMenu>
             </div>
         </div>
-        
+
         <p:panelGrid columns="4" layout="flex" id="pnlExport"
                      style="display: #{procFact.factura.tipodoc eq '11' ? 'block':'none'}"
                      columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
@@ -123,18 +123,14 @@
                      columnClasses="col-12 md:col-4 xl:col-4"
                      contentStyleClass="align-items-baseline ui-fluid">
             <f:facet name="footer">
-                <p:panelGrid columns="1" layout="flex"
-                             columnClasses="col-12 md:col-2 xl:col-2"
-                             contentStyleClass="align-items-baseline ui-fluid">
-                    <p:commandButton value="CONTINUAR"
-                                     action="#{procFact.onClickButton()}"
-                                     update="mainFrm"
-                                     icon="pi pi-arrow-right"
-                                     oncomplete="setTimeout(function() { $('[id$=messages]').hide(2000); }, 2000);" >
-                        <p:confirm header="CONFIRMAR" icon="pi pi-exclamation-triangle"
-                                   message="¿Está seguro de continuar con el periodo seleccionado?"/>
-                    </p:commandButton>
-                </p:panelGrid>
+                <p:commandButton value="CONTINUAR"
+                                 action="#{procFact.onClickButton()}"
+                                 update="mainFrm"
+                                 icon="pi pi-arrow-right"
+                                 oncomplete="setTimeout(function() { $('[id$=messages]').hide(2000); }, 2000);" >
+                    <p:confirm header="CONFIRMAR" icon="pi pi-exclamation-triangle"
+                               message="¿Está seguro de continuar con el periodo seleccionado?"/>
+                </p:commandButton>
             </f:facet>
         </p:panelGrid>
         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true"

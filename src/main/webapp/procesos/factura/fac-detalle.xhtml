@@ -6,114 +6,139 @@
               xmlns:jsf="http://xmlns.jcp.org/jsf">
     <p:panel id="detalle">
         <h5>.:: INGRESE DETALLE ::.</h5>
+        <p:separator/>
         <p:messages id="msgDetalle" closable="true"/>
-        <p:panelGrid columns="4" layout="flex" id="grdProd"
-                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
-                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
-                     contentStyleClass="align-items-baseline ui-fluid">
-            <h:outputLabel value="PRODUCTO" for="selProducto" />
-            <p:selectOneMenu id="selProducto" appendTo="@this"
-                             filter="true" filterMatchMode="contains"
-                             value="#{procFact.codProducto}" autoWidth="false">
-                <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
-                <f:selectItems value="#{procFact.productosList}"
-                               itemLabel="#{prod.codigoProd} - #{prod.descripcion}"
-                               itemValue="#{prod.codigoProd}" var="prod"/>
-                <p:ajax event="itemSelect" listener="#{procFact.selProductoListener}"
-                        update="detalle tblTributos"/>
-            </p:selectOneMenu>
-            <h:outputLabel value="DESCRIPCION" for="txtDescripcion"/>
-            <h:outputText id="txtDescripcion" value="#{procFact.producto.descripcion}">
-            </h:outputText>
-        </p:panelGrid>
-        <p:panelGrid columns="6" layout="flex" id="grdCant"
-                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
-                     col-12 md:col-2 xl:col-2, col-12 md:col-2 xl:col-2,
-                     col-12 md:col-1 xl:col-1, col-12 md:col-1 xl:col-1"
-                     contentStyleClass="align-items-baseline ui-fluid">
-            <h:outputLabel value="CANTIDAD" for="txtCantidad"/>
-            <p:inputNumber id="txtCantidad" decimalPlaces="0"
-                           decimalSeparator="." thousandSeparator=","
-                           minValue="0" value="#{procFact.cantidad}">
-                <p:ajax event="change" update="tblTributos"
-                        listener="#{procFact.cantidadListener()}"/>
-            </p:inputNumber>
-            <h:outputLabel value="PRECIO UNITARIO" for="txtPrecioUnitario"/>
-            <p:inplace>
-                <p:inputText id="txtPrecioUnitario"
-                             value="#{procFact.precioUnitario}" style="font-weight: bold">
-                    <f:converter converterId="bigDecimalConverter"/>
-                    <p:ajax event="change" listener="#{procFact.changeValorUnitario()}"
-                            process="@this" update="txtPrecioUnitario" partialSubmit="true"/>
-                </p:inputText>
-            </p:inplace>
-            <h:outputLabel value="EXENTO" for="boolExento"
-                           rendered="#{procFact.factura.tipodoc ne '14'}"/>
-            <p:selectBooleanCheckbox disabled="false"
-                                     rendered="#{procFact.factura.tipodoc ne '14'}"
-                                     value="#{procFact.producto.exento}" id="boolExento" >
-                <p:ajax event="change" update="tblTributos"/>
-            </p:selectBooleanCheckbox>
-        </p:panelGrid>
-        <p:panelGrid columns="4" layout="flex" id="grdDesc"
-                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
-                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
-                     contentStyleClass="align-items-baseline ui-fluid">
-            <h:outputLabel
-                value="#{procFact.factura.tipodoc eq '14' ? 'IMPUESTO SOBRE LA RENTA':'DESCUENTO'}"
-                for="txtDescuento"/>
-            <p:inputNumber id="txtDescuento" decimalPlaces="2"
-                           rendered="#{procFact.factura.tipodoc ne '14'}"
-                           decimalSeparator="." thousandSeparator=","
-                           minValue="0.00" value="#{procFact.descuento}"
-                           maxValue="#{procFact.precioUnitario > 0.00 ? procFact.precioUnitario:'0.00'}">
-            </p:inputNumber>
-            <p:toggleSwitch id="txtImpRet" value="#{procFact.aplicarImpRen}"
-                            rendered="#{procFact.factura.tipodoc eq '14'}"/>
-            <h:outputLabel value="UNIDAD DE MEDIDA" for="selUnidadMedida"/>
-            <p:selectOneMenu id="selUnidadMedida"
-                             value="#{procFact.producto.unidadMedida.umCodigo}">
-                <f:selectItems value="#{procFact.unidadesMedidaList}" var="um"
-                               itemDisabled="true"
-                               itemLabel="#{um.umDescripcion}" itemValue="#{um.umCodigo}"/>
-            </p:selectOneMenu>
-        </p:panelGrid>
-        <p:panelGrid columns="4" layout="flex" id="grdRetIVA"
-                     rendered="#{procFact.factura.tipodoc eq '14'}"
-                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4,
-                     col-12 md:col-2 xl:col-2, col-12 md:col-4 xl:col-4"
-                     contentStyleClass="align-items-baseline ui-fluid">
-            <h:outputLabel value="RETENCION IVA 13%" for="txtRetIVA"/>
-            <p:toggleSwitch id="txtRetIVA" value="#{procFact.aplicarRetIva}"/>
-            <h:outputLabel/>
-            <h:outputLabel/>
-        </p:panelGrid>
-        <p:panelGrid columns="6" layout="flex" id="grdOth"
-                     columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-2 xl:col-2,
-                     col-12 md:col-2 xl:col-2, col-12 md:col-2 xl:col-2,
-                     col-12 md:col-2 xl:col-2, col-12 md:col-2 xl:col-2"
-                     contentStyleClass="align-items-baseline ui-fluid">
-            <h:outputLabel value="Otros(Créditos/Cargos)" for="txtCreditos"/>
-            <p:inputNumber id="txtCreditos" decimalPlaces="2"
-                           minValue="0.00" value="#{procFact.otrosCargos}">
-            </p:inputNumber>
-            <h:outputLabel value="REFERENCIA" for="txtReferencia"/>
-            <p:inputText id="txtReferencia" onkeyup="this.value = this.value.toUpperCase();"
-                         value="#{procFact.referencia}">
-            </p:inputText>
-            <h:outputLabel value="TIPO" for="txtTipo"/>
-            <p:selectOneMenu id="txtTipo" value="#{procFact.producto.cpCitId}"
-                             appendTo="@this" autoWidth="false">
-                <f:selectItems value="#{procFact.tipoItemsList}" var="itemls"
-                               itemDisabled="true"
-                               itemLabel="#{itemls.citId} - #{itemls.valor}"
-                               itemValue="#{itemls.citId}"/>
-            </p:selectOneMenu>
-        </p:panelGrid>
-        <p:panelGrid columns="2" layout="flex" id="grdObsDet"
+
+        <div class="ui-fluid formgrid grid">
+            <div class="col-12 md:col-6">
+                <p:outputPanel id="dvProducto">
+                    <div class="grid">
+                        <div class="field col-12 md:col-12">
+                            <p:outputLabel value="PRODUCTO" for="selProducto" />
+                            <p:selectOneMenu id="selProducto" appendTo="@this"
+                                             filter="true" filterMatchMode="contains"
+                                             value="#{procFact.codProducto}" autoWidth="false">
+                                <f:selectItem itemLabel=" SELECCIONAR " noSelectionOption="true"/>
+                                <f:selectItems value="#{procFact.productosList}"
+                                               itemLabel="#{prod.codigoProd} - #{prod.descripcion}"
+                                               itemValue="#{prod.codigoProd}" var="prod"/>
+                                <p:ajax event="itemSelect" listener="#{procFact.selProductoListener}"
+                                        update="detalle tblTributos"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="field col-12 md:col-3">
+                            <p:outputLabel value="CANTIDAD" for="txtCantidad"/>
+                            <p:inputNumber id="txtCantidad" decimalPlaces="0" inputStyle="text-align: right"
+                                           decimalSeparator="." thousandSeparator=","
+                                           minValue="0" value="#{procFact.cantidad}">
+                                <p:ajax event="change" update="tblTributos"
+                                        listener="#{procFact.cantidadListener()}"/>
+                            </p:inputNumber>
+                        </div>
+                        <div class="field col-12 md:col-3">
+                            <p:outputLabel value="PRECIO UNITARIO" for="txtPrecioUnitario"/>
+                            <p:inputText id="txtPrecioUnitario"
+                                         value="#{procFact.precioUnitario}" style="font-weight: bold; text-align: right">
+                                <f:converter converterId="bigDecimalConverter"/>
+                                <p:ajax event="change" listener="#{procFact.changeValorUnitario()}"
+                                        process="@this" update="txtPrecioUnitario" partialSubmit="true"/>
+                            </p:inputText>
+                        </div>
+
+                        <div class="field col-12 md:col-3">
+                            <p:outputLabel
+                                value="#{procFact.factura.tipodoc eq '14' ? 'IMPUESTO SOBRE LA RENTA':'DESCUENTO'}"
+                                for="txtDescuento"/>
+                            <p:inputNumber id="txtDescuento" decimalPlaces="2" inputStyle="text-align: right"
+                                           rendered="#{procFact.factura.tipodoc ne '14'}"
+                                           decimalSeparator="." thousandSeparator=","
+                                           minValue="0.00" value="#{procFact.descuento}"
+                                           maxValue="#{procFact.precioUnitario > 0.00 ? procFact.precioUnitario:'0.00'}">
+                            </p:inputNumber>
+                        </div>
+                        <div class="field col-12 md:col-3">
+                            <p:outputLabel value="UNIDAD DE MEDIDA" for="selUnidadMedida"/>
+                            <p:selectOneMenu id="selUnidadMedida"
+                                             value="#{procFact.producto.unidadMedida.umCodigo}">
+                                <f:selectItem itemLabel=" SELECCIONAR " noSelectionOption="true"/>
+                                <f:selectItems value="#{procFact.unidadesMedidaList}" var="um"
+                                               itemDisabled="true"
+                                               itemLabel="#{um.umDescripcion}" itemValue="#{um.umCodigo}"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="field col-12 md:col-3">
+                            <p:outputLabel value="Otros(Créditos/Cargos)" for="txtCreditos"/>
+                            <p:inputNumber id="txtCreditos" decimalPlaces="2" minValue="0.00" value="#{procFact.otrosCargos}"/>
+                        </div>
+                        <div class="field col-12 md:col-3">
+                            <p:outputLabel value="REFERENCIA" for="txtReferencia"/>
+                            <p:inputText id="txtReferencia" onkeyup="this.value = this.value.toUpperCase();"
+                                         value="#{procFact.referencia}">
+                            </p:inputText>
+                        </div>
+                        <div class="field col-12 md:col-6">
+                            <p:outputLabel value="TIPO" for="txtTipo"/>
+                            <p:selectOneMenu id="txtTipo" value="#{procFact.producto.cpCitId}"
+                                             appendTo="@this" autoWidth="false">
+                                <f:selectItem itemLabel=" SELECCIONAR " noSelectionOption="true"/>
+                                <f:selectItems value="#{procFact.tipoItemsList}" var="itemls"
+                                               itemDisabled="true"
+                                               itemLabel="#{itemls.citId} - #{itemls.valor}"
+                                               itemValue="#{itemls.citId}"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="col-12 md:col-3">
+                            <p:selectBooleanCheckbox disabled="false" itemLabel="EXENTO" style="margin-bottom: 0.5rem"
+                                                     rendered="#{procFact.factura.tipodoc ne '14'}"
+                                                     value="#{procFact.producto.exento}" id="boolExento" >
+                                <p:ajax event="change" update="tblTributos"/>
+                            </p:selectBooleanCheckbox> <br/>
+                        </div>
+                        <div class="col-12 md:col-3">
+                            <p:toggleSwitch id="txtImpRet" value="#{procFact.aplicarImpRen}"
+                                            rendered="#{procFact.factura.tipodoc eq '14'}"/>
+                        </div>
+                        <div class="col-12 md:col-3">
+                            <p:outputLabel value="RETENCION IVA 13%" for="txtRetIVA"/>
+                            <p:toggleSwitch id="txtRetIVA" value="#{procFact.aplicarRetIva}"/>
+                        </div>
+                    </div>
+                </p:outputPanel>
+            </div>
+            <div class="col-12 md:col-6">
+                <p:panel id="tblTributos" style="display: #{procFact.producto.exento or procFact.factura.tipodoc eq '14' ? 'none':'block'}">
+                    <p:panelGrid columns="1" layout="flex" rendered="#{!procFact.producto.exento}"
+                                 columnClasses="col-12 md:col-12 xl:col-12"
+                                 contentStyleClass="align-items-baseline ui-fluid">
+                        <p:dataTable value="#{procFact.tributosList}"
+                                     var="trib" emptyMessage="" id="tblTrib"
+                                     reflow="true" size="small" tableStyle="table-layout: auto;"
+                                     scrollable="false" rows="3">
+                            <p:column headerText="IMPUESTO">
+                                <h:outputText value="#{trib.descripcion}"/>
+                            </p:column>
+                            <p:column headerText="MONTO IMPUESTO">
+                                <h:outputText value="#{trib.montoImpuesto}">
+                                    <f:converter converterId="biDecimalTributoConverter"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="PORCENTAJE IMPUESTO">
+                                <h:outputText value="13%"/>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panelGrid>
+                </p:panel>
+
+            </div>
+        </div>
+
+        <div class="field col-12 md:col-3">
+
+        </div>
+        <p:panelGrid columns="2" layout="flex" id="grdObsDet" rendered="false"
                      columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-10 xl:col-10"
                      contentStyleClass="align-items-baseline ui-fluid">
-            <h:outputLabel value="OBSERVACION"/>
+            <p:outputLabel value="OBSERVACION"/>
             <p:inputText onkeyup="this.value = this.value.toUpperCase();"
                          value="#{procFact.obsDetalle}" maxlength="100"/>
         </p:panelGrid>
@@ -122,31 +147,9 @@
                      contentStyleClass="align-items-baseline ui-fluid">
             <p:commandButton value="AGREGAR DETALLE"
                              action="#{procFact.addDetail}"
-                             update="grdDetail grdProd grdCant grdOth tblTributos grdDesc grdRetIVA grdObsDet"
+                             update="dvProducto grdDetail   tblTributos grdObsDet"
                              icon="pi pi-plus"/>
         </p:panelGrid>
-        <p:panel id="tblTributos" style="display: #{procFact.producto.exento or procFact.factura.tipodoc eq '14' ? 'none':'block'}">
-            <p:panelGrid columns="1" layout="flex" rendered="#{!procFact.producto.exento}"
-                         columnClasses="col-12 md:col-12 xl:col-12"
-                         contentStyleClass="align-items-baseline ui-fluid">
-                <p:dataTable value="#{procFact.tributosList}"
-                             var="trib" emptyMessage="" id="tblTrib"
-                             reflow="true" size="small" tableStyle="table-layout: auto;"
-                             scrollable="false" rows="3">
-                    <p:column headerText="IMPUESTO">
-                        <h:outputText value="#{trib.descripcion}"/>
-                    </p:column>
-                    <p:column headerText="MONTO IMPUESTO">
-                        <h:outputText value="#{trib.montoImpuesto}">
-                            <f:converter converterId="biDecimalTributoConverter"/>
-                        </h:outputText>
-                    </p:column>
-                    <p:column headerText="PORCENTAJE IMPUESTO">
-                        <h:outputText value="13%"/>
-                    </p:column>
-                </p:dataTable>
-            </p:panelGrid>
-        </p:panel>
 
         <p:panelGrid columns="1" layout="flex" id="grdDetail"
                      style="display: #{procFact.detalleList.size() > 0 ? 'block':'none'}"

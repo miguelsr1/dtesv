@@ -45,11 +45,7 @@ import net.sf.jasperreports.engine.JRException;
 @Slf4j
 public class HistorialDocsBean implements Serializable {
 
-    private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle("bundle");
-
-    @Getter
-    @Setter
-    private List<BitacoraDeclaracionHacienda> emitidosList;
+    private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle("bundle");   
 
     @Getter
     @Setter
@@ -76,9 +72,6 @@ public class HistorialDocsBean implements Serializable {
     @Setter
     private String jsonData, jsonName;
 
-    @Getter
-    @Setter
-    private List<BitacoraDeclaracionHacienda> filteredList;
 
     @Getter
     @Setter
@@ -91,6 +84,18 @@ public class HistorialDocsBean implements Serializable {
     @Getter
     @Setter
     private Integer progress;
+    
+    @Getter
+    @Setter
+    private List<BitacoraDeclaracionHacienda> filteredList;
+    
+    @Getter
+    @Setter
+    private List<Contribuyentes> receptores;
+    
+    @Getter
+    @Setter
+    private List<BitacoraDeclaracionHacienda> emitidosList;
 
     private boolean procesoExitoso;
 
@@ -118,10 +123,6 @@ public class HistorialDocsBean implements Serializable {
 
     @Inject
     BitacoraService bitacoraService;
-
-    @Getter
-    @Setter
-    private List<Contribuyentes> receptores;
 
     @Getter
     @Setter

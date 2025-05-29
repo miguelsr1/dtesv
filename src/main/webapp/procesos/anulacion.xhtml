@@ -53,31 +53,25 @@
                 <div class="box-root padding-top--24 flex-flex flex-direction--column">
                     <div class="formBg">
                         <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <p:panel id="pnlAnular" rendered="#{!anular.continuar}">
+                            <p:card id="pnlAnular" rendered="#{!anular.continuar}">
                                 <h5>.:: INFORMACION ::.</h5>
-                                <p:panelGrid columns="1" layout="flex" columnClasses="col-12"
-                                             contentStyleClass="align-items-baseline ui-fluid">
-                                    <h:outputText
-                                        value="ES IMPORTANTE HABER INGRESADO LA NUEVA FACTURA CON LA CUAL SE SUSTITUIRÁ LA QUE SE EMITIÓ CON ERRORES"/>
-                                    <h:outputText
-                                        value="SI YA REALIZÓ ESTE PROCESO PRESIONE BOTÓN CONTINUAR, DE LO CONTRARIO PRESIONE BOTON INGRESAR DATOS">
-                                    </h:outputText>
-                                    <h:outputText
-                                        value="SI EL TIPO DE ANULACIÓN ES POR RESCINDIR DE LA OPERACIÓN REALIZADA, NO ES NECESARIO EL PASO ANTERIOR Y PUEDE CONTINUAR"/>
+                                <p:panelGrid columns="1" layout="flex" columnClasses="col-12" contentStyleClass="align-items-baseline ui-fluid">
+                                    <p:outputLabel value="ES IMPORTANTE HABER INGRESADO LA NUEVA FACTURA CON LA CUAL SE SUSTITUIRÁ LA QUE SE EMITIÓ CON ERRORES"/>
+                                    <p:outputLabel value="SI YA REALIZÓ ESTE PROCESO PRESIONE BOTÓN CONTINUAR, DE LO CONTRARIO PRESIONE BOTON INGRESAR DATOS" />
+                                    <p:outputLabel value="SI EL TIPO DE ANULACIÓN ES POR RESCINDIR DE LA OPERACIÓN REALIZADA, NO ES NECESARIO EL PASO ANTERIOR Y PUEDE CONTINUAR"/>
                                 </p:panelGrid>
-                                <p:panelGrid columns="2" layout="flex"
-                                             columnClasses="col-12 md:col-2 xl:col-2,col-12 md:col-2 xl:col-2"
-                                             contentStyleClass="align-items-baseline ui-fluid">
-                                    <p:commandButton icon="pi pi-check" value="CONTINUAR"
-                                                     action="#{anular.continuarListener}"
-                                                     styleClass="ui-button-info"/>
-                                    <p:commandButton icon="pi pi-database" value="INGRESAR DATOS"
-                                                     action="#{anular.ingresarDatosListener()}"
-                                                     styleClass="ui-button-secondary"/>
-                                </p:panelGrid>
-                            </p:panel>
 
-                            <p:panel id="pnlCodigoGen" rendered="#{anular.continuar}">
+                                <f:facet name="footer">
+                                    <div class="flex align-items-center ">
+                                        <p:commandButton icon="pi pi-check" value="CONTINUAR" style="width: 11rem"
+                                                         action="#{anular.continuarListener}" styleClass="ui-button-info mr-2"/>
+                                        <p:commandButton icon="pi pi-external-link" value="INGRESAR DTE" style="width: 11rem"
+                                                         action="#{anular.ingresarDatosListener()}" styleClass="ui-button-secondary"/>
+                                    </div>
+                                </f:facet>
+                            </p:card>
+
+                            <p:card id="pnlCodigoGen" rendered="#{anular.continuar}">
                                 <h5>.:: PROCESO INVALIDACION DE FACTURA EMITIDA ::.</h5>
 
                                 <h:outputText value="DATOS DE FACTURA A INVALIDAR" styleClass="title font-bold" style="color: #2196f3; font-size: larger;"/>
@@ -117,10 +111,12 @@
                                         <h:outputText class="block" id="displaysub"/>
                                     </p:inputTextarea>
                                 </p:panelGrid>
+
+
                                 <h:outputText value="SELECCIONE LA NUEVA FACTURA"
                                               styleClass="title font-bold" id="lblNuevaFact"
-                                              style="color: #2196f3; font-size: larger; margin-top: 2%; display: #{anular.tipoAnulacion.matches('2') ? 'none':'block'}"/>
-                                <p:panelGrid id="gdTabEmitidas" columns="1" layout="flex" columnClasses="col-12" style=" display: #{anular.tipoAnulacion.matches('2') ? 'none':'block'}">
+                                              style="color: #2196f3; font-size: larger; margin-top: 2%; display: #{anular.tipoAnulacion eq null ? 'none' : (anular.tipoAnulacion.matches('2') ? 'none':'block')}"/>
+                                <p:panelGrid id="gdTabEmitidas" columns="1" layout="flex" columnClasses="col-12" style="display: #{anular.tipoAnulacion eq null ? 'none' : (anular.tipoAnulacion.matches('2') ? 'none':'block')}">
                                     <p:dataTable id="tblEmitidas" value="#{anular.docEmitidosList}" var="fact"
                                                  paginator="true" paginatorPosition="bottom" showGridlines="true"
                                                  styleClass="table-bordered" rows="6"
@@ -152,17 +148,16 @@
                                     </p:dataTable>
                                 </p:panelGrid>
                                 <f:facet name="footer">
-                                    <p:panelGrid columns="1" layout="flex"
-                                                 columnClasses="col-12 md:col-2 xl:col-2"
-                                                 contentStyleClass="align-items-baseline ui-fluid">
-                                        <p:commandButton value="PROCESAR"
-                                                         action="#{anular.enviarAnulacion}"
-                                                         update="frmAnular" icon="pi pi-send"
-                                                         styleClass="rounded-button">
-                                            <p:confirm header="CONFIRMAR" icon="pi pi-exclamation-triangle"
-                                                       message="¿ESTÁ SEGURO DE CONTINUAR?"/>
-                                        </p:commandButton>
-                                    </p:panelGrid>
+                                    <p:commandButton value="PROCESAR" style="width: 12rem" styleClass="mr-2"
+                                                     action="#{anular.enviarAnulacion}"
+                                                     update="frmAnular" icon="pi pi-cog">
+                                        <p:confirm header="CONFIRMAR" icon="pi pi-exclamation-triangle"
+                                                   message="¿ESTÁ SEGURO DE CONTINUAR?"/>
+                                    </p:commandButton>
+                                    <p:commandButton icon="pi pi-ban" value="CANCELAR" style="width: 11rem" 
+                                                     onclick="location.reload(); return false;"
+                                                     styleClass="ui-button-secondary"/>
+
                                     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true"
                                                      width="400">
                                         <p:commandButton value="NO" styleClass="ui-confirmdialog-no ui-button-flat"
@@ -171,7 +166,7 @@
                                                          type="button"/>
                                     </p:confirmDialog>
                                 </f:facet>
-                            </p:panel>
+                            </p:card>
                         </div>
                     </div>
                 </div>
@@ -189,12 +184,8 @@
                             <h:outputLabel value="#{anular.mensaje}"/>
                         </p:panelGrid>
                         <f:facet name="footer">
-                            <p:panelGrid columns="1" layout="flex" columnClasses="col-12 md:col-4 xl:col-4"
-                                         contentStyleClass="align-items-baseline ui-fluid">
-                                <p:commandButton icon="pi pi-check" value="ACEPTAR"
-                                                 action="#{anular.clean()}"
-                                                 styleClass="rounded-button ui-button-info font-bold"/>
-                            </p:panelGrid>
+                            <p:commandButton icon="pi pi-check" value="ACEPTAR"
+                                             action="#{anular.clean()}"/>
                         </f:facet>
                     </p:panel>
                 </h:form>
