@@ -188,7 +188,7 @@ public class FacturaView implements Serializable {
     @PostConstruct
     public void init() {
         factura = new Buzoncsv();
-                
+
         receptor = new Contribuyentes();
         producto = new CatalogoProductos();
 
@@ -203,7 +203,7 @@ public class FacturaView implements Serializable {
                 .stream()
                 .filter(p -> p.getCpActivo().matches("S"))
                 .collect(Collectors.toList());
-        receptores = service.findAllReceptoresByIdEmp(login.getLogin().getIdEmpresa());
+        receptores = service.findAllReceptoresByIdEmp(login.getLogin().getIdEmpresa(), false);
         condicionOperacionList = service.findAllCondicionesOp();
         plazosList = service.findAllCatalogoPlazos();
         formaPagoList = service.findAllCatalogoFormaPago();
@@ -214,19 +214,19 @@ public class FacturaView implements Serializable {
         tipoGenDocls = catalogoService.getCatalogoTipoGenDoc();
         catRetencionIvaMhList = catalogoService.getCatalogoRetIvaMh();
         precioUnitario = BigDecimal.valueOf(0.00);
-        
+
         initTipoDocFe();
     }
-    
-    private void initTipoDocFe(){
+
+    private void initTipoDocFe() {
         //por defecto se agrega el tipo de DTE Factura Electronica
         factura.setTipodoc("01");
         tipoDocListener();
-        
+
         fechaInicio = new Date();
         fechaFin = new Date();
         emisor = emisorService.findByPk(login.getLogin().getIdEmpresa());
-        
+
         sinDatos = true;
     }
 
@@ -247,14 +247,20 @@ public class FacturaView implements Serializable {
         if (factura.getTipodoc().equals("01")) {
             sinDatos = true;
             receptor = facturaService.findReceptoNull();
-        } else if (factura.getTipodoc().matches("05|06")) {
-            tipoCompRel = tiposComprobantesLs.stream().filter(tc -> tc.getTcpIdtipcom().matches("03|07"))
-                    .collect(Collectors.toList());
-        } else if (factura.getTipodoc().matches("07")) {
-            tipoCompRel = tiposComprobantesLs.stream()
-                    .filter(tc -> tc.getTcpIdtipcom().matches("01|03|14"))
-                    .collect(Collectors.toList());
-            factura.setMonto_sujeto_gravado(new BigDecimal("0.00"));
+            receptores = service.findAllReceptoresByIdEmp(login.getLogin().getIdEmpresa(), false);
+        } else {
+            receptor = new Contribuyentes();
+            receptores = service.findAllReceptoresByIdEmp(login.getLogin().getIdEmpresa(), true);
+            
+            if (factura.getTipodoc().matches("05|06")) {
+                tipoCompRel = tiposComprobantesLs.stream().filter(tc -> tc.getTcpIdtipcom().matches("03|07"))
+                        .collect(Collectors.toList());
+            } else if (factura.getTipodoc().matches("07")) {
+                tipoCompRel = tiposComprobantesLs.stream()
+                        .filter(tc -> tc.getTcpIdtipcom().matches("01|03|14"))
+                        .collect(Collectors.toList());
+                factura.setMonto_sujeto_gravado(new BigDecimal("0.00"));
+            }
         }
     }
 
@@ -488,26 +494,31 @@ public class FacturaView implements Serializable {
                     .reduce(BigDecimal::add)
                     .get();
             calcularTotales();
-
-            //REINICIAR VALORES PARA INGRESAR OTRO DETALLE
-            codProducto = null;
-            producto = new CatalogoProductos();
-            cantidad = 0;
-            exento = Boolean.FALSE;
-            descuento = BigDecimal.valueOf(0.00);
-            motivoDescuento = null;
-            otrosCargos = BigDecimal.valueOf(0.00);
-            referencia = null;
-            retencionIva = BigDecimal.valueOf(0.00);
-            aplicarRetIva = Boolean.FALSE;
-            aplicarImpRen = Boolean.FALSE;
-            obsDetalle = null;
-            precioUnitario = BigDecimal.valueOf(0.00);
-            tributosList.forEach(c -> c.setMontoImpuesto(BigDecimal.valueOf(0.00)));
-            PrimeFaces.current().ajax().update("mainFrm:tabview:grdDetail");
+            limpiarDlgItem();
+            PrimeFaces.current().executeScript("PF('dlgDetalleItem').hide()");
         } else {
             ViewUtils.showMessageError("NO HA INGRESADO UNA CANTIDAD AL DETALLE");
         }
+    }
+
+    public void limpiarDlgItem() {
+        //REINICIAR VALORES PARA INGRESAR OTRO DETALLE
+        log.info("LIMPIANDO DETALLE ITEM");
+        codProducto = null;
+        producto = new CatalogoProductos();
+        cantidad = 0;
+        exento = Boolean.FALSE;
+        descuento = BigDecimal.valueOf(0.00);
+        motivoDescuento = null;
+        otrosCargos = BigDecimal.valueOf(0.00);
+        referencia = null;
+        retencionIva = BigDecimal.valueOf(0.00);
+        aplicarRetIva = Boolean.FALSE;
+        aplicarImpRen = Boolean.FALSE;
+        obsDetalle = null;
+        precioUnitario = BigDecimal.valueOf(0.00);
+        tributosList.forEach(c -> c.setMontoImpuesto(BigDecimal.valueOf(0.00)));
+        PrimeFaces.current().ajax().update("mainFrm:tabview:grdDetail");
     }
 
     public void deleteDetail(DetalleFacturaDTO item) {
@@ -900,6 +911,9 @@ public class FacturaView implements Serializable {
 
     public void limpiarReceptorFe() {
         if (sinDatos) {
+            nitReceptor = "";
+            receptorDeptoDesc = "";
+            receptorMuniDesc = "";
             receptor = facturaService.findReceptoNull();
         } else {
             receptor = new Contribuyentes();

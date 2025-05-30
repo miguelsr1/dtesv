@@ -23,26 +23,6 @@
                 background: none;
             }
         </style>
-
-        <script>
-            function copiarTexto(elementId) {
-                console.log(elementId);
-                const element = document.getElementById(elementId);
-                if (!element)
-                    return;
-
-                const texto = element.innerText || element.value;
-                const tempInput = document.createElement("textarea");
-                tempInput.value = texto;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand("copy");
-                document.body.removeChild(tempInput);
-
-                // Opcional: mostrar mensaje desde JS si no usas growl
-                // alert("Texto copiado: " + texto);
-            }
-        </script>
     </h:head>
 
     <h:body>
@@ -195,12 +175,6 @@
                             </p:column>
                             <p:column headerText="CODIGO GENERACION" sortBy="#{item.codigoGeneracion}" >
                                 <h:outputText id="txtCodGen" value="#{item.codigoGeneracion}"/>
-                                <p:commandButton icon="pi pi-copy"
-                                                 title="Copiar"
-                                                 onclick="copiarTexto('#{component.clientId}:txtCodGen');
-                                                         return false;"
-                                                 styleClass="p-button-text p-button-sm"
-                                                 process="@this" />
                             </p:column>
                             <p:column headerText="FECHA INGRESO" width="180" style="text-align: center">
                                 <p:outputLabel value="#{item.fechaIngreso}">

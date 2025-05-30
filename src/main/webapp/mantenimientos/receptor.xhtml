@@ -78,33 +78,52 @@
                         <!-- PANEL CREAR/EDITAR -->
                         <p:panel id="pnlAddEdit" rendered="#{(mttoClts.displayEditRec or mttoClts.displayNewRec)}">
                             <h5>.:: EDITAR CLIENTE ::.</h5>
-                            <p:panelGrid columns="2" layout="flex"
-                                         columnClasses="col-12 md:col-6 xl:col-6, col-12 md:col-6 xl:col-6"
-                                         contentStyleClass="align-items-baseline ui-fluid">
-                                <p:outputLabel for="txtTipoDoc" value="TIPO DOCUMENTO" styleClass="labels">
+
+                            <div class="ui-fluid formgrid grid">
+                                <div class="field col-12">
+                                    <p:selectBooleanCheckbox id="datPj" itemLabel="¿INSCRITO AL IVA?" value="#{mttoClts.selectedReceptor.inscritoIva}">
+                                        <p:ajax update="txtNrc" />
+                                    </p:selectBooleanCheckbox>
+                                </div>
+
+                                <div class="field col-12 lg:col-2 md:col-4">
+                                    <p:outputLabel for="txtTipoDoc" value="TIPO DOCUMENTO" styleClass="labels"/>
                                     <p:selectOneMenu id="txtTipoDoc" value="#{mttoClts.selectedReceptor.rucTipoDocId}">
                                         <f:selectItems value="#{mttoClts.tiposDocumentosList}" var="td"
                                                        itemLabel="#{td.docNombreDocumento}" itemValue="#{td.docId}"/>
                                     </p:selectOneMenu>
-                                </p:outputLabel>
-                                <p:outputLabel for="doc" value="NÚMERO DOCUMENTO" styleClass="labels">
+                                </div>
+                                <div class="field col-12 lg:col-2 md:col-4">
+                                    <p:outputLabel for="doc" value="NÚMERO DOCUMENTO" styleClass="labels" />
                                     <p:inputText id="doc" value="#{mttoClts.selectedReceptor.rucNitContribuyente}"/>
-                                </p:outputLabel>
-                                <h:outputLabel value="NOMBRE COMERCIAL" for="txtNombreComercial" styleClass="labels">
-                                    <p:inputTextarea id="txtNombreComercial" rows="2"
-                                                     value="#{mttoClts.selectedReceptor.rucNombreComercial}"/>
-                                </h:outputLabel>
-                                <h:outputLabel value="NOMBRE O RAZÓN SOCIAL" for="txtRazonSocial" styleClass="labels">
-                                    <p:inputTextarea id="txtRazonSocial" rows="2"
-                                                     value="#{mttoClts.selectedReceptor.rucNombreRazonsocial}"/>
-                                </h:outputLabel>
-                                <p:outputLabel for="txtNrc" value="NRC" styleClass="labels">
-                                    <p:inputText id="txtNrc"
-                                                 value="#{mttoClts.selectedReceptor.rucNrc}">
+                                </div>
+                                <div class="field col-12 lg:col-2 md:col-4">
+                                    <p:outputLabel for="txtNrc" value="NRC" styleClass="labels" />
+                                    <p:inputText id="txtNrc" value="#{mttoClts.selectedReceptor.rucNrc}" disabled="#{not mttoClts.selectedReceptor.inscritoIva}">
                                         <p:ajax event="change" listener="#{mttoClts.validateNrc}" update="txtNrc"/>
                                     </p:inputText>
-                                </p:outputLabel>
-                                <h:outputLabel value="ACTIVIDAD" for="selActividad" styleClass="labels">
+                                </div>
+                                <div class="field col-12 lg:col-3 md:col-4">
+                                    <p:outputLabel for="correo" value="CORREO ELECTRÓNICO" styleClass="labels"/>
+                                    <p:inputText id="correo" value="#{mttoClts.selectedReceptor.rucEmailContribuyente}"/>
+                                </div>
+                                <div class="field col-12 lg:col-3 md:col-4">
+                                    <p:outputLabel for="telefono" value="TELEFONO" styleClass="labels" />
+                                    <p:inputText id="telefono" value="#{mttoClts.selectedReceptor.rucTelefonoTrabajo}"/>
+                                </div>
+
+                                <div class="field col-12 lg:col-3 md:col-4">
+                                    <p:outputLabel value="NOMBRE COMERCIAL" for="txtNombreComercial" styleClass="labels"/>
+                                    <p:inputTextarea id="txtNombreComercial" rows="2"
+                                                     value="#{mttoClts.selectedReceptor.rucNombreComercial}"/>
+                                </div>
+                                <div class="field col-12 md:col-3">
+                                    <p:outputLabel value="NOMBRE O RAZÓN SOCIAL" for="txtRazonSocial" styleClass="labels" />
+                                    <p:inputTextarea id="txtRazonSocial" rows="2"
+                                                     value="#{mttoClts.selectedReceptor.rucNombreRazonsocial}"/>
+                                </div>
+                                <div class="field col-12 md:col-6">
+                                    <p:outputLabel value="ACTIVIDAD" for="selActividad" styleClass="labels" />
                                     <p:selectOneMenu id="selActividad" autoWidth="false"
                                                      filter="true" filterMatchMode="contains"
                                                      value="#{mttoClts.selectedReceptor.rucCodactividad}">
@@ -112,14 +131,9 @@
                                                        itemLabel="#{act.ccaeCodigo} - #{act.ccaeValor}"
                                                        itemValue="#{act.ccaeCodigo}"/>
                                     </p:selectOneMenu>
-                                </h:outputLabel>
-                                <p:outputLabel for="correo" value="CORREO ELECTRÓNICO" styleClass="labels">
-                                    <p:inputText id="correo" value="#{mttoClts.selectedReceptor.rucEmailContribuyente}"/>
-                                </p:outputLabel>
-                                <p:outputLabel for="telefono" value="TELEFONO" styleClass="labels">
-                                    <p:inputText id="telefono" value="#{mttoClts.selectedReceptor.rucTelefonoTrabajo}"/>
-                                </p:outputLabel>
-                                <h:outputLabel value="DEPARTAMENTO" styleClass="labels">
+                                </div>
+                                <div class="field col-12 md:col-3">
+                                    <p:outputLabel value="DEPARTAMENTO" styleClass="labels" />
                                     <p:selectOneMenu id="selDepto"
                                                      autoWidth="false"
                                                      value="#{mttoClts.selectedReceptor.rucCodigoDepartamento}">
@@ -127,41 +141,36 @@
                                                        itemValue="#{dep.ubgCodigo}"
                                                        itemLabel="#{dep.ubgDescripcion.toUpperCase()}"/>
                                         <p:ajax event="itemSelect" listener="#{mttoClts.deptListener()}" update="selMuni"/>
-                                    </p:selectOneMenu>
-                                </h:outputLabel>
-                                <h:outputLabel value="MUNICIPIO" styleClass="labels">
+                                    </p:selectOneMenu>    
+                                </div>
+                                <div class="field col-12 md:col-3">
+                                    <p:outputLabel value="MUNICIPIO" styleClass="labels" />
                                     <p:selectOneMenu id="selMuni" autoWidth="false"
                                                      value="#{mttoClts.selectedReceptor.rucCodigoMunicipio}">
+                                        <f:selectItem itemLabel=" SELECCIONAR " noSelectionOption="true"/>
                                         <f:selectItems value="#{mttoClts.municipiosList}" var="mun"
                                                        itemValue="#{mun.ubgCodigo}" itemLabel="#{mun.ubgDescripcion}"/>
                                     </p:selectOneMenu>
-                                </h:outputLabel>
-                            </p:panelGrid>
-                            <p:panelGrid columns="1" layout="flex" columnClasses="col-12 md:col-6 xl:col-12" contentStyleClass="ui-fluid">
-                                <h:outputLabel value="DOMICILIO" for="txtDomicilio" styleClass="labels">
-                                    <p:inputTextarea id="txtDomicilio"
-                                                     rows="2"
-                                                     value="#{mttoClts.selectedReceptor.rucDomicilio}"/>
-                                </h:outputLabel>
-                            </p:panelGrid>
+                                </div>
+                                <div class="field col-12 md:col-3">
+                                    <p:outputLabel value="DOMICILIO" for="txtDomicilio" styleClass="labels"/>
+                                    <p:inputTextarea id="txtDomicilio" rows="2" value="#{mttoClts.selectedReceptor.rucDomicilio}"/>
+                                </div>
+                            </div>
+
+
                             <f:facet name="footer">
-                                <p:panelGrid columns="1" layout="flex" styleClass="ui-fluid"
-                                             columnClasses="col-12 md:col-4 xl:col-2"
-                                             contentStyleClass="align-items-baseline ui-fluid">
-                                    <p:commandButton value="#{mttoClts.displayNewRec ? 'GUARDAR':'ACTUALIZAR'}"
-                                                     icon="pi pi-save"
-                                                     update="frmReceptor"
-                                                     actionListener="#{mttoClts.saveReceptor()}"
-                                                     styleClass="w-full ui-button-success">
-                                        <p:confirm header="CONFIRMAR" icon="pi pi-exclamation-triangle"
-                                                   message="¿Está seguro de guardar los cambios?"/>
-                                    </p:commandButton>
-                                    <p:commandButton value="CANCELAR"
-                                                     actionListener="#{mttoClts.cancelar()}"
-                                                     icon="pi pi-times-circle" update="frmReceptor"
-                                                     styleClass="w-full ui-button-info ui-button-outlined">
-                                    </p:commandButton>
-                                </p:panelGrid>
+                                <p:commandButton value="#{mttoClts.displayNewRec ? 'GUARDAR':'ACTUALIZAR'}"
+                                                 icon="pi pi-save" styleClass="mr-2"
+                                                 update="frmReceptor"
+                                                 actionListener="#{mttoClts.saveReceptor()}">
+                                    <p:confirm header="CONFIRMAR" icon="pi pi-exclamation-triangle"
+                                               message="¿Está seguro de guardar los cambios?"/>
+                                </p:commandButton>
+                                <p:commandButton value="CANCELAR" onclick="location.reload(); return false;"
+                                                 icon="pi pi-times" update="frmReceptor"
+                                                 styleClass="ui-button-secondary">
+                                </p:commandButton>
                             </f:facet>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
                                              responsive="true">

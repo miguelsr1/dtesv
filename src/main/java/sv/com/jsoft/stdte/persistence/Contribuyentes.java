@@ -111,6 +111,9 @@ public class Contribuyentes implements Serializable {
     @Basic
     @Column(name = "id_empresa")
     private Integer idEmpresa;
+    @Basic
+    @Column(name = "inscrito_iva")
+    private Boolean inscritoIva;
 
     @ManyToOne
     @JoinColumn(name = "ruc_tipo_doc_id", referencedColumnName = "doc_id", insertable = false, updatable = false)

@@ -12,6 +12,8 @@ import javax.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.PrimeFaces;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.file.UploadedFile;
 import sv.com.jsoft.stdte.persistence.Empresa;
 import sv.com.jsoft.stdte.persistence.UbicacionesGeograficas;
 import sv.com.jsoft.stdte.repository.EmisorService;
@@ -79,5 +81,13 @@ public class EmisorView implements Serializable {
         }
         PrimeFaces.current().executeScript("PF('manageEmisorDialog').hide()");
         PrimeFaces.current().ajax().update("frmEmisores:messages", "frmEmisores:tblEmisores");
+    }
+
+    public void handleFileUpload(FileUploadEvent event) {
+        UploadedFile file = event.getFile();
+
+        if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {
+
+        }
     }
 }

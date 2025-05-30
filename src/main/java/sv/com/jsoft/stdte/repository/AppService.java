@@ -373,6 +373,19 @@ public class AppService {
         return resultado;
     }
 
+    public List<Contribuyentes> findAllReceptoresByIdEmp(Integer idEmp, boolean iva) {
+        List<Contribuyentes> resultado = new ArrayList<>();
+        try {
+            resultado = em.createQuery("SELECT c FROM Contribuyentes c WHERE c.rucTipoContribuyente = 'RECEPTOR' AND c.idEmpresa = :idEmp and c.inscritoIva = :iva")
+                    .setParameter("idEmp", idEmp)
+                    .setParameter("iva", iva)
+                    .getResultList();
+        } catch (Exception e) {
+            log.error("error findAllEmisores " + e.getMessage());
+        }
+        return resultado;
+    }
+    
     public List<Contribuyentes> findAllReceptoresByIdEmp(Integer idEmp) {
         List<Contribuyentes> resultado = new ArrayList<>();
         try {

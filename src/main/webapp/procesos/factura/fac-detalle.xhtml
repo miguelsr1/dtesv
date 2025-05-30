@@ -7,105 +7,11 @@
     <p:panel id="detalle">
         <h5>.:: INGRESE DETALLE ::.</h5>
         <p:separator/>
+
         <p:messages id="msgDetalle" closable="true"/>
 
         <div class="ui-fluid formgrid grid">
-            <div class="col-12 md:col-6">
-                <p:outputPanel id="dvProducto">
-                    <div class="grid">
-                        <div class="field col-12 md:col-12">
-                            <p:outputLabel value="PRODUCTO" for="selProducto" />
-                            <p:selectOneMenu id="selProducto" appendTo="@this"
-                                             filter="true" filterMatchMode="contains"
-                                             value="#{procFact.codProducto}" autoWidth="false">
-                                <f:selectItem itemLabel=" SELECCIONAR " noSelectionOption="true"/>
-                                <f:selectItems value="#{procFact.productosList}"
-                                               itemLabel="#{prod.codigoProd} - #{prod.descripcion}"
-                                               itemValue="#{prod.codigoProd}" var="prod"/>
-                                <p:ajax event="itemSelect" listener="#{procFact.selProductoListener}"
-                                        update="detalle tblTributos"/>
-                            </p:selectOneMenu>
-                        </div>
-                        <div class="field col-12 md:col-3">
-                            <p:outputLabel value="CANTIDAD" for="txtCantidad"/>
-                            <p:inputNumber id="txtCantidad" decimalPlaces="0" inputStyle="text-align: right"
-                                           decimalSeparator="." thousandSeparator=","
-                                           minValue="0" value="#{procFact.cantidad}">
-                                <p:ajax event="change" update="tblTributos"
-                                        listener="#{procFact.cantidadListener()}"/>
-                            </p:inputNumber>
-                        </div>
-                        <div class="field col-12 md:col-3">
-                            <p:outputLabel value="PRECIO UNITARIO" for="txtPrecioUnitario"/>
-                            <p:inputText id="txtPrecioUnitario"
-                                         value="#{procFact.precioUnitario}" style="font-weight: bold; text-align: right">
-                                <f:converter converterId="bigDecimalConverter"/>
-                                <p:ajax event="change" listener="#{procFact.changeValorUnitario()}"
-                                        process="@this" update="txtPrecioUnitario" partialSubmit="true"/>
-                            </p:inputText>
-                        </div>
-
-                        <div class="field col-12 md:col-3">
-                            <p:outputLabel
-                                value="#{procFact.factura.tipodoc eq '14' ? 'IMPUESTO SOBRE LA RENTA':'DESCUENTO'}"
-                                for="txtDescuento"/>
-                            <p:inputNumber id="txtDescuento" decimalPlaces="2" inputStyle="text-align: right"
-                                           rendered="#{procFact.factura.tipodoc ne '14'}"
-                                           decimalSeparator="." thousandSeparator=","
-                                           minValue="0.00" value="#{procFact.descuento}"
-                                           maxValue="#{procFact.precioUnitario > 0.00 ? procFact.precioUnitario:'0.00'}">
-                            </p:inputNumber>
-                        </div>
-                        <div class="field col-12 md:col-3">
-                            <p:outputLabel value="UNIDAD DE MEDIDA" for="selUnidadMedida"/>
-                            <p:selectOneMenu id="selUnidadMedida"
-                                             value="#{procFact.producto.unidadMedida.umCodigo}">
-                                <f:selectItem itemLabel=" SELECCIONAR " noSelectionOption="true"/>
-                                <f:selectItems value="#{procFact.unidadesMedidaList}" var="um"
-                                               itemDisabled="true"
-                                               itemLabel="#{um.umDescripcion}" itemValue="#{um.umCodigo}"/>
-                            </p:selectOneMenu>
-                        </div>
-                        <div class="field col-12 md:col-3">
-                            <p:outputLabel value="Otros(Créditos/Cargos)" for="txtCreditos"/>
-                            <p:inputNumber id="txtCreditos" decimalPlaces="2" minValue="0.00" value="#{procFact.otrosCargos}"/>
-                        </div>
-                        <div class="field col-12 md:col-3">
-                            <p:outputLabel value="REFERENCIA" for="txtReferencia"/>
-                            <p:inputText id="txtReferencia" onkeyup="this.value = this.value.toUpperCase();"
-                                         value="#{procFact.referencia}">
-                            </p:inputText>
-                        </div>
-                        <div class="field col-12 md:col-6">
-                            <p:outputLabel value="TIPO" for="txtTipo"/>
-                            <p:selectOneMenu id="txtTipo" value="#{procFact.producto.cpCitId}"
-                                             appendTo="@this" autoWidth="false">
-                                <f:selectItem itemLabel=" SELECCIONAR " noSelectionOption="true"/>
-                                <f:selectItems value="#{procFact.tipoItemsList}" var="itemls"
-                                               itemDisabled="true"
-                                               itemLabel="#{itemls.citId} - #{itemls.valor}"
-                                               itemValue="#{itemls.citId}"/>
-                            </p:selectOneMenu>
-                        </div>
-                        <div class="col-12 md:col-3">
-                            <p:selectBooleanCheckbox disabled="false" itemLabel="EXENTO" style="margin-bottom: 0.5rem"
-                                                     rendered="#{procFact.factura.tipodoc ne '14'}"
-                                                     value="#{procFact.producto.exento}" id="boolExento" >
-                                <p:ajax event="change" update="tblTributos"/>
-                            </p:selectBooleanCheckbox> <br/>
-                        </div>
-                        <div class="col-12 md:col-3">
-                            <p:toggleSwitch id="txtImpRet" value="#{procFact.aplicarImpRen}"
-                                            rendered="#{procFact.factura.tipodoc eq '14'}"/>
-                        </div>
-                        <div class="col-12 md:col-3">
-                            <p:outputLabel value="RETENCION IVA 13%" for="txtRetIVA"/>
-                            <p:toggleSwitch id="txtRetIVA" value="#{procFact.aplicarRetIva}"/>
-                        </div>
-                    </div>
-                </p:outputPanel>
-            </div>
-            <div class="col-12 md:col-6">
+            <div class="col-12">
                 <p:panel id="tblTributos" style="display: #{procFact.producto.exento or procFact.factura.tipodoc eq '14' ? 'none':'block'}">
                     <p:panelGrid columns="1" layout="flex" rendered="#{!procFact.producto.exento}"
                                  columnClasses="col-12 md:col-12 xl:col-12"
@@ -132,9 +38,6 @@
             </div>
         </div>
 
-        <div class="field col-12 md:col-3">
-
-        </div>
         <p:panelGrid columns="2" layout="flex" id="grdObsDet" rendered="false"
                      columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-10 xl:col-10"
                      contentStyleClass="align-items-baseline ui-fluid">
@@ -142,24 +45,23 @@
             <p:inputText onkeyup="this.value = this.value.toUpperCase();"
                          value="#{procFact.obsDetalle}" maxlength="100"/>
         </p:panelGrid>
-        <p:panelGrid columns="1" layout="flex"
-                     columnClasses="col-12 md:col-2 xl:col-2"
-                     contentStyleClass="align-items-baseline ui-fluid">
-            <p:commandButton value="AGREGAR DETALLE"
-                             action="#{procFact.addDetail}"
-                             update="dvProducto grdDetail   tblTributos grdObsDet"
-                             icon="pi pi-plus"/>
-        </p:panelGrid>
 
-        <p:panelGrid columns="1" layout="flex" id="grdDetail"
-                     style="display: #{procFact.detalleList.size() > 0 ? 'block':'none'}"
-                     columnClasses="col-12 md:col-12 xl:col-12"
+        <p:commandButton value="AGREGAR DETALLE" onclick="PF('dlgDetalleItem').show()" icon="pi pi-plus" style="margin-top: 1rem"/>
+
+        <p:divider/>
+
+        <p:panelGrid columns="1" layout="flex" id="grdDetail" columnClasses="col-12 md:col-12 xl:col-12"
                      contentStyleClass="align-items-baseline ui-fluid">
-            <p:divider/>
-            <p:outputLabel
-                value="DETALLE DEL COMPROBANTE"
-                style="font-weight: bold;color:#2f8ee5;"/>
-            <p:dataTable value="#{procFact.detalleList}" style="font-size: 13px;"
+            
+            <p:outputPanel>
+                <div style="display: #{procFact.detalleList.size() eq 0 ? 'block':'none'}; text-align: center; height: 150px">
+                    <p:graphicImage name="empty-box.png" library="images" style="margin-top: 3rem" /><br/>
+                    <small>No se han agregado items a la factura</small>
+                </div>
+            </p:outputPanel>
+
+            <p:outputLabel value="DETALLE DEL COMPROBANTE" style="font-weight: bold;color:#2f8ee5; display: #{procFact.detalleList.size() > 0 ? 'block':'none'}"/>
+            <p:dataTable value="#{procFact.detalleList}" style="font-size: 13px; display: #{procFact.detalleList.size() > 0 ? 'block':'none'}"
                          scrollHeight="15em" rowKey="#{det.codigoProd}"
                          var="det" emptyMessage="" id="tblDetail"
                          size="small" tableStyle="table-layout: auto;" scrollable="true">
@@ -167,7 +69,7 @@
                 <p:column width="30">
                     <p:commandButton icon="pi pi-trash" title="Procesar"
                                      action="#{procFact.deleteDetail(det)}"
-                                     update="tblDetail fooTotal"
+                                     update="tblDetail fooTotal :mainFrm:tabview:grdDetail"
                                      class="rounded-button">
                     </p:commandButton>
                 </p:column>
@@ -246,4 +148,114 @@
             </p:dataTable>
         </p:panelGrid>
     </p:panel>
+
+    <p:dialog id="dlgDetalleItem" widgetVar="dlgDetalleItem" header="DETALLE" width="600" hideEffect="fade" showEffect="fade"
+              modal="true">
+        <div class="ui-fluid formgrid grid" style="margin-top: 1rem">
+            <div class="col-12 md:col-12">
+                <p:outputPanel id="dvProducto">
+                    <div class="grid">
+                        <div class="field col-12 md:col-12">
+                            <p:outputLabel value="PRODUCTO" for="selProducto" />
+                            <p:selectOneMenu id="selProducto" appendTo="@this"
+                                             filter="true" filterMatchMode="contains"
+                                             value="#{procFact.codProducto}" autoWidth="false">
+                                <f:selectItem itemLabel=" SELECCIONAR " noSelectionOption="true"/>
+                                <f:selectItems value="#{procFact.productosList}"
+                                               itemLabel="#{prod.codigoProd} - #{prod.descripcion}"
+                                               itemValue="#{prod.codigoProd}" var="prod"/>
+                                <p:ajax event="itemSelect" listener="#{procFact.selProductoListener}"
+                                        update="dvProducto"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="CANTIDAD" for="txtCantidad"/>
+                            <p:inputNumber id="txtCantidad" decimalPlaces="0" inputStyle="text-align: right"
+                                           decimalSeparator="." thousandSeparator=","
+                                           minValue="0" value="#{procFact.cantidad}">
+                                <p:ajax event="change" update="tblTributos"
+                                        listener="#{procFact.cantidadListener()}"/>
+                            </p:inputNumber>
+                        </div>
+                        <div class="field col-12 md:col-8">
+                            <p:outputLabel value="PRECIO UNITARIO" for="txtPrecioUnitario"/>
+                            <p:inputText id="txtPrecioUnitario"
+                                         value="#{procFact.precioUnitario}" style="font-weight: bold; text-align: right">
+                                <f:converter converterId="bigDecimalConverter"/>
+                                <p:ajax event="change" listener="#{procFact.changeValorUnitario()}"
+                                        process="@this" update="txtPrecioUnitario" partialSubmit="true"/>
+                            </p:inputText>
+                        </div>
+
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel
+                                value="#{procFact.factura.tipodoc eq '14' ? 'IMPUESTO SOBRE LA RENTA':'DESCUENTO'}"
+                                for="txtDescuento"/>
+                            <p:inputNumber id="txtDescuento" decimalPlaces="2" inputStyle="text-align: right"
+                                           rendered="#{procFact.factura.tipodoc ne '14'}"
+                                           decimalSeparator="." thousandSeparator=","
+                                           minValue="0.00" value="#{procFact.descuento}"
+                                           maxValue="#{procFact.precioUnitario > 0.00 ? procFact.precioUnitario:'0.00'}">
+                            </p:inputNumber>
+                        </div>
+                        <div class="field col-12 md:col-8">
+                            <p:outputLabel value="UNIDAD DE MEDIDA" for="selUnidadMedida"/>
+                            <p:selectOneMenu id="selUnidadMedida"
+                                             value="#{procFact.producto.unidadMedida.umCodigo}">
+                                <f:selectItem itemLabel=" SELECCIONAR " noSelectionOption="true"/>
+                                <f:selectItems value="#{procFact.unidadesMedidaList}" var="um"
+                                               itemDisabled="true"
+                                               itemLabel="#{um.umDescripcion}" itemValue="#{um.umCodigo}"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="Otros(Créditos/Cargos)" for="txtCreditos"/>
+                            <p:inputNumber id="txtCreditos" decimalPlaces="2" minValue="0.00" 
+                                           inputStyle="text-align: right" decimalSeparator="." thousandSeparator=","
+                                           value="#{procFact.otrosCargos}"/>
+                        </div>
+                        <!--div class="field col-12 md:col-3">
+                            <p:outputLabel value="REFERENCIA" for="txtReferencia"/>
+                            <p:inputText id="txtReferencia" onkeyup="this.value = this.value.toUpperCase();"
+                                         value="{procFact.referencia}">
+                            </p:inputText>
+                        </div-->
+                        <div class="field col-12 md:col-8">
+                            <p:outputLabel value="TIPO" for="txtTipo"/>
+                            <p:selectOneMenu id="txtTipo" value="#{procFact.producto.cpCitId}"
+                                             appendTo="@this" autoWidth="false">
+                                <f:selectItem itemLabel=" SELECCIONAR " noSelectionOption="true"/>
+                                <f:selectItems value="#{procFact.tipoItemsList}" var="itemls"
+                                               itemDisabled="true"
+                                               itemLabel="#{itemls.citId} - #{itemls.valor}"
+                                               itemValue="#{itemls.citId}"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="col-12 md:col-3">
+                            <p:selectBooleanCheckbox disabled="false" itemLabel="EXENTO" style="margin-bottom: 0.5rem"
+                                                     rendered="#{procFact.factura.tipodoc ne '14'}"
+                                                     value="#{procFact.producto.exento}" id="boolExento" >
+                                <p:ajax event="change" update="tblTributos"/>
+                            </p:selectBooleanCheckbox> <br/>
+                        </div>
+                        <div class="col-12 md:col-3">
+                            <p:toggleSwitch id="txtImpRet" value="#{procFact.aplicarImpRen}"
+                                            rendered="#{procFact.factura.tipodoc eq '14'}"/>
+                        </div>
+                        <div class="col-12 md:col-3">
+                            <p:outputLabel value="RETENCION IVA 13%" for="txtRetIVA"/>
+                            <p:toggleSwitch id="txtRetIVA" value="#{procFact.aplicarRetIva}"/>
+                        </div>
+                    </div>
+                </p:outputPanel>
+            </div>
+        </div>
+        <f:facet name="footer">
+            <p:commandButton icon="pi pi-check" action="#{procFact.addDetail}" styleClass="mr-2 ui-button-info"
+                             style="width: 10rem" update="dvProducto grdDetail tblTributos grdObsDet" value="CONFIRMAR"/>
+            <p:commandButton icon="pi pi-ban" action="#{procFact.limpiarDlgItem}" styleClass="ui-button-secondary" 
+                             style="width: 10rem" update="dvProducto" value="CANCELAR"
+                             />
+        </f:facet>
+    </p:dialog>
 </ui:component>

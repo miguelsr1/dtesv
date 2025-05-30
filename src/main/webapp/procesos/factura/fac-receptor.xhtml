@@ -12,88 +12,144 @@
             <div class="ui-fluid formgrid grid">
                 <div class="field col-12">
                     <p:selectBooleanCheckbox id="datPj" itemLabel="SIN DATOS?" value="#{procFact.sinDatos}">
-                        <p:ajax update="txtDocPn,txtNamePn" listener="#{procFact.limpiarReceptorFe}" />
+                        <p:ajax update="dvPerNat" listener="#{procFact.limpiarReceptorFe}" />
                     </p:selectBooleanCheckbox>
                 </div>
-                <div class="field col-12 md:col-3">
+
+                <div class="field col-12 md:col-8" style="display: #{procFact.sinDatos ? 'none' : 'block'}">
+                    <h:outputLabel value="DOCUMENTO" for="txtNumPn"/>
+                    <p:selectOneMenu id="txtNumPn" appendTo="@this" filter="true"
+                                     filterMatchMode="contains"
+                                     value="#{procFact.nitReceptor}">
+                        <f:selectItem itemLabel=" SELECCIONAR " itemValue=""/>
+                        <f:selectItems value="#{procFact.receptores}"
+                                       itemLabel="#{re.rucNitContribuyente} - #{re.rucNombreRazonsocial}"
+                                       itemValue="#{re.rucNitContribuyente}" var="re"/>
+                        <p:ajax event="itemSelect" listener="#{procFact.codReceptorListener()}"
+                                update="receptor"/>
+                    </p:selectOneMenu>
+                </div>
+                <div class="field col-12 md:col-4">
+                </div>
+
+                <div class="field col-12 md:col-2" style="display: #{procFact.sinDatos ? 'none' : 'block'}">
+                    <p:outputLabel for="txtNitPn" value="NIT" />
+                    <p:inputText id="txtNitPn" value="#{procFact.receptor.rucNitContribuyente}"/>
+                </div>
+                <div class="field col-12 md:col-1" style="display: #{procFact.sinDatos ? 'none' : 'block'}">
+                    <h:outputLabel value="NRC" for="txtNrcPn"/>
+                    <p:inputText id="txtNrcPn" readonly="true" value="#{procFact.receptor.rucNrc}" />
+                </div>
+                <div class="field col-12 md:col-2" style="display: #{procFact.sinDatos ? 'none' : 'block'}">
+                    <h:outputLabel value="TELEFONO" for="txtTelPn"/>
+                    <p:inputText id="txtTelPn" readonly="true" value="#{procFact.receptor.rucTelefonoTrabajo}" />
+                </div>
+                <div class="field col-12 md:col-3" style="display: #{procFact.sinDatos ? 'none' : 'block'}">
+                    <h:outputLabel value="CORREO" for="txtCorreoPn"/>
+                    <p:inputText id="txtCorreoPn" readonly="true" value="#{procFact.receptor.rucEmailContribuyente}" />
+                </div>
+                <div class="field col-12 md:col-4" style="display: #{procFact.sinDatos ? 'none' : 'block'}">
+                </div>
+
+                <div class="field col-12 md:col-8" style="display: #{procFact.sinDatos ? 'none' : 'block'}">
+                    <h:outputLabel value="ACTIVIDAD" for="txtActPn"/>
+                    <p:inputText id="txtActPn" readonly="true" value="#{procFact.receptor.rucCodactividad} - #{procFact.receptor.rucDesactividad}" />
+                </div>
+                <div class="field col-12 md:col-4" style="display: #{procFact.sinDatos ? 'none' : 'block'}">
+                </div>
+
+                <div class="field col-12 md:col-2" style="display: #{procFact.sinDatos ? 'none' : 'block'}">
+                    <h:outputLabel value="DEPARTAMENTO" for="txtDepPn"/>
+                    <p:inputText id="txtDepPn" readonly="true" value="#{procFact.receptorDeptoDesc}" />
+                </div>
+                <div class="field col-12 md:col-2" style="display: #{procFact.sinDatos ? 'none' : 'block'}">
+                    <h:outputLabel value="MUNICIPIO" for="txtMunPn"/>
+                    <p:inputText id="txtMunPn" readonly="true" value="#{procFact.receptorMuniDesc}" />
+                </div>
+                <div class="field col-12 md:col-4" style="display: #{procFact.sinDatos ? 'none' : 'block'}">
+                    <h:outputLabel value="DOMICILIO" for="txtDomPn"/>
+                    <p:inputTextarea id="txtDomPn" readonly="true" value="#{procFact.receptor.rucDomicilio}" />
+                </div>
+
+                <!--div class="field col-12 md:col-3">
                     <p:outputLabel for="txtDocPn" value="NÚMERO DOCUMENTO" />
-                    <p:inputMask id="txtDocPn" value="#{procFact.receptorStr}" onkeyup="nitDuiMask(this)"
+                    <p:inputMask id="txtDocPn" value="{procFact.receptorStr}" onkeyup="nitDuiMask(this)"
                                  class="w-full" required="true" disabled="#{procFact.sinDatos}"
                                  requiredMessage="DEBE DE INGRESAR EL NUMERO DE DOCUMENTO DE UN CLIENTE">
-                        <p:ajax event="blur" listener="#{procFact.completeReceptor()}" update="txtNamePn"/>
+                        <p:ajax event="blur" listener="{procFact.completeReceptor()}" update="txtNamePn"/>
                     </p:inputMask>
                 </div>
                 <div class="field col-12 md:col-9">
                     <p:outputLabel for="txtNamePn" value="NOMBRE" />
-                    <p:inputText id="txtNamePn" readonly="true" value="#{procFact.receptor.rucNombreRazonsocial}"/>
-                </div>
+                    <p:inputText id="txtNamePn" readonly="true" value="{procFact.receptor.rucNombreRazonsocial}"/>
+                </div-->
             </div>
         </p:outputPanel>
 
         <p:outputPanel id="dvPerJur" rendered="#{procFact.factura.tipodoc ne '01'}">
             <div class="ui-fluid formgrid grid" >
-                <div class="field col-12 md:col-4">
-                    <p:outputLabel for="txtDocPj" value="NÚMERO DOCUMENTO" />
-                    <p:inputText id="txtDocPj"/>
+                <div class="field col-12 md:col-8">
+                    <h:outputLabel value="NIT" for="selReceptor"/>
+                    <p:selectOneMenu id="selReceptor" appendTo="@this" filter="true"
+                                     filterMatchMode="contains"
+                                     value="#{procFact.nitReceptor}">
+                        <f:selectItem itemLabel=" SELECCIONAR " noSelectionOption="true"/>
+                        <f:selectItems value="#{procFact.receptores}"
+                                       itemLabel="#{re.rucNitContribuyente} - #{re.rucNombreRazonsocial}"
+                                       itemValue="#{re.rucNitContribuyente}" var="re"/>
+                        <p:ajax event="itemSelect" listener="#{procFact.codReceptorListener()}"
+                                update="receptor"/>
+                    </p:selectOneMenu>
                 </div>
                 <div class="field col-12 md:col-4">
-                    <h:outputLabel value="CORREO" for="txtCorreoR"/>
-                    <p:inputText id="txtCorreoR" readonly="true"
-                                 value="#{procFact.receptor.rucEmailContribuyente}">
-                    </p:inputText>
-                </div>
-                <div class="field col-12 md:col-4">
-                    <h:outputLabel value="TELEFONO" for="txtTelefonoR"/>
-                    <p:inputText id="txtTelefonoR" readonly="true"
-                                 value="#{procFact.receptor.rucTelefonoTrabajo}">
-                    </p:inputText>
-                </div>
-                <div class="field col-12 md:col-6">
-                    <p:outputLabel for="txtNombreComercialRec" value="NOMBRE COMERCIAL" />
-                    <p:inputTextarea id="txtNombreComercialRec" readonly="true"
-                                     value="#{procFact.receptor.rucNombreComercial}">
-                    </p:inputTextarea>
-                </div>
-                <div class="field col-12 md:col-6">
-                    <p:outputLabel for="txtRazonSocialR" value="NOMBRE O RAZÓN SOCIAL" />
-                    <p:inputTextarea id="txtRazonSocialR" readonly="true"
-                                     value="#{procFact.receptor.rucNombreRazonsocial}">
-                    </p:inputTextarea>
                 </div>
 
-                <div class="field col-12 md:col-3">
+                <div class="field col-12 md:col-2">
                     <p:outputLabel for="txtNit" value="NIT" />
-                    <p:inputText id="txtNit"/>
+                    <p:inputText id="txtNit" value="#{procFact.receptor.rucNitContribuyente}"/>
                 </div>
-                <div class="field col-12 md:col-3">
+                <div class="field col-12 md:col-1">
                     <h:outputLabel value="NRC" for="txtNrcR"/>
-                    <p:inputText id="txtNrcR" readonly="true"
-                                 value="#{procFact.receptor.rucNrc}">
-                    </p:inputText>
+                    <p:inputText id="txtNrcR" readonly="true" value="#{procFact.receptor.rucNrc}" />
                 </div>
-                <div class="field col-12 md:col-6">
+                <div class="field col-12 md:col-2">
+                    <h:outputLabel value="TELEFONO" for="txtTelefonoR"/>
+                    <p:inputText id="txtTelefonoR" readonly="true" value="#{procFact.receptor.rucTelefonoTrabajo}" />
+                </div>
+                <div class="field col-12 md:col-3">
+                    <h:outputLabel value="CORREO" for="txtCorreoR"/>
+                    <p:inputText id="txtCorreoR" readonly="true" value="#{procFact.receptor.rucEmailContribuyente}" />
+                </div>
+                <div class="field col-12 md:col-4">
+                </div>
+
+                <div class="field col-12 md:col-4">
+                    <p:outputLabel for="txtNombreComercialRec" value="NOMBRE COMERCIAL" />
+                    <p:inputTextarea id="txtNombreComercialRec" readonly="true" value="#{procFact.receptor.rucNombreComercial}" />
+                </div>
+                <div class="field col-12 md:col-4">
+                    <p:outputLabel for="txtRazonSocialR" value="NOMBRE O RAZÓN SOCIAL" />
+                    <p:inputTextarea id="txtRazonSocialR" readonly="true" value="#{procFact.receptor.rucNombreRazonsocial}" />
+                </div>
+
+                <div class="field col-12 md:col-8">
                     <h:outputLabel value="ACTIVIDAD" for="txtActividadR"/>
-                    <p:inputText id="txtActividadR" readonly="true"
-                                 value="#{procFact.receptor.rucCodactividad} - #{procFact.receptor.rucDesactividad}">
-                    </p:inputText>
+                    <p:inputText id="txtActividadR" readonly="true" value="#{procFact.receptor.rucCodactividad} - #{procFact.receptor.rucDesactividad}" />
                 </div>
-                <div class="field col-12 md:col-3">
+                <div class="field col-12 md:col-4">
+                </div>
+
+                <div class="field col-12 md:col-2">
                     <h:outputLabel value="DEPARTAMENTO" for="txtDeptoR"/>
-                    <p:inputText id="txtDeptoR" readonly="true"
-                                 value="#{procFact.receptorDeptoDesc}">
-                    </p:inputText>
+                    <p:inputText id="txtDeptoR" readonly="true" value="#{procFact.receptorDeptoDesc}" />
                 </div>
-                <div class="field col-12 md:col-3">
+                <div class="field col-12 md:col-2">
                     <h:outputLabel value="MUNICIPIO" for="txtMunicipioR"/>
-                    <p:inputText id="txtMunicipioR" readonly="true"
-                                 value="#{procFact.receptorMuniDesc}">
-                    </p:inputText>
+                    <p:inputText id="txtMunicipioR" readonly="true" value="#{procFact.receptorMuniDesc}" />
                 </div>
-                <div class="field col-12 md:col-6">
+                <div class="field col-12 md:col-4">
                     <h:outputLabel value="DOMICILIO" for="txtDomicilioR"/>
-                    <p:inputTextarea id="txtDomicilioR" readonly="true"
-                                     value="#{procFact.receptor.rucDomicilio}">
-                    </p:inputTextarea>
+                    <p:inputTextarea id="txtDomicilioR" readonly="true" value="#{procFact.receptor.rucDomicilio}" />
                 </div>
             </div>
         </p:outputPanel>
