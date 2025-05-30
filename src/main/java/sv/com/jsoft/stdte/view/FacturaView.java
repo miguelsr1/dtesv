@@ -699,6 +699,7 @@ public class FacturaView implements Serializable {
             detalleList.forEach(detail -> {
                 Buzoncsv buzoncsv;
                 buzoncsv = setBuzonValues();
+                buzoncsv.setIdEmpresa(login.getLogin().getIdEmpresa());
                 buzoncsv.setMoneda(moneda);
                 buzoncsv.setTipocambio(tipoCambio != null ? tipoCambio : 1);
                 buzoncsv.setCodigo(detail.getCodigoProd());

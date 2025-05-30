@@ -109,18 +109,20 @@ public class AppService {
             StoredProcedureQuery storedProcedureQuery = em.createStoredProcedureQuery("pro_carga_facturas");
             storedProcedureQuery.registerStoredProcedureParameter(1, String.class, ParameterMode.IN);
             storedProcedureQuery.registerStoredProcedureParameter(2, String.class, ParameterMode.IN);
-            storedProcedureQuery.registerStoredProcedureParameter(3, Integer.class, ParameterMode.OUT);
+            storedProcedureQuery.registerStoredProcedureParameter(3, Integer.class, ParameterMode.IN);
             storedProcedureQuery.registerStoredProcedureParameter(4, Integer.class, ParameterMode.OUT);
-            storedProcedureQuery.registerStoredProcedureParameter(5, String.class, ParameterMode.OUT);
+            storedProcedureQuery.registerStoredProcedureParameter(5, Integer.class, ParameterMode.OUT);
+            storedProcedureQuery.registerStoredProcedureParameter(6, String.class, ParameterMode.OUT);
 
             storedProcedureQuery.setParameter(1, app);
             storedProcedureQuery.setParameter(2, login.getUsuario());
+            storedProcedureQuery.setParameter(3, login.getIdEmpresa());
 
             storedProcedureQuery.execute();
 
-            response.setIdFactura((Integer) storedProcedureQuery.getOutputParameterValue(3));
-            response.setVal((Integer) storedProcedureQuery.getOutputParameterValue(4));
-            response.setMensaje((String) storedProcedureQuery.getOutputParameterValue(5));
+            response.setIdFactura((Integer) storedProcedureQuery.getOutputParameterValue(4));
+            response.setVal((Integer) storedProcedureQuery.getOutputParameterValue(5));
+            response.setMensaje((String) storedProcedureQuery.getOutputParameterValue(6));
             log.info("respuesta pro_carga_facturas: " + response);
 
         } catch (Exception e) {

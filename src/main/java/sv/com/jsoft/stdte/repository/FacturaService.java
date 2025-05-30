@@ -94,16 +94,18 @@ public class FacturaService {
                 StoredProcedureQuery storedProcedureQuery = entityManager.createStoredProcedureQuery("pro_carga_facturas")
                         .registerStoredProcedureParameter(1, String.class, ParameterMode.IN)
                         .registerStoredProcedureParameter(2, String.class, ParameterMode.IN)
-                        .registerStoredProcedureParameter(3, Integer.class, ParameterMode.OUT)
+                        .registerStoredProcedureParameter(3, Integer.class, ParameterMode.IN)
                         .registerStoredProcedureParameter(4, Integer.class, ParameterMode.OUT)
-                        .registerStoredProcedureParameter(5, String.class, ParameterMode.OUT)
+                        .registerStoredProcedureParameter(5, Integer.class, ParameterMode.OUT)
+                        .registerStoredProcedureParameter(6, String.class, ParameterMode.OUT)
                         .setParameter(1, app)
-                        .setParameter(2, login.getIdUsuario().toString());
+                        .setParameter(2, login.getIdUsuario().toString())
+                        .setParameter(3, login.getIdEmpresa());
 
                 storedProcedureQuery.execute();
-                response.setIdFactura((Integer) storedProcedureQuery.getOutputParameterValue(3));
-                response.setVal((Integer) storedProcedureQuery.getOutputParameterValue(4));
-                response.setMensaje((String) storedProcedureQuery.getOutputParameterValue(5));
+                response.setIdFactura((Integer) storedProcedureQuery.getOutputParameterValue(4));
+                response.setVal((Integer) storedProcedureQuery.getOutputParameterValue(5));
+                response.setMensaje((String) storedProcedureQuery.getOutputParameterValue(6));
                 log.info("resultado: " + response);
             } catch (Exception e) {
                 log.error("Error en pro_carga_factura: ", e);
@@ -138,7 +140,7 @@ public class FacturaService {
                 try {
                     //pmId = 1 -> Produccion, pmId = 2 -> Test Hacienda
                     ParametrosMh pm = entityManager
-                            .createQuery("from ParametrosMh p where p.pmJsonFirmadorNit = :nitEmisor and p.pmId = 1", ParametrosMh.class)
+                            .createQuery("from ParametrosMh p where p.pmJsonFirmadorNit = :nitEmisor", ParametrosMh.class)
                             .setParameter("nitEmisor", factura.getFacNitEmisor())
                             .getSingleResult();
                     log.info("parametros mh: " + pm);

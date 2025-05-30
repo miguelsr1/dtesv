@@ -254,8 +254,7 @@
             <p:commandButton icon="pi pi-check" action="#{procFact.addDetail}" styleClass="mr-2 ui-button-info"
                              style="width: 10rem" update="dvProducto grdDetail tblTributos grdObsDet" value="CONFIRMAR"/>
             <p:commandButton icon="pi pi-ban" action="#{procFact.limpiarDlgItem}" styleClass="ui-button-secondary" 
-                             style="width: 10rem" update="dvProducto" value="CANCELAR"
-                             />
+                             style="width: 10rem" update="dvProducto" value="CANCELAR" onclick="PF('dlgDetalleItem').hide()" process="@this"/>
         </f:facet>
     </p:dialog>
 </ui:component>

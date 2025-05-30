@@ -208,4 +208,8 @@ public class Buzoncsv implements Serializable {
     @Basic
     @Column(name = "id_usuario_ingreso")
     private Integer idUsuarioIngreso;
+    
+    @Basic
+    @Column(name = "id_empresa")
+    private Integer idEmpresa;
 }

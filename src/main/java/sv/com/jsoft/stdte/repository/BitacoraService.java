@@ -57,7 +57,7 @@ public class BitacoraService {
         List<BitacoraDeclaracionHacienda> result = new ArrayList<>();
         try {
             StringBuilder jpqlBuilder = new StringBuilder();
-            jpqlBuilder.append("SELECT b, f.facNumeroDeControl FROM Contribuyentes c JOIN Empresa e ON c.idEmpresa = e.idEmpresa JOIN Factura f ON f.facNitEmisor = e.nit JOIN BitacoraDeclaracionHacienda b ON b.idFac = f.facId WHERE b.estado in ('PROCESADO','OBSERVADO') and ");
+            jpqlBuilder.append("SELECT b, f.facNumeroDeControl FROM Contribuyentes c JOIN Empresa e ON c.idEmpresa = e.idEmpresa JOIN Factura f ON f.facNitEmisor = e.nit JOIN BitacoraDeclaracionHacienda b ON b.idFac = f.facId WHERE e.idEmpresa =:idEmp AND b.estado in ('PROCESADO','OBSERVADO') and ");
 
             if (startDate != null && endDate != null) {
                 jpqlBuilder.append(" b.fechaIngreso >= :startDate AND b.fechaIngreso <= :endDate");
@@ -76,6 +76,7 @@ public class BitacoraService {
             }
 
             TypedQuery<Object[]> query = entityManager.createQuery(jpqlBuilder.toString(), Object[].class);
+            query.setParameter("idEmp", idEmpresa);
 
             if (startDate != null && endDate != null) {
                 query.setParameter("startDate", ViewUtils.formatStringToDate(startDate));

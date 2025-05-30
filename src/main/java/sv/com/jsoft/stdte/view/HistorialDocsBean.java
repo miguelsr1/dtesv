@@ -448,7 +448,9 @@ public class HistorialDocsBean implements Serializable {
                 emitidosList = bitacoraService.findAllDocEmitidos(loginBean.getLogin().getIdEmpresa(),
                         getFormattedDates(startDate), getFormattedDates(endDate),
                         tipoDoc, dte, nitReceptor, estado, loginBean.getUsuario());
-                if (!emitidosList.isEmpty()) {
+                if (emitidosList.isEmpty()) {
+                    ViewUtils.showMessageInfo("No se han ingresado DTE's");
+                }else{
                     displayParams = false;
                 }
             }
