@@ -8,7 +8,6 @@ import sv.com.jsoft.stdte.dao.ContribuyentesDAO;
 import sv.com.jsoft.stdte.dao.TiposDocumentosDAO;
 import sv.com.jsoft.stdte.dto.CatCodActEconomicaDTO;
 import sv.com.jsoft.stdte.dto.TiposDocumentosDTO;
-import sv.com.jsoft.stdte.lazy.CustomLazyDataModel;
 import sv.com.jsoft.stdte.persistence.Contribuyentes;
 import sv.com.jsoft.stdte.persistence.UbicacionesGeograficas;
 import sv.com.jsoft.stdte.repository.MttoService;
@@ -18,7 +17,6 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -31,14 +29,14 @@ import lombok.extern.slf4j.Slf4j;
 public class ManttoClientes implements Serializable {
 
     @Inject
-    EntityManager entityManager;
-
-    @Inject
     MttoService service;
 
+    /**@Getter
+    @Setter
+    private CustomLazyDataModel<Contribuyentes> lazyDataModelRec;*/
     @Getter
     @Setter
-    private CustomLazyDataModel<Contribuyentes> lazyDataModelRec;
+    private List<Contribuyentes> lstContribuyentes;
 
     @Getter
     @Setter
@@ -86,7 +84,8 @@ public class ManttoClientes implements Serializable {
     }
 
     private void loadLazyDataModel() {
-        lazyDataModelRec = new CustomLazyDataModel<>(entityManager, Contribuyentes.class, "rucId", login.getLogin().getIdEmpresa());
+        lstContribuyentes = service.findReceptores(login.getLogin().getIdEmpresa());
+        //lazyDataModelRec = new CustomLazyDataModel<>(entityManager, Contribuyentes.class, "rucId", login.getLogin().getIdEmpresa());
     }
 
     public void nuevoReceptor() {
@@ -122,6 +121,7 @@ public class ManttoClientes implements Serializable {
             selectedReceptor.setRucTipoContribuyente("RECEPTOR");
             contribuyentesDAO.save(selectedReceptor);
             log.info("REGISTRO HA SIDO " + (displayNewRec ? "GUARDADO" : "ACTUALIZADO") + " CORRECTAMENTE");
+            loadLazyDataModel();
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "MENSAJE", "PROCESO FINALIZÓ CORRECTAMENTE");
             PrimeFaces.current().dialog().showMessageDynamic(message);
             clean();

@@ -1,5 +1,6 @@
 package sv.com.jsoft.stdte.repository;
 
+import com.beust.ah.A;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -26,6 +27,7 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.io.*;
+import java.math.BigInteger;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
@@ -74,12 +76,14 @@ public class FacturaService {
         String email;
 
         try {
-            Query query = entityManager.createNativeQuery("SELECT fun_genera_numero_interno(:PAPP, :PUSER)  FROM dual");
+            Query query = entityManager.createNativeQuery("select count(b.cod_factura) + 1 "
+                    + "from buzoncsv b inner join empresa e on e.id_empresa = b.id_empresa "
+                    + "where e.id_empresa = :idEmp and "
+                    + "	year(b.fecha_migrado) = year(curdate())");
 
-            query.setParameter("PAPP", app);
-            query.setParameter("PUSER", login.getUsuario());
+            query.setParameter("idEmp", login.getIdEmpresa());
 
-            Integer result = (Integer) query.getSingleResult();
+            Integer result = ((BigInteger) query.getSingleResult()).intValue();
             log.info("resultado fun_genera_numero_interno: " + result);
             buzoncsvList.forEach(c -> c.setCodFactura(String.valueOf(result)));
             log.info("buzoncsv: " + Arrays.toString(buzoncsvList.toArray()));
@@ -118,8 +122,9 @@ public class FacturaService {
                 try {
                     log.info("Update periodo en Factura : " + response.getIdFactura() + " : "
                             + ViewUtils.formatoFecha(dateI) + " " + ViewUtils.formatoFecha(dateF));
-                    factura = entityManager.createQuery("from Factura f where f.facId = :nroFact", Factura.class)
+                    factura = entityManager.createQuery("select f from Factura f where f.facId = :nroFact and f.facCeEmpresa=:idEmp", Factura.class)
                             .setParameter("nroFact", response.getIdFactura())
+                            .setParameter("idEmp", login.getIdEmpresa())
                             .getSingleResult();
                     factura.setFacFechaIniPeriodo(dateI);
                     factura.setFacFechaFinPeriodo(dateF);

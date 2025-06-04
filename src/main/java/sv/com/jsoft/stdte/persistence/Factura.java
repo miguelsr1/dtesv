@@ -155,6 +155,9 @@ public class Factura implements Serializable{
     @Basic
     @Column(name = "fac_observaciones")
     private String facObservaciones;
+    @Basic
+    @Column(name = "fac_ce_empresa")
+    private Integer facCeEmpresa;
 
     @Override
     public boolean equals(Object o) {

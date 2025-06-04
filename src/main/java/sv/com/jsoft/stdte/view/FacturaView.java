@@ -203,7 +203,6 @@ public class FacturaView implements Serializable {
                 .stream()
                 .filter(p -> p.getCpActivo().matches("S"))
                 .collect(Collectors.toList());
-        receptores = service.findAllReceptoresByIdEmp(login.getLogin().getIdEmpresa(), false);
         condicionOperacionList = service.findAllCondicionesOp();
         plazosList = service.findAllCatalogoPlazos();
         formaPagoList = service.findAllCatalogoFormaPago();

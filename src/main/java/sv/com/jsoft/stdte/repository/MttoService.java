@@ -17,8 +17,7 @@ public class MttoService {
     public List<Contribuyentes> findEmisores() {
         List<Contribuyentes> resultado = new ArrayList<>();
         try {
-            resultado = em
-                    .createQuery("from Contribuyentes c where c.rucTipoContribuyente = 'EMISOR'")
+            resultado = em.createQuery("select c from Contribuyentes c where c.rucTipoContribuyente = 'EMISOR'")
                     .getResultList();
         } catch (Exception e) {
             log.error("error findEmisores", e);
@@ -26,17 +25,17 @@ public class MttoService {
         return resultado;
     }
 
-    //USUARIOS CRUD OPERATIONS
-    /*public List<Usuario> retrieveUsers() {
-        List<Usuario> usuariosList = new ArrayList<>();
+    public List<Contribuyentes> findReceptores(Integer idEmpresa) {
+        List<Contribuyentes> resultado = new ArrayList<>();
         try {
-            usuariosList = entityManager
-                    .createQuery("from Usuarios ").getResultList();
+            resultado = em.createQuery("select c from Contribuyentes c where c.idEmpresa = :idEmp order by c.rucNombreRazonsocial")
+                    .setParameter("idEmp", idEmpresa)
+                    .getResultList();
         } catch (Exception e) {
-            log.error("error retrieveUsers ", e);
+            log.error("error findEmisores", e);
         }
-        return usuariosList;
-    }*/
+        return resultado;
+    }
 
     public String deleteUsuario(Usuario user) {
         String resultado = "OK";
@@ -72,8 +71,7 @@ public class MttoService {
 
     public List<CatalogoCodigoActividadEconomica> actividadEconomicaList() {
         try {
-            return em
-                    .createQuery("from CatalogoCodigoActividadEconomica ")
+            return em.createQuery("select c from CatalogoCodigoActividadEconomica c")
                     .getResultList();
         } catch (Exception e) {
             log.error("ERROR EN actividadEconomicaList ", e);
