@@ -119,7 +119,7 @@ CREATE TABLE `bitacora_declaracion_hacienda` (
   `link` varchar(300) NOT NULL,
   `id_fac` int DEFAULT NULL,
   PRIMARY KEY (`idbitacora`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,7 +128,7 @@ CREATE TABLE `bitacora_declaracion_hacienda` (
 
 LOCK TABLES `bitacora_declaracion_hacienda` WRITE;
 /*!40000 ALTER TABLE `bitacora_declaracion_hacienda` DISABLE KEYS */;
-INSERT INTO `bitacora_declaracion_hacienda` VALUES (2,'4','PROCESADO','8B37F771-3B7E-11F0-8D8B-0242AC110003',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"MIGUEL ISAAC SANCHEZ RAMOS\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": null, \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": null, \"nombreComercial\": \"MIGUEL SANCHEZ\", \"tipoEstablecimiento\": \"02\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 395.0, \"referencia\": \"\"}], \"ivaRete1\": 0.0, \"subTotal\": 395.0, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 395.0, \"totalPagar\": 395.0, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"TRESCIENTOS NOVENTA Y CINCO CON CERO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 395.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 395.0, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"PEDRITO PEREZ\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"SAN SALVADOR, SAN SALVADOR.\", \"departamento\": \"06\"}, \"codActividad\": \"68109\", \"numDocumento\": \"00000000000000\", \"descActividad\": \"ACTIVIDADES INMOBILIARIAS REALIZADAS CON BIENES PROPIOS O ARRENDADOS N.C.P.\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-05-27\", \"horEmi\": \"22:45:13\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-S000P000-000000000000008\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"8B37F771-3B7E-11F0-8D8B-0242AC110003\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 25, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 15.8, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 395.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-05-27 22:45:18','root@172.17.0.1','2025-05-27 22:45:18','20258083173D0CCE40E3801D13B5B899E8750E2Q','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=8B37F771-3B7E-11F0-8D8B-0242AC110003&fechaEmi=2025-05-27',4),(6,'14','PROCESADO','25B81991-3BD7-11F0-B223-FADAF9E6DC92',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"MIGUEL ISAAC SANCHEZ RAMOS\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": null, \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": null, \"nombreComercial\": \"MIGUEL SANCHEZ\", \"tipoEstablecimiento\": \"02\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 237.0, \"referencia\": \"\"}], \"ivaRete1\": 0.0, \"subTotal\": 237.0, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 237.0, \"totalPagar\": 237.0, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"DOSCIENTOS TREINTA Y SIETE CON CERO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 237.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 237.0, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"PEDRITO PEREZ\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"SAN SALVADOR, SAN SALVADOR.\", \"departamento\": \"06\"}, \"codActividad\": \"68109\", \"numDocumento\": \"00000000000000\", \"descActividad\": \"ACTIVIDADES INMOBILIARIAS REALIZADAS CON BIENES PROPIOS O ARRENDADOS N.C.P.\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-05-28\", \"horEmi\": \"09:19:28\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-S000P001-000000000000013\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"25B81991-3BD7-11F0-B223-FADAF9E6DC92\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 15, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 15.8, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 237.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-05-28 09:19:33','root@172.17.0.1','2025-05-28 09:19:33','2025DAE7FBA64CF747FBA82EA9AEC2F28B347GUA','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=25B81991-3BD7-11F0-B223-FADAF9E6DC92&fechaEmi=2025-05-28',14),(7,'15','PROCESADO','CB817D19-3BD7-11F0-B223-FADAF9E6DC92',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"MIGUEL ISAAC SANCHEZ RAMOS\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": null, \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": null, \"nombreComercial\": \"MIGUEL SANCHEZ\", \"tipoEstablecimiento\": \"02\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 316.0, \"referencia\": \"\"}], \"ivaRete1\": 0.0, \"subTotal\": 316.0, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 316.0, \"totalPagar\": 316.0, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"TRESCIENTOS DIECISEIS CON CERO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 316.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 316.0, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"PEDRITO PEREZ\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"SAN SALVADOR, SAN SALVADOR.\", \"departamento\": \"06\"}, \"codActividad\": \"68109\", \"numDocumento\": \"00000000000000\", \"descActividad\": \"ACTIVIDADES INMOBILIARIAS REALIZADAS CON BIENES PROPIOS O ARRENDADOS N.C.P.\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-05-28\", \"horEmi\": \"09:24:06\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-S000P001-000000000000014\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"CB817D19-3BD7-11F0-B223-FADAF9E6DC92\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 20, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 15.8, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 316.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-05-28 09:24:11','root@172.17.0.1','2025-05-28 09:24:11','2025D8546757864F4F05A25D83F70529F1B2TFXX','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=CB817D19-3BD7-11F0-B223-FADAF9E6DC92&fechaEmi=2025-05-28',15),(8,'16','PROCESADO','344F43CC-3BD8-11F0-B223-FADAF9E6DC92',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"MIGUEL ISAAC SANCHEZ RAMOS\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": null, \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": null, \"nombreComercial\": \"MIGUEL SANCHEZ\", \"tipoEstablecimiento\": \"02\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 158.0, \"referencia\": \"\"}], \"ivaRete1\": 0.0, \"subTotal\": 158.0, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 158.0, \"totalPagar\": 158.0, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 158.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 158.0, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"PEDRITO PEREZ\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"SAN SALVADOR, SAN SALVADOR.\", \"departamento\": \"06\"}, \"codActividad\": \"68109\", \"numDocumento\": \"00000000000000\", \"descActividad\": \"ACTIVIDADES INMOBILIARIAS REALIZADAS CON BIENES PROPIOS O ARRENDADOS N.C.P.\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-05-28\", \"horEmi\": \"09:27:02\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-S000P001-000000000000015\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"344F43CC-3BD8-11F0-B223-FADAF9E6DC92\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 10, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 15.8, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 158.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-05-28 09:27:07','root@172.17.0.1','2025-05-28 09:27:07','20259EC6A7B2629C4F0A98A3D94E8FF5E5B99IER','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=344F43CC-3BD8-11F0-B223-FADAF9E6DC92&fechaEmi=2025-05-28',16),(9,'17','PROCESADO','B11C59B2-3BEA-11F0-B223-FADAF9E6DC92',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"MIGUEL ISAAC SANCHEZ RAMOS\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": null, \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": null, \"nombreComercial\": \"MIGUEL SANCHEZ\", \"tipoEstablecimiento\": \"02\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 1580.0, \"referencia\": \"\"}], \"ivaRete1\": 0.0, \"subTotal\": 1580.0, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 1580.0, \"totalPagar\": 1580.0, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"MIL QUINIENTOS OCHENTA CON CERO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 1580.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 1580.0, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"PEDRITO PEREZ\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"SAN SALVADOR, SAN SALVADOR.\", \"departamento\": \"06\"}, \"codActividad\": \"68109\", \"numDocumento\": \"00000000000000\", \"descActividad\": \"ACTIVIDADES INMOBILIARIAS REALIZADAS CON BIENES PROPIOS O ARRENDADOS N.C.P.\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-05-28\", \"horEmi\": \"11:39:22\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-S000P001-000000000000016\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"B11C59B2-3BEA-11F0-B223-FADAF9E6DC92\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 100, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 15.8, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 1580.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-05-28 11:39:27','root@172.17.0.1','2025-05-28 11:39:27','2025388568F1E58B4671937554D8AE89F641DZVV','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=B11C59B2-3BEA-11F0-B223-FADAF9E6DC92&fechaEmi=2025-05-28',17),(10,'18','PROCESADO','5721E361-3CBC-11F0-A8B0-9A4A3E130EA2',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"MIGUEL ISAAC SANCHEZ RAMOS\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": null, \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": null, \"nombreComercial\": \"MIGUEL SANCHEZ\", \"tipoEstablecimiento\": \"02\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 158.0, \"referencia\": null}], \"ivaRete1\": 0.0, \"subTotal\": 158.0, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 158.0, \"totalPagar\": 158.0, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 158.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 158.0, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"PEDRITO PEREZ\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"SAN SALVADOR, SAN SALVADOR.\", \"departamento\": \"06\"}, \"codActividad\": \"68109\", \"numDocumento\": \"00000000000000\", \"descActividad\": \"ACTIVIDADES INMOBILIARIAS REALIZADAS CON BIENES PROPIOS O ARRENDADOS N.C.P.\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-05-29\", \"horEmi\": \"12:40:06\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-S000P001-000000000000017\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"5721E361-3CBC-11F0-A8B0-9A4A3E130EA2\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 10, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 15.8, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 158.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-05-29 12:40:11','root@172.17.0.1','2025-05-29 12:40:11','2025C870F52A2DA042A6B77ED229648D2948V6CE','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=5721E361-3CBC-11F0-A8B0-9A4A3E130EA2&fechaEmi=2025-05-29',18),(11,'19','PROCESADO','582228DC-3CC6-11F0-8D36-66DEE5945C0E',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"MIGUEL ISAAC SANCHEZ RAMOS\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": null, \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": null, \"nombreComercial\": \"MIGUEL SANCHEZ\", \"tipoEstablecimiento\": \"02\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 250.0, \"referencia\": null}], \"ivaRete1\": 0.0, \"subTotal\": 250.0, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 250.0, \"totalPagar\": 250.0, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"DOSCIENTOS CINCUENTA CON CERO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 250.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 250.0, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"PEDRITO PEREZ\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"SAN SALVADOR, SAN SALVADOR.\", \"departamento\": \"06\"}, \"codActividad\": \"68109\", \"numDocumento\": \"00000000000000\", \"descActividad\": \"ACTIVIDADES INMOBILIARIAS REALIZADAS CON BIENES PROPIOS O ARRENDADOS N.C.P.\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-05-29\", \"horEmi\": \"13:51:42\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-S000P001-000000000000018\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"582228DC-3CC6-11F0-8D36-66DEE5945C0E\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 10, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 25.0, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 250.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-05-29 13:51:47','root@172.17.0.1','2025-05-29 13:51:47','2025626D357D1B6F4BD7B72937E525791A2BKUNM','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=582228DC-3CC6-11F0-8D36-66DEE5945C0E&fechaEmi=2025-05-29',19);
+INSERT INTO `bitacora_declaracion_hacienda` VALUES (2,'4','PROCESADO','8B37F771-3B7E-11F0-8D8B-0242AC110003',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"MIGUEL ISAAC SANCHEZ RAMOS\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": null, \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": null, \"nombreComercial\": \"MIGUEL SANCHEZ\", \"tipoEstablecimiento\": \"02\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 395.0, \"referencia\": \"\"}], \"ivaRete1\": 0.0, \"subTotal\": 395.0, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 395.0, \"totalPagar\": 395.0, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"TRESCIENTOS NOVENTA Y CINCO CON CERO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 395.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 395.0, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"PEDRITO PEREZ\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"SAN SALVADOR, SAN SALVADOR.\", \"departamento\": \"06\"}, \"codActividad\": \"68109\", \"numDocumento\": \"00000000000000\", \"descActividad\": \"ACTIVIDADES INMOBILIARIAS REALIZADAS CON BIENES PROPIOS O ARRENDADOS N.C.P.\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-05-27\", \"horEmi\": \"22:45:13\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-S000P000-000000000000008\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"8B37F771-3B7E-11F0-8D8B-0242AC110003\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 25, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 15.8, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 395.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-05-27 22:45:18','root@172.17.0.1','2025-05-27 22:45:18','20258083173D0CCE40E3801D13B5B899E8750E2Q','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=8B37F771-3B7E-11F0-8D8B-0242AC110003&fechaEmi=2025-05-27',4),(6,'14','PROCESADO','25B81991-3BD7-11F0-B223-FADAF9E6DC92',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"MIGUEL ISAAC SANCHEZ RAMOS\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": null, \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": null, \"nombreComercial\": \"MIGUEL SANCHEZ\", \"tipoEstablecimiento\": \"02\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 237.0, \"referencia\": \"\"}], \"ivaRete1\": 0.0, \"subTotal\": 237.0, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 237.0, \"totalPagar\": 237.0, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"DOSCIENTOS TREINTA Y SIETE CON CERO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 237.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 237.0, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"PEDRITO PEREZ\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"SAN SALVADOR, SAN SALVADOR.\", \"departamento\": \"06\"}, \"codActividad\": \"68109\", \"numDocumento\": \"00000000000000\", \"descActividad\": \"ACTIVIDADES INMOBILIARIAS REALIZADAS CON BIENES PROPIOS O ARRENDADOS N.C.P.\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-05-28\", \"horEmi\": \"09:19:28\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-S000P001-000000000000013\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"25B81991-3BD7-11F0-B223-FADAF9E6DC92\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 15, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 15.8, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 237.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-05-28 09:19:33','root@172.17.0.1','2025-05-28 09:19:33','2025DAE7FBA64CF747FBA82EA9AEC2F28B347GUA','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=25B81991-3BD7-11F0-B223-FADAF9E6DC92&fechaEmi=2025-05-28',14),(7,'15','PROCESADO','CB817D19-3BD7-11F0-B223-FADAF9E6DC92',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"MIGUEL ISAAC SANCHEZ RAMOS\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": null, \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": null, \"nombreComercial\": \"MIGUEL SANCHEZ\", \"tipoEstablecimiento\": \"02\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 316.0, \"referencia\": \"\"}], \"ivaRete1\": 0.0, \"subTotal\": 316.0, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 316.0, \"totalPagar\": 316.0, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"TRESCIENTOS DIECISEIS CON CERO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 316.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 316.0, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"PEDRITO PEREZ\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"SAN SALVADOR, SAN SALVADOR.\", \"departamento\": \"06\"}, \"codActividad\": \"68109\", \"numDocumento\": \"00000000000000\", \"descActividad\": \"ACTIVIDADES INMOBILIARIAS REALIZADAS CON BIENES PROPIOS O ARRENDADOS N.C.P.\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-05-28\", \"horEmi\": \"09:24:06\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-S000P001-000000000000014\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"CB817D19-3BD7-11F0-B223-FADAF9E6DC92\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 20, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 15.8, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 316.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-05-28 09:24:11','root@172.17.0.1','2025-05-28 09:24:11','2025D8546757864F4F05A25D83F70529F1B2TFXX','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=CB817D19-3BD7-11F0-B223-FADAF9E6DC92&fechaEmi=2025-05-28',15),(8,'16','PROCESADO','344F43CC-3BD8-11F0-B223-FADAF9E6DC92',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"MIGUEL ISAAC SANCHEZ RAMOS\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": null, \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": null, \"nombreComercial\": \"MIGUEL SANCHEZ\", \"tipoEstablecimiento\": \"02\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 158.0, \"referencia\": \"\"}], \"ivaRete1\": 0.0, \"subTotal\": 158.0, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 158.0, \"totalPagar\": 158.0, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 158.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 158.0, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"PEDRITO PEREZ\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"SAN SALVADOR, SAN SALVADOR.\", \"departamento\": \"06\"}, \"codActividad\": \"68109\", \"numDocumento\": \"00000000000000\", \"descActividad\": \"ACTIVIDADES INMOBILIARIAS REALIZADAS CON BIENES PROPIOS O ARRENDADOS N.C.P.\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-05-28\", \"horEmi\": \"09:27:02\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-S000P001-000000000000015\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"344F43CC-3BD8-11F0-B223-FADAF9E6DC92\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 10, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 15.8, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 158.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-05-28 09:27:07','root@172.17.0.1','2025-05-28 09:27:07','20259EC6A7B2629C4F0A98A3D94E8FF5E5B99IER','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=344F43CC-3BD8-11F0-B223-FADAF9E6DC92&fechaEmi=2025-05-28',16),(9,'17','PROCESADO','B11C59B2-3BEA-11F0-B223-FADAF9E6DC92',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"MIGUEL ISAAC SANCHEZ RAMOS\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": null, \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": null, \"nombreComercial\": \"MIGUEL SANCHEZ\", \"tipoEstablecimiento\": \"02\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 1580.0, \"referencia\": \"\"}], \"ivaRete1\": 0.0, \"subTotal\": 1580.0, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 1580.0, \"totalPagar\": 1580.0, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"MIL QUINIENTOS OCHENTA CON CERO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 1580.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 1580.0, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"PEDRITO PEREZ\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"SAN SALVADOR, SAN SALVADOR.\", \"departamento\": \"06\"}, \"codActividad\": \"68109\", \"numDocumento\": \"00000000000000\", \"descActividad\": \"ACTIVIDADES INMOBILIARIAS REALIZADAS CON BIENES PROPIOS O ARRENDADOS N.C.P.\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-05-28\", \"horEmi\": \"11:39:22\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-S000P001-000000000000016\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"B11C59B2-3BEA-11F0-B223-FADAF9E6DC92\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 100, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 15.8, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 1580.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-05-28 11:39:27','root@172.17.0.1','2025-05-28 11:39:27','2025388568F1E58B4671937554D8AE89F641DZVV','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=B11C59B2-3BEA-11F0-B223-FADAF9E6DC92&fechaEmi=2025-05-28',17),(10,'18','PROCESADO','5721E361-3CBC-11F0-A8B0-9A4A3E130EA2',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"MIGUEL ISAAC SANCHEZ RAMOS\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": null, \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": null, \"nombreComercial\": \"MIGUEL SANCHEZ\", \"tipoEstablecimiento\": \"02\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 158.0, \"referencia\": null}], \"ivaRete1\": 0.0, \"subTotal\": 158.0, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 158.0, \"totalPagar\": 158.0, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 158.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 158.0, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"PEDRITO PEREZ\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"SAN SALVADOR, SAN SALVADOR.\", \"departamento\": \"06\"}, \"codActividad\": \"68109\", \"numDocumento\": \"00000000000000\", \"descActividad\": \"ACTIVIDADES INMOBILIARIAS REALIZADAS CON BIENES PROPIOS O ARRENDADOS N.C.P.\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-05-29\", \"horEmi\": \"12:40:06\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-S000P001-000000000000017\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"5721E361-3CBC-11F0-A8B0-9A4A3E130EA2\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 10, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 15.8, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 158.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-05-29 12:40:11','root@172.17.0.1','2025-05-29 12:40:11','2025C870F52A2DA042A6B77ED229648D2948V6CE','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=5721E361-3CBC-11F0-A8B0-9A4A3E130EA2&fechaEmi=2025-05-29',18),(11,'19','PROCESADO','582228DC-3CC6-11F0-8D36-66DEE5945C0E',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"MIGUEL ISAAC SANCHEZ RAMOS\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": null, \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": null, \"nombreComercial\": \"MIGUEL SANCHEZ\", \"tipoEstablecimiento\": \"02\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 250.0, \"referencia\": null}], \"ivaRete1\": 0.0, \"subTotal\": 250.0, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 250.0, \"totalPagar\": 250.0, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"DOSCIENTOS CINCUENTA CON CERO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 250.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 250.0, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"PEDRITO PEREZ\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"SAN SALVADOR, SAN SALVADOR.\", \"departamento\": \"06\"}, \"codActividad\": \"68109\", \"numDocumento\": \"00000000000000\", \"descActividad\": \"ACTIVIDADES INMOBILIARIAS REALIZADAS CON BIENES PROPIOS O ARRENDADOS N.C.P.\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-05-29\", \"horEmi\": \"13:51:42\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-S000P001-000000000000018\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"582228DC-3CC6-11F0-8D36-66DEE5945C0E\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 10, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 25.0, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 250.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-05-29 13:51:47','root@172.17.0.1','2025-05-29 13:51:47','2025626D357D1B6F4BD7B72937E525791A2BKUNM','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=582228DC-3CC6-11F0-8D36-66DEE5945C0E&fechaEmi=2025-05-29',19),(12,'38','PROCESADO','8BF0D6D7-408A-11F0-A2E7-7AD83F5004C6',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"MIGUEL ISAAC SANCHEZ RAMOS\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": null, \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": null, \"nombreComercial\": \"MIGUEL SANCHEZ\", \"tipoEstablecimiento\": \"02\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 158.0, \"referencia\": null}], \"ivaRete1\": 0.0, \"subTotal\": 158.0, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 158.0, \"totalPagar\": 158.0, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 158.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 158.0, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"JUAN GUTIERREZ\", \"telefono\": \"22617300\", \"direccion\": {\"municipio\": \"15\", \"complemento\": \"1a. CALLE OTE, SANTIAGO TEXACUANGOS, SAN SALVADOR\", \"departamento\": \"06\"}, \"codActividad\": \"10005\", \"numDocumento\": \"00000000000008\", \"descActividad\": \"OTROS\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-06-03\", \"horEmi\": \"08:53:44\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-S000P001-000000000000030\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"8BF0D6D7-408A-11F0-A2E7-7AD83F5004C6\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 10, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 15.8, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 158.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-06-03 08:53:49','root@172.17.0.1','2025-06-03 08:53:49','2025E0A0097F2E9043B4A1AB9812D7AC37CDRQ9I','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=8BF0D6D7-408A-11F0-A2E7-7AD83F5004C6&fechaEmi=2025-06-03',40),(14,'10','PROCESADO','4DE7D493-40B8-11F0-A2E7-7AD83F5004C6',NULL,'{\"emisor\": {\"nit\": \"06140203981013\", \"nrc\": \"1047582\", \"correo\": \"admin@gmail.com\", \"nombre\": \"asd asd asda sd\", \"telefono\": \"22336655\", \"direccion\": {\"municipio\": \"06\", \"complemento\": \"lsakjhals dkjhalsdkj hasd\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"94990\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": \"0000\", \"descActividad\": \"ACTIVIDADES DE ASOCIACIONES N.C.P.\", \"codPuntoVentaMH\": \"0000\", \"nombreComercial\": \"asdasd asd asd\", \"tipoEstablecimiento\": \"01\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 52.6, \"referencia\": null}], \"ivaRete1\": 0.0, \"subTotal\": 52.6, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 52.6, \"totalPagar\": 52.6, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"CINCUENTA Y DOS CON SESENTA /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 52.6, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 52.6, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"NA\", \"telefono\": null, \"direccion\": {\"municipio\": \"14\", \"complemento\": \"SAN SALVADOR \", \"departamento\": \"06\"}, \"codActividad\": \"10001\", \"numDocumento\": \"00000000000000\", \"descActividad\": \"EMPLEADOS\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-06-03\", \"horEmi\": \"14:21:17\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-S000P000-000000000000008\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"4DE7D493-40B8-11F0-A2E7-7AD83F5004C6\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"01\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 10, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 5.26, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 52.6, \"descripcion\": \"TEST_STC\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-06-03 14:21:21','root@172.17.0.1','2025-06-03 14:21:21','2025322418A3307841129F62D67DA2E5485FFWUZ','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=4DE7D493-40B8-11F0-A2E7-7AD83F5004C6&fechaEmi=2025-06-03',54),(19,'7','PROCESADO','CB1140A5-40BC-11F0-A2E7-7AD83F5004C6',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"asd asd asda sd\", \"telefono\": \"22336655\", \"direccion\": {\"municipio\": \"05\", \"complemento\": \"lsakjhals dkjhalsdkj hasd\", \"departamento\": \"05\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": \"0000\", \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": \"0000\", \"nombreComercial\": \"asdasd asd asd\", \"tipoEstablecimiento\": \"01\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 158.0, \"referencia\": null}], \"ivaRete1\": 0.0, \"subTotal\": 158.0, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 158.0, \"totalPagar\": 158.0, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 158.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 158.0, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"JUAN GUTIERREZ\", \"telefono\": \"22617300\", \"direccion\": {\"municipio\": \"15\", \"complemento\": \"1a. CALLE OTE, SANTIAGO TEXACUANGOS, SAN SALVADOR\", \"departamento\": \"06\"}, \"codActividad\": \"10005\", \"numDocumento\": \"00000000000008\", \"descActividad\": \"OTROS\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-06-03\", \"horEmi\": \"14:53:25\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-MISRP000-000000000000036\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"CB1140A5-40BC-11F0-A2E7-7AD83F5004C6\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 10, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 15.8, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 158.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-06-03 14:53:29','root@172.17.0.1','2025-06-03 14:53:29','2025493B784BC9214776B2D7AB0192488DF7I9YX','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=CB1140A5-40BC-11F0-A2E7-7AD83F5004C6&fechaEmi=2025-06-03',64),(20,'8','PROCESADO','E63E0D2D-40BC-11F0-A2E7-7AD83F5004C6',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"asd asd asda sd\", \"telefono\": \"22336655\", \"direccion\": {\"municipio\": \"05\", \"complemento\": \"lsakjhals dkjhalsdkj hasd\", \"departamento\": \"05\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": \"0000\", \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": \"0000\", \"nombreComercial\": \"asdasd asd asd\", \"tipoEstablecimiento\": \"01\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 158.0, \"referencia\": null}], \"ivaRete1\": 0.0, \"subTotal\": 158.0, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 158.0, \"totalPagar\": 158.0, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 158.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 158.0, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"JUAN GUTIERREZ\", \"telefono\": \"22617300\", \"direccion\": {\"municipio\": \"15\", \"complemento\": \"1a. CALLE OTE, SANTIAGO TEXACUANGOS, SAN SALVADOR\", \"departamento\": \"06\"}, \"codActividad\": \"10005\", \"numDocumento\": \"00000000000008\", \"descActividad\": \"OTROS\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-06-03\", \"horEmi\": \"14:54:10\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-MISRP000-000000000000037\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"E63E0D2D-40BC-11F0-A2E7-7AD83F5004C6\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 10, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 15.8, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 158.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-06-03 14:54:17','root@172.17.0.1','2025-06-03 14:54:17','2025A7A9888C494841BBB8614B0191F0270FXIWW','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=E63E0D2D-40BC-11F0-A2E7-7AD83F5004C6&fechaEmi=2025-06-03',65),(21,'11','PROCESADO','FA365ACD-40BC-11F0-A2E7-7AD83F5004C6',NULL,'{\"emisor\": {\"nit\": \"06140203981013\", \"nrc\": \"1047582\", \"correo\": \"admin@gmail.com\", \"nombre\": \"asd asd asda sd\", \"telefono\": \"22336655\", \"direccion\": {\"municipio\": \"06\", \"complemento\": \"lsakjhals dkjhalsdkj hasd\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"94990\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": \"0000\", \"descActividad\": \"ACTIVIDADES DE ASOCIACIONES N.C.P.\", \"codPuntoVentaMH\": \"0000\", \"nombreComercial\": \"asdasd asd asd\", \"tipoEstablecimiento\": \"01\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 52.6, \"referencia\": null}], \"ivaRete1\": 0.0, \"subTotal\": 52.6, \"totalIva\": 0.0, \"tributos\": null, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 52.6, \"totalPagar\": 52.6, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"CINCUENTA Y DOS CON SESENTA /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 0.0, \"subTotalVentas\": 52.6, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 52.6, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nrc\": null, \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"NA\", \"telefono\": null, \"direccion\": {\"municipio\": \"14\", \"complemento\": \"SAN SALVADOR \", \"departamento\": \"06\"}, \"codActividad\": \"10001\", \"numDocumento\": \"00000000000000\", \"descActividad\": \"EMPLEADOS\", \"tipoDocumento\": \"36\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-06-03\", \"horEmi\": \"14:54:44\", \"tipoDte\": \"01\", \"version\": 1, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-01-S000P000-000000000000009\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"FA365ACD-40BC-11F0-A2E7-7AD83F5004C6\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"01\", \"ivaItem\": 0.0, \"numItem\": 1, \"cantidad\": 10, \"tipoItem\": 1, \"tributos\": null, \"noGravado\": 0.0, \"precioUni\": 5.26, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 52.6, \"descripcion\": \"TEST_STC\", \"ventaExenta\": 0.0, \"ventaGravada\": 0.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-06-03 14:54:49','root@172.17.0.1','2025-06-03 14:54:49','2025486D4368B6A54E3080FD86413AD2C3B8APQ6','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=FA365ACD-40BC-11F0-A2E7-7AD83F5004C6&fechaEmi=2025-06-03',66),(22,'11','PROCESADO','6CDF4FFE-40C8-11F0-A2E7-7AD83F5004C6',NULL,'{\"emisor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"MIGUEL ISAAC SANCHEZ RAMOS\", \"telefono\": \"2261-7300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"96092\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": null, \"descActividad\": \"SERVICIOS N.C.P.\", \"codPuntoVentaMH\": null, \"nombreComercial\": \"MIGUEL SANCHEZ\", \"tipoEstablecimiento\": \"02\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 178.54, \"referencia\": null}], \"ivaRete1\": 0.0, \"subTotal\": 158.0, \"tributos\": [{\"valor\": 20.54, \"codigo\": \"20\", \"descripcion\": \"Impuesto al Valor Agregado 13%\"}], \"ivaPerci1\": 0.0, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 0.0, \"totalPagar\": 178.54, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"CIENTO SETENTA Y OCHO CON CINCUENTA Y CUATRO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 158.0, \"subTotalVentas\": 158.0, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 178.54, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nit\": \"06141603001014\", \"nrc\": \"1199782\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"G.S.I. El Salvador, S.A. de C.V. \", \"telefono\": \"22617300\", \"direccion\": {\"municipio\": \"14\", \"complemento\": \"Calle Llama del Bosque Pte. Blvd. Luis Poma Local 204, Urbanizacion Madre Selva Edificio \", \"departamento\": \"06\"}, \"codActividad\": \"63110\", \"descActividad\": \"PROCESAMIENTO DE DATOS Y ACTIVIDADES RELACIONADAS\", \"nombreComercial\": \"G.S.I. El Salvador, S.A. de C.V. \"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-06-03\", \"horEmi\": \"16:16:41\", \"tipoDte\": \"03\", \"version\": 3, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-03-MISRP000-000000000000002\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"6CDF4FFE-40C8-11F0-A2E7-7AD83F5004C6\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"1\", \"numItem\": 1, \"cantidad\": 10, \"tipoItem\": 1, \"tributos\": [\"20\"], \"noGravado\": 0.0, \"precioUni\": 15.8, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 0.0, \"descripcion\": \"TEST 1\", \"ventaExenta\": 0.0, \"ventaGravada\": 158.0, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-06-03 16:16:46','root@172.17.0.1','2025-06-03 16:16:46','2025CC4CF6F0056A415FA5AB209B9A8C75050D9W','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=6CDF4FFE-40C8-11F0-A2E7-7AD83F5004C6&fechaEmi=2025-06-03',69),(23,'15','PROCESADO','89EAF4CA-40DD-11F0-A2E7-7AD83F5004C6',NULL,'{\"emisor\": {\"nit\": \"06140203981013\", \"nrc\": \"1047582\", \"correo\": \"admin@gmail.com\", \"nombre\": \"asd asd asda sd\", \"telefono\": \"22336655\", \"direccion\": {\"municipio\": \"06\", \"complemento\": \"lsakjhals dkjhalsdkj hasd\", \"departamento\": \"06\"}, \"codEstable\": \"0000\", \"codActividad\": \"94990\", \"codEstableMH\": \"0000\", \"codPuntoVenta\": \"0000\", \"descActividad\": \"ACTIVIDADES DE ASOCIACIONES N.C.P.\", \"codPuntoVentaMH\": \"0000\", \"nombreComercial\": \"asdasd asd asd\", \"tipoEstablecimiento\": \"01\"}, \"resumen\": {\"pagos\": [{\"plazo\": \"01\", \"codigo\": \"01\", \"periodo\": null, \"montoPago\": 59.44, \"referencia\": null}], \"ivaRete1\": 0.0, \"subTotal\": 52.6, \"tributos\": [{\"valor\": 6.84, \"codigo\": \"20\", \"descripcion\": \"Impuesto al Valor Agregado 13%\"}], \"ivaPerci1\": 0.0, \"reteRenta\": 0.0, \"descuNoSuj\": 0.0, \"saldoFavor\": 0.0, \"totalDescu\": 0.0, \"totalNoSuj\": 0.0, \"totalPagar\": 59.44, \"descuExenta\": 0.0, \"totalExenta\": 0.0, \"totalLetras\": \"CINCUENTA Y NUEVE CON CUARENTA Y CUATRO /100 CTVS\", \"descuGravada\": 0.0, \"totalGravada\": 52.6, \"subTotalVentas\": 52.6, \"totalNoGravado\": 0.0, \"condicionOperacion\": 1, \"numPagoElectronico\": null, \"montoTotalOperacion\": 59.44, \"porcentajeDescuento\": 0.0}, \"apendice\": null, \"receptor\": {\"nit\": \"06141204841181\", \"nrc\": \"1875310\", \"correo\": \"miguelsr1@gmail.com\", \"nombre\": \"MIGUEL ISAAC SANCHEZ RAMOS\", \"telefono\": null, \"direccion\": {\"municipio\": \"14\", \"complemento\": \"CERCA DE LA CUENCA DEL PUEBLO\", \"departamento\": \"06\"}, \"codActividad\": \"96092\", \"descActividad\": \"SERVICIOS N.C.P.\", \"nombreComercial\": \"MIGUEL ISAAC SANCHEZ RAMOS\"}, \"extension\": {\"docuRecibe\": null, \"nombRecibe\": null, \"docuEntrega\": null, \"nombEntrega\": null, \"observaciones\": null, \"placaVehiculo\": null}, \"ventaTercero\": null, \"identificacion\": {\"fecEmi\": \"2025-06-03\", \"horEmi\": \"18:47:49\", \"tipoDte\": \"03\", \"version\": 3, \"ambiente\": \"00\", \"tipoModelo\": 1, \"tipoMoneda\": \"USD\", \"motivoContin\": null, \"numeroControl\": \"DTE-03-S000P000-000000000000003\", \"tipoOperacion\": 1, \"codigoGeneracion\": \"89EAF4CA-40DD-11F0-A2E7-7AD83F5004C6\", \"tipoContingencia\": null}, \"cuerpoDocumento\": [{\"psv\": 0.0, \"codigo\": \"01\", \"numItem\": 1, \"cantidad\": 10, \"tipoItem\": 1, \"tributos\": [\"20\"], \"noGravado\": 0.0, \"precioUni\": 5.26, \"uniMedida\": 59, \"codTributo\": null, \"montoDescu\": 0.0, \"ventaNoSuj\": 0.0, \"descripcion\": \"TEST_STC\", \"ventaExenta\": 0.0, \"ventaGravada\": 52.6, \"numeroDocumento\": null}], \"otrosDocumentos\": null, \"documentoRelacionado\": null}','2025-06-03 18:48:37','root@172.17.0.1','2025-06-03 18:48:37','2025A9AAD737EAF74CD0BA6A3F01A6A822FDNQCE','https://admin.factura.gob.sv/consultaPublica?ambiente=00&codGen=89EAF4CA-40DD-11F0-A2E7-7AD83F5004C6&fechaEmi=2025-06-03',83);
 /*!40000 ALTER TABLE `bitacora_declaracion_hacienda` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +145,7 @@ CREATE TABLE `buzon_encabezado` (
   `usuario` varchar(55) DEFAULT NULL,
   `aplicacion` varchar(55) DEFAULT NULL,
   PRIMARY KEY (`idbuzon`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb3 COMMENT='Se crea trabla que permitirá controlar el numero interno en el buzoncsv y evitar el proceso de ingreso manual, utilizado en fun_genera_numero_interno.';
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb3 COMMENT='Se crea trabla que permitirá controlar el numero interno en el buzoncsv y evitar el proceso de ingreso manual, utilizado en fun_genera_numero_interno.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,7 +154,7 @@ CREATE TABLE `buzon_encabezado` (
 
 LOCK TABLES `buzon_encabezado` WRITE;
 /*!40000 ALTER TABLE `buzon_encabezado` DISABLE KEYS */;
-INSERT INTO `buzon_encabezado` VALUES (1,'2025-05-27 22:26:09','miguelsr1@gmail.com','PROINGDATOS'),(3,'2025-05-27 22:40:07','miguelsr1@gmail.com','PROINGDATOS'),(4,'2025-05-27 22:45:13','miguelsr1@gmail.com','PROINGDATOS'),(7,'2025-05-28 08:50:28','miguelsr1@gmail.com','PROINGDATOS'),(9,'2025-05-28 08:56:33','miguelsr1@gmail.com','PROINGDATOS'),(11,'2025-05-28 09:16:05','miguelsr1@gmail.com','PROINGDATOS'),(13,'2025-05-28 09:19:08','miguelsr1@gmail.com','PROINGDATOS'),(14,'2025-05-28 09:19:28','miguelsr1@gmail.com','PROINGDATOS'),(15,'2025-05-28 09:24:06','miguelsr1@gmail.com','PROINGDATOS'),(16,'2025-05-28 09:27:02','miguelsr1@gmail.com','PROINGDATOS'),(17,'2025-05-28 11:39:22','miguelsr1@gmail.com','PROINGDATOS'),(18,'2025-05-29 12:40:05','miguelsr1@gmail.com','PROINGDATOS'),(19,'2025-05-29 13:51:42','miguelsr1@gmail.com','PROINGDATOS'),(20,'2025-05-30 15:19:41','admin@gmail.com','PROINGDATOS'),(21,'2025-05-30 15:21:08','admin@gmail.com','PROINGDATOS'),(22,'2025-05-30 15:24:04','admin@gmail.com','PROINGDATOS'),(23,'2025-05-30 15:27:16','admin@gmail.com','PROINGDATOS'),(28,'2025-05-30 16:05:37','admin@gmail.com','PROINGDATOS'),(30,'2025-05-30 16:12:48','admin@gmail.com','PROINGDATOS');
+INSERT INTO `buzon_encabezado` VALUES (1,'2025-05-27 22:26:09','miguelsr1@gmail.com','PROINGDATOS'),(3,'2025-05-27 22:40:07','miguelsr1@gmail.com','PROINGDATOS'),(4,'2025-05-27 22:45:13','miguelsr1@gmail.com','PROINGDATOS'),(7,'2025-05-28 08:50:28','miguelsr1@gmail.com','PROINGDATOS'),(9,'2025-05-28 08:56:33','miguelsr1@gmail.com','PROINGDATOS'),(11,'2025-05-28 09:16:05','miguelsr1@gmail.com','PROINGDATOS'),(13,'2025-05-28 09:19:08','miguelsr1@gmail.com','PROINGDATOS'),(14,'2025-05-28 09:19:28','miguelsr1@gmail.com','PROINGDATOS'),(15,'2025-05-28 09:24:06','miguelsr1@gmail.com','PROINGDATOS'),(16,'2025-05-28 09:27:02','miguelsr1@gmail.com','PROINGDATOS'),(17,'2025-05-28 11:39:22','miguelsr1@gmail.com','PROINGDATOS'),(18,'2025-05-29 12:40:05','miguelsr1@gmail.com','PROINGDATOS'),(19,'2025-05-29 13:51:42','miguelsr1@gmail.com','PROINGDATOS'),(20,'2025-05-30 15:19:41','admin@gmail.com','PROINGDATOS'),(21,'2025-05-30 15:21:08','admin@gmail.com','PROINGDATOS'),(22,'2025-05-30 15:24:04','admin@gmail.com','PROINGDATOS'),(23,'2025-05-30 15:27:16','admin@gmail.com','PROINGDATOS'),(28,'2025-05-30 16:05:37','admin@gmail.com','PROINGDATOS'),(30,'2025-05-30 16:12:48','admin@gmail.com','PROINGDATOS'),(38,'2025-06-03 08:53:44','miguelsr1@gmail.com','PROINGDATOS');
 /*!40000 ALTER TABLE `buzon_encabezado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,7 +234,7 @@ CREATE TABLE `buzoncsv` (
   PRIMARY KEY (`id_buzon`),
   KEY `BUZ_ID_idx` (`id_buzon`) /*!80000 INVISIBLE */,
   KEY `BUZ_COD_idx` (`cod_factura`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -243,7 +243,7 @@ CREATE TABLE `buzoncsv` (
 
 LOCK TABLES `buzoncsv` WRITE;
 /*!40000 ALTER TABLE `buzoncsv` DISABLE KEYS */;
-INSERT INTO `buzoncsv` VALUES (1,'1','06141204841181','01',36,'0000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,30.00000,15.80000,NULL,'No',20,13,'474.00',1,'01','474.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-27 22:26:09','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(3,'3','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,20.00000,15.80000,NULL,'No',20,13,'316.00',1,'01','316.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-27 22:40:07','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(4,'4','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,25.00000,15.80000,NULL,'No',20,13,'395.00',1,'01','395.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-27 22:45:13','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(7,'7','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,15.00000,15.80000,NULL,'No',20,13,'237.00',1,'01','237.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-28 08:50:37','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(9,'9','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-28 08:56:33','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(11,'11','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-28 09:16:05','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(13,'13','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-28 09:19:08','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(14,'14','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,15.00000,15.80000,NULL,'No',20,13,'237.00',1,'01','237.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-28 09:19:28','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(15,'15','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,20.00000,15.80000,NULL,'No',20,13,'316.00',1,'01','316.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-28 09:24:06','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(16,'16','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-28 09:27:02','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(17,'17','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,100.00000,15.80000,NULL,'No',20,13,'1580.00',1,'01','1580.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-28 11:39:22','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(18,'18','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-29 12:40:06','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,1,NULL,NULL,NULL),(19,'19','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,10.00000,25.00000,NULL,'No',20,13,'250.00',1,'01','250.00',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-29 13:51:42','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,1,NULL,NULL,NULL),(20,'20','06140203981013','01',13,'000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'NA','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-30 15:19:41','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,NULL),(21,'21','06140203981013','01',13,'000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'NA','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-30 15:21:20','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,NULL),(22,'22','06140203981013','01',13,'000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'NA','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-30 15:24:04','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,NULL),(23,'23','06140203981013','01',13,'00000000-0',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'SAN SALVADOR ','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-30 15:27:16','N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,NULL),(28,'28','06140203981013','01',13,'00000000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'SAN SALVADOR ','10001','01','TEST_STC',59,1,20.00000,5.26000,NULL,'No',20,13,'105.20',1,'01','105.20',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-30 16:12:20','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2),(29,'29','06140203981013','01',13,'00000000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'SAN SALVADOR ','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-30 16:12:48','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2),(30,'30','06140203981013','01',13,'00000000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'SAN SALVADOR ','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-30 16:16:54','N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2);
+INSERT INTO `buzoncsv` VALUES (1,'1','06141204841181','01',36,'0000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,30.00000,15.80000,NULL,'No',20,13,'474.00',1,'01','474.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-27 22:26:09','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(3,'3','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,20.00000,15.80000,NULL,'No',20,13,'316.00',1,'01','316.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-27 22:40:07','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(4,'4','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,25.00000,15.80000,NULL,'No',20,13,'395.00',1,'01','395.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-27 22:45:13','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(7,'7','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,15.00000,15.80000,NULL,'No',20,13,'237.00',1,'01','237.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-28 08:50:37','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(9,'9','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-28 08:56:33','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(11,'11','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-28 09:16:05','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(13,'13','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-28 09:19:08','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(14,'14','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,15.00000,15.80000,NULL,'No',20,13,'237.00',1,'01','237.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-28 09:19:28','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(15,'15','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,20.00000,15.80000,NULL,'No',20,13,'316.00',1,'01','316.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-28 09:24:06','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(16,'16','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-28 09:27:02','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(17,'17','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,100.00000,15.80000,NULL,'No',20,13,'1580.00',1,'01','1580.00','','01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-28 11:39:22','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,'',1,NULL,NULL,NULL),(18,'18','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-29 12:40:06','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,1,NULL,NULL,NULL),(19,'19','06141204841181','01',36,'00000000000000',1047582,'SIN IDENTIFICACION ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'SAN SALVADOR ','10005','1','TEST 1',59,1,10.00000,25.00000,NULL,'No',20,13,'250.00',1,'01','250.00',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-29 13:51:42','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,1,NULL,NULL,NULL),(20,'20','06140203981013','01',13,'000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'NA','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-30 15:19:41','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,NULL),(21,'21','06140203981013','01',13,'000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'NA','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-30 15:21:20','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,NULL),(22,'22','06140203981013','01',13,'000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'NA','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-30 15:24:04','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,NULL),(23,'23','06140203981013','01',13,'00000000-0',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'SAN SALVADOR ','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-30 15:27:16','N',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,NULL),(28,'28','06140203981013','01',13,'00000000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'SAN SALVADOR ','10001','01','TEST_STC',59,1,20.00000,5.26000,NULL,'No',20,13,'105.20',1,'01','105.20',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-30 16:12:20','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2),(29,'29','06140203981013','01',13,'00000000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'SAN SALVADOR ','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-05-30 16:12:48','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2),(30,'30','06140203981013','01',13,'00000000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'SAN SALVADOR ','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 10:01:28','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2),(38,'38','06141204841181','01',36,'00000000000008',NULL,'JUAN GUTIERREZ','miguelsr1@gmail.com','22617300','USD',1,'06',15,'1a. CALLE OTE, SANTIAGO TEXACUANGOS, SAN SALVADOR','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 08:53:44','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,1,NULL,NULL,1),(43,'4','06140203981013','01',13,'00000000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'SAN SALVADOR ','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 10:01:28','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2),(44,'5','06140203981013','01',13,'00000000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'SAN SALVADOR ','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 10:01:28','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2),(47,'6','06140203981013','01',13,'00000000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'SAN SALVADOR ','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 13:19:44','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2),(48,'7','06140203981013','01',13,'00000000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'SAN SALVADOR ','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 13:21:57','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2),(49,'8','06140203981013','01',36,'00000000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'SAN SALVADOR ','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 13:32:04','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2),(52,'9','06140203981013','01',36,'00000000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'SAN SALVADOR ','10001','01','TEST_STC',59,1,20.00000,5.26000,NULL,'No',20,13,'105.20',1,'01','105.20',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 14:20:45','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2),(53,'10','06140203981013','01',36,'00000000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'SAN SALVADOR ','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 14:21:17','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2),(54,'2','06141204841181','01',36,'00000000000008',NULL,'JUAN GUTIERREZ','miguelsr1@gmail.com','22617300','USD',1,'06',15,'1a. CALLE OTE, SANTIAGO TEXACUANGOS, SAN SALVADOR','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 14:28:46','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,1,NULL,NULL,1),(56,'3','06141204841181','01',36,'00000000000008',NULL,'JUAN GUTIERREZ','miguelsr1@gmail.com','22617300','USD',1,'06',15,'1a. CALLE OTE, SANTIAGO TEXACUANGOS, SAN SALVADOR','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 14:36:14','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,1,NULL,NULL,1),(58,'4','06141204841181','01',36,'00000000000008',NULL,'JUAN GUTIERREZ','miguelsr1@gmail.com','22617300','USD',1,'06',15,'1a. CALLE OTE, SANTIAGO TEXACUANGOS, SAN SALVADOR','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 14:38:47','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,1,NULL,NULL,1),(60,'5','06141204841181','01',36,'00000000000008',NULL,'JUAN GUTIERREZ','miguelsr1@gmail.com','22617300','USD',1,'06',15,'1a. CALLE OTE, SANTIAGO TEXACUANGOS, SAN SALVADOR','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 14:46:34','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,1,NULL,NULL,1),(62,'6','06141204841181','01',36,'00000000000008',NULL,'JUAN GUTIERREZ','miguelsr1@gmail.com','22617300','USD',1,'06',15,'1a. CALLE OTE, SANTIAGO TEXACUANGOS, SAN SALVADOR','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 14:52:42','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,1,NULL,NULL,1),(63,'7','06141204841181','01',36,'00000000000008',NULL,'JUAN GUTIERREZ','miguelsr1@gmail.com','22617300','USD',1,'06',15,'1a. CALLE OTE, SANTIAGO TEXACUANGOS, SAN SALVADOR','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 14:53:25','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,1,NULL,NULL,1),(64,'8','06141204841181','01',36,'00000000000008',NULL,'JUAN GUTIERREZ','miguelsr1@gmail.com','22617300','USD',1,'06',15,'1a. CALLE OTE, SANTIAGO TEXACUANGOS, SAN SALVADOR','10005','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'158.00',1,'01','158.00',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 14:54:10','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,1,NULL,NULL,1),(65,'11','06140203981013','01',36,'00000000000000',NULL,'NA','miguelsr1@gmail.com','','USD',1,'06',14,'SAN SALVADOR ','10001','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'52.60',1,'01','52.60',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 14:54:44','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2),(67,'9','06141204841181','03',36,'06141603001014',1199782,'G.S.I. El Salvador, S.A. de C.V. ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'Calle Llama del Bosque Pte. Blvd. Luis Poma Local 204, Urbanizacion Madre Selva Edificio ','63110','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'178.5400',1,'01','178.5400',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 16:10:45','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,1,NULL,NULL,1),(68,'10','06141204841181','03',36,'06141603001014',1199782,'G.S.I. El Salvador, S.A. de C.V. ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'Calle Llama del Bosque Pte. Blvd. Luis Poma Local 204, Urbanizacion Madre Selva Edificio ','63110','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'178.5400',1,'01','178.5400',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 16:12:18','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,1,NULL,NULL,1),(69,'11','06141204841181','03',36,'06141603001014',1199782,'G.S.I. El Salvador, S.A. de C.V. ','miguelsr1@gmail.com','22617300','USD',1,'06',14,'Calle Llama del Bosque Pte. Blvd. Luis Poma Local 204, Urbanizacion Madre Selva Edificio ','63110','1','TEST 1',59,1,10.00000,15.80000,NULL,'No',20,13,'178.5400',1,'01','178.5400',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 16:16:41','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,1,NULL,NULL,1),(70,'12','06141204841181','03',36,'06141204841181',1875310,'Miguel Isaac Sanchez Ramos','miguelsr1@gmail.com','22336655','USD',1,'06',14,'CERCA DEL PALO DE MANGO','96092','1','TEST 1',59,1,30.00000,15.80000,NULL,'No',20,13,'535.6200',1,'01','535.6200',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 16:42:20','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,1,NULL,NULL,1),(80,'12','06140203981013','03',36,'06141204841181',1875310,'MIGUEL ISAAC SANCHEZ RAMOS','miguelsr1@gmail.com','22617300','USD',1,'06',14,'CERCA DE LA CUENCA DEL PUEBLO','96092','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'59.4380',1,'01','59.4380',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 17:10:36','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2),(81,'13','06140203981013','03',36,'06141204841181',1875310,'MIGUEL ISAAC SANCHEZ RAMOS','miguelsr1@gmail.com','22617300','USD',1,'06',14,'CERCA DE LA CUENCA DEL PUEBLO','96092','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'59.4380',1,'01','59.4380',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 18:39:19','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2),(82,'14','06140203981013','03',36,'06141204841181',1875310,'MIGUEL ISAAC SANCHEZ RAMOS','miguelsr1@gmail.com','22617300','USD',1,'06',14,'CERCA DE LA CUENCA DEL PUEBLO','96092','01','TEST_STC',59,1,20.00000,5.26000,NULL,'No',20,13,'118.8760',1,'01','118.8760',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 18:41:25','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2),(84,'15','06140203981013','03',36,'06141204841181',1875310,'MIGUEL ISAAC SANCHEZ RAMOS','miguelsr1@gmail.com','22617300','USD',1,'06',14,'CERCA DE LA CUENCA DEL PUEBLO','96092','01','TEST_STC',59,1,10.00000,5.26000,NULL,'No',20,13,'59.4380',1,'01','59.4380',NULL,'01','0',NULL,NULL,NULL,NULL,NULL,NULL,'2025-06-03 18:47:41','S',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0.00000,0.00,0.00000,0.00,NULL,2,NULL,NULL,2);
 /*!40000 ALTER TABLE `buzoncsv` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -854,7 +854,7 @@ CREATE TABLE `contribuyentes` (
   KEY `PK_NIT_idx` (`ruc_nit_contribuyente`),
   CONSTRAINT `PK_PAIS` FOREIGN KEY (`ruc_cp_id_pais`) REFERENCES `catalogo_pais` (`cp_id_pais`),
   CONSTRAINT `PK_TIPO_PERSON` FOREIGN KEY (`ruc_ctper_id`) REFERENCES `catalogo_tipo_de_persona` (`ctper_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=308 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=310 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -863,7 +863,7 @@ CREATE TABLE `contribuyentes` (
 
 LOCK TABLES `contribuyentes` WRITE;
 /*!40000 ALTER TABLE `contribuyentes` DISABLE KEYS */;
-INSERT INTO `contribuyentes` VALUES (1,'06141204841181','MIGUEL ISAAC SANCHEZ RAMOS','SANCHEZ','RAMOS','COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1','2261-7300','2261-7300','miguelsr1@gmail.com','007589275',NULL,NULL,'06','14','EMISOR',NULL,'0000','1875310','96092','Actividades de asociaciones n.c.p.','02',NULL,'S000P001','0000',1,'MIGUEL SANCHEZ',NULL,NULL,NULL,NULL,2,NULL,1),(2,'06140203981013','Servicios de Transito Centroamericanos S.A. de C.V.',NULL,NULL,'Blvd tutunichapa y av legazpi #11 urb siglo xxi','2261-7300','2261-7300','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','EMISOR',NULL,'0000','1047582','94990','Actividades de asociaciones n.c.p.','02',NULL,'S000P000','0000',1,'SERTRACEN, S.A. DE C.V.',NULL,NULL,NULL,2,2,NULL,1),(3,'06141603001014','G.S.I. El Salvador, S.A. de C.V. ','G.S.I. El Salvador, S.A. de C.V. ','G.S.I. El Salvador, S.A. de C.V. ','Calle Llama del Bosque Pte. Blvd. Luis Poma Local 204, Urbanizacion Madre Selva Edificio ','22617300','22617300','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,'1199782','63110','Actividades de asociaciones n.c.p.',NULL,NULL,'',NULL,1,NULL,NULL,NULL,NULL,NULL,2,1,1),(4,'06141810841054','pruebas update nombre razon social',NULL,NULL,'Domicilio update pruebas','22445588','22445588','miguelsr1@gmail.com',NULL,NULL,NULL,'06','03','EMISOR',NULL,NULL,'456123','94990',NULL,NULL,NULL,NULL,NULL,NULL,'pruebas update nombre comercial',NULL,NULL,NULL,NULL,NULL,NULL,0),(5,'00000000000000','SIN IDENTIFICACION ',NULL,NULL,'SAN SALVADOR ','22617300','22617300','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','EMISOR',NULL,NULL,'1047582','10005',NULL,NULL,NULL,NULL,NULL,1,'SIN IDENTIFICACION ',NULL,NULL,NULL,NULL,NULL,NULL,0),(6,'00000000000003','SIN IDENTIFICACION ',NULL,NULL,'SAN SALVADOR','22617300','22617300','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,'1047582','10005',NULL,NULL,NULL,NULL,NULL,1,'SIN IDENTIFICACION ',NULL,NULL,NULL,NULL,NULL,NULL,0),(8,'022862818','prueba creacion emisor',NULL,NULL,'Pruebas creacion de emisor','22822136','22822136','miguelsr1@gmail.com',NULL,NULL,NULL,'06','03','EMISOR',NULL,NULL,'1567894','56107',NULL,NULL,NULL,NULL,NULL,1,'Prueba creacion emisor',NULL,NULL,NULL,NULL,NULL,NULL,0),(9,'0228628186','prueba creacion receptor',NULL,NULL,'Pruebas domicilio nuevo receptor','72725063','72725063','miguelsr1@gmail.com',NULL,NULL,NULL,'06','08','RECEPTOR',NULL,NULL,'16546818','1150',NULL,NULL,NULL,NULL,NULL,1,'prueba creacion receptor',NULL,NULL,NULL,NULL,NULL,NULL,0),(291,'00000000000001','PRUEBAS NRC NULL',NULL,NULL,'pruebas insert nrc null','22822136','22822136','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,NULL,'94990','Actividades de asociaciones n.c.p.',NULL,NULL,NULL,NULL,1,'PRUEBAS NRC NULL',NULL,NULL,NULL,NULL,2,NULL,0),(292,'00000000000002','PRUEBAS STC FACTURACION ',NULL,NULL,'PRUEBAS STC FACTURACION ','22558899','22558899','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,NULL,'11048','Maquilado de aguas gaseosas',NULL,NULL,NULL,NULL,1,'PRUEBAS',NULL,NULL,NULL,NULL,NULL,NULL,0),(293,'00000000000000','PEDRITO PEREZ',NULL,NULL,'SAN SALVADOR, SAN SALVADOR.','2261-7300','2261-7300','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,NULL,'68109','Actividades inmobiliarias realizadas con bienes propios o arrendados n.c.p.',NULL,NULL,NULL,NULL,1,'PEDRITO PEREZ',NULL,NULL,NULL,NULL,NULL,NULL,0),(294,'00000000000008','JUAN GUTIERREZ',NULL,NULL,'1a. CALLE OTE, SANTIAGO TEXACUANGOS, SAN SALVADOR','22617300','22617300','miguelsr1@gmail.com',NULL,NULL,NULL,'06','15','RECEPTOR',NULL,NULL,NULL,'10005','Otros',NULL,NULL,NULL,NULL,1,'JUAN GUTIERREZ',NULL,NULL,NULL,NULL,NULL,1,0),(295,'06081208901020','SR PRUEBA FSE',NULL,NULL,'SAN SALVADOR, SAN SALVADOR.','22617300','22617300','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,NULL,'10005','Otros',NULL,NULL,NULL,NULL,1,'SR PRUEBA FSE',NULL,NULL,NULL,NULL,NULL,NULL,0),(306,'022862817','prueba receptor s.a. de c.v.',NULL,NULL,'pruebas domicilio',NULL,'72725063','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,'18108410','62090',NULL,NULL,NULL,NULL,NULL,1,'prueba receptor s.a. de c.v.',NULL,NULL,NULL,NULL,NULL,NULL,0),(307,'00000000000000','NA',NULL,NULL,'SAN SALVADOR ',NULL,'','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,NULL,'10001',NULL,NULL,NULL,NULL,NULL,2,'NA',NULL,NULL,NULL,NULL,NULL,2,0);
+INSERT INTO `contribuyentes` VALUES (1,'06141204841181','MIGUEL ISAAC SANCHEZ RAMOS','SANCHEZ','RAMOS','COL. ESCALON, CANTON EL CARMEN, PJE PEREZ, CASA 1','2261-7300','2261-7300','miguelsr1@gmail.com','007589275',NULL,NULL,'06','14','EMISOR',NULL,'0000','1875310','96092','Actividades de asociaciones n.c.p.','02',NULL,'S000P001','0000',1,'MIGUEL SANCHEZ',NULL,NULL,NULL,NULL,2,NULL,1),(2,'06140203981013','Servicios de Transito Centroamericanos S.A. de C.V.',NULL,NULL,'Blvd tutunichapa y av legazpi #11 urb siglo xxi','2261-7300','2261-7300','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','EMISOR',NULL,'0000','1047582','94990','Actividades de asociaciones n.c.p.','02',NULL,'S000P000','0000',1,'SERTRACEN, S.A. DE C.V.',NULL,NULL,NULL,2,2,1,1),(3,'06141603001014','G.S.I. El Salvador, S.A. de C.V. ','G.S.I. El Salvador, S.A. de C.V. ','G.S.I. El Salvador, S.A. de C.V. ','Calle Llama del Bosque Pte. Blvd. Luis Poma Local 204, Urbanizacion Madre Selva Edificio ','22617300','22617300','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,'1199782','63110','Actividades de asociaciones n.c.p.',NULL,NULL,'',NULL,1,NULL,NULL,NULL,NULL,NULL,2,1,1),(4,'06141810841054','pruebas update nombre razon social',NULL,NULL,'Domicilio update pruebas','22445588','22445588','miguelsr1@gmail.com',NULL,NULL,NULL,'06','03','EMISOR',NULL,NULL,'456123','94990',NULL,NULL,NULL,NULL,NULL,NULL,'pruebas update nombre comercial',NULL,NULL,NULL,NULL,NULL,NULL,0),(5,'00000000000000','SIN IDENTIFICACION ',NULL,NULL,'SAN SALVADOR ','22617300','22617300','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','EMISOR',NULL,NULL,'1047582','10005',NULL,NULL,NULL,NULL,NULL,1,'SIN IDENTIFICACION ',NULL,NULL,NULL,NULL,NULL,NULL,0),(6,'00000000000003','SIN IDENTIFICACION ',NULL,NULL,'SAN SALVADOR','22617300','22617300','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,'1047582','10005',NULL,NULL,NULL,NULL,NULL,1,'SIN IDENTIFICACION ',NULL,NULL,NULL,NULL,NULL,NULL,0),(8,'022862818','prueba creacion emisor',NULL,NULL,'Pruebas creacion de emisor','22822136','22822136','miguelsr1@gmail.com',NULL,NULL,NULL,'06','03','EMISOR',NULL,NULL,'1567894','56107',NULL,NULL,NULL,NULL,NULL,1,'Prueba creacion emisor',NULL,NULL,NULL,NULL,NULL,NULL,0),(9,'0228628186','prueba creacion receptor',NULL,NULL,'Pruebas domicilio nuevo receptor','72725063','72725063','miguelsr1@gmail.com',NULL,NULL,NULL,'06','08','RECEPTOR',NULL,NULL,'16546818','1150',NULL,NULL,NULL,NULL,NULL,1,'prueba creacion receptor',NULL,NULL,NULL,NULL,NULL,NULL,0),(291,'00000000000001','PRUEBAS NRC NULL',NULL,NULL,'pruebas insert nrc null','22822136','22822136','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,NULL,'94990','Actividades de asociaciones n.c.p.',NULL,NULL,NULL,NULL,1,'PRUEBAS NRC NULL',NULL,NULL,NULL,NULL,2,NULL,0),(292,'00000000000002','PRUEBAS STC FACTURACION ',NULL,NULL,'PRUEBAS STC FACTURACION ','22558899','22558899','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,NULL,'11048','Maquilado de aguas gaseosas',NULL,NULL,NULL,NULL,1,'PRUEBAS',NULL,NULL,NULL,NULL,NULL,NULL,0),(293,'00000000000000','PEDRITO PEREZ',NULL,NULL,'SAN SALVADOR, SAN SALVADOR.','2261-7300','2261-7300','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,NULL,'68109','Actividades inmobiliarias realizadas con bienes propios o arrendados n.c.p.',NULL,NULL,NULL,NULL,1,'PEDRITO PEREZ',NULL,NULL,NULL,NULL,NULL,NULL,0),(294,'00000000000008','JUAN GUTIERREZ',NULL,NULL,'1a. CALLE OTE, SANTIAGO TEXACUANGOS, SAN SALVADOR','22617300','22617300','miguelsr1@gmail.com',NULL,NULL,NULL,'06','15','RECEPTOR',NULL,NULL,NULL,'10005','Otros',NULL,NULL,NULL,NULL,1,'JUAN GUTIERREZ',NULL,NULL,NULL,NULL,NULL,1,0),(295,'06081208901020','SR PRUEBA FSE',NULL,NULL,'SAN SALVADOR, SAN SALVADOR.','22617300','22617300','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,NULL,'10005','Otros',NULL,NULL,NULL,NULL,1,'SR PRUEBA FSE',NULL,NULL,NULL,NULL,NULL,NULL,0),(306,'022862817','prueba receptor s.a. de c.v.',NULL,NULL,'pruebas domicilio',NULL,'72725063','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,'18108410','62090',NULL,NULL,NULL,NULL,NULL,1,'prueba receptor s.a. de c.v.',NULL,NULL,NULL,NULL,NULL,NULL,0),(307,'00000000000000','NA',NULL,NULL,'SAN SALVADOR ',NULL,'','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,NULL,'10001',NULL,NULL,NULL,NULL,NULL,1,'NA',NULL,NULL,NULL,NULL,NULL,2,0),(308,'06141204841181','Miguel Isaac Sanchez Ramos',NULL,NULL,'CERCA DEL PALO DE MANGO',NULL,'22336655','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,'1875310','96092',NULL,NULL,NULL,NULL,NULL,1,'Miguel Isaac Sanchez Ramos',NULL,NULL,NULL,NULL,NULL,1,1),(309,'06141204841181','MIGUEL ISAAC SANCHEZ RAMOS',NULL,NULL,'CERCA DE LA CUENCA DEL PUEBLO',NULL,'22617300','miguelsr1@gmail.com',NULL,NULL,NULL,'06','14','RECEPTOR',NULL,NULL,'1875310','96092',NULL,NULL,NULL,NULL,NULL,1,'MIGUEL ISAAC SANCHEZ RAMOS',NULL,NULL,NULL,NULL,NULL,2,1);
 /*!40000 ALTER TABLE `contribuyentes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -977,6 +977,11 @@ CREATE TABLE `empresa` (
   `usuario` varchar(250) NOT NULL,
   `codigo_departamento` varchar(2) NOT NULL,
   `fecha_creacion` datetime NOT NULL,
+  `estable_pv` varchar(8) DEFAULT NULL,
+  `codigo_estable` varchar(4) DEFAULT NULL,
+  `codigo_estable_mh` varchar(4) DEFAULT NULL,
+  `codigo_puntoventa` varchar(4) DEFAULT NULL,
+  `codigo_puntoventa_mh` varchar(4) DEFAULT NULL,
   PRIMARY KEY (`id_empresa`),
   KEY `empresa_fk` (`usuario`),
   KEY `municipio_empresa_fk` (`codigo_municipio`),
@@ -994,7 +999,7 @@ CREATE TABLE `empresa` (
 
 LOCK TABLES `empresa` WRITE;
 /*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
-INSERT INTO `empresa` VALUES (1,'96092','06141204841181','96092','asdasd asd asd','asd asd asda sd','22336655','miguelsr1@gmail.com',1,'lsakjhals dkjhalsdkj hasd','05',NULL,1,'miguelsr1@gmail.com','05','2025-05-22 17:10:07'),(2,'94990','06140203981013','1047582','asdasd asd asd','asd asd asda sd','22336655','admin@gmail.com',1,'lsakjhals dkjhalsdkj hasd','06',NULL,1,'admin@gmail.com','06','2025-05-30 00:00:00');
+INSERT INTO `empresa` VALUES (1,'96092','06141204841181','1875310','asdasd asd asd','asd asd asda sd','22336655','miguelsr1@gmail.com',1,'lsakjhals dkjhalsdkj hasd','05','01',1,'miguelsr1@gmail.com','05','2025-05-22 17:10:07','MISRP000','0000','0000','0000','0000'),(2,'94990','06140203981013','1047582','asdasd asd asd','asd asd asda sd','22336655','admin@gmail.com',1,'lsakjhals dkjhalsdkj hasd','06','01',1,'admin@gmail.com','06','2025-05-30 00:00:00','S000P000','0000','0000','0000','0000');
 /*!40000 ALTER TABLE `empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1175,7 +1180,7 @@ CREATE TABLE `factura` (
   CONSTRAINT `FACT_INCOTERMS` FOREIGN KEY (`fac_cinc_id`) REFERENCES `catalogo_incoterms` (`cinc_id`),
   CONSTRAINT `FACT_RETENCION` FOREIGN KEY (`fac_cri_id`) REFERENCES `catalogo_retencion_iva_mh` (`cri_id`),
   CONSTRAINT `FACT_TIPO_DOCUM` FOREIGN KEY (`fac_tipo_documento`) REFERENCES `tipos_documentos` (`doc_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1184,7 +1189,7 @@ CREATE TABLE `factura` (
 
 LOCK TABLES `factura` WRITE;
 /*!40000 ALTER TABLE `factura` DISABLE KEYS */;
-INSERT INTO `factura` VALUES (1,'1','2025-05-27 22:26:09',NULL,'06141204841181','0000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,474.00,NULL,'1047582',1,'E176DFE6-3B7B-11F0-8D8B-0242AC110003','DTE-01-MUMH0000-000000000000006',1,NULL,54.53,'01',0.00,0.00,474.00,0.00,0.00,0.00,0.00,0.00,0.00,'CUATROCIENTOS SETENTA Y CUATRO CON CERO /100 CTVS',0.00,0.00,20.00,474.00,NULL,474.00,0.00,474.00,NULL,1,0.00,'2025-05-27 06:00:00','2025-05-27 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 27/05/2025 al 27/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(3,'3','2025-05-27 22:40:07','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,316.00,NULL,'1047582',1,'D4DA9EC8-3B7D-11F0-8D8B-0242AC110003','DTE-01-MUMH0000-000000000000007',1,NULL,36.35,'01',0.00,0.00,316.00,0.00,0.00,0.00,0.00,0.00,0.00,'TRESCIENTOS DIECISEIS CON CERO /100 CTVS',0.00,0.00,20.00,316.00,NULL,316.00,0.00,316.00,NULL,1,0.00,'2025-05-27 06:00:00','2025-05-27 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 27/05/2025 al 27/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(4,'4','2025-05-27 22:45:13','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,395.00,NULL,'1047582',2,'8B37F771-3B7E-11F0-8D8B-0242AC110003','DTE-01-S000P000-000000000000008',1,_binary '20258083173D0CCE40E3801D13B5B899E8750E2Q',45.44,'01',0.00,0.00,395.00,0.00,0.00,0.00,0.00,0.00,0.00,'TRESCIENTOS NOVENTA Y CINCO CON CERO /100 CTVS',0.00,0.00,20.00,395.00,NULL,395.00,0.00,395.00,NULL,1,0.00,'2025-05-27 06:00:00','2025-05-27 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 27/05/2025 al 27/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,'2025-05-27 22:45:18',NULL),(7,'7','2025-05-28 08:50:37','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,237.00,NULL,'1047582',1,'20BD5778-3BD3-11F0-B223-FADAF9E6DC92','DTE-01-S000P000-000000000000009',1,NULL,27.27,'01',0.00,0.00,237.00,0.00,0.00,0.00,0.00,0.00,0.00,'DOSCIENTOS TREINTA Y SIETE CON CERO /100 CTVS',0.00,0.00,20.00,237.00,NULL,237.00,0.00,237.00,NULL,1,0.00,'2025-05-28 06:00:00','2025-05-28 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 28/05/2025 al 28/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(9,'9','2025-05-28 08:56:33','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,158.00,NULL,'1047582',1,'F21ABBE4-3BD3-11F0-B223-FADAF9E6DC92','DTE-01-S000P000-000000000000010',1,NULL,18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-05-28 06:00:00','2025-05-28 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 28/05/2025 al 28/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(11,'11','2025-05-28 09:16:05','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,158.00,NULL,'1047582',1,'ACDBD900-3BD6-11F0-B223-FADAF9E6DC92','DTE-01-S000P001-000000000000011',1,NULL,18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-05-28 06:00:00','2025-05-28 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 28/05/2025 al 28/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(13,'13','2025-05-28 09:19:08','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,158.00,NULL,'1047582',1,'199220F8-3BD7-11F0-B223-FADAF9E6DC92','DTE-01-S000P001-000000000000012',1,NULL,18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-05-28 06:00:00','2025-05-28 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 28/05/2025 al 28/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(14,'14','2025-05-28 09:19:28','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,237.00,NULL,'1047582',2,'25B81991-3BD7-11F0-B223-FADAF9E6DC92','DTE-01-S000P001-000000000000013',1,_binary '2025DAE7FBA64CF747FBA82EA9AEC2F28B347GUA',27.27,'01',0.00,0.00,237.00,0.00,0.00,0.00,0.00,0.00,0.00,'DOSCIENTOS TREINTA Y SIETE CON CERO /100 CTVS',0.00,0.00,20.00,237.00,NULL,237.00,0.00,237.00,NULL,1,0.00,'2025-05-28 06:00:00','2025-05-28 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 28/05/2025 al 28/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,'2025-05-28 09:19:33',NULL),(15,'15','2025-05-28 09:24:06','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,316.00,NULL,'1047582',2,'CB817D19-3BD7-11F0-B223-FADAF9E6DC92','DTE-01-S000P001-000000000000014',1,_binary '2025D8546757864F4F05A25D83F70529F1B2TFXX',36.35,'01',0.00,0.00,316.00,0.00,0.00,0.00,0.00,0.00,0.00,'TRESCIENTOS DIECISEIS CON CERO /100 CTVS',0.00,0.00,20.00,316.00,NULL,316.00,0.00,316.00,NULL,1,0.00,'2025-05-28 06:00:00','2025-05-28 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 28/05/2025 al 28/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,'2025-05-28 09:24:11',NULL),(16,'16','2025-05-28 09:27:02','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,158.00,NULL,'1047582',2,'344F43CC-3BD8-11F0-B223-FADAF9E6DC92','DTE-01-S000P001-000000000000015',1,_binary '20259EC6A7B2629C4F0A98A3D94E8FF5E5B99IER',18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-05-28 06:00:00','2025-05-28 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 28/05/2025 al 28/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,'2025-05-28 09:27:07',NULL),(17,'17','2025-05-28 11:39:22','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,1580.00,NULL,'1047582',2,'B11C59B2-3BEA-11F0-B223-FADAF9E6DC92','DTE-01-S000P001-000000000000016',1,_binary '2025388568F1E58B4671937554D8AE89F641DZVV',181.77,'01',0.00,0.00,1580.00,0.00,0.00,0.00,0.00,0.00,0.00,'MIL QUINIENTOS OCHENTA CON CERO /100 CTVS',0.00,0.00,20.00,1580.00,NULL,1580.00,0.00,1580.00,NULL,1,0.00,'2025-05-28 06:00:00','2025-05-28 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 28/05/2025 al 28/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,'2025-05-28 11:39:27',NULL),(18,'18','2025-05-29 12:40:06','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,158.00,NULL,'1047582',2,'5721E361-3CBC-11F0-A8B0-9A4A3E130EA2','DTE-01-S000P001-000000000000017',1,_binary '2025C870F52A2DA042A6B77ED229648D2948V6CE',18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-05-29 06:00:00','2025-05-29 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 29/05/2025 al 29/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,'2025-05-29 12:40:11',NULL),(19,'19','2025-05-29 13:51:42','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,250.00,NULL,'1047582',2,'582228DC-3CC6-11F0-8D36-66DEE5945C0E','DTE-01-S000P001-000000000000018',1,_binary '2025626D357D1B6F4BD7B72937E525791A2BKUNM',28.76,'01',0.00,0.00,250.00,0.00,0.00,0.00,0.00,0.00,0.00,'DOSCIENTOS CINCUENTA CON CERO /100 CTVS',0.00,0.00,20.00,250.00,NULL,250.00,0.00,250.00,NULL,1,0.00,'2025-05-29 06:00:00','2025-05-29 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 29/05/2025 al 29/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,'2025-05-29 13:51:47',NULL),(20,'20','2025-05-30 15:19:41','10001','06140203981013','000000000','','NA',0.00,0.00,52.60,NULL,NULL,1,NULL,'DTE-01-S000P001-000000000000019',2,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,'2025-05-30 06:00:00','2025-05-30 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 30/05/2025 al 30/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(21,'21','2025-05-30 15:21:20','10001','06140203981013','000000000','','NA',0.00,0.00,52.60,NULL,NULL,1,NULL,'DTE-01-S000P001-000000000000020',2,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,'2025-05-30 06:00:00','2025-05-30 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 30/05/2025 al 30/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(22,'22','2025-05-30 15:24:04','10001','06140203981013','000000000','','NA',0.00,0.00,52.60,NULL,NULL,1,'6FB7BF07-3D9C-11F0-A2E7-7AD83F5004C6','DTE-01-S000P001-000000000000021',2,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,'2025-05-30 06:00:00','2025-05-30 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 30/05/2025 al 30/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(23,'23','2025-05-30 15:27:16','10001','06140203981013','00000000-0','','NA',0.00,0.00,52.60,NULL,NULL,1,'DF3B09BA-3D9C-11F0-A2E7-7AD83F5004C6','DTE-01-S000P001-000000000000022',2,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,'2025-05-30 06:00:00','2025-05-30 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 30/05/2025 al 30/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(24,'24','2025-05-30 16:05:40','10001','06140203981013','00000000000000','','NA',0.00,0.00,105.20,NULL,NULL,1,NULL,'DTE-01-S000P001-000000000000023',2,NULL,12.10,'01',0.00,0.00,105.20,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCO CON VEINTE /100 CTVS',0.00,0.00,20.00,105.20,NULL,105.20,0.00,105.20,NULL,1,0.00,NULL,NULL,0.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(27,'28','2025-05-30 16:12:20','10001','06140203981013','00000000000000','','NA',0.00,0.00,105.20,NULL,NULL,1,NULL,'DTE-01-S000P001-000000000000026',2,NULL,12.10,'01',0.00,0.00,105.20,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCO CON VEINTE /100 CTVS',0.00,0.00,20.00,105.20,NULL,105.20,0.00,105.20,NULL,1,0.00,NULL,NULL,0.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(28,'29','2025-05-30 16:12:48','10001','06140203981013','00000000000000','','NA',0.00,0.00,52.60,NULL,NULL,1,NULL,'DTE-01-S000P001-000000000000027',2,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,NULL,NULL,0.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(29,'30','2025-05-30 16:16:54','10001','06140203981013','00000000000000','','NA',0.00,0.00,52.60,NULL,NULL,1,NULL,'DTE-01-S000P001-000000000000028',2,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,NULL,NULL,0.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL);
+INSERT INTO `factura` VALUES (1,'1','2025-05-27 22:26:09',NULL,'06141204841181','0000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,474.00,NULL,'1047582',1,'E176DFE6-3B7B-11F0-8D8B-0242AC110003','DTE-01-MUMH0000-000000000000006',1,NULL,54.53,'01',0.00,0.00,474.00,0.00,0.00,0.00,0.00,0.00,0.00,'CUATROCIENTOS SETENTA Y CUATRO CON CERO /100 CTVS',0.00,0.00,20.00,474.00,NULL,474.00,0.00,474.00,NULL,1,0.00,'2025-05-27 06:00:00','2025-05-27 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 27/05/2025 al 27/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(3,'3','2025-05-27 22:40:07','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,316.00,NULL,'1047582',1,'D4DA9EC8-3B7D-11F0-8D8B-0242AC110003','DTE-01-MUMH0000-000000000000007',1,NULL,36.35,'01',0.00,0.00,316.00,0.00,0.00,0.00,0.00,0.00,0.00,'TRESCIENTOS DIECISEIS CON CERO /100 CTVS',0.00,0.00,20.00,316.00,NULL,316.00,0.00,316.00,NULL,1,0.00,'2025-05-27 06:00:00','2025-05-27 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 27/05/2025 al 27/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(4,'4','2025-05-27 22:45:13','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,395.00,NULL,'1047582',2,'8B37F771-3B7E-11F0-8D8B-0242AC110003','DTE-01-S000P000-000000000000008',1,_binary '20258083173D0CCE40E3801D13B5B899E8750E2Q',45.44,'01',0.00,0.00,395.00,0.00,0.00,0.00,0.00,0.00,0.00,'TRESCIENTOS NOVENTA Y CINCO CON CERO /100 CTVS',0.00,0.00,20.00,395.00,NULL,395.00,0.00,395.00,NULL,1,0.00,'2025-05-27 06:00:00','2025-05-27 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 27/05/2025 al 27/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,'2025-05-27 22:45:18',NULL),(7,'7','2025-05-28 08:50:37','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,237.00,NULL,'1047582',1,'20BD5778-3BD3-11F0-B223-FADAF9E6DC92','DTE-01-S000P000-000000000000009',1,NULL,27.27,'01',0.00,0.00,237.00,0.00,0.00,0.00,0.00,0.00,0.00,'DOSCIENTOS TREINTA Y SIETE CON CERO /100 CTVS',0.00,0.00,20.00,237.00,NULL,237.00,0.00,237.00,NULL,1,0.00,'2025-05-28 06:00:00','2025-05-28 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 28/05/2025 al 28/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(9,'9','2025-05-28 08:56:33','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,158.00,NULL,'1047582',1,'F21ABBE4-3BD3-11F0-B223-FADAF9E6DC92','DTE-01-S000P000-000000000000010',1,NULL,18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-05-28 06:00:00','2025-05-28 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 28/05/2025 al 28/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(11,'11','2025-05-28 09:16:05','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,158.00,NULL,'1047582',1,'ACDBD900-3BD6-11F0-B223-FADAF9E6DC92','DTE-01-S000P001-000000000000011',1,NULL,18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-05-28 06:00:00','2025-05-28 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 28/05/2025 al 28/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(13,'13','2025-05-28 09:19:08','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,158.00,NULL,'1047582',1,'199220F8-3BD7-11F0-B223-FADAF9E6DC92','DTE-01-S000P001-000000000000012',1,NULL,18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-05-28 06:00:00','2025-05-28 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 28/05/2025 al 28/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(14,'14','2025-05-28 09:19:28','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,237.00,NULL,'1047582',2,'25B81991-3BD7-11F0-B223-FADAF9E6DC92','DTE-01-S000P001-000000000000013',1,_binary '2025DAE7FBA64CF747FBA82EA9AEC2F28B347GUA',27.27,'01',0.00,0.00,237.00,0.00,0.00,0.00,0.00,0.00,0.00,'DOSCIENTOS TREINTA Y SIETE CON CERO /100 CTVS',0.00,0.00,20.00,237.00,NULL,237.00,0.00,237.00,NULL,1,0.00,'2025-05-28 06:00:00','2025-05-28 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 28/05/2025 al 28/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,'2025-05-28 09:19:33',NULL),(15,'15','2025-05-28 09:24:06','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,316.00,NULL,'1047582',2,'CB817D19-3BD7-11F0-B223-FADAF9E6DC92','DTE-01-S000P001-000000000000014',1,_binary '2025D8546757864F4F05A25D83F70529F1B2TFXX',36.35,'01',0.00,0.00,316.00,0.00,0.00,0.00,0.00,0.00,0.00,'TRESCIENTOS DIECISEIS CON CERO /100 CTVS',0.00,0.00,20.00,316.00,NULL,316.00,0.00,316.00,NULL,1,0.00,'2025-05-28 06:00:00','2025-05-28 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 28/05/2025 al 28/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,'2025-05-28 09:24:11',NULL),(16,'16','2025-05-28 09:27:02','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,158.00,NULL,'1047582',2,'344F43CC-3BD8-11F0-B223-FADAF9E6DC92','DTE-01-S000P001-000000000000015',1,_binary '20259EC6A7B2629C4F0A98A3D94E8FF5E5B99IER',18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-05-28 06:00:00','2025-05-28 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 28/05/2025 al 28/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,'2025-05-28 09:27:07',NULL),(17,'17','2025-05-28 11:39:22','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,1580.00,NULL,'1047582',2,'B11C59B2-3BEA-11F0-B223-FADAF9E6DC92','DTE-01-S000P001-000000000000016',1,_binary '2025388568F1E58B4671937554D8AE89F641DZVV',181.77,'01',0.00,0.00,1580.00,0.00,0.00,0.00,0.00,0.00,0.00,'MIL QUINIENTOS OCHENTA CON CERO /100 CTVS',0.00,0.00,20.00,1580.00,NULL,1580.00,0.00,1580.00,NULL,1,0.00,'2025-05-28 06:00:00','2025-05-28 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 28/05/2025 al 28/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,'2025-05-28 11:39:27',NULL),(18,'18','2025-05-29 12:40:06','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,158.00,NULL,'1047582',2,'5721E361-3CBC-11F0-A8B0-9A4A3E130EA2','DTE-01-S000P001-000000000000017',1,_binary '2025C870F52A2DA042A6B77ED229648D2948V6CE',18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-05-29 06:00:00','2025-05-29 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 29/05/2025 al 29/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,'2025-05-29 12:40:11',NULL),(19,'19','2025-05-29 13:51:42','68109','06141204841181','00000000000000','22617300','SIN IDENTIFICACION ',0.00,0.00,250.00,NULL,'1047582',2,'582228DC-3CC6-11F0-8D36-66DEE5945C0E','DTE-01-S000P001-000000000000018',1,_binary '2025626D357D1B6F4BD7B72937E525791A2BKUNM',28.76,'01',0.00,0.00,250.00,0.00,0.00,0.00,0.00,0.00,0.00,'DOSCIENTOS CINCUENTA CON CERO /100 CTVS',0.00,0.00,20.00,250.00,NULL,250.00,0.00,250.00,NULL,1,0.00,'2025-05-29 06:00:00','2025-05-29 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 29/05/2025 al 29/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,0.00,0.00,0.00,0.00,'2025-05-29 13:51:47',NULL),(20,'20','2025-05-30 15:19:41','10001','06140203981013','000000000','','NA',0.00,0.00,52.60,NULL,NULL,1,NULL,'DTE-01-S000P001-000000000000019',2,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,'2025-05-30 06:00:00','2025-05-30 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 30/05/2025 al 30/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(21,'21','2025-05-30 15:21:20','10001','06140203981013','000000000','','NA',0.00,0.00,52.60,NULL,NULL,1,NULL,'DTE-01-S000P001-000000000000020',2,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,'2025-05-30 06:00:00','2025-05-30 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 30/05/2025 al 30/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(22,'22','2025-05-30 15:24:04','10001','06140203981013','000000000','','NA',0.00,0.00,52.60,NULL,NULL,1,'6FB7BF07-3D9C-11F0-A2E7-7AD83F5004C6','DTE-01-S000P001-000000000000021',2,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,'2025-05-30 06:00:00','2025-05-30 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 30/05/2025 al 30/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(23,'23','2025-05-30 15:27:16','10001','06140203981013','00000000-0','','NA',0.00,0.00,52.60,NULL,NULL,1,'DF3B09BA-3D9C-11F0-A2E7-7AD83F5004C6','DTE-01-S000P001-000000000000022',2,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,'2025-05-30 06:00:00','2025-05-30 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 30/05/2025 al 30/05/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(24,'24','2025-05-30 16:05:40','10001','06140203981013','00000000000000','','NA',0.00,0.00,105.20,NULL,NULL,1,NULL,'DTE-01-S000P001-000000000000023',2,NULL,12.10,'01',0.00,0.00,105.20,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCO CON VEINTE /100 CTVS',0.00,0.00,20.00,105.20,NULL,105.20,0.00,105.20,NULL,1,0.00,NULL,NULL,0.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(27,'28','2025-05-30 16:12:20','10001','06140203981013','00000000000000','','NA',0.00,0.00,105.20,NULL,NULL,1,NULL,'DTE-01-S000P001-000000000000026',2,NULL,12.10,'01',0.00,0.00,105.20,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCO CON VEINTE /100 CTVS',0.00,0.00,20.00,105.20,NULL,105.20,0.00,105.20,NULL,1,0.00,NULL,NULL,0.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(28,'29','2025-05-30 16:12:48','10001','06140203981013','00000000000000','','NA',0.00,0.00,52.60,NULL,NULL,1,NULL,'DTE-01-S000P001-000000000000027',2,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,NULL,NULL,0.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(29,'30','2025-05-30 16:16:54','10001','06140203981013','00000000000000','','NA',0.00,0.00,52.60,NULL,NULL,1,NULL,'DTE-01-S000P001-000000000000028',2,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,NULL,NULL,0.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(40,'38','2025-06-03 08:53:44','10005','06141204841181','00000000000008','22617300','JUAN GUTIERREZ',0.00,0.00,158.00,NULL,NULL,2,'8BF0D6D7-408A-11F0-A2E7-7AD83F5004C6','DTE-01-S000P001-000000000000030',1,_binary '2025E0A0097F2E9043B4A1AB9812D7AC37CDRQ9I',18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,NULL,0.00,0.00,0.00,0.00,'2025-06-03 08:53:49',NULL),(44,'30','2025-06-03 10:01:28','10001','06140203981013','00000000000000','','NA',0.00,0.00,52.60,NULL,NULL,1,NULL,'DTE-01-S000P000-000000000000001',2,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,NULL,NULL,0.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(45,'4','2025-06-03 10:01:28','10001','06140203981013','00000000000000','','NA',0.00,0.00,52.60,NULL,NULL,1,NULL,'DTE-01-S000P000-000000000000002',2,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,NULL,NULL,0.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(46,'5','2025-06-03 10:01:28','10001','06140203981013','00000000000000','','NA',0.00,0.00,52.60,NULL,NULL,1,'07A7A383-409F-11F0-A2E7-7AD83F5004C6','DTE-01-S000P000-000000000000003',2,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,NULL,NULL,0.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(48,'6','2025-06-03 13:19:44','10001','06140203981013','00000000000000','','NA',0.00,0.00,52.60,NULL,NULL,1,'B4F046D4-40AF-11F0-A2E7-7AD83F5004C6','DTE-01-S000P000-000000000000004',2,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(49,'7','2025-06-03 13:21:57','10001','06140203981013','00000000000000','','NA',0.00,0.00,52.60,NULL,NULL,1,'0416B21B-40B0-11F0-A2E7-7AD83F5004C6','DTE-01-S000P000-000000000000005',2,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(50,'8','2025-06-03 13:32:04','10001','06140203981013','00000000000000','','NA',0.00,0.00,52.60,NULL,NULL,1,'6DD50456-40B1-11F0-A2E7-7AD83F5004C6','DTE-01-S000P000-000000000000006',1,NULL,6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(53,'9','2025-06-03 14:20:45','10001','06140203981013','00000000000000','','NA',0.00,0.00,105.20,NULL,NULL,1,'3AABB8A8-40B8-11F0-A2E7-7AD83F5004C6','DTE-01-S000P000-000000000000007',1,NULL,12.10,'01',0.00,0.00,105.20,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCO CON VEINTE /100 CTVS',0.00,0.00,20.00,105.20,NULL,105.20,0.00,105.20,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(54,'10','2025-06-03 14:21:17','10001','06140203981013','00000000000000','','NA',0.00,0.00,52.60,NULL,NULL,2,'4DE7D493-40B8-11F0-A2E7-7AD83F5004C6','DTE-01-S000P000-000000000000008',1,_binary '2025322418A3307841129F62D67DA2E5485FFWUZ',6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,'2025-06-03 14:21:21',NULL),(55,'2','2025-06-03 14:28:46','10005','06141204841181','00000000000008','22617300','JUAN GUTIERREZ',0.00,0.00,158.00,NULL,NULL,1,'596A53D2-40B9-11F0-A2E7-7AD83F5004C6','DTE-01-MISRP000-000000000000031',1,NULL,18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(57,'3','2025-06-03 14:36:14','10005','06141204841181','00000000000008','22617300','JUAN GUTIERREZ',0.00,0.00,158.00,NULL,NULL,1,'64691587-40BA-11F0-A2E7-7AD83F5004C6','DTE-01-MISRP000-000000000000032',1,NULL,18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(59,'4','2025-06-03 14:38:47','10005','06141204841181','00000000000008','22617300','JUAN GUTIERREZ',0.00,0.00,158.00,NULL,NULL,1,'C01EB6C9-40BA-11F0-A2E7-7AD83F5004C6','DTE-01-MISRP000-000000000000033',1,NULL,18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(61,'5','2025-06-03 14:46:34','10005','06141204841181','00000000000008','22617300','JUAN GUTIERREZ',0.00,0.00,158.00,NULL,NULL,1,'D663E137-40BB-11F0-A2E7-7AD83F5004C6','DTE-01-MISRP000-000000000000034',1,NULL,18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(63,'6','2025-06-03 14:52:42','10005','06141204841181','00000000000008','22617300','JUAN GUTIERREZ',0.00,0.00,158.00,NULL,NULL,1,'B1D48AA4-40BC-11F0-A2E7-7AD83F5004C6','DTE-01-MISRP000-000000000000035',1,NULL,18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(64,'7','2025-06-03 14:53:25','10005','06141204841181','00000000000008','22617300','JUAN GUTIERREZ',0.00,0.00,158.00,NULL,NULL,2,'CB1140A5-40BC-11F0-A2E7-7AD83F5004C6','DTE-01-MISRP000-000000000000036',1,_binary '2025493B784BC9214776B2D7AB0192488DF7I9YX',18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,NULL,0.00,0.00,0.00,0.00,'2025-06-03 14:53:29',NULL),(65,'8','2025-06-03 14:54:10','10005','06141204841181','00000000000008','22617300','JUAN GUTIERREZ',0.00,0.00,158.00,NULL,NULL,2,'E63E0D2D-40BC-11F0-A2E7-7AD83F5004C6','DTE-01-MISRP000-000000000000037',1,_binary '2025A7A9888C494841BBB8614B0191F0270FXIWW',18.18,'01',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,158.00,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,NULL,0.00,0.00,0.00,0.00,'2025-06-03 14:54:17',NULL),(66,'11','2025-06-03 14:54:44','10001','06140203981013','00000000000000','','NA',0.00,0.00,52.60,NULL,NULL,2,'FA365ACD-40BC-11F0-A2E7-7AD83F5004C6','DTE-01-S000P000-000000000000009',1,_binary '2025486D4368B6A54E3080FD86413AD2C3B8APQ6',6.05,'01',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y DOS CON SESENTA /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,52.60,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,'2025-06-03 14:54:49',NULL),(67,'9','2025-06-03 16:10:45','63110','06141204841181','06141603001014','22617300','G.S.I. El Salvador, S.A. de C.V. ',0.00,0.00,178.54,NULL,'1199782',1,NULL,'DTE-03-MISRP000-000000000000001',1,NULL,20.54,'03',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO SETENTA Y OCHO CON CINCUENTA Y CUATRO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,178.54,NULL,1,0.00,NULL,NULL,0.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(68,'10','2025-06-03 16:12:18','63110','06141204841181','06141603001014','22617300','G.S.I. El Salvador, S.A. de C.V. ',0.00,0.00,178.54,NULL,'1199782',1,NULL,'DTE-03-MISRP000-000000000000001',1,NULL,20.54,'03',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO SETENTA Y OCHO CON CINCUENTA Y CUATRO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,178.54,NULL,1,0.00,NULL,NULL,0.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(69,'11','2025-06-03 16:16:41','63110','06141204841181','06141603001014','22617300','G.S.I. El Salvador, S.A. de C.V. ',0.00,0.00,178.54,NULL,'1199782',2,'6CDF4FFE-40C8-11F0-A2E7-7AD83F5004C6','DTE-03-MISRP000-000000000000002',1,_binary '2025CC4CF6F0056A415FA5AB209B9A8C75050D9W',20.54,'03',0.00,0.00,158.00,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO SETENTA Y OCHO CON CINCUENTA Y CUATRO /100 CTVS',0.00,0.00,20.00,158.00,NULL,158.00,0.00,178.54,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,NULL,0.00,0.00,0.00,0.00,'2025-06-03 16:16:46',NULL),(70,'12','2025-06-03 16:42:20','96092','06141204841181','06141204841181','22336655','Miguel Isaac Sanchez Ramos',0.00,0.00,535.62,NULL,'1875310',1,'0251042C-40CC-11F0-A2E7-7AD83F5004C6','DTE-03-MISRP000-000000000000003',1,NULL,61.62,'03',0.00,0.00,474.00,0.00,0.00,0.00,0.00,0.00,0.00,'QUINIENTOS TREINTA Y CINCO CON SESENTA Y DOS /100 CTVS',0.00,0.00,20.00,474.00,NULL,474.00,0.00,535.62,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(80,'12','2025-06-03 17:10:36','96092','06140203981013','06141204841181','22617300','MIGUEL ISAAC SANCHEZ RAMOS',0.00,0.00,59.44,NULL,'1875310',1,'3324A9BD-40D0-11F0-A2E7-7AD83F5004C6','DTE-03-S000P000-000000000000001',1,NULL,6.84,'03',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y NUEVE CON CUARENTA Y CUATRO /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,59.44,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(81,'13','2025-06-03 18:39:19','96092','06140203981013','06141204841181','22617300','MIGUEL ISAAC SANCHEZ RAMOS',0.00,0.00,59.44,NULL,'1875310',1,'20A7A1F4-40DD-11F0-A2E7-7AD83F5004C6','DTE-03-S000P000-000000000000001',1,NULL,6.84,'03',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y NUEVE CON CUARENTA Y CUATRO /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,59.44,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(82,'14','2025-06-03 18:41:25','96092','06140203981013','06141204841181','22617300','MIGUEL ISAAC SANCHEZ RAMOS',0.00,0.00,118.88,NULL,'1875310',1,'A849878A-40DC-11F0-A2E7-7AD83F5004C6','DTE-03-S000P000-000000000000002',1,NULL,13.68,'03',0.00,0.00,105.20,0.00,0.00,0.00,0.00,0.00,0.00,'CIENTO DIECIOCHO CON OCHENTA Y OCHO /100 CTVS',0.00,0.00,20.00,105.20,NULL,105.20,0.00,118.88,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,NULL,NULL),(83,'15','2025-06-03 18:47:41','96092','06140203981013','06141204841181','22617300','MIGUEL ISAAC SANCHEZ RAMOS',0.00,0.00,59.44,NULL,'1875310',2,'89EAF4CA-40DD-11F0-A2E7-7AD83F5004C6','DTE-03-S000P000-000000000000003',1,_binary '2025A9AAD737EAF74CD0BA6A3F01A6A822FDNQCE',6.84,'03',0.00,0.00,52.60,0.00,0.00,0.00,0.00,0.00,0.00,'CINCUENTA Y NUEVE CON CUARENTA Y CUATRO /100 CTVS',0.00,0.00,20.00,52.60,NULL,52.60,0.00,59.44,NULL,1,0.00,'2025-06-03 06:00:00','2025-06-03 06:00:00',0.00,NULL,NULL,NULL,'Fecha del Periodo del 03/06/2025 al 03/06/2025',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,2,NULL,0.00,0.00,0.00,0.00,'2025-06-03 18:48:37',NULL);
 /*!40000 ALTER TABLE `factura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1243,7 +1248,7 @@ CREATE TABLE `factura_detalle` (
 
 LOCK TABLES `factura_detalle` WRITE;
 /*!40000 ALTER TABLE `factura_detalle` DISABLE KEYS */;
-INSERT INTO `factura_detalle` VALUES (1,1,'1',30,'TEST 1',15.80,474.00,NULL,'06141204841181',1,59,0.00,0.00,474.00,54.53,'CUATROCIENTOS SETENTA Y CUATRO CON CERO /100 CTVS','20',0.00,0.00,54.53,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(3,1,'3',20,'TEST 1',15.80,316.00,NULL,'06141204841181',1,59,0.00,0.00,316.00,36.35,'TRESCIENTOS DIECISEIS CON CERO /100 CTVS','20',0.00,0.00,36.35,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(4,1,'4',25,'TEST 1',15.80,395.00,NULL,'06141204841181',1,59,0.00,0.00,395.00,45.44,'TRESCIENTOS NOVENTA Y CINCO CON CERO /100 CTVS','20',0.00,0.00,45.44,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(7,1,'7',15,'TEST 1',15.80,237.00,NULL,'06141204841181',1,59,0.00,0.00,237.00,27.27,'DOSCIENTOS TREINTA Y SIETE CON CERO /100 CTVS','20',0.00,0.00,27.27,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(9,1,'9',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(11,1,'11',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(13,1,'13',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(14,1,'14',15,'TEST 1',15.80,237.00,NULL,'06141204841181',1,59,0.00,0.00,237.00,27.27,'DOSCIENTOS TREINTA Y SIETE CON CERO /100 CTVS','20',0.00,0.00,27.27,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(15,1,'15',20,'TEST 1',15.80,316.00,NULL,'06141204841181',1,59,0.00,0.00,316.00,36.35,'TRESCIENTOS DIECISEIS CON CERO /100 CTVS','20',0.00,0.00,36.35,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(16,1,'16',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(17,1,'17',100,'TEST 1',15.80,1580.00,NULL,'06141204841181',1,59,0.00,0.00,1580.00,181.77,'MIL QUINIENTOS OCHENTA CON CERO /100 CTVS','20',0.00,0.00,181.77,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(18,1,'18',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(19,1,'19',10,'TEST 1',25.00,250.00,NULL,'06141204841181',1,59,0.00,0.00,250.00,28.76,'DOSCIENTOS CINCUENTA CON CERO /100 CTVS','20',0.00,0.00,28.76,0.00,'1',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(20,1,'20',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(21,1,'21',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(22,1,'22',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(23,1,'23',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(24,1,'28',20,'TEST_STC',5.26,105.20,NULL,'06140203981013',1,59,0.00,0.00,105.20,12.10,'CIENTO CINCO CON VEINTE /100 CTVS','20',0.00,0.00,12.10,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(27,1,'28',20,'TEST_STC',5.26,105.20,NULL,'06140203981013',1,59,0.00,0.00,105.20,12.10,'CIENTO CINCO CON VEINTE /100 CTVS','20',0.00,0.00,12.10,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(28,1,'29',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(29,1,'30',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL);
+INSERT INTO `factura_detalle` VALUES (1,1,'1',30,'TEST 1',15.80,474.00,NULL,'06141204841181',1,59,0.00,0.00,474.00,54.53,'CUATROCIENTOS SETENTA Y CUATRO CON CERO /100 CTVS','20',0.00,0.00,54.53,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(3,1,'3',20,'TEST 1',15.80,316.00,NULL,'06141204841181',1,59,0.00,0.00,316.00,36.35,'TRESCIENTOS DIECISEIS CON CERO /100 CTVS','20',0.00,0.00,36.35,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(4,1,'4',25,'TEST 1',15.80,395.00,NULL,'06141204841181',1,59,0.00,0.00,395.00,45.44,'TRESCIENTOS NOVENTA Y CINCO CON CERO /100 CTVS','20',0.00,0.00,45.44,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(7,1,'7',15,'TEST 1',15.80,237.00,NULL,'06141204841181',1,59,0.00,0.00,237.00,27.27,'DOSCIENTOS TREINTA Y SIETE CON CERO /100 CTVS','20',0.00,0.00,27.27,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(9,1,'9',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(11,1,'11',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(13,1,'13',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(14,1,'14',15,'TEST 1',15.80,237.00,NULL,'06141204841181',1,59,0.00,0.00,237.00,27.27,'DOSCIENTOS TREINTA Y SIETE CON CERO /100 CTVS','20',0.00,0.00,27.27,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(15,1,'15',20,'TEST 1',15.80,316.00,NULL,'06141204841181',1,59,0.00,0.00,316.00,36.35,'TRESCIENTOS DIECISEIS CON CERO /100 CTVS','20',0.00,0.00,36.35,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(16,1,'16',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(17,1,'17',100,'TEST 1',15.80,1580.00,NULL,'06141204841181',1,59,0.00,0.00,1580.00,181.77,'MIL QUINIENTOS OCHENTA CON CERO /100 CTVS','20',0.00,0.00,181.77,0.00,'1',NULL,NULL,NULL,NULL,NULL,'',0.00,0.00,0.00,0.00,NULL),(18,1,'18',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(19,1,'19',10,'TEST 1',25.00,250.00,NULL,'06141204841181',1,59,0.00,0.00,250.00,28.76,'DOSCIENTOS CINCUENTA CON CERO /100 CTVS','20',0.00,0.00,28.76,0.00,'1',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(20,1,'20',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(21,1,'21',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(22,1,'22',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(23,1,'23',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(24,1,'28',20,'TEST_STC',5.26,105.20,NULL,'06140203981013',1,59,0.00,0.00,105.20,12.10,'CIENTO CINCO CON VEINTE /100 CTVS','20',0.00,0.00,12.10,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(27,1,'28',20,'TEST_STC',5.26,105.20,NULL,'06140203981013',1,59,0.00,0.00,105.20,12.10,'CIENTO CINCO CON VEINTE /100 CTVS','20',0.00,0.00,12.10,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(28,1,'29',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(29,1,'30',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(40,1,'38',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(44,1,'30',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(45,1,'4',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(46,1,'5',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(48,1,'6',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(49,1,'7',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(50,1,'8',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(53,1,'9',20,'TEST_STC',5.26,105.20,NULL,'06140203981013',1,59,0.00,0.00,105.20,12.10,'CIENTO CINCO CON VEINTE /100 CTVS','20',0.00,0.00,12.10,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(54,1,'10',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(55,1,'2',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(57,1,'3',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(59,1,'4',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(61,1,'5',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(63,1,'6',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(64,1,'7',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(65,1,'8',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,18.18,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,18.18,0.00,'1',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(66,1,'11',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.05,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.05,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(67,1,'9',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,20.54,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,20.54,0.00,'1',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(68,1,'10',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,20.54,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,20.54,0.00,'1',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(69,1,'11',10,'TEST 1',15.80,158.00,NULL,'06141204841181',1,59,0.00,0.00,158.00,20.54,'CIENTO CINCUENTA Y OCHO CON CERO /100 CTVS','20',0.00,0.00,20.54,0.00,'1',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(70,1,'12',30,'TEST 1',15.80,474.00,NULL,'06141204841181',1,59,0.00,0.00,474.00,61.62,'CUATROCIENTOS SETENTA Y CUATRO CON CERO /100 CTVS','20',0.00,0.00,61.62,0.00,'1',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(80,1,'12',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.84,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.84,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(81,1,'13',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.84,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.84,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(82,1,'14',20,'TEST_STC',5.26,105.20,NULL,'06140203981013',1,59,0.00,0.00,105.20,13.68,'CIENTO CINCO CON VEINTE /100 CTVS','20',0.00,0.00,13.68,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL),(83,1,'15',10,'TEST_STC',5.26,52.60,NULL,'06140203981013',1,59,0.00,0.00,52.60,6.84,'CINCUENTA Y DOS CON SESENTA /100 CTVS','20',0.00,0.00,6.84,0.00,'01',NULL,NULL,NULL,NULL,NULL,NULL,0.00,0.00,0.00,0.00,NULL);
 /*!40000 ALTER TABLE `factura_detalle` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1283,7 +1288,7 @@ CREATE TABLE `nosecuencia_factura` (
   `nosec_id` int NOT NULL AUTO_INCREMENT,
   `nosec_anio` int DEFAULT NULL,
   `nosec_tcp_idtipo` int DEFAULT NULL,
-  `nosec_secuencia` varchar(15) DEFAULT NULL,
+  `nosec_secuencia` int DEFAULT NULL,
   `nosec_ruc_id` int DEFAULT NULL,
   `nosec_ce_empresa` int DEFAULT NULL COMMENT 'Id de la empresa en basde al "Catalogo de empresas" según relacion con la tabla usuarios, lleva el control del número de emitidos (DTE) en base a cada empresa.',
   PRIMARY KEY (`nosec_id`),
@@ -1291,7 +1296,7 @@ CREATE TABLE `nosecuencia_factura` (
   KEY `fk_tipo_comprobante_idx` (`nosec_tcp_idtipo`),
   CONSTRAINT `fk_ruc_id` FOREIGN KEY (`nosec_ruc_id`) REFERENCES `contribuyentes` (`ruc_id`),
   CONSTRAINT `fk_tipo_comprobante` FOREIGN KEY (`nosec_tcp_idtipo`) REFERENCES `tipos_comprobantes` (`tcp_idtipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1300,7 +1305,7 @@ CREATE TABLE `nosecuencia_factura` (
 
 LOCK TABLES `nosecuencia_factura` WRITE;
 /*!40000 ALTER TABLE `nosecuencia_factura` DISABLE KEYS */;
-INSERT INTO `nosecuencia_factura` VALUES (1,2025,1,'29',1,1),(2,2025,4,'0',1,NULL),(3,2025,7,'0',1,NULL),(49,2025,2,'0',1,NULL);
+INSERT INTO `nosecuencia_factura` VALUES (1,2025,1,37,1,1),(2,2025,4,0,1,NULL),(3,2025,7,0,1,NULL),(49,2025,2,0,1,NULL),(60,2025,1,9,1,2),(61,2025,2,3,1,1),(71,2025,2,3,1,2);
 /*!40000 ALTER TABLE `nosecuencia_factura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1323,7 +1328,7 @@ CREATE TABLE `pagos` (
   PRIMARY KEY (`idpagos`),
   KEY `FK_PAGOS_idx` (`id_fac`),
   CONSTRAINT `FK_PAGOS` FOREIGN KEY (`id_fac`) REFERENCES `factura` (`fac_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1332,7 +1337,7 @@ CREATE TABLE `pagos` (
 
 LOCK TABLES `pagos` WRITE;
 /*!40000 ALTER TABLE `pagos` DISABLE KEYS */;
-INSERT INTO `pagos` VALUES (1,'01',474.00,'01','',0,1,NULL),(3,'01',316.00,'01','',0,3,NULL),(4,'01',395.00,'01','',0,4,NULL),(7,'01',237.00,'01','',0,7,NULL),(9,'01',158.00,'01','',0,9,NULL),(11,'01',158.00,'01','',0,11,NULL),(13,'01',158.00,'01','',0,13,NULL),(14,'01',237.00,'01','',0,14,NULL),(15,'01',316.00,'01','',0,15,NULL),(16,'01',158.00,'01','',0,16,NULL),(17,'01',1580.00,'01','',0,17,NULL),(18,'01',158.00,'01',NULL,0,18,NULL),(19,'01',250.00,'01',NULL,0,19,NULL),(20,'01',52.60,'01',NULL,0,20,NULL),(21,'01',52.60,'01',NULL,0,21,NULL),(22,'01',52.60,'01',NULL,0,22,NULL),(23,'01',52.60,'01',NULL,0,23,NULL),(24,'01',105.20,'01',NULL,0,24,NULL),(25,'01',105.20,'01',NULL,0,27,NULL),(26,'01',52.60,'01',NULL,0,28,NULL),(27,'01',52.60,'01',NULL,0,29,NULL);
+INSERT INTO `pagos` VALUES (1,'01',474.00,'01','',0,1,NULL),(3,'01',316.00,'01','',0,3,NULL),(4,'01',395.00,'01','',0,4,NULL),(7,'01',237.00,'01','',0,7,NULL),(9,'01',158.00,'01','',0,9,NULL),(11,'01',158.00,'01','',0,11,NULL),(13,'01',158.00,'01','',0,13,NULL),(14,'01',237.00,'01','',0,14,NULL),(15,'01',316.00,'01','',0,15,NULL),(16,'01',158.00,'01','',0,16,NULL),(17,'01',1580.00,'01','',0,17,NULL),(18,'01',158.00,'01',NULL,0,18,NULL),(19,'01',250.00,'01',NULL,0,19,NULL),(20,'01',52.60,'01',NULL,0,20,NULL),(21,'01',52.60,'01',NULL,0,21,NULL),(22,'01',52.60,'01',NULL,0,22,NULL),(23,'01',52.60,'01',NULL,0,23,NULL),(24,'01',105.20,'01',NULL,0,24,NULL),(25,'01',105.20,'01',NULL,0,27,NULL),(26,'01',52.60,'01',NULL,0,28,NULL),(27,'01',52.60,'01',NULL,0,29,NULL),(33,'01',158.00,'01',NULL,0,40,NULL),(37,'01',52.60,'01',NULL,0,44,NULL),(38,'01',52.60,'01',NULL,0,45,NULL),(39,'01',52.60,'01',NULL,0,46,NULL),(41,'01',52.60,'01',NULL,0,48,NULL),(42,'01',52.60,'01',NULL,0,49,NULL),(43,'01',52.60,'01',NULL,0,50,NULL),(46,'01',105.20,'01',NULL,0,53,NULL),(47,'01',52.60,'01',NULL,0,54,NULL),(48,'01',158.00,'01',NULL,0,55,NULL),(50,'01',158.00,'01',NULL,0,57,NULL),(52,'01',158.00,'01',NULL,0,59,NULL),(54,'01',158.00,'01',NULL,0,61,NULL),(56,'01',158.00,'01',NULL,0,63,NULL),(57,'01',158.00,'01',NULL,0,64,NULL),(58,'01',158.00,'01',NULL,0,65,NULL),(59,'01',52.60,'01',NULL,0,66,NULL),(60,'01',178.54,'01',NULL,0,67,NULL),(61,'01',178.54,'01',NULL,0,68,NULL),(62,'01',178.54,'01',NULL,0,69,NULL),(63,'01',535.62,'01',NULL,0,70,NULL),(73,'01',59.44,'01',NULL,0,80,NULL),(74,'01',59.44,'01',NULL,0,81,NULL),(75,'01',118.88,'01',NULL,0,82,NULL),(76,'01',59.44,'01',NULL,0,83,NULL);
 /*!40000 ALTER TABLE `pagos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1613,7 +1618,7 @@ CREATE TABLE `tributos` (
 
 LOCK TABLES `tributos` WRITE;
 /*!40000 ALTER TABLE `tributos` DISABLE KEYS */;
-INSERT INTO `tributos` VALUES (1,'20','Impuesto al Valor Agregado 13%',54.53,NULL),(3,'20','Impuesto al Valor Agregado 13%',36.35,NULL),(4,'20','Impuesto al Valor Agregado 13%',45.44,NULL),(7,'20','Impuesto al Valor Agregado 13%',27.27,NULL),(9,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(11,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(13,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(14,'20','Impuesto al Valor Agregado 13%',27.27,NULL),(15,'20','Impuesto al Valor Agregado 13%',36.35,NULL),(16,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(17,'20','Impuesto al Valor Agregado 13%',181.77,NULL),(18,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(19,'20','Impuesto al Valor Agregado 13%',28.76,NULL),(20,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(21,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(22,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(23,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(24,'20','Impuesto al Valor Agregado 13%',12.10,NULL),(27,'20','Impuesto al Valor Agregado 13%',12.10,NULL),(28,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(29,'20','Impuesto al Valor Agregado 13%',6.05,NULL);
+INSERT INTO `tributos` VALUES (1,'20','Impuesto al Valor Agregado 13%',54.53,NULL),(3,'20','Impuesto al Valor Agregado 13%',36.35,NULL),(4,'20','Impuesto al Valor Agregado 13%',45.44,NULL),(7,'20','Impuesto al Valor Agregado 13%',27.27,NULL),(9,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(11,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(13,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(14,'20','Impuesto al Valor Agregado 13%',27.27,NULL),(15,'20','Impuesto al Valor Agregado 13%',36.35,NULL),(16,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(17,'20','Impuesto al Valor Agregado 13%',181.77,NULL),(18,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(19,'20','Impuesto al Valor Agregado 13%',28.76,NULL),(20,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(21,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(22,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(23,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(24,'20','Impuesto al Valor Agregado 13%',12.10,NULL),(27,'20','Impuesto al Valor Agregado 13%',12.10,NULL),(28,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(29,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(40,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(44,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(45,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(46,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(48,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(49,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(50,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(53,'20','Impuesto al Valor Agregado 13%',12.10,NULL),(54,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(55,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(57,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(59,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(61,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(63,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(64,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(65,'20','Impuesto al Valor Agregado 13%',18.18,NULL),(66,'20','Impuesto al Valor Agregado 13%',6.05,NULL),(67,'20','Impuesto al Valor Agregado 13%',20.54,NULL),(68,'20','Impuesto al Valor Agregado 13%',20.54,NULL),(69,'20','Impuesto al Valor Agregado 13%',20.54,NULL),(70,'20','Impuesto al Valor Agregado 13%',61.62,NULL),(80,'20','Impuesto al Valor Agregado 13%',6.84,NULL),(81,'20','Impuesto al Valor Agregado 13%',6.84,NULL),(82,'20','Impuesto al Valor Agregado 13%',13.68,NULL),(83,'20','Impuesto al Valor Agregado 13%',6.84,NULL);
 /*!40000 ALTER TABLE `tributos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2074,7 +2079,7 @@ BEGIN
 declare texto_correo longtext ;
     
 SELECT fac_numero_de_control into num_control 
-FROM fact.factura where fac_id = p_factura;
+FROM fact.factura where fac_id = p_factura LIMIT 1;
 
 select 
 	tc.tcp_descomprobante,
@@ -2085,7 +2090,7 @@ from buzoncsv b
 	inner join tipos_comprobantes tc on b.tipodoc = tc.tcp_idtipcom
     inner join factura f on f.fac_nro_factura = b.cod_factura
     inner join bitacora_declaracion_hacienda bdh on f.fac_id = bdh.id_fac and bdh.estado in ('PROCESADO','OBSERVADO')
-where f.fac_id = p_factura;
+where f.fac_id = p_factura LIMIT 1;
 
 set texto_correo = CONCAT('
 		<!DOCTYPE html>
@@ -2188,309 +2193,151 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` FUNCTION `fun_retorna_json`(`ptipo_fac` VARCHAR(15) CHARSET utf8mb4, `pfactura` VARCHAR(15) CHARSET utf8mb4) RETURNS json
+CREATE DEFINER=`root`@`%` FUNCTION `fun_retorna_json`(`ptipo_fac` VARCHAR(15) CHARSET utf8mb4, `pfactura` VARCHAR(15) CHARSET utf8mb4, pidemp int) RETURNS json
     READS SQL DATA
 BEGIN
 
-# CREADO POR MEGONZALEZ EL 28/06/2023 SE GENERA ESTRUCTURA DE JSON SEGUN TIPO DE COMPROBANTE
 
 declare vjson json;
-
- 
-
 CASE
-
- 
-
 WHEN ptipo_fac = 'CCFE' THEN
 
     /*CREDITO FISCAL*/
-
- set vjson = (
-
- 
-
- 
-
+set vjson = (
 SELECT JSON_OBJECT(
-
     'identificacion',
-
         JSON_OBJECT(
-
             'version',3,
-
             'ambiente', (SELECT pgn_valor FROM fact.parametros_generales where pgn_campo = 'version'),
-
             'tipoDte',fac_tipo_comprobante,
-
             'numeroControl',fac_numero_de_control,
-
             'codigoGeneracion',fac_codigo_generacion,
-
             'tipoModelo',(SELECT CAST(pgn_valor as SIGNED) FROM fact.parametros_generales where pgn_campo = 'tipoModelo'),
-
             'tipoOperacion',(SELECT CAST(pgn_valor as SIGNED) FROM fact.parametros_generales where pgn_campo = 'tipoOperacion'),
-
             'tipoContingencia',null,
-
             'motivoContin',null,
-
             'fecEmi', DATE_FORMAT(NOW(), '%Y-%m-%d'),
-
             'horEmi', DATE_FORMAT(NOW(), '%H:%i:%s'),
-
             'tipoMoneda', (SELECT pgn_valor FROM fact.parametros_generales where pgn_campo = 'tipoMoneda')
-
         ),
-
    'documentoRelacionado', null,
-
    'emisor',
-
        JSON_OBJECT(
-
-           'nit', REPLACE(a.ruc_nit_contribuyente, "-", ""),
-
-           'nrc', a.ruc_nrc,
-
-           'nombre', a.ruc_nombre_razonsocial,
-
-           'codActividad',a.ruc_codactividad,
-
-           'descActividad', (SELECT ccae_valor FROM fact.catalogo_codigo_actividad_economica where ccae_codigo = a.ruc_codactividad),
-
-           'nombreComercial', a.ruc_nombre_comercial,
-
-           'tipoEstablecimiento', a.ruc_tipoestablecimiento,
-
+           'nit', REPLACE(a.nit, "-", ""),
+           'nrc', a.nrc,
+           'nombre', a.razon_social,
+           'codActividad',a.codigo_actividad,
+           'descActividad', (SELECT ccae_valor FROM fact.catalogo_codigo_actividad_economica where ccae_codigo = a.codigo_actividad),
+           'nombreComercial', a.nombre_comercial,
+           'tipoEstablecimiento', a.codigo_establecimiento,
            'direccion',
-
                JSON_OBJECT(
-
-                   'departamento', a.ruc_codigo_departamento,
-
-                   'municipio', a.ruc_codigo_municipio,
-
-                   'complemento', a.ruc_domicilio
-
+                   'departamento', a.codigo_departamento,
+                   'municipio', a.codigo_municipio,
+                   'complemento', a.direccion
                 ),
-
-           'telefono', a.ruc_telefono_personal,
-
-           'correo', a.ruc_email_contribuyente,
-
-           'codEstable', a.ruc_cod_establecimiento,
-
-           'codPuntoVenta', a.ruc_cod_punto_venta_mh,
-
-           'codEstableMH',  a.ruc_codigo_mh,
-
-           'codPuntoVentaMH', a.ruc_cod_punto_venta_mh
-
+           'telefono', a.telefono,
+           'correo', a.correo,
+           'codEstable', a.codigo_estable,
+           'codPuntoVenta', a.codigo_estable_mh,
+           'codEstableMH',  a.codigo_puntoventa,
+           'codPuntoVentaMH', a.codigo_puntoventa_mh
         ),
-
     'receptor',
-
        JSON_OBJECT(
-
             'nrc', b.ruc_nrc,
-
             'nombre', b.ruc_nombre_razonsocial,
-
             'codActividad', b.ruc_codactividad,
-
             'descActividad', (SELECT ccae_valor FROM fact.catalogo_codigo_actividad_economica where ccae_codigo = b.ruc_codactividad),
-
             'direccion',
-
                JSON_OBJECT(
-
                    'departamento', b.ruc_codigo_departamento,
-
                    'municipio', b.ruc_codigo_municipio,
-
                    'complemento', b.ruc_domicilio
-
                 ),
-
             'telefono', b.ruc_telefono_personal,
-
             'correo', b.ruc_email_contribuyente,
-
             'nombreComercial', b.ruc_nombre_razonsocial,
-
             'nit', REPLACE(b.ruc_nit_contribuyente, "-", "")
-
        ),
-
        'otrosDocumentos', null,
-
        'ventaTercero',  null,
-
        'cuerpoDocumento', (SELECT JSON_ARRAYAGG(JSON_OBJECT(
-
             'numItem',det_fac_numlinea,
-
             'tipoItem',det_fac_tipo_item,
-
             'numeroDocumento',det_numerodocumento_rel,
-
             'cantidad',det_fac_cantidad,
-
             'codigo', det_codigo,
-
             'codTributo',(CASE when det_fac_tipo_item = 4 then det_codtributo else null end),
-
             'uniMedida',det_fac_unidad_de_medida,
-
             'descripcion',det_fac_descripcion,
-
             'precioUni',det_fac_preciounitario,
-
             'montoDescu',det_montoDescu,
-
             'ventaNoSuj',0.00, #comentado de momento para enviar creadito fiscal por envio urgente 
-
             'ventaExenta',det_fac_ventasexentas,
-
             'ventaGravada',det_fact_ventasgravadas,
-
             'tributos',(SELECT JSON_ARRAYAGG(tri_codigo)
-
                         FROM tributos
-
                         where tri_fac_id = fac_id),
-
- 
-
             /*( SELECT JSON_ARRAYAGG(det_tributo) from (
-
-SELECT distinct det_tributo FROM factura_detalle WHERE det_fac_nro_factura = pfactura) a), */
-
- 
-
- 
-
+				SELECT distinct det_tributo FROM factura_detalle WHERE det_fac_nro_factura = pfactura) a), */
             'psv',det_psv,
-
             'noGravado',det_no_gravado))
-
             FROM factura_detalle WHERE det_fac_id = fac_id),
-
        'resumen',
-
             JSON_OBJECT(
-
             'totalNoSuj', fac_ventasnosujet_tot,
-
             'totalExenta', fac_ventasexentas_tot,
-
             'totalGravada', fac_ventasgravadas_tot,
-
             'subTotalVentas', fac_subtotalventas,
-
             'descuNoSuj', fac_descuento_nosuje,
-
             'descuExenta', fac_descuento_exent,
-
             'descuGravada', fac_descuento_grab,
-
             'porcentajeDescuento', fac_porcen_descuento,
-
             'totalDescu', fac_tot_descuento,
-
             'tributos', (SELECT JSON_ARRAYAGG(JSON_OBJECT('codigo', tri_codigo,
-
                 'descripcion', tri_descripcion,
-
                 'valor', tri_valor))
-
                 FROM tributos WHERE tri_fac_id = fac_id),
-
             'subTotal',fac_subtotal,
-
             'ivaPerci1',fac_ivaperci1,
-
             'ivaRete1', fac_iva_retenido,
-
             'reteRenta', fac_retencion_renta,
-
             'montoTotalOperacion', fac_total_pagar,
-
             'totalNoGravado', fac_total_nograbado,
-
             'totalPagar', fac_total_pagar,
-
             'totalLetras', fac_total_letras,
-
             'saldoFavor', fac_saldo_favor,
-
             'condicionOperacion', fac_condicion_operacion, #Debe ser una variable con 1,2 o 3
-
             'pagos', (SELECT JSON_ARRAYAGG(JSON_OBJECT(
-
                 'codigo', codigo,
-
                 'montoPago', montopago,
-
                 'plazo', plazo,
-
                 'referencia', referencia,
-
                 'periodo', IF(periodo = 0, NULL, periodo)
-
                 ))
-
                 FROM pagos WHERE id_fac = fac_id),
-
             'numPagoElectronico', fac_numpagoelectronico
-
             ),
-
         'extension',
-
             JSON_OBJECT(
-
                 'nombEntrega', null,
-
                 'docuEntrega', null,
-
                 'nombRecibe', null,
-
                 'docuRecibe', null,
-
                 'observaciones', null,
-
                 'placaVehiculo', null
-
             ),
-
             'apendice', null
-
 )
-
-FROM factura, contribuyentes as a, contribuyentes as b
-
-where a.ruc_nit_contribuyente = fac_nit_emisor
-
-and a.ruc_tipo_contribuyente = 'EMISOR'
-
-and b.ruc_nit_contribuyente = fac_nit_receptor
-
-and b.ruc_tipo_contribuyente = 'RECEPTOR'
-
-and fac_id = pfactura
-
-    );
-
- 
-
- 
+FROM factura 
+	LEFT JOIN empresa as a ON a.id_empresa = fac_ce_empresa
+	LEFT JOIN contribuyentes as b ON b.ruc_nit_contribuyente = fac_nit_receptor AND b.ruc_tipo_contribuyente = 'RECEPTOR' and b.id_empresa = a.id_empresa
+	where fac_id = pfactura and fac_ce_empresa = pidemp);
 
 WHEN ptipo_fac = 'FE' THEN
     /*CONSUMIDOR FINAL*/
- set vjson = (
+set vjson = (
 SELECT JSON_OBJECT(
     'identificacion',
         JSON_OBJECT(
@@ -2507,32 +2354,29 @@ SELECT JSON_OBJECT(
             'horEmi', DATE_FORMAT(NOW(), '%H:%i:%s'), #"^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]?$"
             'tipoMoneda', (SELECT pgn_valor FROM fact.parametros_generales where pgn_campo = 'tipoMoneda') #string, val='USD'
         ),
-
     'documentoRelacionado', null,
-
     'emisor',
         JSON_OBJECT(
-            'nit', REPLACE(a.ruc_nit_contribuyente, "-", ""),
-            'nrc', a.ruc_nrc,
-            'nombre', a.ruc_nombre_razonsocial,
-            'codActividad', a.ruc_codactividad,
-            'descActividad', (SELECT ccae_valor FROM fact.catalogo_codigo_actividad_economica where ccae_codigo = a.ruc_codactividad),
-            'nombreComercial', a.ruc_nombre_comercial,
-            'tipoEstablecimiento', a.ruc_tipoestablecimiento,
+            'nit', REPLACE(a.nit, "-", ""),
+            'nrc', a.nrc,
+            'nombre', a.razon_social,
+            'codActividad', a.codigo_actividad,
+            'descActividad', (SELECT ccae_valor FROM fact.catalogo_codigo_actividad_economica where ccae_codigo = a.codigo_actividad),
+            'nombreComercial', a.nombre_comercial,
+            'tipoEstablecimiento', a.codigo_establecimiento,
             'direccion',
                 JSON_OBJECT(
-                    'departamento', a.ruc_codigo_departamento,
-                    'municipio', a.ruc_codigo_municipio,
-                    'complemento', a.ruc_domicilio
+                    'departamento', a.codigo_departamento,
+                    'municipio', a.codigo_municipio,
+                    'complemento', a.direccion
                 ),
-           'telefono', a.ruc_telefono_personal,
-           'codEstableMH', a.ruc_codigo_mh,
-           'codEstable', a.ruc_cod_establecimiento,
-           'codPuntoVentaMH', a.ruc_cod_punto_venta_mh,
-           'codPuntoVenta', a.ruc_cod_punto_venta_mh,
-           'correo', a.ruc_email_contribuyente
+           'telefono', a.telefono,
+           'codEstableMH', a.codigo_estable,
+           'codEstable', a.codigo_estable_mh,
+           'codPuntoVentaMH', a.codigo_puntoventa,
+           'codPuntoVenta', a.codigo_puntoventa_mh,
+           'correo', a.correo
         ),
-
     'receptor',
         JSON_OBJECT(
             'tipoDocumento', (SELECT CAST(doc_idtipo_documento as CHAR) FROM fact.tipos_documentos where doc_id=ifnull(b.ruc_tipo_doc_id,1)),
@@ -2550,7 +2394,6 @@ SELECT JSON_OBJECT(
             'telefono', ifnull(b.ruc_telefono_personal,fac_telefono_receptor),
             'correo', ifnull(b.ruc_email_contribuyente,fac_correo_receptor)
         ),
-
         'ventaTercero', null,
         'cuerpoDocumento',
             (SELECT JSON_ARRAYAGG(JSON_OBJECT(
@@ -2574,7 +2417,6 @@ SELECT JSON_OBJECT(
             'noGravado',det_no_gravado,
             'ivaItem',0.0))-- det_fact_iva))
             FROM factura_detalle WHERE det_fac_id = fac_id),
-
         'resumen',
             JSON_OBJECT(
                 'totalNoSuj', fac_ventasgravadas_tot,-- fac_ventasnosujet_tot,
@@ -2610,7 +2452,6 @@ SELECT JSON_OBJECT(
                 FROM pagos WHERE id_fac = fac_id),
                 'numPagoElectronico', fac_numpagoelectronico
             ),
-       /* 'extension', null,*/
        'extension',
             JSON_OBJECT(
                 'nombEntrega', null,
@@ -2622,1406 +2463,649 @@ SELECT JSON_OBJECT(
             ),
         'otrosDocumentos', null,
         'apendice', null
-
 )
-
 FROM factura 
-LEFT JOIN contribuyentes as a ON a.ruc_nit_contribuyente = fac_nit_emisor AND a.ruc_tipo_contribuyente = 'EMISOR'
-LEFT JOIN contribuyentes as b ON b.ruc_nit_contribuyente = fac_nit_receptor AND b.ruc_tipo_contribuyente = 'RECEPTOR'
-where -- a.ruc_nit_contribuyente = f.fac_nit_emisor
--- and a.ruc_tipo_contribuyente = 'EMISOR'
-fac_id = pfactura
-);
+	LEFT JOIN empresa as a ON a.id_empresa = fac_ce_empresa
+	LEFT JOIN contribuyentes as b ON b.ruc_nit_contribuyente = fac_nit_receptor AND b.ruc_tipo_contribuyente = 'RECEPTOR' and b.id_empresa = a.id_empresa
+	where fac_id = pfactura and fac_ce_empresa = pidemp);
 
  
-
 WHEN ptipo_fac = 'FSEE' THEN
 
 /*SUJETO EXCLUIDO*/
 
- set vjson = (
-
- 
-
- 
-
+set vjson = (
 SELECT JSON_OBJECT(
-
     'identificacion',
-
         JSON_OBJECT(
-
             'version',1,
-
             'ambiente', (SELECT pgn_valor FROM fact.parametros_generales where pgn_campo = 'version'),
-
             'tipoDte',fac_tipo_comprobante,
-
             'numeroControl',fac_numero_de_control,
-
             'codigoGeneracion',fac_codigo_generacion,
-
             'tipoModelo',(SELECT CAST(pgn_valor as SIGNED) FROM fact.parametros_generales where pgn_campo = 'tipoModelo'),
-
             'tipoOperacion',(SELECT CAST(pgn_valor as SIGNED) FROM fact.parametros_generales where pgn_campo = 'tipoOperacion'),
-
             'tipoContingencia',null,
-
             'motivoContin',null,
-
             'fecEmi', DATE_FORMAT(NOW(), '%Y-%m-%d'),
-
             'horEmi', DATE_FORMAT(NOW(), '%H:%i:%s'),
-
             'tipoMoneda', (SELECT pgn_valor FROM fact.parametros_generales where pgn_campo = 'tipoMoneda')
-
         ),
-
- 
-
     'emisor',
-
         JSON_OBJECT(
-
             'nit', REPLACE(a.ruc_nit_contribuyente, "-", ""),
-
             'nrc', a.ruc_nrc,
-
             'nombre', a.ruc_nombre_razonsocial,
-
             'codActividad', a.ruc_codactividad,
-
             'descActividad', (SELECT ccae_valor FROM fact.catalogo_codigo_actividad_economica where ccae_codigo = a.ruc_codactividad),
-
             'direccion',
-
                 JSON_OBJECT(
-
                     'departamento', a.ruc_codigo_departamento,
-
                     'municipio', a.ruc_codigo_municipio,
-
                     'complemento', a.ruc_domicilio
-
                 ),
-
-                /**/
-
             'telefono',REPLACE(a.ruc_telefono_personal, "-", ""),
-
             'codEstableMH', a.ruc_codigo_mh,
-
             'codEstable', a.ruc_cod_establecimiento,
-
             'codPuntoVentaMH', a.ruc_cod_punto_venta_mh,
-
             'codPuntoVenta', a.ruc_cod_punto_venta_mh,
-
             'correo', a.ruc_email_contribuyente
-
         ),
-
- 
-
- 
-
     'sujetoExcluido',
-
         JSON_OBJECT(
-
             'tipoDocumento', (SELECT CAST(doc_idtipo_documento as CHAR) FROM fact.tipos_documentos where doc_id=b.ruc_tipo_doc_id),
-
             'numDocumento', REPLACE(b.ruc_nit_contribuyente, "-", ""),#Número de documento de Identificación
-
             'nombre', b.ruc_nombre_razonsocial,#Nombre, denominación o razón social del contribuyente
-
             'codActividad', b.ruc_codactividad, #Codigo de actividad economica
-
             'descActividad', (SELECT ccae_valor FROM fact.catalogo_codigo_actividad_economica where ccae_codigo = b.ruc_codactividad), #Actividad Económica
-
             'direccion',
-
                 JSON_OBJECT(
-
                     'departamento', b.ruc_codigo_departamento,
-
                     'municipio', b.ruc_codigo_municipio,
-
                     'complemento', b.ruc_domicilio
-
                 ),
-
             'telefono', b.ruc_telefono_personal, #telefono receptor
-
             'correo',b.ruc_email_contribuyente #Correo electrónico
-
         ),
-
- 
-
- 
-
     'cuerpoDocumento',
-
         (SELECT JSON_ARRAYAGG(JSON_OBJECT(
-
         'numItem',det_fac_numlinea,
-
         'tipoItem', det_fac_tipo_item,
-
         'cantidad', det_fac_cantidad,
-
         'codigo', det_codigo,
-
         'uniMedida',det_fac_unidad_de_medida,
-
         'descripcion', det_fac_descripcion,
-
         'precioUni', det_fac_preciounitario,
-
         'montoDescu', det_montoDescu,
-
         'compra',det_compra))
-
         FROM factura_detalle WHERE det_fac_id = fac_id),
-
- 
-
     'resumen',
-
         JSON_OBJECT(
-
             'totalCompra',fac_totalcompra,
-
             'descu',fac_desc,
-
             'totalDescu',fac_tot_descuento,
-
             'subTotal',fac_subtotal,
-
             'ivaRete1',fac_retencion_iva,
-
             'reteRenta',fac_retencion_renta,
-
             #'totalPagar',(fac_total_pagar - fac_retencion_renta),
             'totalPagar',(fac_subtotal - fac_retencion_renta - fac_retencion_iva),
-			
             'totalLetras',fac_total_letras,
-
             'condicionOperacion',fac_condicion_operacion,
-
             'pagos', 
-
                 (SELECT JSON_ARRAYAGG(JSON_OBJECT(
-
                 'codigo', codigo,
-
                 'montoPago', montopago,
-
                 'plazo', plazo,
-
                 'referencia', referencia,
-
                 'periodo', periodo
-
                 ))
-
                 FROM pagos WHERE id_fac = fac_id),
-
             'observaciones',fac_observaciones
-
         ),
-
     'apendice',
-
         (select JSON_ARRAYAGG(JSON_OBJECT(
-
         'campo',ape_campo,
-
         'etiqueta',ape_etiqueta,
-
         'valor',ape_valor))
-
         from apendice where ape_fac_id = fac_id order by ape_id asc)
-
 )
-
 FROM factura, contribuyentes as a, contribuyentes as b
+where a.ruc_nit_contribuyente = fac_nit_emisor and 
+	a.ruc_tipo_contribuyente = 'EMISOR' and 
+	b.ruc_nit_contribuyente = fac_nit_receptor and 
+	b.ruc_tipo_contribuyente = 'RECEPTOR' and 
+	fac_id = pfactura );
 
-where a.ruc_nit_contribuyente = fac_nit_emisor
 
-and a.ruc_tipo_contribuyente = 'EMISOR'
-
-and b.ruc_nit_contribuyente = fac_nit_receptor
-
-and b.ruc_tipo_contribuyente = 'RECEPTOR'
-
-and fac_id = pfactura
-
- );
-
- 
-
- WHEN ptipo_fac = 'FEXE' THEN
+WHEN ptipo_fac = 'FEXE' THEN
 
 /*Factura de exportacion*/
-
- set vjson = (
-
- 
-
+set vjson = (
 SELECT JSON_OBJECT(
-
    'identificacion',
-
        JSON_OBJECT(
-
             'version',1,
-
             'ambiente', (SELECT pgn_valor FROM fact.parametros_generales where pgn_campo = 'version'),
-
             'tipoDte',fac_tipo_comprobante,
-
             'numeroControl',fac_numero_de_control,
-
             'codigoGeneracion',fac_codigo_generacion,
-
             'tipoModelo',(SELECT CAST(pgn_valor as SIGNED) FROM fact.parametros_generales where pgn_campo = 'tipoModelo'),
-
             'tipoOperacion',(SELECT CAST(pgn_valor as SIGNED) FROM fact.parametros_generales where pgn_campo = 'tipoOperacion'),
-
             'tipoContingencia',null,
-
             'motivoContigencia',null,
-
             'fecEmi', DATE_FORMAT(NOW(), '%Y-%m-%d'),
-
             'horEmi', DATE_FORMAT(NOW(), '%H:%i:%s'),
-
             'tipoMoneda', (SELECT pgn_valor FROM fact.parametros_generales where pgn_campo = 'tipoMoneda')
-
         ),
-
- 
-
    'emisor',
-
        JSON_OBJECT(
-
            'nit', REPLACE(a.ruc_nit_contribuyente, "-", ""),
-
            'nrc', a.ruc_nrc,
-
            'nombre', a.ruc_nombre_razonsocial,
-
            'codActividad', a.ruc_codactividad,
-
            'descActividad', (SELECT ccae_valor FROM fact.catalogo_codigo_actividad_economica where ccae_codigo = a.ruc_codactividad),
-
            'nombreComercial', a.ruc_nombre_comercial,
-
            'tipoEstablecimiento',a.ruc_tipoestablecimiento,
-
            'direccion',
-
                JSON_OBJECT(
-
                    'departamento', a.ruc_codigo_departamento,
-
                    'municipio', a.ruc_codigo_municipio,
-
                    'complemento', a.ruc_domicilio
-
                 ),
-
            'telefono',REPLACE(a.ruc_telefono_personal, "-", ""),
-
            'correo', a.ruc_email_contribuyente,
-
            'codEstableMH',a.ruc_codigo_mh,
-
            'codEstable',a.ruc_cod_establecimiento,
-
            'codPuntoVentaMH',a.ruc_cod_punto_venta_mh,
-
            'codPuntoVenta',a.ruc_cod_punto_venta_mh,
-
            'tipoItemExpor',a.ruc_tipo_item_expor,
-
            'recintoFiscal',a.ruc_recinto_fiscal,
-
-            'regimen',a.ruc_regimen
-
+           'regimen',a.ruc_regimen
         ),
-
- 
-
-        'receptor',
-
+       'receptor',
        JSON_OBJECT(
-
             'nombre', b.ruc_nombre_razonsocial,
-
             'tipoDocumento',(SELECT CAST(doc_idtipo_documento as CHAR) FROM fact.tipos_documentos where doc_id=b.ruc_tipo_doc_id), #Tipo de documento de identificación (Receptor) (catalogo)
-
             'numDocumento', REPLACE(b.ruc_nit_contribuyente, "-", ""), #NIT (Receptor)
-
             'nombreComercial', b.ruc_nombre_razonsocial,
-
             'codPais', (SELECT cp_codigo FROM fact.catalogo_pais where cp_id_pais=b.ruc_cp_id_pais),
-
             'nombrePais',(SELECT cp_valor FROM fact.catalogo_pais where cp_id_pais=b.ruc_cp_id_pais),
-
             'complemento',b.ruc_domicilio,
-
             'tipoPersona',b.ruc_ctper_id, #tipo de persona Juridica o persona natural
-
             'descActividad',(SELECT ccae_valor FROM fact.catalogo_codigo_actividad_economica where ccae_codigo = b.ruc_codactividad),
-
             'telefono', b.ruc_telefono_personal,
-
             'correo', b.ruc_email_contribuyente
-
        ),
-
- 
-
        "otrosDocumentos", null,
-
- 
-
        'ventaTercero',null,
-
- 
-
       'cuerpoDocumento', (SELECT JSON_ARRAYAGG(JSON_OBJECT(
-
             'numItem',det_fac_numlinea,
-
             'cantidad',det_fac_cantidad,
-
             'codigo',fac_nro_factura,
-
             'uniMedida',det_fac_unidad_de_medida,
-
             'descripcion',det_fac_descripcion,
-
             'precioUni',det_fac_preciounitario,
-
             'montoDescu',det_montoDescu,
-
- 
-
             'ventaGravada',det_fact_ventasgravadas,
-
- 
-
             'tributos',(SELECT JSON_ARRAYAGG(tri_codigo)
-
                         FROM tributos
-
                         where tri_fac_id = fac_id),
-
             'noGravado',det_no_gravado
-
             )
-
             )FROM factura_detalle WHERE det_fac_id = fac_id),
-
- 
-
       'resumen',
-
             JSON_OBJECT(
-
- 
-
             'totalGravada',fac_ventasgravadas_tot,
-
             'descuento',fac_desc,
-
             'porcentajeDescuento',fac_porcen_descuento,
-
             'totalDescu',fac_tot_descuento,
-
             'seguro',fac_seguro,
-
             'flete',fac_flete,
-
             'montoTotalOperacion',fac_total_pagar,
-
             'totalNoGravado',fac_total_nograbado,
-
             'totalPagar',fac_total_pagar,
-
             'totalLetras',fac_total_letras,
-
             'condicionOperacion',fac_condicion_operacion,
-
- 
-
-             'pagos', (SELECT JSON_ARRAYAGG(JSON_OBJECT(
-
+            'pagos', (SELECT JSON_ARRAYAGG(JSON_OBJECT(
                 'codigo', codigo,
-
                 'montoPago', montopago,
-
                 'plazo', plazo,
-
                 'referencia', referencia,
-
                 'periodo', periodo
-
                 ))
-
                 FROM pagos WHERE id_fac = fac_id),
-
- 
-
             'codIncoterms',(SELECT cinc_codigo FROM fact.catalogo_incoterms WHERE cinc_id=fac_cinc_id),
-
             'descIncoterms',(SELECT cinc_valor FROM fact.catalogo_incoterms WHERE cinc_id=fac_cinc_id),
-
             'numPagoElectronico',fac_numpagoelectronico,
-
             'observaciones',fac_observaciones
-
- 
-
             ),
-
- 
-
             'apendice',(select JSON_ARRAYAGG(JSON_OBJECT(
-
         'campo',ape_campo,
-
         'etiqueta',ape_etiqueta,
-
         'valor',ape_valor))
-
         from apendice where ape_fac_id = fac_id order by ape_id asc)
-
 )
-
 FROM factura, contribuyentes as a, contribuyentes as b
+where a.ruc_nit_contribuyente = fac_nit_emisor and 
+	a.ruc_tipo_contribuyente = 'EMISOR' and 
+	b.ruc_nit_contribuyente = fac_nit_receptor and 
+	b.ruc_tipo_contribuyente = 'RECEPTOR' and 
+	fac_id = pfactura );
 
-where a.ruc_nit_contribuyente = fac_nit_emisor
-
-and a.ruc_tipo_contribuyente = 'EMISOR'
-
-and b.ruc_nit_contribuyente = fac_nit_receptor
-
-and b.ruc_tipo_contribuyente = 'RECEPTOR'
-
-and fac_id = pfactura
-
- 
-
- );
-
- 
-
- WHEN ptipo_fac = 'NCE' THEN
-
+WHEN ptipo_fac = 'NCE' THEN
 /*NOTA DE CREDITO */
-
- set vjson = (
-
- 
+set vjson = (
 
 SELECT JSON_OBJECT(
-
    'identificacion',
-
        JSON_OBJECT(
-
             'version',3,
-
             'ambiente', (SELECT pgn_valor FROM fact.parametros_generales where pgn_campo = 'version'),
-
             'tipoDte',fac_tipo_comprobante,
-
             'numeroControl',fac_numero_de_control,
-
             'codigoGeneracion',fac_codigo_generacion,
-
             'tipoModelo',(SELECT CAST(pgn_valor as SIGNED) FROM fact.parametros_generales where pgn_campo = 'tipoModelo'),
-
             'tipoOperacion',(SELECT CAST(pgn_valor as SIGNED) FROM fact.parametros_generales where pgn_campo = 'tipoOperacion'),
-
             'tipoContingencia',null,
-
             'motivoContin',null,
-
             'fecEmi', DATE_FORMAT(NOW(), '%Y-%m-%d'),
-
             'horEmi', DATE_FORMAT(NOW(), '%H:%i:%s'),
-
             'tipoMoneda', (SELECT pgn_valor FROM fact.parametros_generales where pgn_campo = 'tipoMoneda')
-
         ),
-
- 
-
        'documentoRelacionado',  JSON_ARRAY(JSON_OBJECT(
-
                'tipoDocumento',(SELECT doc_tipo_doc FROM fact.documentos_relacionados where doc_fac_id = fac_id), #Tipo de Documento Tributario Relacionado
-
                'tipoGeneracion',(SELECT doc_tipo_gen FROM fact.documentos_relacionados where doc_fac_id = fac_id), #Tipo de Generación del Documento Tributario relacionado
-
                'numeroDocumento',(SELECT doc_num FROM fact.documentos_relacionados where doc_fac_id = fac_id),
-
                'fechaEmision', DATE_FORMAT((SELECT doc_fecha FROM fact.documentos_relacionados where doc_fac_id = fac_id), '%Y-%m-%d')
-
        )),
-
- 
-
    'emisor',
-
        JSON_OBJECT(
-
            'nit', REPLACE(a.ruc_nit_contribuyente, "-", ""),
-
            'nrc', a.ruc_nrc,
-
            'nombre', a.ruc_nombre_razonsocial,
-
            'codActividad', a.ruc_codactividad,
-
            'descActividad', (SELECT ccae_valor FROM fact.catalogo_codigo_actividad_economica where ccae_codigo = a.ruc_codactividad),
-
            'nombreComercial',a.ruc_nombre_comercial,
-
            'tipoEstablecimiento',a.ruc_tipoestablecimiento,
-
            'direccion',
-
                JSON_OBJECT(
-
                    'departamento', a.ruc_codigo_departamento,
-
                    'municipio', a.ruc_codigo_municipio,
-
                    'complemento', a.ruc_domicilio
-
                 ),
-
            'telefono',REPLACE(a.ruc_telefono_personal, "-", ""),
-
            'correo', a.ruc_email_contribuyente
-
- 
-
         ),
-
- 
-
-        'receptor',
-
+       'receptor',
        JSON_OBJECT(
-
             'nit', b.ruc_nit_contribuyente, #NIT (Receptor)
-
             'nrc', b.ruc_nrc,
-
             'nombre', b.ruc_nombre_razonsocial,
-
             'codActividad', b.ruc_codactividad, #Código de Actividad Económica (Receptor)
-
             'descActividad', (SELECT ccae_valor FROM fact.catalogo_codigo_actividad_economica where ccae_codigo = b.ruc_codactividad), #Descripcion actividad Económica (Receptor)
-
             'nombreComercial',b.ruc_nombre_razonsocial,
-
             'direccion',
-
                JSON_OBJECT(
-
                    'departamento', b.ruc_codigo_departamento,
-
                    'municipio', b.ruc_codigo_municipio,
-
                    'complemento', b.ruc_domicilio
-
                 ),
-
             'telefono', b.ruc_telefono_personal,
-
             'correo', b.ruc_email_contribuyente
-
        ),
-
- 
-
-       'ventaTercero', null,
-
-              /* JSON_OBJECT(
-
-               'nit',null, #NIT por cuenta de Terceros
-
-               'nombre',null #Nombre, denominación o razón social del Tercero
-
-               ),*/
-
- 
-
- 
-
+      'ventaTercero', null,
       'cuerpoDocumento', (SELECT JSON_ARRAYAGG(JSON_OBJECT(
-
             'numItem',det_fac_numlinea,
-
             'tipoItem',det_fac_tipo_item,
-
             'numeroDocumento',det_numerodocumento_rel,
-
             'cantidad',det_fac_cantidad,
-
             'codigo',fac_nro_factura,
-
             'codTributo',det_codtributo, # Tributo sujeto a cálculo de IVA
-
             'uniMedida',det_fac_unidad_de_medida,
-
             'descripcion',det_fac_descripcion,
-
             'precioUni',det_fac_preciounitario,
-
             'montoDescu',det_montoDescu,
-
             'ventaNoSuj',det_fac_ventasnosujet,
-
             'ventaExenta',det_fac_ventasexentas,
-
             'ventaGravada',det_fact_ventasgravadas,
-
             'tributos',(SELECT JSON_ARRAYAGG(tri_codigo)
-
                         FROM tributos
-
                         where tri_fac_id = fac_id)
-
             )
-
             )FROM factura_detalle WHERE det_fac_id = fac_id),
-
- 
-
        'resumen',
-
             JSON_OBJECT(
-
             'totalNoSuj',fac_ventasnosujet_tot,
-
             'totalExenta',fac_ventasexentas_tot,
-
             'totalGravada',fac_ventasgravadas_tot,
-
             'subTotalVentas',fac_subtotalventas,
-
             'descuNoSuj',fac_descuento_nosuje,
-
             'descuExenta',fac_descuento_exent,
-
             'descuGravada',fac_descuento_grab,
-
             'totalDescu',fac_tot_descuento,
-
- 
-
-             'tributos', (SELECT JSON_ARRAYAGG(JSON_OBJECT('codigo', tri_codigo,
-
+            'tributos', (SELECT JSON_ARRAYAGG(JSON_OBJECT('codigo', tri_codigo,
                 'descripcion', tri_descripcion,
-
                 'valor', tri_valor))
-
                 FROM tributos WHERE tri_fac_id = fac_id),
-
             'subTotal',fac_subtotal,
-
             'ivaPerci1',fac_ivaperci1,
-
             'ivaRete1',fac_iva_retenido,
-
             'reteRenta',fac_retencion_renta,
-
             'montoTotalOperacion',fac_total_pagar,
-
             'totalLetras',fac_total_letras,
-
             'condicionOperacion',fac_condicion_operacion
-
             ),
-
- 
-
             'extension',
-
             JSON_OBJECT(
-
                 'nombEntrega', null,
-
                 'docuEntrega', null,
-
                 'nombRecibe', null,
-
                 'docuRecibe', null,
-
                 'observaciones', null
-
             ),
-
- 
-
             'apendice',(select JSON_ARRAYAGG(JSON_OBJECT(
-
         'campo',ape_campo,
-
         'etiqueta',ape_etiqueta,
-
         'valor',ape_valor))
-
         from apendice where ape_fac_id = fac_id order by ape_id asc)
-
 )
-
 FROM factura, contribuyentes as a, contribuyentes as b
-
-where a.ruc_nit_contribuyente = fac_nit_emisor
-
-and a.ruc_tipo_contribuyente = 'EMISOR'
-
-and b.ruc_nit_contribuyente = fac_nit_receptor
-
-and b.ruc_tipo_contribuyente = 'RECEPTOR'
-
-and fac_id = pfactura
-
+where a.ruc_nit_contribuyente = fac_nit_emisor and 
+	a.ruc_tipo_contribuyente = 'EMISOR' and 
+	b.ruc_nit_contribuyente = fac_nit_receptor and 
+	b.ruc_tipo_contribuyente = 'RECEPTOR' and 
+	fac_id = pfactura
  );
 
- WHEN ptipo_fac = 'NDE' THEN
+WHEN ptipo_fac = 'NDE' THEN
 
 /*NOTA DE DEBITO */
-
- set vjson = (
-
- 
-
+set vjson = (
 SELECT JSON_OBJECT(
-
    'identificacion',
-
        JSON_OBJECT(
-
             'version',3,
-
             'ambiente', (SELECT pgn_valor FROM fact.parametros_generales where pgn_campo = 'version'),
-
             'tipoDte',fac_tipo_comprobante,
-
             'numeroControl',fac_numero_de_control,
-
             'codigoGeneracion',fac_codigo_generacion,
-
             'tipoModelo',(SELECT CAST(pgn_valor as SIGNED) FROM fact.parametros_generales where pgn_campo = 'tipoModelo'),
-
             'tipoOperacion',(SELECT CAST(pgn_valor as SIGNED) FROM fact.parametros_generales where pgn_campo = 'tipoOperacion'),
-
             'tipoContingencia',null,
-
             'motivoContin',null,
-
             'fecEmi', DATE_FORMAT(NOW(), '%Y-%m-%d'),
-
             'horEmi', DATE_FORMAT(NOW(), '%H:%i:%s'),
-
             'tipoMoneda', (SELECT pgn_valor FROM fact.parametros_generales where pgn_campo = 'tipoMoneda')
-
         ),
-
- 
-
        'documentoRelacionado',  JSON_ARRAY(JSON_OBJECT(
-
                'tipoDocumento',(SELECT doc_tipo_doc FROM fact.documentos_relacionados where doc_fac_id = fac_id), #Tipo de Documento Tributario Relacionado
-
                'tipoGeneracion',(SELECT doc_tipo_gen FROM fact.documentos_relacionados where doc_fac_id = fac_id), #Tipo de Generación del Documento Tributario relacionado
-
                'numeroDocumento',(SELECT doc_num FROM fact.documentos_relacionados where doc_fac_id = fac_id),
-
                'fechaEmision', DATE_FORMAT((SELECT doc_fecha FROM fact.documentos_relacionados where doc_fac_id = fac_id), '%Y-%m-%d')
-
        )),
-
- 
-
    'emisor',
-
        JSON_OBJECT(
-
            'nit', REPLACE(a.ruc_nit_contribuyente, "-", ""),
-
            'nrc', a.ruc_nrc,
-
            'nombre', a.ruc_nombre_razonsocial,
-
            'codActividad', a.ruc_codactividad,
-
            'descActividad', (SELECT ccae_valor FROM fact.catalogo_codigo_actividad_economica where ccae_codigo = a.ruc_codactividad),
-
            'nombreComercial',a.ruc_nombre_comercial,
-
            'tipoEstablecimiento',a.ruc_tipoestablecimiento,
-
            'direccion',
-
                JSON_OBJECT(
-
                    'departamento', a.ruc_codigo_departamento,
-
                    'municipio', a.ruc_codigo_municipio,
-
                    'complemento', a.ruc_domicilio
-
                 ),
-
            'telefono',REPLACE(a.ruc_telefono_personal, "-", ""),
-
            'correo', a.ruc_email_contribuyente
-
- 
-
         ),
-
- 
-
-        'receptor',
-
+       'receptor',
        JSON_OBJECT(
-
             'nit', b.ruc_nit_contribuyente, #NIT (Receptor)
-
             'nrc', b.ruc_nrc,
-
             'nombre', b.ruc_nombre_razonsocial,
-
             'codActividad', b.ruc_codactividad, #Código de Actividad Económica (Receptor)
-
             'descActividad', (SELECT ccae_valor FROM fact.catalogo_codigo_actividad_economica where ccae_codigo = b.ruc_codactividad), #Descripcion actividad Económica (Receptor)
-
             'nombreComercial',b.ruc_nombre_razonsocial,
-
             'direccion',
-
                JSON_OBJECT(
-
                    'departamento', b.ruc_codigo_departamento,
-
                    'municipio', b.ruc_codigo_municipio,
-
                    'complemento', b.ruc_domicilio
-
                 ),
-
             'telefono', b.ruc_telefono_personal,
-
             'correo', b.ruc_email_contribuyente
-
        ),
-
- 
-
-       'ventaTercero', null,
-
-              /* JSON_OBJECT(
-
-               'nit',null, #NIT por cuenta de Terceros
-
-               'nombre',null #Nombre, denominación o razón social del Tercero
-
-               ),*/
-
- 
-
- 
-
+      'ventaTercero', null,
       'cuerpoDocumento', (SELECT JSON_ARRAYAGG(JSON_OBJECT(
-
             'numItem',det_fac_numlinea,
-
             'tipoItem',det_fac_tipo_item,
-
             'numeroDocumento',det_numerodocumento_rel,
-
             'cantidad',det_fac_cantidad,
-
             'codigo',fac_nro_factura,
-
             'codTributo',det_codtributo, # Tributo sujeto a cálculo de IVA
-
             'uniMedida',det_fac_unidad_de_medida,
-
             'descripcion',det_fac_descripcion,
-
             'precioUni',det_fac_preciounitario,
-
             'montoDescu',det_montoDescu,
-
             'ventaNoSuj',det_fac_ventasnosujet,
-
             'ventaExenta',det_fac_ventasexentas,
-
             'ventaGravada',det_fact_ventasgravadas,
-
             'tributos',(SELECT JSON_ARRAYAGG(tri_codigo)
-
                         FROM tributos
-
                         where tri_fac_id = fac_id)
-
             )
-
             )FROM factura_detalle WHERE det_fac_id = fac_id),
-
- 
-
        'resumen',
-
             JSON_OBJECT(
-
             'totalNoSuj',fac_ventasnosujet_tot,
-
             'totalExenta',fac_ventasexentas_tot,
-
             'totalGravada',fac_ventasgravadas_tot,
-
             'subTotalVentas',fac_subtotalventas,
-
             'descuNoSuj',fac_descuento_nosuje,
-
             'descuExenta',fac_descuento_exent,
-
             'descuGravada',fac_descuento_grab,
-
             'totalDescu',fac_tot_descuento,
-
- 
-
-             'tributos', (SELECT JSON_ARRAYAGG(JSON_OBJECT('codigo', tri_codigo,
-
+            'tributos', (SELECT JSON_ARRAYAGG(JSON_OBJECT('codigo', tri_codigo,
                 'descripcion', tri_descripcion,
-
                 'valor', tri_valor))
-
                 FROM tributos WHERE tri_fac_id = fac_id),
-
             'subTotal',fac_subtotal,
-
             'ivaPerci1',fac_ivaperci1,
-
             'ivaRete1',fac_iva_retenido,
-
             'reteRenta',fac_retencion_renta,
-
             'montoTotalOperacion',fac_total_pagar,
-
             'totalLetras',fac_total_letras,
-
             'numPagoElectronico',fac_numpagoelectronico,
-
             'condicionOperacion',fac_condicion_operacion
-
             ),
-
- 
-
             'extension',
-
             JSON_OBJECT(
-
                 'nombEntrega', null,
-
                 'docuEntrega', null,
-
                 'nombRecibe', null,
-
                 'docuRecibe', null,
-
                 'observaciones', null
-
             ),
-
- 
-
             'apendice',(select JSON_ARRAYAGG(JSON_OBJECT(
-
         'campo',ape_campo,
-
         'etiqueta',ape_etiqueta,
-
         'valor',ape_valor))
-
         from apendice where ape_fac_id = fac_id order by ape_id asc)
-
 )
-
 FROM factura, contribuyentes as a, contribuyentes as b
-
-where a.ruc_nit_contribuyente = fac_nit_emisor
-
-and a.ruc_tipo_contribuyente = 'EMISOR'
-
-and b.ruc_nit_contribuyente = fac_nit_receptor
-
-and b.ruc_tipo_contribuyente = 'RECEPTOR'
-
-and fac_id = pfactura
-
- );
+where a.ruc_nit_contribuyente = fac_nit_emisor and 
+	a.ruc_tipo_contribuyente = 'EMISOR' and 
+	b.ruc_nit_contribuyente = fac_nit_receptor and 
+	b.ruc_tipo_contribuyente = 'RECEPTOR' and 
+	fac_id = pfactura
+);
 
  
-
 WHEN ptipo_fac = 'ANU' THEN
-
 /*ANULACION*/
-
- set vjson = (
-
- 
+set vjson = (
 
 SELECT JSON_OBJECT(
-
    'identificacion',
-
        JSON_OBJECT(
-
             'version',2,
-
             'ambiente', (SELECT pgn_valor FROM fact.parametros_generales where pgn_campo = 'version'),
-
             'codigoGeneracion',fac_codigo_generacion,
-
             'fecAnula', DATE_FORMAT(CURRENT_TIMESTAMP, '%Y-%m-%d'),
-
             'horAnula', DATE_FORMAT(CURRENT_TIMESTAMP, '%H:%i:%s')
-
         ),
-
    'emisor',
-
        JSON_OBJECT(
-
            'nit', REPLACE(a.ruc_nit_contribuyente, "-", ""),
-
            'correo', a.ruc_email_contribuyente,
-
            'nombre', a.ruc_nombre_razonsocial,
-
            'codEstableMH',a.ruc_codigo_mh,
-
            'codEstable',a.ruc_tipoestablecimiento,
-
            'codPuntoVentaMH',a.ruc_cod_punto_venta_mh,
-
            'codPuntoVenta',a.ruc_cod_punto_venta_mh,
-
            'tipoEstablecimiento',a.ruc_tipoestablecimiento,
-
            'telefono',REPLACE(a.ruc_telefono_personal, "-", ""),
-
            'nomEstablecimiento', a.ruc_nombre_comercial
-
         ),
-
- 
-
-    'documento',
-
+     'documento',
        JSON_OBJECT(
-
             'tipoDte',fac_tipo_comprobante,
-
             'codigoGeneracion',fac_codigo_generacion,
-
             'selloRecibido',(SELECT distinct selloRecibido FROM bitacora_declaracion_hacienda where id_fac = fac_id),
-
             'numeroControl',fac_numero_de_control,
-
             'fecEmi', DATE_FORMAT(NOW(), '%Y-%m-%d'),
-
             'tipoDocumento',(SELECT CAST(doc_idtipo_documento as CHAR) FROM fact.tipos_documentos where doc_id=b.ruc_tipo_doc_id),
-
             'numDocumento',REPLACE(b.ruc_nit_contribuyente, "-", ""),
-
             'nombre', b.ruc_nombre_razonsocial,
-
             'codigoGeneracionR', CASE WHEN (SELECT da_cti_id FROM fact.detalle_anulaciones where da_fac_id= fac_id and da_id = (SELECT max(da_id)FROM fact.detalle_anulaciones where da_fac_id= fac_id)) = 2 THEN NULL ELSE (SELECT da_codigo_generacionr FROM fact.detalle_anulaciones where da_fac_id= fac_id and da_id = (SELECT max(da_id)FROM fact.detalle_anulaciones where da_fac_id= fac_id)) END,
-
             'montoIva', fac_total_iva
-
         ),
-
- 
-
- 
-
- 
-
       'motivo',
-
             JSON_OBJECT(
-
                 'tipoAnulacion', (SELECT da_cti_id FROM fact.detalle_anulaciones where da_fac_id=fac_id and da_id = (SELECT max(da_id)FROM fact.detalle_anulaciones where da_fac_id= fac_id)),
-
                 'motivoAnulacion', (SELECT da_motivo FROM fact.detalle_anulaciones where da_fac_id=fac_id and da_id = (SELECT max(da_id)FROM fact.detalle_anulaciones where da_fac_id= fac_id)),
-
                 'nombreResponsable', (SELECT ef_nombentrega FROM fact.extensiones_facturas WHERE ef_ruc_id=a.ruc_id),
-
                 'tipDocResponsable', (SELECT CAST(doc_idtipo_documento as CHAR) FROM fact.tipos_documentos where doc_id=a.ruc_tipo_doc_id),
-
                 'numDocResponsable', (SELECT ef_docuEntrega FROM fact.extensiones_facturas WHERE ef_ruc_id=a.ruc_id),
-
                 'nombreSolicita', (SELECT ef_nombEntrega FROM fact.extensiones_facturas WHERE ef_ruc_id=a.ruc_id),
-
                 'tipDocSolicita', (SELECT CAST(doc_idtipo_documento as CHAR) FROM fact.tipos_documentos where doc_id=a.ruc_tipo_doc_id),
-
                 'numDocSolicita', (SELECT ef_docuEntrega FROM fact.extensiones_facturas WHERE ef_ruc_id=a.ruc_id)
-
             )
-
 )
-
 FROM factura, contribuyentes as a,  contribuyentes as b
+where a.ruc_nit_contribuyente = fac_nit_emisor and 
+	a.ruc_tipo_contribuyente = 'EMISOR' and 
+	b.ruc_nit_contribuyente = fac_nit_receptor and 
+	b.ruc_tipo_contribuyente = 'RECEPTOR' and 
+	fac_id = pfactura
+);
 
-where a.ruc_nit_contribuyente = fac_nit_emisor
 
-and a.ruc_tipo_contribuyente = 'EMISOR'
-
-and b.ruc_nit_contribuyente = fac_nit_receptor
-
-and b.ruc_tipo_contribuyente = 'RECEPTOR'
-
-and fac_id = pfactura
-
- 
-
- );
-
- 
-
- WHEN ptipo_fac = 'CRE' THEN
-
- /*RETENCION*/
-
- set vjson = (
-
- 
-
+WHEN ptipo_fac = 'CRE' THEN
+/*RETENCION*/
+set vjson = (
 SELECT JSON_OBJECT(
-
     'identificacion',
-
         JSON_OBJECT(
-
             'version', 1,
-
             'ambiente', (SELECT pgn_valor FROM fact.parametros_generales where pgn_campo = 'version'),
-
             'tipoDte',fac_tipo_comprobante,
-
             'numeroControl',fac_numero_de_control,
-
             'codigoGeneracion',fac_codigo_generacion,
-
             'tipoModelo',(SELECT CAST(pgn_valor as SIGNED) FROM fact.parametros_generales where pgn_campo = 'tipoModelo'),
-
             'tipoOperacion',(SELECT CAST(pgn_valor as SIGNED) FROM fact.parametros_generales where pgn_campo = 'tipoOperacion'),
-
             'tipoContingencia',null,
-
             'motivoContin',null,
-
             'fecEmi', DATE_FORMAT(NOW(), '%Y-%m-%d'),
-
             'horEmi', DATE_FORMAT(NOW(), '%H:%i:%s'),
-
             'tipoMoneda', (SELECT pgn_valor FROM fact.parametros_generales where pgn_campo = 'tipoMoneda')
-
         ),
-
     'emisor',
-
         JSON_OBJECT(
-
             'nit', REPLACE(a.ruc_nit_contribuyente, "-", ""),
-
             'nrc', a.ruc_nrc,
-
             'nombre', a.ruc_nombre_razonsocial,
-
             'codActividad', a.ruc_codactividad,
-
             'descActividad', (SELECT ccae_valor FROM fact.catalogo_codigo_actividad_economica where ccae_codigo = a.ruc_codactividad),
-
             'nombreComercial', a.ruc_nombre_razonsocial,
-
             'tipoEstablecimiento', a.ruc_tipoestablecimiento,
-
             'direccion',
-
                 JSON_OBJECT(
-
                     'departamento', a.ruc_codigo_departamento,
-
                     'municipio', a.ruc_codigo_municipio,
-
                     'complemento', a.ruc_domicilio
-
                 ),
-
-                /**/
-
             'telefono',REPLACE(a.ruc_telefono_personal, "-", ""),
-
             'codigoMH', a.ruc_codigo_mh,
-
             'codigo', null,
-
             'puntoVenta', a.ruc_cod_punto_venta,
-
             'puntoVentaMH', a.ruc_cod_punto_venta_mh,
-
             'correo', a.ruc_email_contribuyente
-
         ),
-
     'receptor',
-
         JSON_OBJECT(
-
             'tipoDocumento', (SELECT CAST(doc_idtipo_documento as CHAR) FROM fact.tipos_documentos where doc_id=b.ruc_tipo_doc_id),
-
             'numDocumento',REPLACE(b.ruc_nit_contribuyente, "-", ""),
-
             'nrc', b.ruc_nrc,
-
             'nombre', b.ruc_nombre_razonsocial,
-
             'codActividad', b.ruc_codactividad,
-
             'descActividad', (SELECT ccae_valor FROM fact.catalogo_codigo_actividad_economica where ccae_codigo = b.ruc_codactividad),
-
             'nombreComercial', b.ruc_nombre_razonsocial,
-
             'direccion',
-
                 JSON_OBJECT(
-
                     'departamento', b.ruc_codigo_departamento,
-
                     'municipio', b.ruc_codigo_municipio,
-
                     'complemento', b.ruc_domicilio
-
                 ),
-
             'telefono', REPLACE(b.ruc_telefono_personal, "-", ""),
-
             'correo', b.ruc_email_contribuyente
-
         ),
-
         'cuerpoDocumento',
-
             (SELECT JSON_ARRAYAGG(JSON_OBJECT(
-
             'numItem',ret_numitem,
-
             'tipoDte', ret_tipodte,
-
             'tipoDoc', ret_tipodoc,
-
             'numDocumento', ret_numdocumento,
-
             'fechaEmision', DATE_FORMAT(ret_fechaemision, '%Y-%m-%d'),
-
             'montoSujetoGrav', ret_montosujetograv,
-
             'codigoRetencionMH', (SELECT cri_codigo FROM fact.catalogo_retencion_iva_mh where cri_id=fac_cri_id),
-
             'ivaRetenido', ret_iva,
-
             'descripcion', ret_descripcion))
-
             FROM retenciones WHERE ret_fac_id = fac_id),
-
- 
-
         'resumen',
-
             JSON_OBJECT(
-
                 'totalSujetoRetencion',fac_totalsujetoretencion,
-
                 'totalIVAretenido',fac_iva_retenido,
-
                 'totalIVAretenidoLetras',fac_ivaretenido_letras
-
             ),
-
         'extension',
-
             JSON_OBJECT(
-
                 'nombEntrega', null,
-
                 'docuEntrega',null,
-
                 'nombRecibe', null,
-
                 'docuRecibe', null,
-
                 'observaciones', null
-
             ),
-
         'apendice',
-
             (select JSON_ARRAYAGG(JSON_OBJECT(
-
         'campo',ape_campo,
-
         'etiqueta',ape_etiqueta,
-
         'valor',ape_valor))
-
         from apendice where ape_fac_id = fac_id order by ape_id asc)
-
 )
-
 FROM factura, contribuyentes as a, contribuyentes as b
-
-where a.ruc_nit_contribuyente = fac_nit_emisor
-
-and a.ruc_tipo_contribuyente = 'EMISOR'
-
-and b.ruc_nit_contribuyente = fac_nit_receptor
-
-and b.ruc_tipo_contribuyente = 'RECEPTOR'
-
-and fac_id = pfactura
-
-  );
-
+where a.ruc_nit_contribuyente = fac_nit_emisor and 
+	a.ruc_tipo_contribuyente = 'EMISOR' and 
+	b.ruc_nit_contribuyente = fac_nit_receptor and 
+	b.ruc_tipo_contribuyente = 'RECEPTOR' and 
+	fac_id = pfactura);
 else
-
     set    vjson := null;
-
 END CASE;
-
 RETURN vjson;
-
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4078,7 +3162,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`%` FUNCTION `fun_secuencia`(`tipo_comprobante` VARCHAR(5)) RETURNS varchar(31) CHARSET utf8mb3
+CREATE DEFINER=`root`@`%` FUNCTION `fun_secuencia`(`tipo_comprobante` VARCHAR(5), pid_emp int) RETURNS varchar(31) CHARSET utf8mb3
     READS SQL DATA
 BEGIN
 
@@ -4096,31 +3180,34 @@ from tipos_comprobantes
 where tcp_comprobante = tipo_comprobante;
 
 
-set vcod = (select 0 where not exists (select  nosec_tcp_idtipo from fact.nosecuencia_factura
-where
-nosec_tcp_idtipo=idtipo and nosec_anio=2025/*year(curdate())*/ ));
+set vcod = (select 0 
+			where not exists (select nosec_tcp_idtipo 
+							from fact.nosecuencia_factura
+							where nosec_tcp_idtipo = idtipo and
+								nosec_ce_empresa = pid_emp and
+								nosec_anio = 2025));
 
 if vcod = 0 then
   
-	INSERT INTO fact.nosecuencia_factura (nosec_anio, nosec_tcp_idtipo, nosec_secuencia, nosec_ruc_id) VALUES (2025/*year(curdate())*/ ,idtipo, 0,1);
+	INSERT INTO fact.nosecuencia_factura (nosec_anio, nosec_tcp_idtipo, nosec_secuencia, nosec_ruc_id, nosec_ce_empresa) VALUES (2025, idtipo, 0, 1, pid_emp);
 
-	select concat('DTE-',tcp_idtipcom,'-', (select ruc_cod_punto_venta from contribuyentes where ruc_id = 1),'-',LPAD((SELECT nosec_secuencia+1 FROM fact.nosecuencia_factura where nosec_tcp_idtipo = idtipo and nosec_anio = 2025/*year(curdate())*/ ),15,'0') )
-	into dte
+	select 
+		concat('DTE-',tcp_idtipcom,'-', (select estable_pv from empresa where id_empresa = pid_emp),'-',LPAD((1),15,'0') )
+		into dte
 	from tipos_comprobantes
 	where tcp_comprobante = tipo_comprobante;
-    
-    
-
 else
-
-	select concat('DTE-',tcp_idtipcom,'-', (select ruc_cod_punto_venta from contribuyentes where ruc_id = 1),'-',LPAD((SELECT nosec_secuencia+1 FROM fact.nosecuencia_factura where nosec_tcp_idtipo = idtipo and nosec_anio = 2025/*year(curdate())*/ ),15,'0') )
-	into dte
+	select 
+		concat('DTE-',tcp_idtipcom,'-', (select estable_pv from empresa where id_empresa = pid_emp),'-',LPAD((SELECT nosec_secuencia+1 FROM fact.nosecuencia_factura where nosec_tcp_idtipo = idtipo and nosec_ce_empresa = pid_emp and nosec_anio = year(curdate()) ),15,'0') )
+		into dte
 	from tipos_comprobantes
 	where tcp_comprobante = tipo_comprobante;
 
 	update fact.nosecuencia_factura
-	set nosec_secuencia = nosec_secuencia +1
-	 where nosec_tcp_idtipo = idtipo and nosec_anio = 2025/*year(curdate())*/ ;
+	set nosec_secuencia = nosec_secuencia + 1
+	where nosec_tcp_idtipo = idtipo and 
+		nosec_ce_empresa = pid_emp and
+		nosec_anio = 2025;
  
 end if; 
 
@@ -5087,9 +4174,9 @@ BEGIN
     declare vtipo_comprobante varchar(5);
     declare viva_detalle decimal(15,4);
     declare vmontototaloperacion decimal(15,4);
-    declare  vtipo_item_expor int;
-    declare  vrecinto_fiscal varchar(2);
-    declare  vregimen varchar(13);
+    declare vtipo_item_expor int;
+    declare vrecinto_fiscal varchar(2);
+    declare vregimen varchar(13);
     declare vcodtributo varchar(5);
 	declare vfin_cur int;
     declare vdoc_relacionado varchar(45);
@@ -5169,13 +4256,14 @@ BEGIN
             vretencion_iva_porc,vimpuesto_reten_retenido, vimpuesto_reten_retenido_porc;
  		
 -- set pmensaje = concat(concat(pmensaje,' factura '),ifnull(vcod_factura,0));
-set vdescuento_total = ifnull(vdescuento_total,0) + CAST((ifnull(vdescuento,0) * vcantidad)AS DECIMAL(10, 2)); 
+set vdescuento_total = ifnull(vdescuento_total,0) + CAST((ifnull(vdescuento,0) * vcantidad)AS DECIMAL(10, 2));
+
+-- set pmensaje = concat(pmensaje,' AQUI  vval 0');
             
 IF vperiodo IS NULL or vperiodo = 'null' THEN
     SET vperiodo := 0; 
   END IF;
 
-        
 		if vfin_cur = 1 then
 			leave bucle;
         end if;
@@ -5185,8 +4273,6 @@ IF vperiodo IS NULL or vperiodo = 'null' THEN
         -- set pmensaje = concat(concat(pmensaje,' AQUI  contador'),vcontador_detalle);
 		
 		if vcontador_detalle = 1 then
-	
-            
 			set vcantidad_detalles = 0;
 			set vexiste_factura = 0;
 			set vid_fac = 0;
@@ -5248,7 +4334,7 @@ IF vperiodo IS NULL or vperiodo = 'null' THEN
 			FROM tipos_comprobantes
 			where tcp_idtipcom = vtipodoc;
             
-			select fact.fun_secuencia(vtipo_comprobante) into vcodigo_dte; 
+			select fact.fun_secuencia(vtipo_comprobante, pidemp) into vcodigo_dte; 
 			
 			begin
 				declare continue handler for not found set vval = 1;
@@ -5541,31 +4627,32 @@ BEGIN
 DECLARE vexiste INT ;
 DECLARE vcod varchar(100) ;
 DECLARE vid INT ;
+DECLARE videmp INT;
 
 set vexiste = 0; 
 set vcod = null; 
 
-select  IFNULL(fac_codigo_generacion,0)    into vcod   from factura
+select  IFNULL(fac_codigo_generacion,0), fac_ce_empresa into vcod, videmp from factura
 where
 fac_id=pfactura ;
 
     
 if vcod = 0 then
-	ver_loop:loop	
-		SELECT upper(UUID()) AS UUID_Value into codigoGeneracion;
-		select 1 into vexiste   from factura
-		where fac_codigo_generacion IN (codigoGeneracion);
+	ver_loop:loop
+		SELECT upper(UUID()) AS UUID_Value  into codigoGeneracion;
+		select 1 into vexiste from factura
+		where fac_codigo_generacion IN (codigoGeneracion) ;
 
 		if vexiste != 1 then
 			UPDATE fact.factura set fac_codigo_generacion=codigoGeneracion where fac_id=pfactura; 
 			LEAVE ver_loop;
-		end if; 
+		end if;
 	end loop ver_loop;
 else
 	set codigoGeneracion =   vcod;
 end if; 
 
-select  fun_retorna_json(ptipo_fac,pfactura) into pjson;
+select  fun_retorna_json(ptipo_fac,pfactura, videmp) into pjson;
 
 END ;;
 DELIMITER ;
@@ -5652,4 +4739,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-30 17:09:50
+-- Dump completed on 2025-06-03 18:51:37
