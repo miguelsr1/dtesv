@@ -50,47 +50,45 @@
             </p:dialog>
             <h:form id="frmAnular">
                 <p:growl id="messages" showDetail="true" skipDetailIfEqualsSummary="true"/>
-                <div class="box-root padding-top--24 flex-flex flex-direction--column">
-                    <div class="formBg">
-                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <p:card id="pnlAnular" rendered="#{!anular.continuar}">
-                                <h5>.:: INFORMACION ::.</h5>
-                                <p:panelGrid columns="1" layout="flex" columnClasses="col-12" contentStyleClass="align-items-baseline ui-fluid">
-                                    <p:outputLabel value="ES IMPORTANTE HABER INGRESADO LA NUEVA FACTURA CON LA CUAL SE SUSTITUIRÁ LA QUE SE EMITIÓ CON ERRORES"/>
-                                    <p:outputLabel value="SI YA REALIZÓ ESTE PROCESO PRESIONE BOTÓN CONTINUAR, DE LO CONTRARIO PRESIONE BOTON INGRESAR DATOS" />
-                                    <p:outputLabel value="SI EL TIPO DE ANULACIÓN ES POR RESCINDIR DE LA OPERACIÓN REALIZADA, NO ES NECESARIO EL PASO ANTERIOR Y PUEDE CONTINUAR"/>
-                                </p:panelGrid>
+                <p:card id="pnlAnular" rendered="#{!anular.continuar}">
+                    <h5>.:: INFORMACION ::.</h5>
+                    <p:panelGrid columns="1" layout="flex" columnClasses="col-12" contentStyleClass="align-items-baseline ui-fluid">
+                        <p:outputLabel value="ES IMPORTANTE HABER INGRESADO LA NUEVA FACTURA CON LA CUAL SE SUSTITUIRÁ LA QUE SE EMITIÓ CON ERRORES"/>
+                        <p:outputLabel value="SI YA REALIZÓ ESTE PROCESO PRESIONE BOTÓN CONTINUAR, DE LO CONTRARIO PRESIONE BOTON INGRESAR DATOS" />
+                        <p:outputLabel value="SI EL TIPO DE ANULACIÓN ES POR RESCINDIR DE LA OPERACIÓN REALIZADA, NO ES NECESARIO EL PASO ANTERIOR Y PUEDE CONTINUAR"/>
+                    </p:panelGrid>
 
-                                <f:facet name="footer">
-                                    <div class="flex align-items-center ">
-                                        <p:commandButton icon="pi pi-check" value="CONTINUAR" style="width: 11rem"
-                                                         action="#{anular.continuarListener}" styleClass="ui-button-info mr-2"/>
-                                        <p:commandButton icon="pi pi-external-link" value="INGRESAR DTE" style="width: 11rem"
-                                                         action="#{anular.ingresarDatosListener()}" styleClass="ui-button-secondary"/>
-                                    </div>
-                                </f:facet>
-                            </p:card>
+                    <f:facet name="footer">
+                        <div class="flex align-items-center ">
+                            <p:commandButton icon="pi pi-check" value="CONTINUAR" style="width: 11rem"
+                                             action="#{anular.continuarListener}" styleClass="ui-button-info mr-2"/>
+                            <p:commandButton icon="pi pi-external-link" value="INGRESAR DTE" style="width: 11rem"
+                                             action="#{anular.ingresarDatosListener()}" styleClass="ui-button-secondary"/>
+                        </div>
+                    </f:facet>
+                </p:card>
 
-                            <p:card id="pnlCodigoGen" rendered="#{anular.continuar}">
-                                <h5>.:: PROCESO INVALIDACION DE FACTURA EMITIDA ::.</h5>
+                <p:card id="pnlCodigoGen" rendered="#{anular.continuar}">
+                    <h5>.:: PROCESO INVALIDACION DE FACTURA EMITIDA ::.</h5>
+                    <h:outputText value="DATOS DE FACTURA A INVALIDAR" styleClass="title font-bold" style="color: #2196f3; font-size: larger;"/>
+                    <p:messages redisplay="true" closable="true" id="msgAnular"/>
 
-                                <h:outputText value="DATOS DE FACTURA A INVALIDAR" styleClass="title font-bold" style="color: #2196f3; font-size: larger;"/>
-                                <p:messages redisplay="true" closable="true" id="msgAnular"/>
-                                <p:panelGrid columns="2" layout="flex"
-                                             columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-5 xl:col-5"
-                                             contentStyleClass="align-items-baseline ui-fluid">
-                                    <p:outputLabel value="CÓDIGO GENERACIÓN" for="@next"/>
+                    <div class="ui-fluid formgrid grid">
+                        <div class="col-9">
+                            <div class="field grid">
+                                <p:outputLabel for="@next" styleClass="col-12 mb-2 md:col-2 mb-md-0">CÓDIGO GENERACIÓN</p:outputLabel>
+                                <div class="col-12 md:col-8">
                                     <p:autoComplete id="acCodGen" value="#{anular.codigoGen}" minQueryLength="4"
                                                     completeMethod="#{anular.completeText}" scrollHeight="250"
                                                     effect="fade" required="true"
                                                     requiredMessage="CÓDIGO ES REQUERIDO PARA CONTINUAR">
                                         <p:ajax event="itemSelect" process="@this"/>
                                     </p:autoComplete>
-                                </p:panelGrid>
-                                <p:panelGrid columns="2" layout="flex"
-                                             columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-5 xl:col-5"
-                                             contentStyleClass="align-items-baseline ui-fluid">
-                                    <h:outputLabel value="TIPO ANULACIÓN"/>
+                                </div>
+                            </div>
+                            <div class="field grid">
+                                <p:outputLabel for="@next" styleClass="col-12 mb-2 md:col-2 mb-md-0">TIPO ANULACIÓN</p:outputLabel>
+                                <div class="col-12 md:col-8">
                                     <p:selectOneMenu value="#{anular.tipoAnulacion}" id="selMotivo"
                                                      required="true" requiredMessage="MOTIVO ES REQUERIDO PARA CONTINUAR">
                                         <f:selectItem itemLabel="SELECCIONAR" itemValue=""/>
@@ -99,77 +97,126 @@
                                                        itemValue="#{mot.ctiId}"/>
                                         <p:ajax event="itemSelect" update="lblNuevaFact gdTabEmitidas"/>
                                     </p:selectOneMenu>
-                                </p:panelGrid>
-                                <p:panelGrid columns="2" layout="flex"
-                                             columnClasses="col-12 md:col-2 xl:col-2, col-12 md:col-5 xl:col-5"
-                                             contentStyleClass="align-items-baseline ui-fluid">
-                                    <h:outputLabel value="MOTIVO"/>
+                                </div>
+                            </div>
+                            <div class="field grid">
+                                <p:outputLabel for="@next" styleClass="col-12 mb-2 md:col-2 mb-md-0">MOTIVO</p:outputLabel>
+                                <div class="col-12 md:col-8">
                                     <p:inputTextarea value="#{anular.motivoAnulacion}" maxlength="200"
                                                      onkeyup="this.value = this.value.toUpperCase()"
                                                      counterTemplate="{0}/200" rows="3"
-                                                     counter="displaysub">
-                                        <h:outputText class="block" id="displaysub"/>
-                                    </p:inputTextarea>
-                                </p:panelGrid>
-
-
-                                <h:outputText value="SELECCIONE LA NUEVA FACTURA"
-                                              styleClass="title font-bold" id="lblNuevaFact"
-                                              style="color: #2196f3; font-size: larger; margin-top: 2%; display: #{anular.tipoAnulacion eq null ? 'none' : (anular.tipoAnulacion.matches('2') ? 'none':'block')}"/>
-                                <p:panelGrid id="gdTabEmitidas" columns="1" layout="flex" columnClasses="col-12" style="display: #{anular.tipoAnulacion eq null ? 'none' : (anular.tipoAnulacion.matches('2') ? 'none':'block')}">
-                                    <p:dataTable id="tblEmitidas" value="#{anular.docEmitidosList}" var="fact"
-                                                 paginator="true" paginatorPosition="bottom" showGridlines="true"
-                                                 styleClass="table-bordered" rows="6"
-                                                 tableStyle="table-layout: auto" selection="#{anular.selectedFactura}"
-                                                 rowKey="#{fact.idFac}" selectionMode="single"
-                                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-                                        <p:ajax event="rowSelect" listener="#{anular.onRowSelect}" update=":frmAnular:messages"/>
-                                        <f:facet name="header">LISTADO DOCUMENTOS EMITIDOS</f:facet>
-                                        <p:column selectionMode="single" style="width: 16px; text-align: center"/>
-                                        <p:column headerText="# FACTURA">
-                                            <h:outputText value="#{fact.nroControl}"/>
-                                        </p:column>
-                                        <p:column headerText="ESTADO">
-                                            <h:outputText value="#{fact.estado}"/>
-                                        </p:column>
-                                        <p:column headerText="CODIGO GENERACION">
-                                            <h:outputText value="#{fact.codigoGeneracion}"/>
-                                        </p:column>
-                                        <p:column headerText="FECHA INGRESO">
-                                            <h:outputText value="#{fact.fechaIngreso}">
-                                                <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
-                                            </h:outputText>
-                                        </p:column>
-                                        <p:column headerText="FECHA RESPUESTA">
-                                            <h:outputText value="#{fact.fechaRespuesta}">
-                                                <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
-                                            </h:outputText>
-                                        </p:column>
-                                    </p:dataTable>
-                                </p:panelGrid>
-                                <f:facet name="footer">
-                                    <p:commandButton value="PROCESAR" style="width: 12rem" styleClass="mr-2"
-                                                     action="#{anular.enviarAnulacion}"
-                                                     update="frmAnular" icon="pi pi-cog">
-                                        <p:confirm header="CONFIRMAR" icon="pi pi-exclamation-triangle"
-                                                   message="¿ESTÁ SEGURO DE CONTINUAR?"/>
-                                    </p:commandButton>
-                                    <p:commandButton icon="pi pi-ban" value="CANCELAR" style="width: 11rem" 
-                                                     onclick="location.reload(); return false;"
-                                                     styleClass="ui-button-secondary"/>
-
-                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true"
-                                                     width="400">
-                                        <p:commandButton value="NO" styleClass="ui-confirmdialog-no ui-button-flat"
-                                                         type="button"/>
-                                        <p:commandButton value="SI" styleClass="ui-confirmdialog-yes"
-                                                         type="button"/>
-                                    </p:confirmDialog>
-                                </f:facet>
-                            </p:card>
+                                                     counter="displaysub"/>
+                                    <h:outputText class="block" id="displaysub" style="margin-top: 10px; font-size: 10px"/>
+                                </div>
+                            </div>
+                            <div class="field grid">
+                                <p:outputLabel for="@next" styleClass="col-12 mb-2 md:col-2 mb-md-0">NOMBRE RESPONSABLE</p:outputLabel>
+                                <div class="col-12 md:col-6">
+                                    <p:inputText id="txtNomRes" maxlength="100" value="#{anular.nombreRes}" required="true" requiredMessage="MOTIVO ES REQUERIDO PARA CONTINUAR"/>
+                                </div>
+                            </div>
+                            <div class="field grid">
+                                <p:outputLabel for="@next" styleClass="col-12 mb-2 md:col-2 mb-md-0">TIPO DOC. RESPONSABLE</p:outputLabel>
+                                <div class="col-12 md:col-6">
+                                    <p:selectOneMenu id="tipoDocRes" value="#{anular.tipoDocRes}" required="true" requiredMessage="MOTIVO ES REQUERIDO PARA CONTINUAR">
+                                        <f:selectItem itemLabel="DUI" itemValue="13"/>
+                                        <f:selectItem itemLabel="NIT" itemValue="36"/>
+                                    </p:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="field grid">
+                                <p:outputLabel for="@next" styleClass="col-12 mb-2 md:col-2 mb-md-0">NUM. DOC. RESPONSABLE</p:outputLabel>
+                                <div class="col-12 md:col-6">
+                                    <p:inputText id="txtNumDocRes" maxlength="14" value="#{anular.numDocRes}"
+                                                   required="true" requiredMessage="MOTIVO ES REQUERIDO PARA CONTINUAR"
+                                                    validatorMessage="Debe ingresar solo números entre 9 y 14 dígitos">
+                                         <f:validateRegex pattern="^\d{9,14}$"/>
+                                    </p:inputText>
+                                </div>
+                            </div>
+                            <div class="field grid">
+                                <p:outputLabel for="@next" styleClass="col-12 mb-2 md:col-2 mb-md-0">NOMBRE SOLICITA</p:outputLabel>
+                                <div class="col-12 md:col-6">
+                                    <p:inputText id="txtNomSol" maxlength="100" value="#{anular.nombreSol}" required="true" requiredMessage="MOTIVO ES REQUERIDO PARA CONTINUAR"/>
+                                </div>
+                            </div>
+                            <div class="field grid">
+                                <p:outputLabel for="@next" styleClass="col-12 mb-2 md:col-2 mb-md-0">TIPO DOC. SOLICITA</p:outputLabel>
+                                <div class="col-12 md:col-6">
+                                    <p:selectOneMenu id="cbTipoDocSol" value="#{anular.tipoDocSol}" required="true" requiredMessage="MOTIVO ES REQUERIDO PARA CONTINUAR">
+                                        <f:selectItem itemLabel="DUI" itemValue="13"/>
+                                        <f:selectItem itemLabel="NIT" itemValue="36"/>
+                                    </p:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="field grid">
+                                <p:outputLabel for="@next" styleClass="col-12 mb-2 md:col-2 mb-md-0">NUM. DOC. SOLICITA</p:outputLabel>
+                                <div class="col-12 md:col-6">
+                                    <p:inputText id="txtNumDocSol" maxlength="14" value="#{anular.numDocSol}" 
+                                                 required="true" requiredMessage="MOTIVO ES REQUERIDO PARA CONTINUAR" 
+                                                 validatorMessage="Debe ingresar solo números entre 9 y 14 dígitos">
+                                         <f:validateRegex pattern="^\d{9,14}$"/>
+                                    </p:inputText>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+
+                    <h:outputText value="SELECCIONE LA NUEVA FACTURA"
+                                  styleClass="title font-bold" id="lblNuevaFact"
+                                  style="color: #2196f3; font-size: larger; margin-top: 2%; display: #{anular.tipoAnulacion eq null ? 'none' : (anular.tipoAnulacion.matches('2') ? 'none':'block')}"/>
+                    <p:panelGrid id="gdTabEmitidas" columns="1" layout="flex" columnClasses="col-12" style="display: #{anular.tipoAnulacion eq null ? 'none' : (anular.tipoAnulacion.matches('2') ? 'none':'block')}">
+                        <p:dataTable id="tblEmitidas" value="#{anular.docEmitidosList}" var="fact"
+                                     paginator="true" paginatorPosition="bottom" showGridlines="true"
+                                     styleClass="table-bordered" rows="6"
+                                     tableStyle="table-layout: auto" selection="#{anular.selectedFactura}"
+                                     rowKey="#{fact.idFac}" selectionMode="single"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+                            <p:ajax event="rowSelect" listener="#{anular.onRowSelect}" update=":frmAnular:messages"/>
+                            <f:facet name="header">LISTADO DOCUMENTOS EMITIDOS</f:facet>
+                            <p:column selectionMode="single" style="width: 16px; text-align: center"/>
+                            <p:column headerText="# FACTURA">
+                                <h:outputText value="#{fact.nroControl}"/>
+                            </p:column>
+                            <p:column headerText="ESTADO">
+                                <h:outputText value="#{fact.estado}"/>
+                            </p:column>
+                            <p:column headerText="CODIGO GENERACION">
+                                <h:outputText value="#{fact.codigoGeneracion}"/>
+                            </p:column>
+                            <p:column headerText="FECHA INGRESO">
+                                <h:outputText value="#{fact.fechaIngreso}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="FECHA RESPUESTA">
+                                <h:outputText value="#{fact.fechaRespuesta}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
+                                </h:outputText>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panelGrid>
+                    <f:facet name="footer">
+                        <p:commandButton value="PROCESAR" style="width: 12rem" styleClass="mr-2"
+                                         action="#{anular.enviarAnulacion}"
+                                         update="frmAnular" icon="pi pi-cog">
+                            <p:confirm header="CONFIRMAR" icon="pi pi-exclamation-triangle"
+                                       message="¿ESTÁ SEGURO DE CONTINUAR?"/>
+                        </p:commandButton>
+                        <p:commandButton icon="pi pi-ban" value="CANCELAR" style="width: 11rem" 
+                                         onclick="location.reload(); return false;"
+                                         styleClass="ui-button-secondary"/>
+
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true"
+                                         width="400">
+                            <p:commandButton value="NO" styleClass="ui-confirmdialog-no ui-button-flat"
+                                             type="button"/>
+                            <p:commandButton value="SI" styleClass="ui-confirmdialog-yes"
+                                             type="button"/>
+                        </p:confirmDialog>
+                    </f:facet>
+                </p:card>
             </h:form>
 
             <p:dialog id="DialogConfirm" widgetVar="DialogConfirm"

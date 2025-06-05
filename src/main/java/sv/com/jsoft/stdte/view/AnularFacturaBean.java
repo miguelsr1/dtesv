@@ -22,7 +22,6 @@ import sv.com.jsoft.stdte.repository.FacturaService;
 import sv.com.jsoft.stdte.utils.ViewUtils;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -47,11 +46,12 @@ public class AnularFacturaBean implements Serializable {
 
     private static final String SUFFIX = ".json";
 
-    @EJB
+    @Inject
     AppService service;
-
-    @EJB
+    @Inject
     BitacoraService bservice;
+    @Inject
+    LoginBean login;
 
     @Getter
     @Setter
@@ -60,9 +60,6 @@ public class AnularFacturaBean implements Serializable {
     @Getter
     @Setter
     private String codigoGen, tipoAnulacion, motivoAnulacion, idFactura, mensaje;
-
-    @Inject
-    LoginBean login;
 
     @Getter
     @Setter
@@ -79,6 +76,26 @@ public class AnularFacturaBean implements Serializable {
     @Getter
     @Setter
     private ParametrosMh pmh;
+    
+    @Getter
+    @Setter
+    private String nombreRes;
+    @Getter
+    @Setter
+    private String tipoDocRes;
+    @Getter
+    @Setter
+    private String numDocRes;
+    
+    @Getter
+    @Setter
+    private String nombreSol;
+    @Getter
+    @Setter
+    private String tipoDocSol;
+    @Getter
+    @Setter
+    private String numDocSol;
 
     @PostConstruct
     public void init() {
@@ -93,7 +110,7 @@ public class AnularFacturaBean implements Serializable {
     public List<String> completeText(String query) {
         String queryLowerCase = query.toLowerCase();
         List<String> codGenList = new ArrayList<>();
-        docEmitidosList = bservice.findLikeByCodGeneracion(query, login.getUsuario());
+        docEmitidosList = bservice.findLikeByCodGeneracion(query, login.getUsuario(), login.getLogin().getIdEmpresa());
         for (BitacoraDeclaracionHacienda bdh : docEmitidosList) {
             codGenList.add(bdh.getCodigoGeneracion());
         }
@@ -124,10 +141,11 @@ public class AnularFacturaBean implements Serializable {
                 Integer codFactPrevia;
                 codFactPrevia = bservice.findIdFacturaByCodGeneracion(codigoGen, login.getUsuario());
                 if (codFactPrevia > 0) {
-                    GenericResponse resp = service.insertAnulacion(motivoAnulacion, codFactPrevia, Integer.parseInt(tipoAnulacion), tipoAnulacion.matches("2") ? null : selectedFactura.getCodigoGeneracion(), login);
+                    GenericResponse resp = service.insertAnulacion(motivoAnulacion, codFactPrevia, Integer.parseInt(tipoAnulacion), tipoAnulacion.matches("2") ? null : selectedFactura.getCodigoGeneracion(), login,
+                            nombreRes, tipoDocRes, numDocRes, nombreSol, tipoDocSol, numDocSol);
                     if (resp.getVal() == 0) {
                         log.info("parametros: TipoFact: " + "ANU" + " IdFactura: " + codFactPrevia);
-                        JsonObject jsonToInvalidate = service.getJsonToInvalidate("ANU", String.valueOf(codFactPrevia));
+                        JsonObject jsonToInvalidate = service.getJsonToInvalidate("ANU", String.valueOf(codFactPrevia), login.getLogin().getIdEmpresa());
                         if (jsonToInvalidate != null) {
                             GenericResponse valido = validarSchema(jsonToInvalidate);
                             if (valido.getVal() == 0) {

@@ -204,14 +204,14 @@ public class LoginBean implements Serializable {
         item.setIcon("pi pi-sign-out");
         subMenuMisc.getElements().add(item);
 
-        DefaultSubMenu subMenuReportes = DefaultSubMenu.builder().label("UTILITARIOS").build();
+        /*DefaultSubMenu subMenuReportes = DefaultSubMenu.builder().label("UTILITARIOS").build();
         item = DefaultMenuItem.builder().value("REPORTE").build();
         item.setParam("menuList", "/reportes/reportxdiaxsucursal.xhtml" + ":" + "REPORT");
         item.setCommand("#{login.loadPage}");
         item.setOnerror("PF('DialogInternet').show();");
         item.setTitle("REPORTES");
         item.setIcon("pi pi-file-pdf");
-        subMenuReportes.getElements().add(item);
+        subMenuReportes.getElements().add(item);*/
 
         DefaultSubMenu subMenuCrons = DefaultSubMenu.builder().label("PROCESOS AUT.").build();
         item = DefaultMenuItem.builder().value("EJECUCION MANUAL").build();
@@ -225,7 +225,7 @@ public class LoginBean implements Serializable {
         this.model.getElements().add(defaultSubMenu);
         this.model.getElements().add(subMenuCorrecciones);
         this.model.getElements().add(subMenuAdm);
-        this.model.getElements().add(subMenuReportes);
+        //this.model.getElements().add(subMenuReportes);
         this.model.getElements().add(subMenuMisc);
     }
 

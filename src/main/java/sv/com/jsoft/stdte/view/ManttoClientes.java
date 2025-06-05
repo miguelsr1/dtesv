@@ -85,7 +85,10 @@ public class ManttoClientes implements Serializable {
 
     private void loadLazyDataModel() {
         lstContribuyentes = service.findReceptores(login.getLogin().getIdEmpresa());
-        //lazyDataModelRec = new CustomLazyDataModel<>(entityManager, Contribuyentes.class, "rucId", login.getLogin().getIdEmpresa());
+    }
+    
+    public void updateInscritoIva(){
+        selectedReceptor.setInscritoIva(selectedReceptor.getTipoPersoneria().equals("2"));
     }
 
     public void nuevoReceptor() {
@@ -94,6 +97,8 @@ public class ManttoClientes implements Serializable {
         displayNewRec = Boolean.TRUE;
         selectedReceptor = new Contribuyentes();
         municipiosList = new ArrayList<>();
+        
+        selectedReceptor.setTipoPersoneria("1");
     }
 
     public void editReceptor() {

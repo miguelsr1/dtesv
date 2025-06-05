@@ -127,7 +127,10 @@ public class ProductoBean implements Serializable {
     }
 
     public void openNewProducto() {
-        this.selectedProducto = new CatalogoProductos();
+        selectedProducto = new CatalogoProductos();
+        selectedProducto.setUnidadMedida(catalogoService.getUnidadByCodigo(59));
+        selectedProducto.setActivo(Boolean.TRUE);
+        selectedProducto.setCpCitId(1);
     }
 
     public void deleteSelectedProductos() {

@@ -99,4 +99,7 @@ public class CatalogosService {
         return response;
     }
 
+    public UnidadesMedida getUnidadByCodigo(Integer unidadMedidad){
+        return entityManager.find(UnidadesMedida.class, unidadMedidad);
+    }
 }

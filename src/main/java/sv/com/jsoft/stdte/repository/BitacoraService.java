@@ -22,14 +22,15 @@ public class BitacoraService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<BitacoraDeclaracionHacienda> findLikeByCodGeneracion(String codGeneracion, String user) {
+    public List<BitacoraDeclaracionHacienda> findLikeByCodGeneracion(String codGeneracion, String user, Integer idEmp) {
         List<BitacoraDeclaracionHacienda> result = new ArrayList<>();
         try {
             StringBuilder jpqlBuilder = new StringBuilder();
-            jpqlBuilder.append("SELECT b, f.facNumeroDeControl FROM BitacoraDeclaracionHacienda b JOIN Factura f ON b.idFac = f.facId WHERE b.codigoGeneracion like :codGen");
+            jpqlBuilder.append("SELECT b, f.facNumeroDeControl FROM BitacoraDeclaracionHacienda b JOIN Factura f ON b.idFac = f.facId and f.facCeEmpresa = :idEmp  WHERE b.codigoGeneracion like :codGen and b.idFac not in (select bb.idFac FROM BitacoraDeclaracionHacienda bb WHERE bb.codigoGeneracion like :codGen and bb.estado = 'ANULADA')");
 
             TypedQuery<Object[]> query = entityManager.createQuery(jpqlBuilder.toString(), Object[].class);
             query.setParameter("codGen", "%" + codGeneracion.toUpperCase() + "%");
+            query.setParameter("idEmp", idEmp);
 
             List<Object[]> results = query.getResultList();
 
@@ -57,7 +58,7 @@ public class BitacoraService {
         List<BitacoraDeclaracionHacienda> result = new ArrayList<>();
         try {
             StringBuilder jpqlBuilder = new StringBuilder();
-            jpqlBuilder.append("SELECT b, f.facNumeroDeControl FROM Contribuyentes c JOIN Empresa e ON c.idEmpresa = e.idEmpresa JOIN Factura f ON f.facNitEmisor = e.nit JOIN BitacoraDeclaracionHacienda b ON b.idFac = f.facId WHERE e.idEmpresa =:idEmp AND b.estado in ('PROCESADO','OBSERVADO') and ");
+            jpqlBuilder.append("SELECT b, f.facNumeroDeControl FROM Contribuyentes c JOIN Empresa e ON c.idEmpresa = e.idEmpresa JOIN Factura f ON f.facNitReceptor = c.rucNitContribuyente and f.facCeEmpresa = c.idEmpresa JOIN BitacoraDeclaracionHacienda b ON b.idFac = f.facId WHERE e.idEmpresa =:idEmp AND b.estado in ('PROCESADO','OBSERVADO') and ");
 
             if (startDate != null && endDate != null) {
                 jpqlBuilder.append(" b.fechaIngreso >= :startDate AND b.fechaIngreso <= :endDate");

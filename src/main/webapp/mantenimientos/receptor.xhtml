@@ -80,10 +80,22 @@
                             <h5>.:: EDITAR CLIENTE ::.</h5>
 
                             <div class="ui-fluid formgrid grid">
-                                <div class="field col-12">
+                                <div class="field col-3">
                                     <p:selectBooleanCheckbox id="datPj" itemLabel="¿INSCRITO AL IVA?" value="#{mttoClts.selectedReceptor.inscritoIva}">
-                                        <p:ajax update="txtNrc" />
+                                        <p:ajax update="pnlAddEdit" />
                                     </p:selectBooleanCheckbox>
+                                </div>
+                                <div class="field col-9">
+                                    <div class="field grid">
+                                        <p:outputLabel for="cbTiPersoneria" styleClass="col-12 mb-2 md:col-2 mb-md-0">TIPO PERSONERIA</p:outputLabel>
+                                        <div class="col-12 md:col-10">
+                                            <p:selectOneButton id="cbTiPersoneria" value="#{mttoClts.selectedReceptor.tipoPersoneria}" style="width: 30rem;">
+                                                <f:selectItem itemValue="1" itemLabel="NATURAL" />
+                                                <f:selectItem itemValue="2" itemLabel="JURIDICA" />
+                                                <p:ajax update="pnlAddEdit" listener="#{mttoClts.updateInscritoIva}"/>
+                                            </p:selectOneButton>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="field col-12 lg:col-2 md:col-4">
@@ -95,32 +107,33 @@
                                 </div>
                                 <div class="field col-12 lg:col-2 md:col-4">
                                     <p:outputLabel for="doc" value="NÚMERO DOCUMENTO" styleClass="labels" />
-                                    <p:inputText id="doc" value="#{mttoClts.selectedReceptor.rucNitContribuyente}"/>
+                                    <p:inputText id="doc" value="#{mttoClts.selectedReceptor.rucNitContribuyente}" required="true"/>
                                 </div>
                                 <div class="field col-12 lg:col-2 md:col-4">
                                     <p:outputLabel for="txtNrc" value="NRC" styleClass="labels" />
-                                    <p:inputText id="txtNrc" value="#{mttoClts.selectedReceptor.rucNrc}" disabled="#{not mttoClts.selectedReceptor.inscritoIva}">
+                                    <p:inputText id="txtNrc" value="#{mttoClts.selectedReceptor.rucNrc}" disabled="#{not mttoClts.selectedReceptor.inscritoIva}"
+                                                 required="#{mttoClts.selectedReceptor.inscritoIva or mttoClts.selectedReceptor.tipoPersoneria eq 2}">
                                         <p:ajax event="change" listener="#{mttoClts.validateNrc}" update="txtNrc"/>
                                     </p:inputText>
                                 </div>
                                 <div class="field col-12 lg:col-3 md:col-4">
                                     <p:outputLabel for="correo" value="CORREO ELECTRÓNICO" styleClass="labels"/>
-                                    <p:inputText id="correo" value="#{mttoClts.selectedReceptor.rucEmailContribuyente}"/>
+                                    <p:inputText id="correo" value="#{mttoClts.selectedReceptor.rucEmailContribuyente}" required="true"/>
                                 </div>
                                 <div class="field col-12 lg:col-3 md:col-4">
                                     <p:outputLabel for="telefono" value="TELEFONO" styleClass="labels" />
-                                    <p:inputText id="telefono" value="#{mttoClts.selectedReceptor.rucTelefonoTrabajo}"/>
+                                    <p:inputMask id="telefono" value="#{mttoClts.selectedReceptor.rucTelefonoTrabajo}" mask="99999999"/>
                                 </div>
 
                                 <div class="field col-12 lg:col-3 md:col-4">
                                     <p:outputLabel value="NOMBRE COMERCIAL" for="txtNombreComercial" styleClass="labels"/>
                                     <p:inputTextarea id="txtNombreComercial" rows="2"
-                                                     value="#{mttoClts.selectedReceptor.rucNombreComercial}"/>
+                                                     value="#{mttoClts.selectedReceptor.rucNombreComercial}" required="true"/>
                                 </div>
                                 <div class="field col-12 md:col-3">
                                     <p:outputLabel value="NOMBRE O RAZÓN SOCIAL" for="txtRazonSocial" styleClass="labels" />
                                     <p:inputTextarea id="txtRazonSocial" rows="2"
-                                                     value="#{mttoClts.selectedReceptor.rucNombreRazonsocial}"/>
+                                                     value="#{mttoClts.selectedReceptor.rucNombreRazonsocial}" required="true"/>
                                 </div>
                                 <div class="field col-12 md:col-6">
                                     <p:outputLabel value="ACTIVIDAD" for="selActividad" styleClass="labels" />
@@ -134,7 +147,7 @@
                                 </div>
                                 <div class="field col-12 md:col-3">
                                     <p:outputLabel value="DEPARTAMENTO" styleClass="labels" />
-                                    <p:selectOneMenu id="selDepto"
+                                    <p:selectOneMenu id="selDepto" required="true"
                                                      autoWidth="false"
                                                      value="#{mttoClts.selectedReceptor.rucCodigoDepartamento}">
                                         <f:selectItems value="#{mttoClts.departmentList}" var="dep"
@@ -145,7 +158,7 @@
                                 </div>
                                 <div class="field col-12 md:col-3">
                                     <p:outputLabel value="MUNICIPIO" styleClass="labels" />
-                                    <p:selectOneMenu id="selMuni" autoWidth="false"
+                                    <p:selectOneMenu id="selMuni" autoWidth="false" required="true"
                                                      value="#{mttoClts.selectedReceptor.rucCodigoMunicipio}">
                                         <f:selectItem itemLabel=" SELECCIONAR " noSelectionOption="true"/>
                                         <f:selectItems value="#{mttoClts.municipiosList}" var="mun"
@@ -153,8 +166,8 @@
                                     </p:selectOneMenu>
                                 </div>
                                 <div class="field col-12 md:col-3">
-                                    <p:outputLabel value="DOMICILIO" for="txtDomicilio" styleClass="labels"/>
-                                    <p:inputTextarea id="txtDomicilio" rows="2" value="#{mttoClts.selectedReceptor.rucDomicilio}"/>
+                                    <p:outputLabel value="DOMICILIO" for="txtDomicilio" styleClass="labels" />
+                                    <p:inputTextarea id="txtDomicilio" rows="2" value="#{mttoClts.selectedReceptor.rucDomicilio}" required="true"/>
                                 </div>
                             </div>
 

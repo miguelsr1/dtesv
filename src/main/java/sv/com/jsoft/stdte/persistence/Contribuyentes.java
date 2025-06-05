@@ -103,6 +103,9 @@ public class Contribuyentes implements Serializable {
     @Column(name = "ruc_regimen")
     private String rucRegimen;
     @Basic
+    @Column(name = "tipo_personeria")
+    private String tipoPersoneria;
+    @Basic
     @Column(name = "ruc_cp_id_pais")
     private Integer rucCpIdPais;
     @Basic

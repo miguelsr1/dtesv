@@ -246,10 +246,10 @@ public class FacturaView implements Serializable {
         if (factura.getTipodoc().equals("01")) {
             sinDatos = true;
             receptor = facturaService.findReceptoNull();
-            receptores = service.findAllReceptoresByIdEmp(login.getLogin().getIdEmpresa(), false);
+            receptores = service.findAllReceptoresByIdEmp(login.getLogin().getIdEmpresa(), "1");
         } else {
             receptor = new Contribuyentes();
-            receptores = service.findAllReceptoresByIdEmp(login.getLogin().getIdEmpresa(), true);
+            receptores = service.findAllReceptoresByIdEmp(login.getLogin().getIdEmpresa(), "2");
             
             if (factura.getTipodoc().matches("05|06")) {
                 tipoCompRel = tiposComprobantesLs.stream().filter(tc -> tc.getTcpIdtipcom().matches("03|07"))
@@ -340,28 +340,6 @@ public class FacturaView implements Serializable {
         }
     }
 
-    /*public synchronized void codEmisorListener() {
-        observaciones = "Fecha del periodo del " + ViewUtils.formatoFecha(fechaInicio) + " al " + ViewUtils.formatoFecha(fechaFin);
-        log.info("Periodo del " + ViewUtils.formatoFecha(fechaInicio) + " al " + ViewUtils.formatoFecha(fechaFin));
-        if (nitEmisor != null && !nitEmisor.isEmpty()) {
-            emisor = emisores.stream()
-                    .filter(c -> c.getRucNitContribuyente().matches(nitEmisor))
-                    .findAny().orElse(null);
-            if (emisor != null) {
-                if (emisor.getRucCodigoDepartamento() != null) {
-                    emisorDeptoDesc = service.findDepartamentoDescByCod(emisor.getRucCodigoDepartamento());
-                }
-                if (emisor.getRucCodigoDepartamento() != null && emisor.getRucCodigoMunicipio() != null) {
-                    emisorMuniDesc = service.findMunicipioDescByCod(emisor.getRucCodigoDepartamento(), emisor.getRucCodigoMunicipio());
-                }
-            } else {
-                ViewUtils.showMessageWarning("NO SE ENCONTRO EMISOR  " + nitEmisor
-                        + ", VERIFIQUE E INTENTE NUEVAMENTE");
-            }
-        } else {
-            ViewUtils.addError("DEBE INGRESAR NIT EMISOR PARA CONTINUAR", null);
-        }
-    }*/
     public void codReceptorListener() {
         if (nitReceptor != null && !nitReceptor.isEmpty()) {
             receptor = receptores.stream()

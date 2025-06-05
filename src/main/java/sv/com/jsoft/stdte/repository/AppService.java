@@ -138,7 +138,7 @@ public class AppService {
         Buzoncsv buzon = buzoncsv;
         em.persist(buzon);
         em.flush();
-        
+
         return buzon.getIdBuzon();
     }
 
@@ -375,19 +375,20 @@ public class AppService {
         return resultado;
     }
 
-    public List<Contribuyentes> findAllReceptoresByIdEmp(Integer idEmp, boolean iva) {
+    public List<Contribuyentes> findAllReceptoresByIdEmp(Integer idEmp, String tipoPesoneria) {
         List<Contribuyentes> resultado = new ArrayList<>();
+        String inscrito = tipoPesoneria.equals("2") ? "OR c.inscritoIva = true)" : ")";
         try {
-            resultado = em.createQuery("SELECT c FROM Contribuyentes c WHERE c.rucTipoContribuyente = 'RECEPTOR' AND c.idEmpresa = :idEmp and c.inscritoIva = :iva")
+            resultado = em.createQuery("SELECT c FROM Contribuyentes c WHERE c.rucTipoContribuyente = 'RECEPTOR' AND c.idEmpresa = :idEmp and (c.tipoPersoneria = :per " + inscrito)
                     .setParameter("idEmp", idEmp)
-                    .setParameter("iva", iva)
+                    .setParameter("per", tipoPesoneria)
                     .getResultList();
         } catch (Exception e) {
             log.error("error findAllEmisores " + e.getMessage());
         }
         return resultado;
     }
-    
+
     public List<Contribuyentes> findAllReceptoresByIdEmp(Integer idEmp) {
         List<Contribuyentes> resultado = new ArrayList<>();
         try {
@@ -498,7 +499,7 @@ public class AppService {
     public ParametrosMh findParametrosByNitEmisor(String nitEmisor) {
         ParametrosMh result;
         try {
-            Query query = em.createQuery("from ParametrosMh p where p.pmJsonFirmadorNit = :nitEmisor and p.pmId = 1", ParametrosMh.class);
+            Query query = em.createQuery("from ParametrosMh p where p.pmJsonFirmadorNit = :nitEmisor", ParametrosMh.class);
             query.setParameter("nitEmisor", nitEmisor);
             result = (ParametrosMh) query.getSingleResult();
         } catch (Exception e) {
@@ -519,7 +520,8 @@ public class AppService {
         return resultado;
     }
 
-    public GenericResponse insertAnulacion(String motivo, int facId, int tipo, String codigoN, LoginBean login) {
+    public GenericResponse insertAnulacion(String motivo, int facId, int tipo, String codigoN, LoginBean login, String nomRes, String tipoDocRes, String numDocRes, 
+            String nomSol, String tipoDocSol, String numDocSol) {
         GenericResponse respuesta = new GenericResponse();
         try {
             log.info("ejecutando proceso pro_inserta_anulacion, usuario " + login.getUsuario());
@@ -529,34 +531,55 @@ public class AppService {
             storedProcedureQuery.registerStoredProcedureParameter(2, Integer.class, ParameterMode.IN);
             storedProcedureQuery.registerStoredProcedureParameter(3, Integer.class, ParameterMode.IN);
             storedProcedureQuery.registerStoredProcedureParameter(4, String.class, ParameterMode.IN);
+            
+            storedProcedureQuery.registerStoredProcedureParameter(5, String.class, ParameterMode.IN);
+            storedProcedureQuery.registerStoredProcedureParameter(6, String.class, ParameterMode.IN);
+            storedProcedureQuery.registerStoredProcedureParameter(7, String.class, ParameterMode.IN);
+            
+            storedProcedureQuery.registerStoredProcedureParameter(8, String.class, ParameterMode.IN);
+            storedProcedureQuery.registerStoredProcedureParameter(9, String.class, ParameterMode.IN);
+            storedProcedureQuery.registerStoredProcedureParameter(10, String.class, ParameterMode.IN);
+            
+            storedProcedureQuery.registerStoredProcedureParameter(11, Integer.class, ParameterMode.IN);
 
-            storedProcedureQuery.registerStoredProcedureParameter(5, Integer.class, ParameterMode.OUT);
-            storedProcedureQuery.registerStoredProcedureParameter(6, String.class, ParameterMode.OUT);
+            storedProcedureQuery.registerStoredProcedureParameter(12, Integer.class, ParameterMode.OUT);
+            storedProcedureQuery.registerStoredProcedureParameter(13, String.class, ParameterMode.OUT);
 
             storedProcedureQuery.setParameter(1, motivo);
             storedProcedureQuery.setParameter(2, facId);
             storedProcedureQuery.setParameter(3, tipo);
             storedProcedureQuery.setParameter(4, codigoN != null ? codigoN : "");
+            
+            storedProcedureQuery.setParameter(5, nomRes);
+            storedProcedureQuery.setParameter(6, tipoDocRes);
+            storedProcedureQuery.setParameter(7, numDocRes);
+            
+            storedProcedureQuery.setParameter(8, nomSol);
+            storedProcedureQuery.setParameter(9, tipoDocSol);
+            storedProcedureQuery.setParameter(10, numDocSol);
+            
+            storedProcedureQuery.setParameter(11, login.getLogin().getIdEmpresa());
 
             storedProcedureQuery.execute();
 
-            respuesta.setVal((Integer) storedProcedureQuery.getOutputParameterValue(5));
-            respuesta.setMensaje((String) storedProcedureQuery.getOutputParameterValue(6));
+            respuesta.setVal((Integer) storedProcedureQuery.getOutputParameterValue(12));
+            respuesta.setMensaje((String) storedProcedureQuery.getOutputParameterValue(13));
 
         } catch (Exception e) {
             log.error("ERROR en insertAnulacion", e);
-            respuesta.setMensaje("Ocurrió un error al procesar datos, verifique ó contacte a Sertracen");
+            respuesta.setMensaje("Ocurrió un error al procesar datos, verifique ó contacte al ADMIN");
             respuesta.setVal(1);
         }
         return respuesta;
     }
 
-    public JsonObject getJsonToInvalidate(String tipoFact, String nroFact) {
+    public JsonObject getJsonToInvalidate(String tipoFact, String nroFact, Integer idEmp) {
         String json = "";
         try {
-            Query query = em.createNativeQuery("SELECT fun_retorna_json(:param1, :param2)");
-            query.setParameter("param1", tipoFact);
-            query.setParameter("param2", nroFact);
+            Query query = em.createNativeQuery("SELECT fun_retorna_json(:tipoFac, :idFac, :idemp)");
+            query.setParameter("tipoFac", tipoFact);
+            query.setParameter("idFac", nroFact);
+            query.setParameter("idemp", idEmp);
 
             json = (String) query.getSingleResult();
 
@@ -613,7 +636,7 @@ public class AppService {
             mailDto.setBody(body);
             mailDto.setMfa(null);
             mailDto.setSubject(subject);
-            mailDto.setTo("miguelsr1@gmail.com");
+            mailDto.setTo(to);
 
             MailAttachment dtePdf = new MailAttachment();
 
