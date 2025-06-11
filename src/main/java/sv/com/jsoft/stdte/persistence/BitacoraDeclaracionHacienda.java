@@ -53,5 +53,7 @@ public class BitacoraDeclaracionHacienda implements Serializable {
     private Integer idFac;
     @Transient
     private String nroControlDte;
+    @Transient
+    private String facTipoComprobante;
 
 }

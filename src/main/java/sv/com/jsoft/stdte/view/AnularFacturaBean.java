@@ -116,6 +116,10 @@ public class AnularFacturaBean implements Serializable {
         }
         return codGenList.stream().filter(t -> t.toLowerCase().startsWith(queryLowerCase)).collect(Collectors.toList());
     }
+    
+    public void cargarListaDte(){
+        
+    }
 
     public void onRowSelect(SelectEvent<BitacoraDeclaracionHacienda> event) {
         log.info("Factura Seleccionada " + event.getObject().getIdFac());

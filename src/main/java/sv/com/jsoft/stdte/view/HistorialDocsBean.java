@@ -480,4 +480,22 @@ public class HistorialDocsBean implements Serializable {
         this.setOpcionExcel(opcion);
         log.info("opción excel: " + opcionExcel);
     }
+    
+    public String tipoDte(String tipo){
+        switch (tipo) {
+            case "01": return "FE";
+            case "03": return "CCFE";
+            case "04": return "NRE";
+            case "05": return "NCE";
+            case "06": return "NDE";
+            case "07": return "CRE";
+            case "08": return "CLE";
+            case "09": return "DCLE";
+            case "11": return "FEXE";
+            case "14": return "FSEE";
+            case "15": return "CDE";
+            default:
+                throw new AssertionError();
+        }
+    }
 }

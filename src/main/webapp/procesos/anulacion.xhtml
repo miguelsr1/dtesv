@@ -109,53 +109,49 @@
                                     <h:outputText class="block" id="displaysub" style="margin-top: 10px; font-size: 10px"/>
                                 </div>
                             </div>
-                            <div class="field grid">
-                                <p:outputLabel for="@next" styleClass="col-12 mb-2 md:col-2 mb-md-0">NOMBRE RESPONSABLE</p:outputLabel>
-                                <div class="col-12 md:col-6">
+                            <p:separator/>
+                            <div class="grid col-12">
+                                <div class="field col-12 md:col-4">
+                                    <p:outputLabel for="@next">NOMBRE RESPONSABLE</p:outputLabel>
                                     <p:inputText id="txtNomRes" maxlength="100" value="#{anular.nombreRes}" required="true" requiredMessage="MOTIVO ES REQUERIDO PARA CONTINUAR"/>
                                 </div>
-                            </div>
-                            <div class="field grid">
-                                <p:outputLabel for="@next" styleClass="col-12 mb-2 md:col-2 mb-md-0">TIPO DOC. RESPONSABLE</p:outputLabel>
-                                <div class="col-12 md:col-6">
+                                <div class="field col-12 md:col-3">
+                                    <p:outputLabel for="@next">TIPO DOCUMENTO</p:outputLabel>
                                     <p:selectOneMenu id="tipoDocRes" value="#{anular.tipoDocRes}" required="true" requiredMessage="MOTIVO ES REQUERIDO PARA CONTINUAR">
                                         <f:selectItem itemLabel="DUI" itemValue="13"/>
                                         <f:selectItem itemLabel="NIT" itemValue="36"/>
                                     </p:selectOneMenu>
                                 </div>
-                            </div>
-                            <div class="field grid">
-                                <p:outputLabel for="@next" styleClass="col-12 mb-2 md:col-2 mb-md-0">NUM. DOC. RESPONSABLE</p:outputLabel>
-                                <div class="col-12 md:col-6">
+                                <div class="field col-12 md:col-3">
+                                    <p:outputLabel for="@next">NUM. DOCUMENTO</p:outputLabel>
                                     <p:inputText id="txtNumDocRes" maxlength="14" value="#{anular.numDocRes}"
-                                                   required="true" requiredMessage="MOTIVO ES REQUERIDO PARA CONTINUAR"
-                                                    validatorMessage="Debe ingresar solo números entre 9 y 14 dígitos">
-                                         <f:validateRegex pattern="^\d{9,14}$"/>
+                                                 required="true" requiredMessage="MOTIVO ES REQUERIDO PARA CONTINUAR"
+                                                 validatorMessage="Debe ingresar solo números entre 9 y 14 dígitos">
+                                        <f:validateRegex pattern="^\d{9,14}$"/>
                                     </p:inputText>
                                 </div>
                             </div>
                             <div class="field grid">
-                                <p:outputLabel for="@next" styleClass="col-12 mb-2 md:col-2 mb-md-0">NOMBRE SOLICITA</p:outputLabel>
-                                <div class="col-12 md:col-6">
+
+                            </div>
+                            <div class="grid col-12">
+                                <div class="field col-12 md:col-4">
+                                    <p:outputLabel for="@next">NOMBRE SOLICITA</p:outputLabel>
                                     <p:inputText id="txtNomSol" maxlength="100" value="#{anular.nombreSol}" required="true" requiredMessage="MOTIVO ES REQUERIDO PARA CONTINUAR"/>
                                 </div>
-                            </div>
-                            <div class="field grid">
-                                <p:outputLabel for="@next" styleClass="col-12 mb-2 md:col-2 mb-md-0">TIPO DOC. SOLICITA</p:outputLabel>
-                                <div class="col-12 md:col-6">
+                                <div class="field col-12 md:col-3">
+                                    <p:outputLabel for="@next" >TIPO DOCUMENTO</p:outputLabel>
                                     <p:selectOneMenu id="cbTipoDocSol" value="#{anular.tipoDocSol}" required="true" requiredMessage="MOTIVO ES REQUERIDO PARA CONTINUAR">
                                         <f:selectItem itemLabel="DUI" itemValue="13"/>
                                         <f:selectItem itemLabel="NIT" itemValue="36"/>
                                     </p:selectOneMenu>
                                 </div>
-                            </div>
-                            <div class="field grid">
-                                <p:outputLabel for="@next" styleClass="col-12 mb-2 md:col-2 mb-md-0">NUM. DOC. SOLICITA</p:outputLabel>
-                                <div class="col-12 md:col-6">
+                                <div class="field col-12 md:col-3">
+                                    <p:outputLabel for="@next">NUM. DOCUMENTO</p:outputLabel>
                                     <p:inputText id="txtNumDocSol" maxlength="14" value="#{anular.numDocSol}" 
                                                  required="true" requiredMessage="MOTIVO ES REQUERIDO PARA CONTINUAR" 
                                                  validatorMessage="Debe ingresar solo números entre 9 y 14 dígitos">
-                                         <f:validateRegex pattern="^\d{9,14}$"/>
+                                        <f:validateRegex pattern="^\d{9,14}$"/>
                                     </p:inputText>
                                 </div>
                             </div>
@@ -168,9 +164,10 @@
                                   style="color: #2196f3; font-size: larger; margin-top: 2%; display: #{anular.tipoAnulacion eq null ? 'none' : (anular.tipoAnulacion.matches('2') ? 'none':'block')}"/>
                     <p:panelGrid id="gdTabEmitidas" columns="1" layout="flex" columnClasses="col-12" style="display: #{anular.tipoAnulacion eq null ? 'none' : (anular.tipoAnulacion.matches('2') ? 'none':'block')}">
                         <p:dataTable id="tblEmitidas" value="#{anular.docEmitidosList}" var="fact"
-                                     paginator="true" paginatorPosition="bottom" showGridlines="true"
+                                     paginator="true" paginatorPosition="bottom"
                                      styleClass="table-bordered" rows="6"
-                                     tableStyle="table-layout: auto" selection="#{anular.selectedFactura}"
+                                     selection="#{anular.selectedFactura}"
+                                     reflow="true" size="small" tableStyle="table-layout: auto;"
                                      rowKey="#{fact.idFac}" selectionMode="single"
                                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
                             <p:ajax event="rowSelect" listener="#{anular.onRowSelect}" update=":frmAnular:messages"/>

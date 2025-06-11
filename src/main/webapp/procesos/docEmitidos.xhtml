@@ -164,26 +164,29 @@
                                                  onclick="PF('DialogEmailTo').show();"
                                                  styleClass="rounded-button ui-button-outlined ui-button-success ui-button-flat"/>
                             </p:column>
-                            <p:column headerText="# FACTURA" width="105" sortBy="#{item.idFac}" >
+                            <p:column headerText="# FACTURA" style="text-align: center" sortBy="#{item.idFac}" >
                                 <h:outputText value="#{item.idFac}"/>
                             </p:column>
-                            <p:column headerText="# CONTROL" width="105" sortBy="#{item.nroControlDte}" >
+                            <p:column headerText="# CONTROL" style="text-align: center" sortBy="#{item.nroControlDte}" >
                                 <h:outputText value="#{item.nroControlDte}"/>
                             </p:column>
-                            <p:column headerText="ESTADO" width="105">
+                            <p:column headerText="TIPO DTE" style="text-align: center" >
+                                <h:outputText value="#{history.tipoDte(item.facTipoComprobante)}" />
+                            </p:column>
+                            <p:column headerText="ESTADO">
                                 <h:outputText value="#{item.estado}"/>
                             </p:column>
                             <p:column headerText="CODIGO GENERACION" sortBy="#{item.codigoGeneracion}" >
                                 <h:outputText id="txtCodGen" value="#{item.codigoGeneracion}"/>
                             </p:column>
-                            <p:column headerText="FECHA INGRESO" width="180" style="text-align: center">
+                            <p:column headerText="FECHA INGRESO" style="text-align: center">
                                 <p:outputLabel value="#{item.fechaIngreso}">
-                                    <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss a"/>
+                                    <f:convertDateTime pattern="dd/MM/yy hh:mm a"/>
                                 </p:outputLabel>
                             </p:column>
-                            <p:column headerText="FECHA RESPUESTA" width="180" style="text-align: center">
+                            <p:column headerText="FECHA RESPUESTA" style="text-align: center">
                                 <p:outputLabel value="#{item.fechaRespuesta}">
-                                    <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss a"/>
+                                    <f:convertDateTime pattern="dd/MM/yy hh:mm a"/>
                                 </p:outputLabel>
                             </p:column>
                             <p:columnGroup type="footer">

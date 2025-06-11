@@ -20,7 +20,7 @@ public class AuthorizationFilter implements Filter {
 
     private FilterConfig config = null;
     private ServletContext servletContext = null;
-    private static final String RUTA_INICIO = "/login.xhtml";
+    private static final String RUTA_INICIO = "/index.xhtml";
     private String[] noForwardsViewIds = null;
     private static final ArrayList<String> rutasContext = new ArrayList<>();
 
@@ -64,7 +64,7 @@ public class AuthorizationFilter implements Filter {
             HttpServletRequest reqst = (HttpServletRequest) req;
             String pathInfo = reqst.getRequestURI().substring(reqst.getContextPath().length());
 
-            if (isLogueado && (uri.indexOf("/login.xhtml") > 0 || pathInfo.equals("/"))) {
+            if (isLogueado && (uri.indexOf("/index.xhtml") > 0 || pathInfo.equals("/"))) {
                 res.sendRedirect(req.getContextPath() + "/index.xhtml");
             }
             if (checkExpire && uri.indexOf("/index.xhtml") > 0) {

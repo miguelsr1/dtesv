@@ -58,7 +58,7 @@ public class BitacoraService {
         List<BitacoraDeclaracionHacienda> result = new ArrayList<>();
         try {
             StringBuilder jpqlBuilder = new StringBuilder();
-            jpqlBuilder.append("SELECT b, f.facNumeroDeControl FROM Contribuyentes c JOIN Empresa e ON c.idEmpresa = e.idEmpresa JOIN Factura f ON f.facNitReceptor = c.rucNitContribuyente and f.facCeEmpresa = c.idEmpresa JOIN BitacoraDeclaracionHacienda b ON b.idFac = f.facId WHERE e.idEmpresa =:idEmp AND b.estado in ('PROCESADO','OBSERVADO') and ");
+            jpqlBuilder.append("SELECT b, f.facNumeroDeControl, f.facTipoComprobante FROM Contribuyentes c JOIN Empresa e ON c.idEmpresa = e.idEmpresa JOIN Factura f ON f.facNitReceptor = c.rucNitContribuyente and f.facCeEmpresa = c.idEmpresa JOIN BitacoraDeclaracionHacienda b ON b.idFac = f.facId WHERE e.idEmpresa =:idEmp and ");
 
             if (startDate != null && endDate != null) {
                 jpqlBuilder.append(" b.fechaIngreso >= :startDate AND b.fechaIngreso <= :endDate");
@@ -104,6 +104,7 @@ public class BitacoraService {
                 BitacoraDeclaracionHacienda bitacora = (BitacoraDeclaracionHacienda) obj[0];
                 String nroControl = (String) obj[1];
                 bitacora.setNroControlDte(nroControl);
+                bitacora.setFacTipoComprobante((String) obj[2]);
                 result.add(bitacora);
             }
             result.forEach(item -> {
